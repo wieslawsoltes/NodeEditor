@@ -62,6 +62,9 @@
                 </Style>
               </Rectangle.Styles>
             </Rectangle>
+            <Label Content="{Binding Content}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
             <views:ConnectedNodeView />
           </Panel>
         </DataTemplate>

@@ -54,7 +54,8 @@ namespace NodeEditorDemo
                 Y = 30,
                 Width = 60,
                 Height = 60,
-                Pins = new ObservableCollection<PinViewModel>()
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = "rect0"
             };
             drawing.Nodes.Add(rectangle0);
 
@@ -70,7 +71,8 @@ namespace NodeEditorDemo
                 Y = 30,
                 Width = 60,
                 Height = 60,
-                Pins = new ObservableCollection<PinViewModel>()
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = "rect1"
             };
             drawing.Nodes.Add(rectangle1);
 
@@ -86,7 +88,8 @@ namespace NodeEditorDemo
                 Y = 220,
                 Width = 60,
                 Height = 60,
-                Pins = new ObservableCollection<PinViewModel>()
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = "rect2"
             };
             drawing.Nodes.Add(rectangle2);
 
@@ -102,7 +105,8 @@ namespace NodeEditorDemo
                 Y = 220,
                 Width = 60,
                 Height = 60,
-                Pins = new ObservableCollection<PinViewModel>()
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = "rect3"
             };
             drawing.Nodes.Add(rectangle3);
 

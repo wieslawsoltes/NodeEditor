@@ -9,6 +9,7 @@ namespace NodeEditor.ViewModels
         private double _y;
         private double _width;
         private double _height;
+        private object? _content;
 
         public NodeViewModel? Parent
         {
@@ -38,6 +39,12 @@ namespace NodeEditor.ViewModels
         {
             get => _height;
             set => this.RaiseAndSetIfChanged(ref _height, value);
+        }
+
+        public object? Content
+        {
+            get => _content;
+            set => this.RaiseAndSetIfChanged(ref _content, value);
         }
     }
 }
