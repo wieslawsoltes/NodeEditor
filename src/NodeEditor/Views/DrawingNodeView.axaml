@@ -1,0 +1,94 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:NodeEditor.ViewModels"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+             xmlns:converters="clr-namespace:NodeEditor.Converters"
+             xmlns:views="using:NodeEditor.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="NodeEditor.Views.DrawingNodeView"
+             x:DataType="vm:DrawingNodeViewModel" x:CompileBindings="True"
+             Width="{Binding Width}"
+             Height="{Binding Height}"
+             ClipToBounds="False">
+  <UserControl.Styles>
+    <Style Selector=":is(ItemsControl).dragNode > :is(ContentPresenter)">
+      <Setter Property="(i:Interaction.Behaviors)">
+        <i:BehaviorCollectionTemplate>
+          <i:BehaviorCollection>
+            <behaviors:NodeDragBehavior />
+          </i:BehaviorCollection>
+        </i:BehaviorCollectionTemplate>
+      </Setter>
+    </Style>
+    <Style Selector=":is(ItemsControl).pointerMoved">
+      <Setter Property="(i:Interaction.Behaviors)">
+        <i:BehaviorCollectionTemplate>
+          <i:BehaviorCollection>
+            <behaviors:DrawingMovedBehavior />
+          </i:BehaviorCollection>
+        </i:BehaviorCollectionTemplate>
+      </Setter>
+    </Style>
+  </UserControl.Styles>
+  <Panel>
+    <ItemsControl Items="{Binding Nodes}" 
+                  Width="{Binding Width}" 
+                  Height="{Binding Height}"
+                  Background="LightGray"
+                  Classes="dragNode pointerMoved">
+      <ItemsControl.Styles>
+        <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:NodeViewModel">
+          <Setter Property="Canvas.Left" Value="{Binding X}" />
+          <Setter Property="Canvas.Top" Value="{Binding Y}" />
+        </Style>
+      </ItemsControl.Styles>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Canvas />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+      <ItemsControl.DataTemplates>
+        <DataTemplate DataType="vm:RectangleNodeViewModel">
+          <Panel>
+            <Rectangle Width="{Binding Width}" 
+                       Height="{Binding Height}">
+              <Rectangle.Styles>
+                <Style Selector="Rectangle">
+                  <Setter Property="Fill" Value="Blue" />
+                </Style>
+              </Rectangle.Styles>
+            </Rectangle>
+            <views:ConnectedNodeView />
+          </Panel>
+        </DataTemplate>
+      </ItemsControl.DataTemplates>
+    </ItemsControl>
+    <ItemsControl Items="{Binding Connectors}" 
+                  Width="{Binding Width}" 
+                  Height="{Binding Height}"
+                  Background="Transparent"
+                  IsHitTestVisible="False">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <Canvas />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+      <ItemsControl.DataTemplates>
+        <DataTemplate DataType="vm:ConnectorViewModel">
+          <Line StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
+                EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}">
+            <Line.Styles>
+              <Style Selector="Line">
+                <Setter Property="Stroke" Value="Red" />
+                <Setter Property="StrokeThickness" Value="2" />
+              </Style>
+            </Line.Styles>
+          </Line>
+        </DataTemplate>
+      </ItemsControl.DataTemplates>
+    </ItemsControl>
+  </Panel>
+</UserControl>

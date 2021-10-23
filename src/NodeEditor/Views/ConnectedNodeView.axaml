@@ -1,0 +1,59 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:NodeEditor.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="NodeEditor.Views.ConnectedNodeView"
+             xmlns:vm="using:NodeEditor.ViewModels"
+             x:DataType="vm:ConnectedNodeViewModel" x:CompileBindings="True"
+             Width="{Binding Width}"
+             Height="{Binding Height}"
+             ClipToBounds="False">
+  <UserControl.Styles>
+    <Style Selector=":is(ItemsControl).connectorPressed > :is(ContentPresenter)">
+      <Setter Property="(i:Interaction.Behaviors)">
+        <i:BehaviorCollectionTemplate>
+          <i:BehaviorCollection>
+            <behaviors:ConnectorPressedBehavior />
+          </i:BehaviorCollection>
+        </i:BehaviorCollectionTemplate>
+      </Setter>
+    </Style>
+  </UserControl.Styles>
+  <ItemsControl Items="{Binding Pins}"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                ClipToBounds="False"
+                Classes="connectorPressed">
+    <ItemsControl.Styles>
+      <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:PinViewModel">
+        <Setter Property="Canvas.Left" Value="{Binding X}" />
+        <Setter Property="Canvas.Top" Value="{Binding Y}" />
+      </Style>
+    </ItemsControl.Styles>
+    <ItemsControl.ItemsPanel>
+      <ItemsPanelTemplate>
+        <Canvas />
+      </ItemsPanelTemplate>
+    </ItemsControl.ItemsPanel>
+    <ItemsControl.DataTemplates>
+      <DataTemplate DataType="vm:PinViewModel">
+        <Rectangle Margin="{Binding Converter={x:Static converters:PinMarginConverter.Instance}}"
+                   Width="{Binding Width}"
+                   Height="{Binding Height}">
+          <Rectangle.Styles>
+            <Style Selector="Rectangle">
+              <Setter Property="Fill" Value="Black" />
+            </Style>
+            <Style Selector="Rectangle:pointerover">
+              <Setter Property="Fill" Value="Red" />
+            </Style>
+          </Rectangle.Styles>
+        </Rectangle>
+      </DataTemplate>
+    </ItemsControl.DataTemplates>
+  </ItemsControl>
+</UserControl>
