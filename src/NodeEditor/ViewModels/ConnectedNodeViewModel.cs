@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using NodeEditor.Model;
 using ReactiveUI;
 
 namespace NodeEditor.ViewModels
@@ -13,7 +14,7 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _pins, value);
         }
 
-        public PinViewModel AddPin(double x, double y, double width, double height)
+        public PinViewModel AddPin(double x, double y, double width, double height, PinAlignment alignment = PinAlignment.None)
         {
             var pin = new PinViewModel()
             {
@@ -21,7 +22,8 @@ namespace NodeEditor.ViewModels
                 X = x,
                 Y = y, 
                 Width = width, 
-                Height = height
+                Height = height,
+                Alignment = alignment
             };
 
             Pins ??= new ObservableCollection<PinViewModel>();

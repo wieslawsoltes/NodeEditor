@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using NodeEditor.Model;
 using NodeEditor.ViewModels;
 using NodeEditorDemo.ViewModels;
 using NodeEditorDemo.Views;
@@ -57,10 +58,10 @@ namespace NodeEditorDemo
             };
             drawing.Nodes.Add(rectangle0);
 
-            rectangle0.AddPin(0, 30, 8, 8);
-            rectangle0.AddPin(60, 30, 8, 8);
-            rectangle0.AddPin(30, 0, 8, 8);
-            rectangle0.AddPin(30, 60, 8, 8);
+            rectangle0.AddPin(0, 30, 8, 8, PinAlignment.Left);
+            rectangle0.AddPin(60, 30, 8, 8, PinAlignment.Right);
+            rectangle0.AddPin(30, 0, 8, 8, PinAlignment.Top);
+            rectangle0.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
 
             var rectangle1 = new RectangleNodeViewModel
             {
@@ -73,10 +74,10 @@ namespace NodeEditorDemo
             };
             drawing.Nodes.Add(rectangle1);
 
-            rectangle1.AddPin(0, 30, 8, 8);
-            rectangle1.AddPin(60, 30, 8, 8);
-            rectangle1.AddPin(30, 0, 8, 8);
-            rectangle1.AddPin(30, 60, 8, 8);
+            rectangle1.AddPin(0, 30, 8, 8, PinAlignment.Left);
+            rectangle1.AddPin(60, 30, 8, 8, PinAlignment.Right);
+            rectangle1.AddPin(30, 0, 8, 8, PinAlignment.Top);
+            rectangle1.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
 
             var rectangle2 = new RectangleNodeViewModel
             {
@@ -89,10 +90,10 @@ namespace NodeEditorDemo
             };
             drawing.Nodes.Add(rectangle2);
 
-            rectangle2.AddPin(0, 30, 8, 8);
-            rectangle2.AddPin(60, 30, 8, 8);
-            rectangle2.AddPin(30, 0, 8, 8);
-            rectangle2.AddPin(30, 60, 8, 8);
+            rectangle2.AddPin(0, 30, 8, 8, PinAlignment.Left);
+            rectangle2.AddPin(60, 30, 8, 8, PinAlignment.Right);
+            rectangle2.AddPin(30, 0, 8, 8, PinAlignment.Top);
+            rectangle2.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
 
             var rectangle3 = new RectangleNodeViewModel
             {
@@ -105,10 +106,10 @@ namespace NodeEditorDemo
             };
             drawing.Nodes.Add(rectangle3);
 
-            rectangle3.AddPin(0, 30, 8, 8);
-            rectangle3.AddPin(60, 30, 8, 8);
-            rectangle3.AddPin(30, 0, 8, 8);
-            rectangle3.AddPin(30, 60, 8, 8);
+            rectangle3.AddPin(0, 30, 8, 8, PinAlignment.Left);
+            rectangle3.AddPin(60, 30, 8, 8, PinAlignment.Right);
+            rectangle3.AddPin(30, 0, 8, 8, PinAlignment.Top);
+            rectangle3.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
 
             var connector0 = new ConnectorViewModel
             {
