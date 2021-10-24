@@ -3,7 +3,7 @@
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:NodeEditor.Views;assembly=NodeEditor"
+             xmlns:views="clr-namespace:NodeEditor.Views;assembly=NodeEditorAvalonia"
              mc:Ignorable="d" d:DesignWidth="60" d:DesignHeight="60"
              x:Class="NodeEditorDemo.Views.EllipseNodeView"
              x:CompileBindings="True" x:DataType="vm:EllipseNodeViewModel"

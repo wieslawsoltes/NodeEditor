@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorDemo", "samples\N
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02D6D6DC-21FA-435F-9526-E6F635127483}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor", "src\NodeEditor\NodeEditor.csproj", "{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia", "src\NodeEditorAvalonia\NodeEditorAvalonia.csproj", "{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EA2546EB-E043-4411-92D2-96AF60E6EC70}"
 EndProject
@@ -21,7 +21,7 @@ EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2D76C533-155A-4E1B-9665-BC0F48D1A634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.UnitTests", "tests\NodeEditor.UnitTests\NodeEditor.UnitTests.csproj", "{7BD43F56-1050-4051-801F-EA5C532E05FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.UnitTests", "tests\NodeEditorAvalonia.UnitTests\NodeEditorAvalonia.UnitTests.csproj", "{7BD43F56-1050-4051-801F-EA5C532E05FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E85732E3-2435-4AAE-A650-A4F7B40E6331}"
 ProjectSection(SolutionItems) = preProject

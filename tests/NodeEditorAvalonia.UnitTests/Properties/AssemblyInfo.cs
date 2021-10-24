@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Xunit;
 
-[assembly: AssemblyTitle("NodeEditor.UnitTests")]
+[assembly: AssemblyTitle("NodeEditorAvalonia.UnitTests")]
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]

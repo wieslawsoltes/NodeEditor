@@ -4,10 +4,11 @@
     <IsPackable>True</IsPackable>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
+    <RootNamespace>NodeEditor</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>NodeEditor</PackageId>
+    <PackageId>NodeEditorAvalonia</PackageId>
     <Description>A node editor control for Avalonia.</Description>
     <PackageTags>node;editor;nodeeditor;graph;control;xaml;axaml;avalonia;avaloniaui</PackageTags>
   </PropertyGroup>

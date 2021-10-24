@@ -7,13 +7,14 @@
     <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
     <IsPackable>False</IsPackable>
     <Nullable>enable</Nullable>
+    <RootNamespace>NodeEditor.UnitTests</RootNamespace>
   </PropertyGroup>
 
   <Import Project="..\..\build\Avalonia.props" />
   <Import Project="..\..\build\XUnit.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NodeEditor\NodeEditor.csproj" />
+    <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
   </ItemGroup>
 
 </Project>

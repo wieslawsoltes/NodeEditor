@@ -3,8 +3,8 @@
 [![Build Status](https://dev.azure.com/wieslawsoltes/GitHub/_apis/build/status/wieslawsoltes.NodeEditor?branchName=main)](https://dev.azure.com/wieslawsoltes/GitHub/_build/latest?definitionId=104&branchName=main)
 [![CI](https://github.com/wieslawsoltes/NodeEditor/actions/workflows/build.yml/badge.svg)](https://github.com/wieslawsoltes/NodeEditor/actions/workflows/build.yml)
 
-[![NuGet](https://img.shields.io/nuget/v/NodeEditor.svg)](https://www.nuget.org/packages/NodeEditor)
-[![NuGet](https://img.shields.io/nuget/dt/NodeEditor.svg)](https://www.nuget.org/packages/NodeEditor)
+[![NuGet](https://img.shields.io/nuget/v/NodeEditorAvalonia.svg)](https://www.nuget.org/packages/NodeEditorAvalonia)
+[![NuGet](https://img.shields.io/nuget/dt/NodeEditorAvalonia.svg)](https://www.nuget.org/packages/NodeEditorAvalonia)
 
 A node editor control for Avalonia.
 
@@ -46,9 +46,9 @@ Open up a terminal prompt and execute the commands:
 
 NodeEditor is delivered as a NuGet package.
 
-You can find the packages here [NuGet](https://www.nuget.org/packages/NodeEditor/) and install the package like this:
+You can find the packages here [NuGet](https://www.nuget.org/packages/NodeEditorAvalonia/) and install the package like this:
 
-`Install-Package NodeEditor`
+`Install-Package NodeEditorAvalonia`
 
 ### Package Sources
 
