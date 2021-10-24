@@ -1,5 +1,8 @@
 # NodeEditor
 
+[![Build Status](https://dev.azure.com/wieslawsoltes/GitHub/_apis/build/status/wieslawsoltes.NodeEditor?branchName=main)](https://dev.azure.com/wieslawsoltes/GitHub/_build/latest?definitionId=104&branchName=main)
+[![CI](https://github.com/wieslawsoltes/NodeEditor/actions/workflows/build.yml/badge.svg)](https://github.com/wieslawsoltes/NodeEditor/actions/workflows/build.yml)
+
 [![NuGet](https://img.shields.io/nuget/v/NodeEditor.svg)](https://www.nuget.org/packages/NodeEditor)
 [![NuGet](https://img.shields.io/nuget/dt/NodeEditor.svg)](https://www.nuget.org/packages/NodeEditor)
 
