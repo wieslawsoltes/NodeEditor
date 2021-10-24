@@ -10,6 +10,7 @@ namespace NodeEditor.Behaviors
     public class NodeDragBehavior : Behavior<Control>
     {
         private bool _enableDrag;
+        private bool _moved;
         private Point _start;
         private IControl? _parent;
         private Control? _draggedContainer;
@@ -48,6 +49,7 @@ namespace NodeEditor.Behaviors
             }
 
             _enableDrag = true;
+            _moved = false;
             _start = e.GetPosition(AssociatedObject.Parent);
             _parent = parent;
             _draggedContainer = AssociatedObject;
@@ -55,6 +57,7 @@ namespace NodeEditor.Behaviors
 
         private void Released(object? sender, PointerReleasedEventArgs e)
         {
+            e.Handled = _moved && _enableDrag;
             Released();
         }
 
@@ -78,6 +81,7 @@ namespace NodeEditor.Behaviors
             var position = e.GetPosition(_parent);
             var deltaX = position.X - _start.X;
             var deltaY = position.Y - _start.Y;
+            _moved = true;
             _start = position;
             var x = nodeViewModel.X;
             var y = nodeViewModel.Y;
