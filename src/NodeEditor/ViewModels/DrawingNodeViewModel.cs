@@ -22,7 +22,25 @@ namespace NodeEditor.ViewModels
 
         private ConnectorViewModel? _connectorViewModel;
 
-        public void Pressed(PinViewModel pin)
+        public void DrawingPressed(double d, double d1)
+        {
+            // TODO:
+        }
+
+        public void DrawingCancel()
+        {
+            if (_connectorViewModel is { })
+            {
+                if (Connectors is { })
+                {
+                    Connectors.Remove(_connectorViewModel);
+                }
+
+                _connectorViewModel = null;
+            }
+        }
+
+        public void ConnectorPressed(PinViewModel pin)
         {
             if (_connectors is null)
             {
@@ -68,7 +86,7 @@ namespace NodeEditor.ViewModels
             }
         }
 
-        public void Move(double x, double y)
+        public void ConnectorMove(double x, double y)
         {
             if (_connectorViewModel is { })
             {

@@ -7,17 +7,18 @@
              xmlns:converters="clr-namespace:NodeEditor.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="NodeEditor.Views.ConnectedNodeView"
+             xmlns:m="clr-namespace:NodeEditor.Model"
              xmlns:vm="using:NodeEditor.ViewModels"
-             x:DataType="vm:ConnectedNodeViewModel" x:CompileBindings="True"
+             x:CompileBindings="True" x:DataType="vm:ConnectedNodeViewModel"
              Width="{Binding Width}"
              Height="{Binding Height}"
              ClipToBounds="False">
   <UserControl.Styles>
-    <Style Selector=":is(ItemsControl).connectorPressed > :is(ContentPresenter)">
+    <Style Selector=":is(ItemsControl).pinPressed > :is(ContentPresenter)">
       <Setter Property="(i:Interaction.Behaviors)">
         <i:BehaviorCollectionTemplate>
           <i:BehaviorCollection>
-            <behaviors:ConnectorPressedBehavior />
+            <behaviors:PinPressedBehavior />
           </i:BehaviorCollection>
         </i:BehaviorCollectionTemplate>
       </Setter>
@@ -27,7 +28,7 @@
                 Width="{Binding Width}"
                 Height="{Binding Height}"
                 ClipToBounds="False"
-                Classes="connectorPressed">
+                Classes="pinPressed">
     <ItemsControl.Styles>
       <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:PinViewModel">
         <Setter Property="Canvas.Left" Value="{Binding X}" />
@@ -52,6 +53,33 @@
               <Setter Property="Fill" Value="Red" />
             </Style>
           </Rectangle.Styles>
+          <Rectangle.ContextFlyout>
+            <Flyout>
+              <DockPanel>
+                <Label Content="Alignment:" DockPanel.Dock="Top" />
+                <RadioButton Content="None" 
+                             GroupName="Alignment" 
+                             IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.None}}"
+                             DockPanel.Dock="Top" />
+                <RadioButton Content="Left" 
+                             GroupName="Alignment" 
+                             IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Left}}"
+                             DockPanel.Dock="Top" />
+                <RadioButton Content="Right" 
+                             GroupName="Alignment" 
+                             IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Right}}"
+                             DockPanel.Dock="Top" />
+                <RadioButton Content="Top" 
+                             GroupName="Alignment" 
+                             IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Top}}"
+                             DockPanel.Dock="Top" />
+                <RadioButton Content="Bottom" 
+                             GroupName="Alignment" 
+                             IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Bottom}}"
+                             DockPanel.Dock="Top" />
+              </DockPanel>
+            </Flyout>
+          </Rectangle.ContextFlyout>
         </Rectangle>
       </DataTemplate>
     </ItemsControl.DataTemplates>

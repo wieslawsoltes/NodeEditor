@@ -29,6 +29,11 @@ namespace NodeEditor.ViewModels
                             start.WhenAnyValue(x => x.Y).Subscribe(_ => this.RaisePropertyChanged(nameof(Start)));
                         }
                     }
+
+                    if (start is { })
+                    {
+                        start.WhenAnyValue(x => x.Alignment).Subscribe(_ => this.RaisePropertyChanged(nameof(Start)));
+                    }
                 });
 
             this.WhenAnyValue(x => x.End)
@@ -46,6 +51,11 @@ namespace NodeEditor.ViewModels
                             end.WhenAnyValue(x => x.X).Subscribe(_ => this.RaisePropertyChanged(nameof(End)));
                             end.WhenAnyValue(x => x.Y).Subscribe(_ => this.RaisePropertyChanged(nameof(End)));
                         }
+                    }
+
+                    if (end is { })
+                    {
+                        end.WhenAnyValue(x => x.Alignment).Subscribe(_ => this.RaisePropertyChanged(nameof(End)));
                     }
                 });
         }

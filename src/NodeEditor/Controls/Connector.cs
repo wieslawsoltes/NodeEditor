@@ -20,7 +20,7 @@ namespace NodeEditor.Controls
         static Connector()
         {
             StrokeThicknessProperty.OverrideDefaultValue<Connector>(1);
-            AffectsGeometry<Connector>(StartPointProperty, EndPointProperty);
+            AffectsGeometry<Connector>(StartPointProperty, EndPointProperty, OffsetProperty);
         }
 
         public Point StartPoint

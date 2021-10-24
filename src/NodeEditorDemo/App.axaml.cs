@@ -98,7 +98,7 @@ namespace NodeEditorDemo
             rectangle2.AddPin(30, 0, 8, 8, PinAlignment.Top);
             rectangle2.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
 
-            var rectangle3 = new RectangleNodeViewModel
+            var ellipse0 = new EllipseNodeViewModel()
             {
                 Parent = drawing,
                 X = 220,
@@ -106,14 +106,14 @@ namespace NodeEditorDemo
                 Width = 60,
                 Height = 60,
                 Pins = new ObservableCollection<PinViewModel>(),
-                Content = "rect3"
+                Content = "ellipse0"
             };
-            drawing.Nodes.Add(rectangle3);
+            drawing.Nodes.Add(ellipse0);
 
-            rectangle3.AddPin(0, 30, 8, 8, PinAlignment.Left);
-            rectangle3.AddPin(60, 30, 8, 8, PinAlignment.Right);
-            rectangle3.AddPin(30, 0, 8, 8, PinAlignment.Top);
-            rectangle3.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
+            ellipse0.AddPin(0, 30, 8, 8, PinAlignment.Left);
+            ellipse0.AddPin(60, 30, 8, 8, PinAlignment.Right);
+            ellipse0.AddPin(30, 0, 8, 8, PinAlignment.Top);
+            ellipse0.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
 
             var connector0 = new ConnectorViewModel
             {

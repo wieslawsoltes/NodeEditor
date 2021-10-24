@@ -42,7 +42,7 @@ namespace NodeEditor.Behaviors
 
             var (x, y) = e.GetPosition(AssociatedObject);
 
-            drawingNodeViewModel.Move(x, y);
+            drawingNodeViewModel.ConnectorMove(x, y);
         }
     }
 }

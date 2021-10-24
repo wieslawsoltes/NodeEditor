@@ -6,7 +6,7 @@ using NodeEditor.ViewModels;
 
 namespace NodeEditor.Behaviors
 {
-    public class ConnectorPressedBehavior : Behavior<Control>
+    public class DrawingPressedBehavior : Behavior<Control>
     {
         protected override void OnAttached()
         {
@@ -30,24 +30,25 @@ namespace NodeEditor.Behaviors
 
         private void Pressed(object? sender, PointerPressedEventArgs e)
         {
-            if (AssociatedObject is not { })
+            if (AssociatedObject is null)
             {
                 return;
             }
 
-            if (AssociatedObject.DataContext is not PinViewModel pinViewModel)
+            if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
             {
                 return;
             }
 
-            if (pinViewModel.Parent is not ConnectedNodeViewModel connectedNodeViewModel)
-            {
-                return;
-            }
+            var (x, y) = e.GetPosition(AssociatedObject);
 
-            if (connectedNodeViewModel.Parent is DrawingNodeViewModel drawingNodeViewModel)
+            if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
-                drawingNodeViewModel.Pressed(pinViewModel);
+                drawingNodeViewModel.DrawingPressed(x, y);
+            }
+            else if (e.GetCurrentPoint(AssociatedObject).Properties.IsRightButtonPressed)
+            {
+                drawingNodeViewModel.DrawingCancel();
             }
         }
     }

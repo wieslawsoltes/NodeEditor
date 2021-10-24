@@ -8,9 +8,10 @@
         x:Class="NodeEditorDemo.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="NodeEditorDemo"
-        x:DataType="vm:MainWindowViewModel" x:CompileBindings="True">
+        x:CompileBindings="True" x:DataType="vm:MainWindowViewModel">
   <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>
-  <editor:DrawingNodeView DataContext="{Binding Drawing}" />
+  <editor:DrawingNodeView DataContext="{Binding Drawing}"
+                          Background="LightGray"/>
 </Window>

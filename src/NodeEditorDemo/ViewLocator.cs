@@ -2,13 +2,12 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using NodeEditorDemo.ViewModels;
+using ReactiveUI;
 
 namespace NodeEditorDemo
 {
     public class ViewLocator : IDataTemplate
     {
-        public bool SupportsRecycling => false;
-
         public IControl Build(object data)
         {
             var name = data.GetType().FullName!.Replace("ViewModel", "View");
@@ -26,7 +25,7 @@ namespace NodeEditorDemo
 
         public bool Match(object data)
         {
-            return data is ViewModelBase;
+            return data is ViewModelBase || data is ReactiveObject;
         }
     }
 }

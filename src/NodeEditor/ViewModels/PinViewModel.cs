@@ -6,7 +6,7 @@ namespace NodeEditor.ViewModels
     public class PinViewModel : NodeViewModel
     {
         private PinAlignment _alignment;
-        
+
         public PinAlignment Alignment
         {
             get => _alignment;
