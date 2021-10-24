@@ -47,6 +47,11 @@ namespace NodeEditor.Behaviors
             {
                 return;
             }
+  
+            if (e.Source is Control control && control.DataContext is PinViewModel)
+            {
+                return;
+            }
 
             _enableDrag = true;
             _moved = false;
@@ -73,6 +78,11 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
+            if (e.Source is Control control && control.DataContext is PinViewModel)
+            {
+                return;
+            }
+            
             if (_draggedContainer.DataContext is not NodeViewModel nodeViewModel)
             {
                 return;
