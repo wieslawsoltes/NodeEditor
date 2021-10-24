@@ -1,10 +1,58 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorDemo", "src\NodeEditorDemo\NodeEditorDemo.csproj", "{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorDemo", "samples\NodeEditorDemo\NodeEditorDemo.csproj", "{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02D6D6DC-21FA-435F-9526-E6F635127483}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor", "src\NodeEditor\NodeEditor.csproj", "{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EA2546EB-E043-4411-92D2-96AF60E6EC70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{17289397-391E-4F2E-A591-4AA3EEC80586}"
+ProjectSection(SolutionItems) = preProject
+	.editorconfig = .editorconfig
+	.nuke = .nuke
+	azure-pipelines.yml = azure-pipelines.yml
+	build.ps1 = build.ps1
+	build.sh = build.sh
+	global.json = global.json
+	build\nodeeditor.public.snk = build\nodeeditor.public.snk
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2D76C533-155A-4E1B-9665-BC0F48D1A634}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.UnitTests", "tests\NodeEditor.UnitTests\NodeEditor.UnitTests.csproj", "{7BD43F56-1050-4051-801F-EA5C532E05FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E85732E3-2435-4AAE-A650-A4F7B40E6331}"
+ProjectSection(SolutionItems) = preProject
+	LICENSE.TXT = LICENSE.TXT
+	README.md = README.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{75D70D48-0039-4249-9F9D-5BD2AAF5234D}"
+ProjectSection(SolutionItems) = preProject
+	.gitattributes = .gitattributes
+	.gitignore = .gitignore
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{51C5CC41-B8B0-4763-B12F-CA77914C75DB}"
+ProjectSection(SolutionItems) = preProject
+	nuget.config = nuget.config
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{84BDAB45-41BD-4877-943C-81F9C9A6AF9A}"
+ProjectSection(SolutionItems) = preProject
+	build\Avalonia.Desktop.props = build\Avalonia.Desktop.props
+	build\Avalonia.Diagnostics.props = build\Avalonia.Diagnostics.props
+	build\Avalonia.props = build\Avalonia.props
+	build\Avalonia.ReactiveUI.props = build\Avalonia.ReactiveUI.props
+	build\Avalonia.Xaml.Behaviors.props = build\Avalonia.Xaml.Behaviors.props
+	build\Base.props = build\Base.props
+	build\ReferenceAssemblies.props = build\ReferenceAssemblies.props
+	build\SignAssembly.props = build\SignAssembly.props
+	build\SourceLink.props = build\SourceLink.props
+	build\XUnit.props = build\XUnit.props
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +68,17 @@ Global
 		{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD43F56-1050-4051-801F-EA5C532E05FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD43F56-1050-4051-801F-EA5C532E05FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD43F56-1050-4051-801F-EA5C532E05FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD43F56-1050-4051-801F-EA5C532E05FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5} = {02D6D6DC-21FA-435F-9526-E6F635127483}
 		{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD} = {02D6D6DC-21FA-435F-9526-E6F635127483}
+		{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5} = {EA2546EB-E043-4411-92D2-96AF60E6EC70}
+		{7BD43F56-1050-4051-801F-EA5C532E05FA} = {2D76C533-155A-4E1B-9665-BC0F48D1A634}
+		{75D70D48-0039-4249-9F9D-5BD2AAF5234D} = {17289397-391E-4F2E-A591-4AA3EEC80586}
+		{51C5CC41-B8B0-4763-B12F-CA77914C75DB} = {17289397-391E-4F2E-A591-4AA3EEC80586}
+		{84BDAB45-41BD-4877-943C-81F9C9A6AF9A} = {17289397-391E-4F2E-A591-4AA3EEC80586}
 	EndGlobalSection
 EndGlobal
