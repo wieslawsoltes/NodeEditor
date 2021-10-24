@@ -50,6 +50,7 @@ namespace NodeEditor.Behaviors
                 if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
                 {
                     drawingNodeViewModel.ConnectorPressed(pinViewModel);
+                    e.Handled = true;
                 }
             }
         }
