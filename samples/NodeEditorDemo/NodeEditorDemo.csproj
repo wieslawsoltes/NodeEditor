@@ -21,5 +21,5 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
   </ItemGroup>
-  
+
 </Project>
