@@ -1,9 +1,11 @@
 using System;
+using System.Runtime.Serialization;
 using NodeEditor.Model;
 using ReactiveUI;
 
 namespace NodeEditor.ViewModels
 {
+    [DataContract(IsReference = true)]
     public class ConnectorViewModel : ReactiveObject
     {
         private DrawingNodeViewModel? _parent;
@@ -60,24 +62,28 @@ namespace NodeEditor.ViewModels
                 });
         }
 
+        [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public DrawingNodeViewModel? Parent
         {
             get => _parent;
             set => this.RaiseAndSetIfChanged(ref _parent, value);
         }
 
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
         public ConnectorOrientation Orientation
         {
             get => _orientation;
             set => this.RaiseAndSetIfChanged(ref _orientation, value);
         }
 
+        [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public PinViewModel? Start
         {
             get => _start;
             set => this.RaiseAndSetIfChanged(ref _start, value);
         }
 
+        [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public PinViewModel? End
         {
             get => _end;

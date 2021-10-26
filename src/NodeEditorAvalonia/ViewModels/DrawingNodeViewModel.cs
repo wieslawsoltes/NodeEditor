@@ -1,19 +1,24 @@
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using ReactiveUI;
 
 namespace NodeEditor.ViewModels
 {
+    [DataContract(IsReference = true)]
     public class DrawingNodeViewModel : NodeViewModel
     {
         private ObservableCollection<NodeViewModel>? _nodes;
         private ObservableCollection<ConnectorViewModel>? _connectors;
 
+        [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public ObservableCollection<NodeViewModel>? Nodes
         {
             get => _nodes;
             set => this.RaiseAndSetIfChanged(ref _nodes, value);
         }
 
+        
+        [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public ObservableCollection<ConnectorViewModel>? Connectors
         {
             get => _connectors;
