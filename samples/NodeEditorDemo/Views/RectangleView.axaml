@@ -28,8 +28,8 @@
       </Flyout>
     </Panel.ContextFlyout>
     <Rectangle Name="PART_Rectangle" />
-      <Label Name="PART_Label"
-             Content="{Binding Label}" />
+    <Label Name="PART_Label"
+           Content="{Binding Label}" />
   </Panel>
 </UserControl>
 
