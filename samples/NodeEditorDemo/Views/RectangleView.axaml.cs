@@ -1,11 +1,11 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace NodeEditor.Views
+namespace NodeEditorDemo.Views
 {
-    public class PinView : UserControl
+    public class RectangleView : UserControl
     {
-        public PinView()
+        public RectangleView()
         {
             InitializeComponent();
         }

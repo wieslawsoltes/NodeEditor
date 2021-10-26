@@ -1,12 +1,11 @@
-﻿
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace NodeEditorDemo.Views
 {
-    public class EllipseNodeView : UserControl
+    public class EllipseView : UserControl
     {
-        public EllipseNodeView()
+        public EllipseView()
         {
             InitializeComponent();
         }

@@ -1,8 +1,10 @@
+using System.Collections.ObjectModel;
+using NodeEditor.Model;
 using ReactiveUI;
 
 namespace NodeEditor.ViewModels
 {
-    public abstract class NodeViewModel : ReactiveObject
+    public class NodeViewModel : ReactiveObject
     {
         private NodeViewModel? _parent;
         private double _x;
@@ -10,6 +12,7 @@ namespace NodeEditor.ViewModels
         private double _width;
         private double _height;
         private object? _content;
+        private ObservableCollection<PinViewModel>? _pins;
 
         public NodeViewModel? Parent
         {
@@ -45,6 +48,30 @@ namespace NodeEditor.ViewModels
         {
             get => _content;
             set => this.RaiseAndSetIfChanged(ref _content, value);
+        }
+        
+        public ObservableCollection<PinViewModel>? Pins
+        {
+            get => _pins;
+            set => this.RaiseAndSetIfChanged(ref _pins, value);
+        }
+
+        public PinViewModel AddPin(double x, double y, double width, double height, PinAlignment alignment = PinAlignment.None)
+        {
+            var pin = new PinViewModel()
+            {
+                Parent = this,
+                X = x,
+                Y = y, 
+                Width = width, 
+                Height = height,
+                Alignment = alignment
+            };
+
+            Pins ??= new ObservableCollection<PinViewModel>();
+            Pins.Add(pin);
+
+            return pin;
         }
     }
 }
