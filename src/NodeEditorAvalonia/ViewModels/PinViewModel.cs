@@ -14,7 +14,6 @@ namespace NodeEditor.ViewModels
         private double _height;
         private PinAlignment _alignment;
 
-        
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public NodeViewModel? Parent
         {
