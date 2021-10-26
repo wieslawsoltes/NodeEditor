@@ -16,7 +16,7 @@ namespace NodeEditor.ViewModels
         private object? _content;
         private ObservableCollection<PinViewModel>? _pins;
 
-        [DataMember(IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
         public NodeViewModel? Parent
         {
             get => _parent;
