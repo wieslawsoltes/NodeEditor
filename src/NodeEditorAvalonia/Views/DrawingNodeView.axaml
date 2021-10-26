@@ -14,7 +14,9 @@
              Width="{Binding Width}"
              Height="{Binding Height}"
              ClipToBounds="False">
+
   <UserControl.Styles>
+
     <Style Selector=":is(ItemsControl).dragNode > :is(ContentPresenter)">
       <Setter Property="(i:Interaction.Behaviors)">
         <i:BehaviorCollectionTemplate>
@@ -24,6 +26,7 @@
         </i:BehaviorCollectionTemplate>
       </Setter>
     </Style>
+
     <Style Selector=":is(ItemsControl).pointerEvents">
       <Setter Property="(i:Interaction.Behaviors)">
         <i:BehaviorCollectionTemplate>
@@ -34,6 +37,7 @@
         </i:BehaviorCollectionTemplate>
       </Setter>
     </Style>
+
     <Style Selector=":is(ItemsControl).pinPressed > :is(ContentPresenter)">
       <Setter Property="(i:Interaction.Behaviors)">
         <i:BehaviorCollectionTemplate>
@@ -43,19 +47,25 @@
         </i:BehaviorCollectionTemplate>
       </Setter>
     </Style>
+
     <Style Selector="controls|Connector">
       <Setter Property="Stroke" Value="Red" />
       <Setter Property="StrokeThickness" Value="2" />
       <Setter Property="Offset" Value="50" />
     </Style>
+
     <Style Selector="Rectangle#PART_Pin">
       <Setter Property="Fill" Value="Black" />
     </Style>
+
     <Style Selector="Rectangle#PART_Pin:pointerover">
       <Setter Property="Fill" Value="Red" />
     </Style>
+
   </UserControl.Styles>
+
   <Panel>
+
     <ItemsControl Items="{Binding Nodes}" 
                   Width="{Binding Width}" 
                   Height="{Binding Height}"
@@ -136,6 +146,7 @@
         </DataTemplate>
       </ItemsControl.ItemTemplate>
     </ItemsControl>
+
     <ItemsControl Items="{Binding Connectors}" 
                   Width="{Binding Width}" 
                   Height="{Binding Height}"
@@ -154,5 +165,7 @@
         </DataTemplate>
       </ItemsControl.DataTemplates>
     </ItemsControl>
+
   </Panel>
+
 </UserControl>
