@@ -52,6 +52,7 @@ ProjectSection(SolutionItems) = preProject
 	build\SignAssembly.props = build\SignAssembly.props
 	build\SourceLink.props = build\SourceLink.props
 	build\XUnit.props = build\XUnit.props
+	build\Newtonsoft.Json.props = build\Newtonsoft.Json.props
 EndProjectSection
 EndProject
 Global
