@@ -1,11 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:NodeEditorDemo.ViewModels"
-        xmlns:editor="using:NodeEditor.Views"
+        xmlns:editor="clr-namespace:NodeEditor.Views;assembly=NodeEditorAvalonia"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
+        xmlns:behaviors="clr-namespace:NodeEditorDemo.Behaviors"
         xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="650"
         x:Class="NodeEditorDemo.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="NodeEditorDemo"
@@ -16,21 +19,59 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="_File">
+        <MenuItem Header="_New" Command="{Binding NewCommand}" />
+        <Separator />
         <MenuItem Header="_Open..." Command="{Binding OpenCommand}" />
         <Separator />
         <MenuItem Header="_Save..." Command="{Binding SaveCommand}" />
       </MenuItem>
     </Menu>
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Auto">
-      <paz:ZoomBorder Stretch="None"
-                      ZoomSpeed="1.2"
-                      EnableConstrains="False"
-                      Background="Transparent" ClipToBounds="True" Focusable="True"
-                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-      <editor:DrawingNodeView DataContext="{Binding Drawing}"
-                              Background="LightGray" />
-      </paz:ZoomBorder>
-    </ScrollViewer>
+    <Grid ColumnDefinitions="200,*">
+      <ListBox Items="{Binding Templates}" 
+               Grid.Column="0">
+        <ListBox.Resources>
+          <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
+        </ListBox.Resources>
+        <i:Interaction.Behaviors>
+          <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
+        </i:Interaction.Behaviors>
+        <ListBox.Styles>
+          <Style Selector="ListBox > ListBoxItem">
+            <Setter Property="(i:Interaction.Behaviors)">
+              <i:BehaviorCollectionTemplate>
+                <i:BehaviorCollection>
+                  <idd:ContextDragBehavior />
+                </i:BehaviorCollection>
+              </i:BehaviorCollectionTemplate>
+            </Setter>
+          </Style>
+        </ListBox.Styles>
+        <ListBox.ItemTemplate>
+          <DataTemplate DataType="vm:NodeTemplateViewModel">
+            <TextBlock Text="{Binding Title}" />
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+      <ScrollViewer VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Auto"
+                    DataContext="{Binding Drawing}"
+                    Grid.Column="1">
+        <paz:ZoomBorder Stretch="None"
+                        ZoomSpeed="1.2"
+                        EnableConstrains="False"
+                        Background="Transparent" ClipToBounds="True" Focusable="True"
+                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+          <i:Interaction.Behaviors>
+            <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
+              <idd:ContextDropBehavior.Handler>
+                <behaviors:DrawingDropHandler RelativeTo="{Binding #Drawing}" />
+              </idd:ContextDropBehavior.Handler>
+            </idd:ContextDropBehavior>
+          </i:Interaction.Behaviors>
+          <editor:DrawingNodeView Name="Drawing"
+                                  Background="LightGray" />
+        </paz:ZoomBorder>
+      </ScrollViewer>
+    </Grid>
   </DockPanel>
 </Window>
