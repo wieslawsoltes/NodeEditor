@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using NodeEditor.Model;
 using NodeEditor.ViewModels;
-using NodeEditorDemo.ViewModels;
+using NodeEditorDemo.ViewModels.Nodes;
 
-namespace NodeEditorDemo
+namespace NodeEditorDemo.ViewModels
 {
-    public class NodeFactory
+    public static class NodeFactory
     {
         public static NodeViewModel CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 8)
         {

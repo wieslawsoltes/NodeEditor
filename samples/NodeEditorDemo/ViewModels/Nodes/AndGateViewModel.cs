@@ -1,10 +1,10 @@
 using System.Runtime.Serialization;
 using ReactiveUI;
 
-namespace NodeEditorDemo.ViewModels
+namespace NodeEditorDemo.ViewModels.Nodes
 {
     [DataContract(IsReference = true)]
-    public class RectangleViewModel : ViewModelBase
+    public class AndGateViewModel : ViewModelBase
     {
         private object? _label;
 

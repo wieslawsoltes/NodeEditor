@@ -54,11 +54,11 @@
       <Setter Property="Offset" Value="50" />
     </Style>
 
-    <Style Selector="Rectangle#PART_Pin">
+    <Style Selector="Rectangle.pin">
       <Setter Property="Fill" Value="Black" />
     </Style>
 
-    <Style Selector="Rectangle#PART_Pin:pointerover">
+    <Style Selector="Rectangle.pin:pointerover">
       <Setter Property="Fill" Value="Red" />
     </Style>
 
@@ -110,7 +110,8 @@
                   <Rectangle Name="PART_Pin"
                              Margin="{Binding Converter={x:Static converters:PinMarginConverter.Instance}}"
                              Width="{Binding Width}"
-                             Height="{Binding Height}">
+                             Height="{Binding Height}"
+                             Classes="pin">
                     <Rectangle.ContextFlyout>
                       <Flyout>
                         <DockPanel>
@@ -160,7 +161,8 @@
       </ItemsControl.ItemsPanel>
       <ItemsControl.DataTemplates>
         <DataTemplate DataType="vm:ConnectorViewModel">
-          <controls:Connector StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
+          <controls:Connector Name="PART_Connector"
+                              StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                               EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"/>
         </DataTemplate>
       </ItemsControl.DataTemplates>

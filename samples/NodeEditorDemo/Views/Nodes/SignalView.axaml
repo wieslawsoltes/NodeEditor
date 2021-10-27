@@ -1,24 +1,12 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:NodeEditorDemo.ViewModels.Nodes"
              mc:Ignorable="d" d:DesignWidth="60" d:DesignHeight="60"
-             x:Class="NodeEditorDemo.Views.SignalView"
+             x:Class="NodeEditorDemo.Views.Nodes.SignalView"
              x:CompileBindings="True" x:DataType="vm:SignalViewModel"
              ClipToBounds="False">
-  <UserControl.Styles>
-    <Style Selector="Rectangle#PART_Rectangle">
-      <Setter Property="Fill" Value="White" />
-      <Setter Property="Stroke" Value="Black" />
-      <Setter Property="StrokeThickness" Value="2" />
-    </Style>
-    <Style Selector="CheckBox#PART_CheckBox">
-      <Setter Property="HorizontalAlignment" Value="Left" />
-      <Setter Property="VerticalAlignment" Value="Center" />
-      <Setter Property="Margin" Value="6,0,0,0" />
-    </Style>
-  </UserControl.Styles>
   <Panel>
     <Panel.ContextFlyout>
       <Flyout>
@@ -30,8 +18,8 @@
         </DockPanel>
       </Flyout>
     </Panel.ContextFlyout>
-    <Rectangle Name="PART_Rectangle" />
-    <CheckBox Name="PART_CheckBox"
+    <Rectangle Classes="node" />
+    <CheckBox Classes="node"
               IsChecked="{Binding State}" 
               Content="{Binding Label}"
               IsHitTestVisible="True"/>

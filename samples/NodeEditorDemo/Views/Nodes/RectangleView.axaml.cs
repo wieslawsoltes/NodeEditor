@@ -1,11 +1,11 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace NodeEditorDemo.Views
+namespace NodeEditorDemo.Views.Nodes
 {
-    public class AndGateView : UserControl
+    public class RectangleView : UserControl
     {
-        public AndGateView()
+        public RectangleView()
         {
             InitializeComponent();
         }

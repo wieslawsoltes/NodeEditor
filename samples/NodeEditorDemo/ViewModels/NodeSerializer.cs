@@ -1,7 +1,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace NodeEditorDemo
+namespace NodeEditorDemo.ViewModels
 {
     public static class NodeSerializer
     {

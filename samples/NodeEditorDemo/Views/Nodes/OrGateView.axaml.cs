@@ -1,11 +1,11 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace NodeEditorDemo.Views
+namespace NodeEditorDemo.Views.Nodes
 {
-    public class SignalView : UserControl
+    public class OrGateView : UserControl
     {
-        public SignalView()
+        public OrGateView()
         {
             InitializeComponent();
         }
