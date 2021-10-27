@@ -53,6 +53,11 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
+            if (!e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
+            {
+                return;
+            }
+
             _enableDrag = true;
             _moved = false;
             _start = e.GetPosition(AssociatedObject.Parent);
