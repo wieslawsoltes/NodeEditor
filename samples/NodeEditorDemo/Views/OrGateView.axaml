@@ -24,6 +24,8 @@
         <DockPanel Width="200">
           <Label Content="Label:" DockPanel.Dock="Top" />
           <TextBox Text="{Binding Label}" DockPanel.Dock="Top" />
+          <Label Content="Count:" DockPanel.Dock="Top" />
+          <TextBox Text="{Binding Count}" DockPanel.Dock="Top" />
         </DockPanel>
       </Flyout>
     </Panel.ContextFlyout>
