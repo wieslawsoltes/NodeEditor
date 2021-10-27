@@ -53,6 +53,7 @@ ProjectSection(SolutionItems) = preProject
 	build\SourceLink.props = build\SourceLink.props
 	build\XUnit.props = build\XUnit.props
 	build\Newtonsoft.Json.props = build\Newtonsoft.Json.props
+	build\Avalonia.Controls.PanAndZoom.props = build\Avalonia.Controls.PanAndZoom.props
 EndProjectSection
 EndProject
 Global

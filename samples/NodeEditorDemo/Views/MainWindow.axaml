@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:NodeEditorDemo.ViewModels"
         xmlns:editor="using:NodeEditor.Views"
+        xmlns:paz="using:Avalonia.Controls.PanAndZoom"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -20,7 +21,16 @@
         <MenuItem Header="_Save..." Command="{Binding SaveCommand}" />
       </MenuItem>
     </Menu>
-    <editor:DrawingNodeView DataContext="{Binding Drawing}"
-                            Background="LightGray" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto">
+      <paz:ZoomBorder Stretch="None"
+                      ZoomSpeed="1.2"
+                      EnableConstrains="False"
+                      Background="Transparent" ClipToBounds="True" Focusable="True"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+      <editor:DrawingNodeView DataContext="{Binding Drawing}"
+                              Background="LightGray" />
+      </paz:ZoomBorder>
+    </ScrollViewer>
   </DockPanel>
 </Window>
