@@ -12,6 +12,7 @@ namespace NodeEditor.ViewModels
         private ConnectorOrientation _orientation;
         private PinViewModel? _start;
         private PinViewModel? _end;
+        private double _offset = 50;
 
         public ConnectorViewModel()
         {
@@ -88,6 +89,13 @@ namespace NodeEditor.ViewModels
         {
             get => _end;
             set => this.RaiseAndSetIfChanged(ref _end, value);
+        }
+
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        public double Offset
+        {
+            get => _offset;
+            set => this.RaiseAndSetIfChanged(ref _offset, value);
         }
 
         public void GetControlPoints(
