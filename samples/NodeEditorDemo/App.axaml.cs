@@ -47,84 +47,174 @@ namespace NodeEditorDemo
                 Connectors = new ObservableCollection<ConnectorViewModel>()
             };
 
-            var rectangle0 = new NodeViewModel
-            {
-                Parent = drawing,
-                X = 30,
-                Y = 30,
-                Width = 60,
-                Height = 60,
-                Pins = new ObservableCollection<PinViewModel>(),
-                Content = new RectangleViewModel { Label = "rect0" }
-            };
+            var rectangle0 = CreateRectangle(30, 30, 60, 60, "rect0");
+            rectangle0.Parent = drawing;
             drawing.Nodes.Add(rectangle0);
 
-            rectangle0.AddPin(0, 30, 8, 8, PinAlignment.Left);
-            rectangle0.AddPin(60, 30, 8, 8, PinAlignment.Right);
-            rectangle0.AddPin(30, 0, 8, 8, PinAlignment.Top);
-            rectangle0.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
-
-            var rectangle1 = new NodeViewModel
-            {
-                Parent = drawing,
-                X = 220,
-                Y = 30,
-                Width = 60,
-                Height = 60,
-                Pins = new ObservableCollection<PinViewModel>(),
-                Content = new RectangleViewModel { Label = "rect1" }
-            };
+            var rectangle1 = CreateRectangle(220, 30, 60, 60, "rect1");
+            rectangle1.Parent = drawing;
             drawing.Nodes.Add(rectangle1);
 
-            rectangle1.AddPin(0, 30, 8, 8, PinAlignment.Left);
-            rectangle1.AddPin(60, 30, 8, 8, PinAlignment.Right);
-            rectangle1.AddPin(30, 0, 8, 8, PinAlignment.Top);
-            rectangle1.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
-
-            var rectangle2 = new NodeViewModel
+            if (rectangle0.Pins?[1] is { } && rectangle1.Pins?[0] is { })
             {
-                Parent = drawing,
-                X = 30,
-                Y = 220,
-                Width = 60,
-                Height = 60,
-                Pins = new ObservableCollection<PinViewModel>(),
-                Content = new RectangleViewModel { Label = "rect2" }
-            };
+                var connector0 = CreateConnector(rectangle0.Pins[1], rectangle1.Pins[0]);
+                connector0.Parent = drawing;
+                drawing.Connectors.Add(connector0);
+            }
+
+            var rectangle2 = CreateRectangle(30, 130, 60, 60, "rect2");
+            rectangle2.Parent = drawing;
             drawing.Nodes.Add(rectangle2);
 
-            rectangle2.AddPin(0, 30, 8, 8, PinAlignment.Left);
-            rectangle2.AddPin(60, 30, 8, 8, PinAlignment.Right);
-            rectangle2.AddPin(30, 0, 8, 8, PinAlignment.Top);
-            rectangle2.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
-
-            var ellipse0 = new NodeViewModel
-            {
-                Parent = drawing,
-                X = 220,
-                Y = 220,
-                Width = 60,
-                Height = 60,
-                Pins = new ObservableCollection<PinViewModel>(),
-                Content = new EllipseViewModel { Label = "ellipse0" }
-            };
+            var ellipse0 = CreateEllipse(220, 130, 60, 60, "ellipse0");
+            ellipse0.Parent = drawing;
             drawing.Nodes.Add(ellipse0);
 
-            ellipse0.AddPin(0, 30, 8, 8, PinAlignment.Left);
-            ellipse0.AddPin(60, 30, 8, 8, PinAlignment.Right);
-            ellipse0.AddPin(30, 0, 8, 8, PinAlignment.Top);
-            ellipse0.AddPin(30, 60, 8, 8, PinAlignment.Bottom);
+            var signal0 = CreateSignal(x: 30, y: 270, label: "in0", state: true);
+            signal0.Parent = drawing;
+            drawing.Nodes.Add(signal0);
+  
+            var signal1 = CreateSignal(x: 30, y: 390, label: "in1", state: false);
+            signal1.Parent = drawing;
+            drawing.Nodes.Add(signal1);
 
-            var connector0 = new ConnectorViewModel
+            var signal2 = CreateSignal(x: 360, y: 375, label: "out0", state: true);
+            signal2.Parent = drawing;
+            drawing.Nodes.Add(signal2);
+
+            var orGate0 = CreateOrGate(240, 360);
+            orGate0.Parent = drawing;
+            drawing.Nodes.Add(orGate0);
+            
+            if (signal0.Pins?[1] is { } && orGate0.Pins?[2] is { })
             {
-                Parent = drawing,
-                Start = rectangle0.Pins[1],
-                End = rectangle1.Pins[0]
-            };
+                var connector0 = CreateConnector(signal0.Pins[1], orGate0.Pins[2]);
+                connector0.Parent = drawing;
+                drawing.Connectors.Add(connector0);
+            }
+    
+            if (signal1.Pins?[1] is { } && orGate0.Pins?[0] is { })
+            {
+                var connector0 = CreateConnector(signal1.Pins[1], orGate0.Pins[0]);
+                connector0.Parent = drawing;
+                drawing.Connectors.Add(connector0);
+            }
 
-            drawing.Connectors.Add(connector0);
+            if (orGate0.Pins?[1] is { } && signal2.Pins?[0] is { })
+            {
+                var connector1 = CreateConnector(orGate0.Pins[1], signal2.Pins[0]);
+                connector1.Parent = drawing;
+                drawing.Connectors.Add(connector1);
+            }
 
             return drawing;
+        }
+
+        private static NodeViewModel CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 8)
+        {
+            var node = new NodeViewModel
+            {
+                X = x,
+                Y = y,
+                Width = width,
+                Height = height,
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = new RectangleViewModel { Label = label }
+            };
+
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+
+            return node;
+        }
+
+        private static NodeViewModel CreateEllipse(double x, double y, double width, double height, string? label, double pinSize = 8)
+        {
+            var node = new NodeViewModel
+            {
+                X = x,
+                Y = y,
+                Width = width,
+                Height = height,
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = new EllipseViewModel { Label = label }
+            };
+
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+            
+            return node;
+        }
+
+        private static NodeViewModel CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 8)
+        {
+            var node = new NodeViewModel
+            {
+                X = x,
+                Y = y,
+                Width = width,
+                Height = height,
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = new SignalViewModel { Label = label, State = state }
+            };
+
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
+  
+            return node;
+        }
+
+        private static NodeViewModel CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 8)
+        {
+            var node = new NodeViewModel
+            {
+                X = x,
+                Y = y,
+                Width = width,
+                Height = height,
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = new AndGateViewModel() { Label = "&" }
+            };
+
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+
+            return node;
+        }
+
+        private static NodeViewModel CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 8)
+        {
+            var node = new NodeViewModel
+            {
+                X = x,
+                Y = y,
+                Width = width,
+                Height = height,
+                Pins = new ObservableCollection<PinViewModel>(),
+                Content = new OrGateViewModel() { Label = "≥", Count = count}
+            };
+
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+
+            return node;
+        }
+
+        private static ConnectorViewModel CreateConnector(PinViewModel? start, PinViewModel? end)
+        {
+            return new ConnectorViewModel
+            { 
+                Start = start,
+                End = end
+            };
         }
     }
 }
