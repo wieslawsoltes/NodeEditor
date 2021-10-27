@@ -40,12 +40,12 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (pinViewModel.Parent is not ConnectedNodeViewModel connectedNodeViewModel)
+            if (pinViewModel.Parent is not { } nodeViewModel)
             {
                 return;
             }
 
-            if (connectedNodeViewModel.Parent is DrawingNodeViewModel drawingNodeViewModel)
+            if (nodeViewModel.Parent is DrawingNodeViewModel drawingNodeViewModel)
             {
                 if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
                 {

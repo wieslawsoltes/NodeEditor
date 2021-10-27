@@ -3,10 +3,9 @@
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:NodeEditor.Views;assembly=NodeEditorAvalonia"
              mc:Ignorable="d" d:DesignWidth="60" d:DesignHeight="60"
-             x:Class="NodeEditorDemo.Views.RectangleNodeView"
-             x:CompileBindings="True" x:DataType="vm:RectangleNodeViewModel"
+             x:Class="NodeEditorDemo.Views.RectangleView"
+             x:CompileBindings="True" x:DataType="vm:RectangleViewModel"
              ClipToBounds="False">
   <UserControl.Styles>
     <Style Selector="Rectangle#PART_Rectangle">
@@ -19,22 +18,18 @@
       <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
   </UserControl.Styles>
-  <Panel Width="{Binding Width}" 
-         Height="{Binding Height}">
+  <Panel>
     <Panel.ContextFlyout>
       <Flyout>
         <DockPanel Width="200">
-          <Label Content="Content:" DockPanel.Dock="Top" />
-          <TextBox Text="{Binding Content}"  DockPanel.Dock="Top" />
+          <Label Content="Label:" DockPanel.Dock="Top" />
+          <TextBox Text="{Binding Label}"  DockPanel.Dock="Top" />
         </DockPanel>
       </Flyout>
     </Panel.ContextFlyout>
-    <Rectangle Name="PART_Rectangle"
-               Width="{Binding Width}" 
-               Height="{Binding Height}" />
-      <Label Name="PART_Label"
-             Content="{Binding Content}" />
-    <views:ConnectedNodeView />
+    <Rectangle Name="PART_Rectangle" />
+    <Label Name="PART_Label"
+           Content="{Binding Label}" />
   </Panel>
 </UserControl>
 

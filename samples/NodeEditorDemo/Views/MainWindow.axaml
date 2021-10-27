@@ -12,6 +12,15 @@
   <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>
-  <editor:DrawingNodeView DataContext="{Binding Drawing}"
-                          Background="LightGray"/>
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Open..." Command="{Binding OpenCommand}" />
+        <Separator />
+        <MenuItem Header="_Save..." Command="{Binding SaveCommand}" />
+      </MenuItem>
+    </Menu>
+    <editor:DrawingNodeView DataContext="{Binding Drawing}"
+                            Background="LightGray" />
+  </DockPanel>
 </Window>
