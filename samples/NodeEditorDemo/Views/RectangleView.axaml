@@ -23,7 +23,7 @@
       <Flyout>
         <DockPanel Width="200">
           <Label Content="Label:" DockPanel.Dock="Top" />
-          <TextBox Text="{Binding Label}"  DockPanel.Dock="Top" />
+          <TextBox Text="{Binding Label}" DockPanel.Dock="Top" />
         </DockPanel>
       </Flyout>
     </Panel.ContextFlyout>
