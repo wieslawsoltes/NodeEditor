@@ -20,6 +20,16 @@
     </Style>
   </UserControl.Styles>
   <Panel>
+    <Panel.ContextFlyout>
+      <Flyout>
+        <DockPanel Width="200">
+          <Label Content="Label:" DockPanel.Dock="Top" />
+          <TextBox Text="{Binding Label}" DockPanel.Dock="Top" />
+          <Label Content="State:" DockPanel.Dock="Top" />
+          <CheckBox IsChecked="{Binding State}" Content="State" DockPanel.Dock="Top" />
+        </DockPanel>
+      </Flyout>
+    </Panel.ContextFlyout>
     <Rectangle Name="PART_Rectangle" />
     <CheckBox Name="PART_CheckBox"
               IsChecked="{Binding State}" 
