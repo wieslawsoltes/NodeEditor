@@ -25,7 +25,7 @@ namespace NodeEditorDemo
 
         public bool Match(object data)
         {
-            return data is ViewModelBase || data is ReactiveObject;
+            return data is ViewModelBase;
         }
     }
 }
