@@ -1,7 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:NodeEditorDemo.ViewModels"
-        xmlns:editor="clr-namespace:NodeEditor.Views;assembly=NodeEditorAvalonia"
+        xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
         xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
         xmlns:behaviors="clr-namespace:NodeEditorDemo.Behaviors"
@@ -68,8 +68,8 @@
               </idd:ContextDropBehavior.Handler>
             </idd:ContextDropBehavior>
           </i:Interaction.Behaviors>
-          <editor:DrawingNodeView Name="Drawing"
-                                  Background="LightGray" />
+          <editor:DrawingNode Name="Drawing"
+                              Background="LightGray" />
         </paz:ZoomBorder>
       </ScrollViewer>
     </Grid>
