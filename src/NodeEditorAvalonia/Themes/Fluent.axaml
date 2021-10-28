@@ -66,11 +66,11 @@
                   <Canvas />
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
-              <ItemsControl.DataTemplates>
+              <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:PinViewModel">
                   <controls:Pin Name="PART_Pin" />
                 </DataTemplate>
-              </ItemsControl.DataTemplates>
+              </ItemsControl.ItemTemplate>
             </ItemsControl>
           </Panel>
         </ControlTemplate>
@@ -203,14 +203,14 @@
                   <Canvas />
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
-              <ItemsControl.DataTemplates>
+              <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="vm:ConnectorViewModel">
                   <controls:Connector Name="PART_Connector"
                                       StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                                       EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
                                       Offset="{Binding Offset}"/>
                 </DataTemplate>
-              </ItemsControl.DataTemplates>
+              </ItemsControl.ItemTemplate>
             </ItemsControl>
           </Panel>
         </ControlTemplate>
