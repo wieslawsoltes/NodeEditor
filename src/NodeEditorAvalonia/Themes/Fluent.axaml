@@ -24,6 +24,7 @@
           <i:BehaviorCollection>
             <behaviors:DrawingMovedBehavior />
             <behaviors:DrawingPressedBehavior />
+            <behaviors:DrawingSelectionBehavior />
           </i:BehaviorCollection>
         </i:BehaviorCollectionTemplate>
       </Setter>
