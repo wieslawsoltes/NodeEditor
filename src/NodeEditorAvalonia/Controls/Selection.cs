@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
@@ -50,8 +51,18 @@ namespace NodeEditor.Controls
             {
                 return;
             }
- 
-            context.DrawRectangle(Brush, Pen, new Rect(TopLeft, BottomRight));
+
+            var topLeftX = Math.Min(TopLeft.X, BottomRight.X);
+            var topLeftY = Math.Min(TopLeft.Y, BottomRight.Y);
+            var bottomRightX = Math.Max(TopLeft.X, BottomRight.X);
+            var bottomRightY = Math.Max(TopLeft.Y, BottomRight.Y);
+
+            context.DrawRectangle(
+                Brush, 
+                Pen, 
+                new Rect(
+                    new Point(topLeftX, topLeftY), 
+                    new Point(bottomRightX, bottomRightY)));
         }
     }
 }
