@@ -44,11 +44,6 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (!Equals(AssociatedObject, e.Source))
-            {
-                return;
-            }
-            
             if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
             {
                 return;
