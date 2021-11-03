@@ -25,20 +25,20 @@ namespace NodeEditor.Controls
 
         public Point StartPoint
         {
-            get { return GetValue(StartPointProperty); }
-            set { SetValue(StartPointProperty, value); }
+            get => GetValue(StartPointProperty);
+            set => SetValue(StartPointProperty, value);
         }
 
         public Point EndPoint
         {
-            get { return GetValue(EndPointProperty); }
-            set { SetValue(EndPointProperty, value); }
+            get => GetValue(EndPointProperty);
+            set => SetValue(EndPointProperty, value);
         }
 
         public double Offset
         {
-            get { return GetValue(OffsetProperty); }
-            set { SetValue(OffsetProperty, value); }
+            get => GetValue(OffsetProperty);
+            set => SetValue(OffsetProperty, value);
         }
 
         protected override Geometry CreateDefiningGeometry()
