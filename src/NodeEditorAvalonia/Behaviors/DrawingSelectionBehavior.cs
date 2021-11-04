@@ -43,6 +43,11 @@ namespace NodeEditor.Behaviors
             {
                 return;
             }
+  
+            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+            {
+                return;
+            }
 
             if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
             {
@@ -63,6 +68,11 @@ namespace NodeEditor.Behaviors
             {
                 return;
             }
+  
+            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+            {
+                return;
+            }
 
             if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
             {
@@ -75,6 +85,11 @@ namespace NodeEditor.Behaviors
         private void Moved(object? sender, PointerEventArgs e)
         {
             if (AssociatedObject is null)
+            {
+                return;
+            }
+  
+            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
             {
                 return;
             }
