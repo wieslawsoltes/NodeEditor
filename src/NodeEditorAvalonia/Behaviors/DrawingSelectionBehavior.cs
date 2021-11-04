@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Collections.Generic;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
@@ -77,6 +78,35 @@ namespace NodeEditor.Behaviors
             if (AssociatedObject.DataContext is not DrawingNodeViewModel)
             {
                 return;
+            }
+
+            if (_selection is { })
+            {
+                var rect = _selection.GetRect();
+
+                if (AssociatedObject is ItemsControl itemsControl)
+                {
+                    var itemContainerGenerator = itemsControl.ItemContainerGenerator;
+                    var selectedItems = new List<object>();
+
+                    foreach (var container in itemContainerGenerator.Containers)
+                    {
+                        if (container.ContainerControl is { } containerControl)
+                        {
+                            var bounds = containerControl.Bounds;
+                            if (rect.Intersects(bounds))
+                            {
+                                selectedItems.Add(containerControl);
+                                
+                            }
+                        }
+                    }
+
+                    if (selectedItems.Count > 0)
+                    {
+                        // TODO: Handle selected items.
+                    }
+                }
             }
 
             RemoveSelection(AssociatedObject);
