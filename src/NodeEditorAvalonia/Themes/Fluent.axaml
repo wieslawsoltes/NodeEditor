@@ -160,6 +160,15 @@
       <Setter Property="Fill" Value="Red" />
     </Style>
 
+    <Style Selector="controls|Selection">
+      <Setter Property="Brush">
+        <SolidColorBrush Color="Blue" Opacity="0.3" />
+      </Setter>
+      <Setter Property="Pen">
+        <Pen Brush="Blue" Thickness="2" />
+      </Setter>
+    </Style>
+
     <Style Selector="controls|DrawingNode">
       <Setter Property="Width" Value="{Binding Width}" x:DataType="vm:DrawingNodeViewModel" />
       <Setter Property="Height" Value="{Binding Height}" x:DataType="vm:DrawingNodeViewModel" />
