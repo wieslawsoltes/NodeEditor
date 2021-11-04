@@ -97,7 +97,6 @@ namespace NodeEditor.Behaviors
                             if (rect.Intersects(bounds))
                             {
                                 selectedItems.Add(containerControl);
-                                
                             }
                         }
                     }
