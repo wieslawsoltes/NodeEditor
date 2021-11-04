@@ -13,6 +13,7 @@ namespace NodeEditor.Behaviors
     public class DrawingSelectionBehavior : Behavior<Control>
     {
         private Selection? _selection;
+        private Selected? _selected;
         private readonly HashSet<IControl> _selectedControls = new();
         private bool _dragSelectedItems;
         private Point _start;
@@ -82,6 +83,9 @@ namespace NodeEditor.Behaviors
                     }
 
                     _selectedControls.Clear();
+
+                    RemoveSelected(AssociatedObject);
+                    
                     AddSelection(AssociatedObject, position.X, position.Y);
                 }
             }
@@ -106,6 +110,8 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
+            var selectedRect = new Rect();
+
             if (_selection is { })
             {
                 var rect = _selection.GetRect();
@@ -115,7 +121,7 @@ namespace NodeEditor.Behaviors
                     var itemContainerGenerator = itemsControl.ItemContainerGenerator;
 
                     _selectedControls.Clear();
-                    
+
                     foreach (var container in itemContainerGenerator.Containers)
                     {
                         if (container.ContainerControl is { } containerControl)
@@ -124,13 +130,28 @@ namespace NodeEditor.Behaviors
                             if (rect.Intersects(bounds))
                             {
                                 _selectedControls.Add(containerControl);
+
+                                if (selectedRect.IsEmpty)
+                                {
+                                    selectedRect = bounds;
+                                }
+                                else
+                                {
+                                    selectedRect = selectedRect.Union(bounds);
+                                }
                             }
                         }
                     }
+
                 }
             }
 
             RemoveSelection(AssociatedObject);
+
+            if (!selectedRect.IsEmpty)
+            {
+                AddSelected(AssociatedObject, selectedRect);
+            }
         }
 
         private void Moved(object? sender, PointerEventArgs e)
@@ -151,6 +172,8 @@ namespace NodeEditor.Behaviors
             {
                 if (_selectedControls.Count > 0)
                 {
+                    var selectedRect = new Rect();
+
                     var deltaX = position.X - _start.X;
                     var deltaY = position.Y - _start.Y;
                     _start = position;
@@ -159,12 +182,25 @@ namespace NodeEditor.Behaviors
                     {
                         if (selectedControl.DataContext is NodeViewModel nodeViewModel)
                         {
+                            var bounds = selectedControl.Bounds;
+
                             var x = nodeViewModel.X;
                             var y = nodeViewModel.Y;
                             nodeViewModel.X = x + deltaX;
                             nodeViewModel.Y = y + deltaY;
+
+                            if (selectedRect.IsEmpty)
+                            {
+                                selectedRect = bounds;
+                            }
+                            else
+                            {
+                                selectedRect = selectedRect.Union(bounds);
+                            }
                         }
                     }
+
+                    UpdateSelected(selectedRect);
                 }
 
                 e.Handled = true;
@@ -217,6 +253,46 @@ namespace NodeEditor.Behaviors
             if (_selection is { } selection)
             {
                 selection.BottomRight = new Point(x, y);
+            }
+        }
+
+        private void AddSelected(Control control, Rect rect)
+        {
+            var layer = AdornerLayer.GetAdornerLayer(control);
+            if (layer is null)
+            {
+                return;
+            }
+
+            _selected = new Selected()
+            {
+                [AdornerLayer.AdornedElementProperty] = control,
+                IsHitTestVisible = false,
+                Rect = rect
+            };
+
+            ((ISetLogicalParent) _selected).SetParent(control);
+            layer.Children.Add(_selected);
+        }
+
+        private void RemoveSelected(Control control)
+        {
+            var layer = AdornerLayer.GetAdornerLayer(control);
+            if (layer is null || _selected is null)
+            {
+                return;
+            }
+
+            layer.Children.Remove(_selected);
+            ((ISetLogicalParent) _selected).SetParent(null);
+            _selected = null;
+        }
+
+        private void UpdateSelected(Rect rect)
+        {
+            if (_selected is { } selected)
+            {
+                selected.Rect = rect;
             }
         }
     }

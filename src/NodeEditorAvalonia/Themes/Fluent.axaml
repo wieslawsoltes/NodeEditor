@@ -169,6 +169,13 @@
     </Setter>
   </Style>
 
+  <Style Selector="controls|Selected">
+    <Setter Property="Brush" Value="Transparent" />
+    <Setter Property="Pen">
+      <Pen Brush="Cyan" Thickness="2" />
+    </Setter>
+  </Style>
+
   <Style Selector="controls|DrawingNode">
     <Setter Property="Width" Value="{Binding Width}" x:DataType="vm:DrawingNodeViewModel" />
     <Setter Property="Height" Value="{Binding Height}" x:DataType="vm:DrawingNodeViewModel" />
