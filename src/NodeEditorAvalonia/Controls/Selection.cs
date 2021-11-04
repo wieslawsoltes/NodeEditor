@@ -20,6 +20,11 @@ namespace NodeEditor.Controls
         public static readonly StyledProperty<Point> BottomRightProperty =
             AvaloniaProperty.Register<Selection, Point>(nameof(BottomRight));
 
+        static Selection()
+        {
+            AffectsRender<Selection>(BrushProperty, PenProperty, TopLeftProperty, BottomRightProperty);
+        }
+
         public IBrush? Brush
         {
             get => GetValue(BrushProperty);
@@ -52,17 +57,18 @@ namespace NodeEditor.Controls
                 return;
             }
 
+            context.DrawRectangle(Brush, Pen, GetRect());
+        }
+
+        public Rect GetRect()
+        {
             var topLeftX = Math.Min(TopLeft.X, BottomRight.X);
             var topLeftY = Math.Min(TopLeft.Y, BottomRight.Y);
             var bottomRightX = Math.Max(TopLeft.X, BottomRight.X);
             var bottomRightY = Math.Max(TopLeft.Y, BottomRight.Y);
-
-            context.DrawRectangle(
-                Brush, 
-                Pen, 
-                new Rect(
-                    new Point(topLeftX, topLeftY), 
-                    new Point(bottomRightX, bottomRightY)));
+            return new Rect(
+                new Point(topLeftX, topLeftY),
+                new Point(bottomRightX, bottomRightY));
         }
     }
 }
