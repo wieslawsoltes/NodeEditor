@@ -11,7 +11,7 @@ namespace NodeEditor.Behaviors
 {
     public class DrawingSelectionBehavior : Behavior<Control>
     {
-        private Control? _adorner;
+        private Selection? _selection;
  
         protected override void OnAttached()
         {
@@ -49,7 +49,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
+            if (AssociatedObject.DataContext is not DrawingNodeViewModel)
             {
                 return;
             }
@@ -58,7 +58,7 @@ namespace NodeEditor.Behaviors
 
             if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
-                AddAdorner(AssociatedObject, x, y);
+                AddSelection(AssociatedObject, x, y);
             }
         }
         
@@ -74,12 +74,12 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
+            if (AssociatedObject.DataContext is not DrawingNodeViewModel)
             {
                 return;
             }
 
-            RemoveAdorner(AssociatedObject);
+            RemoveSelection(AssociatedObject);
         }
 
         private void Moved(object? sender, PointerEventArgs e)
@@ -101,10 +101,10 @@ namespace NodeEditor.Behaviors
 
             var (x, y) = e.GetPosition(AssociatedObject);
 
-            UpdateAdorner(x, y);
+            UpdateSelection(x, y);
         }
 
-        private void AddAdorner(Control control, double x, double y)
+        private void AddSelection(Control control, double x, double y)
         {
             var layer = AdornerLayer.GetAdornerLayer(control);
             if (layer is null)
@@ -112,36 +112,35 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            _adorner = new Selection()
+            _selection = new Selection()
             {
                 [AdornerLayer.AdornedElementProperty] = control,
                 TopLeft = new Point(x, y),
                 BottomRight = new Point(x, y)
             };
 
-            ((ISetLogicalParent) _adorner).SetParent(control);
-            layer.Children.Add(_adorner);
+            ((ISetLogicalParent) _selection).SetParent(control);
+            layer.Children.Add(_selection);
         }
 
-        private void RemoveAdorner(Control control)
+        private void RemoveSelection(Control control)
         {
             var layer = AdornerLayer.GetAdornerLayer(control);
-            if (layer is null || _adorner is null)
+            if (layer is null || _selection is null)
             {
                 return;
             }
 
-            layer.Children.Remove(_adorner);
-            ((ISetLogicalParent) _adorner).SetParent(null);
-            _adorner = null;
+            layer.Children.Remove(_selection);
+            ((ISetLogicalParent) _selection).SetParent(null);
+            _selection = null;
         }
 
-        private void UpdateAdorner(double x, double y)
+        private void UpdateSelection(double x, double y)
         {
-            if (_adorner is Selection selection)
+            if (_selection is { } selection)
             {
                 selection.BottomRight = new Point(x, y);
-                selection.InvalidateVisual();
             }
         }
     }
