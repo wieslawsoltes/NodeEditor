@@ -12,7 +12,7 @@ namespace NodeEditor.Controls
             AvaloniaProperty.Register<Selection, IBrush?>(nameof(Brush), new SolidColorBrush(Colors.Blue) { Opacity = 0.3 });
 
         public static readonly StyledProperty<IPen?> PenProperty =
-            AvaloniaProperty.Register<Selection, IPen?>(nameof(Pen), new Pen(new SolidColorBrush(Colors.Blue), 2));
+            AvaloniaProperty.Register<Selection, IPen?>(nameof(Pen), new Pen(Brushes.Blue, 2));
 
         public static readonly StyledProperty<Point> TopLeftProperty =
             AvaloniaProperty.Register<Selection, Point>(nameof(TopLeft));
