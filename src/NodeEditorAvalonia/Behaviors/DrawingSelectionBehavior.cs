@@ -13,6 +13,9 @@ namespace NodeEditor.Behaviors
     public class DrawingSelectionBehavior : Behavior<Control>
     {
         private Selection? _selection;
+        private readonly HashSet<IControl> _selectedControls = new();
+        private bool _dragSelectedItems;
+        private Point _start;
  
         protected override void OnAttached()
         {
@@ -45,24 +48,45 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
-            {
-                return;
-            }
-
             if (AssociatedObject.DataContext is not DrawingNodeViewModel)
             {
                 return;
             }
 
-            var (x, y) = e.GetPosition(AssociatedObject);
+            var position = e.GetPosition(AssociatedObject);
 
             if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
-                AddSelection(AssociatedObject, x, y);
+                _dragSelectedItems = false;
+
+                if (_selectedControls.Count > 0)
+                {
+                    foreach (var selectedControl in _selectedControls)
+                    {
+                        var bounds = selectedControl.Bounds;
+                        if (bounds.Contains(position))
+                        {
+                            _dragSelectedItems = true;
+                            e.Handled = true;
+                            _start = position;
+                            break;
+                        }
+                    }
+                }
+
+                if (!_dragSelectedItems)
+                {
+                    if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+                    {
+                        return;
+                    }
+
+                    _selectedControls.Clear();
+                    AddSelection(AssociatedObject, position.X, position.Y);
+                }
             }
         }
-        
+
         private void Released(object sender, PointerReleasedEventArgs e)
         {
             if (AssociatedObject is null)
@@ -70,12 +94,14 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+            if (AssociatedObject.DataContext is not DrawingNodeViewModel)
             {
                 return;
             }
 
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel)
+            _dragSelectedItems = false;
+
+            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
             {
                 return;
             }
@@ -87,8 +113,9 @@ namespace NodeEditor.Behaviors
                 if (AssociatedObject is ItemsControl itemsControl)
                 {
                     var itemContainerGenerator = itemsControl.ItemContainerGenerator;
-                    var selectedItems = new List<object>();
 
+                    _selectedControls.Clear();
+                    
                     foreach (var container in itemContainerGenerator.Containers)
                     {
                         if (container.ContainerControl is { } containerControl)
@@ -96,14 +123,9 @@ namespace NodeEditor.Behaviors
                             var bounds = containerControl.Bounds;
                             if (rect.Intersects(bounds))
                             {
-                                selectedItems.Add(containerControl);
+                                _selectedControls.Add(containerControl);
                             }
                         }
-                    }
-
-                    if (selectedItems.Count > 0)
-                    {
-                        // TODO: Handle selected items.
                     }
                 }
             }
@@ -118,19 +140,44 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
-            {
-                return;
-            }
-
             if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
             {
                 return;
             }
 
-            var (x, y) = e.GetPosition(AssociatedObject);
+            var position = e.GetPosition(AssociatedObject);
 
-            UpdateSelection(x, y);
+            if (_dragSelectedItems)
+            {
+                if (_selectedControls.Count > 0)
+                {
+                    var deltaX = position.X - _start.X;
+                    var deltaY = position.Y - _start.Y;
+                    _start = position;
+
+                    foreach (var selectedControl in _selectedControls)
+                    {
+                        if (selectedControl.DataContext is NodeViewModel nodeViewModel)
+                        {
+                            var x = nodeViewModel.X;
+                            var y = nodeViewModel.Y;
+                            nodeViewModel.X = x + deltaX;
+                            nodeViewModel.Y = y + deltaY;
+                        }
+                    }
+                }
+
+                e.Handled = true;
+            }
+            else
+            {
+                if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+                {
+                    return;
+                }
+
+                UpdateSelection(position.X, position.Y);
+            }
         }
 
         private void AddSelection(Control control, double x, double y)
