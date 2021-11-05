@@ -2,8 +2,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using NodeEditor.Model;
 using NodeEditor.ViewModels;
-using NodeEditorDemo.ViewModels;
 
 namespace NodeEditorDemo.Behaviors
 {
@@ -18,7 +18,7 @@ namespace NodeEditorDemo.Behaviors
             set => SetValue(RelativeToProperty, value);
         }
 
-        private bool Validate(DrawingNodeViewModel drawing, object? sender, DragEventArgs e, bool bExecute)
+        private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
         {
             var point = GetPosition(RelativeTo ?? sender, e);
 
@@ -75,7 +75,7 @@ namespace NodeEditorDemo.Behaviors
 
         public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
         {
-            if (targetContext is DrawingNodeViewModel drawing)
+            if (targetContext is IDrawingNode drawing)
             {
                 return Validate(drawing, sender, e, false);
             }
@@ -85,7 +85,7 @@ namespace NodeEditorDemo.Behaviors
 
         public override bool Execute(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
         {
-            if (targetContext is DrawingNodeViewModel drawing)
+            if (targetContext is IDrawingNode drawing)
             {
                 return Validate(drawing, sender, e, true);
             }

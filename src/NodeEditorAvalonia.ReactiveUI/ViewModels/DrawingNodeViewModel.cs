@@ -1,17 +1,19 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using NodeEditor.Model;
 using ReactiveUI;
 
 namespace NodeEditor.ViewModels
 {
     [DataContract(IsReference = true)]
-    public class DrawingNodeViewModel : NodeViewModel
+    public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     {
-        private ObservableCollection<NodeViewModel>? _nodes;
-        private ObservableCollection<ConnectorViewModel>? _connectors;
+        private IList<INode>? _nodes;
+        private IList<IConnector>? _connectors;
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
-        public ObservableCollection<NodeViewModel>? Nodes
+        public IList<INode>? Nodes
         {
             get => _nodes;
             set => this.RaiseAndSetIfChanged(ref _nodes, value);
@@ -19,40 +21,40 @@ namespace NodeEditor.ViewModels
 
         
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
-        public ObservableCollection<ConnectorViewModel>? Connectors
+        public IList<IConnector>? Connectors
         {
             get => _connectors;
             set => this.RaiseAndSetIfChanged(ref _connectors, value);
         }
 
-        private ConnectorViewModel? _connectorViewModel;
+        private IConnector? _connector;
 
-        public void DrawingPressed(double d, double d1)
+        public void DrawingPressed(double x, double y)
         {
             // TODO:
         }
 
         public void DrawingCancel()
         {
-            if (_connectorViewModel is { })
+            if (_connector is { })
             {
                 if (Connectors is { })
                 {
-                    Connectors.Remove(_connectorViewModel);
+                    Connectors.Remove(_connector);
                 }
 
-                _connectorViewModel = null;
+                _connector = null;
             }
         }
 
-        public void ConnectorPressed(PinViewModel pin)
+        public void ConnectorPressed(IPin pin)
         {
             if (_connectors is null)
             {
                 return;
             }
 
-            if (_connectorViewModel is null)
+            if (_connector is null)
             {
                 var x = pin.X;
                 var y = pin.Y;
@@ -79,26 +81,26 @@ namespace NodeEditor.ViewModels
                     End = end
                 };
 
-                Connectors ??= new ObservableCollection<ConnectorViewModel>();
+                Connectors ??= new ObservableCollection<IConnector>();
                 Connectors.Add(connector);
 
-                _connectorViewModel = connector;
+                _connector = connector;
             }
             else
             {
-                _connectorViewModel.End = pin;
-                _connectorViewModel = null;
+                _connector.End = pin;
+                _connector = null;
             }
         }
 
         public void ConnectorMove(double x, double y)
         {
-            if (_connectorViewModel is { })
+            if (_connector is { })
             {
-                if (_connectorViewModel.End is { })
+                if (_connector.End is { })
                 {
-                    _connectorViewModel.End.X = x;
-                    _connectorViewModel.End.Y = y;
+                    _connector.End.X = x;
+                    _connector.End.Y = y;
                 }
             }
         }

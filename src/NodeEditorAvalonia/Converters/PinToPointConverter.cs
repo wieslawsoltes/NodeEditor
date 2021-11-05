@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Data.Converters;
-using NodeEditor.ViewModels;
+using NodeEditor.Model;
 
 namespace NodeEditor.Converters
 {
@@ -12,7 +12,7 @@ namespace NodeEditor.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is PinViewModel pin)
+            if (value is IPin pin)
             {
                 var x = pin.X;
                 var y = pin.Y;

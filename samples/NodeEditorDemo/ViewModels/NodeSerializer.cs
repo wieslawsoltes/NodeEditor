@@ -1,11 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace NodeEditorDemo.ViewModels
 {
     public static class NodeSerializer
     {
         private static readonly JsonSerializerSettings s_settings;
+
+        private class ListContractResolver : DefaultContractResolver
+        {
+            private readonly Type _type;
+
+            public ListContractResolver(Type type)
+            {
+                _type = type;
+            }
+
+            public override JsonContract ResolveContract(Type type)
+            {
+                if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(IList<>))
+                {
+                    return base.ResolveContract(_type.MakeGenericType(type.GenericTypeArguments[0]));
+                }
+                return base.ResolveContract(type);
+            }
+
+            protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+            {
+                return base.CreateProperties(type, memberSerialization).Where(p => p.Writable).ToList();
+            }
+        }
 
         static NodeSerializer()
         {
@@ -15,7 +45,8 @@ namespace NodeEditorDemo.ViewModels
                 TypeNameHandling = TypeNameHandling.Objects,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
-                NullValueHandling = NullValueHandling.Ignore
+                ContractResolver = new ListContractResolver(typeof(ObservableCollection<>)),
+                NullValueHandling = NullValueHandling.Ignore,
             };
         }
 
