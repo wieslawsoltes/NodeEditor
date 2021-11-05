@@ -1,13 +1,13 @@
 using System;
-using NodeEditor.ViewModels;
+using NodeEditor.Model;
 using ReactiveUI;
 
-namespace NodeEditorDemo.ViewModels
+namespace NodeEditor.ViewModels
 {
-    public class NodeTemplateViewModel : ViewModelBase
+    public class NodeTemplateViewModel : ReactiveObject, INodeTemplate
     {
         private string? _title;
-        private Func<double, double, NodeViewModel>? _build;
+        private Func<double, double, INode>? _build;
 
         public string? Title
         {
@@ -15,7 +15,7 @@ namespace NodeEditorDemo.ViewModels
             set => this.RaiseAndSetIfChanged(ref _title, value);
         }
 
-        public Func<double, double, NodeViewModel>? Build
+        public Func<double, double, INode>? Build
         {
             get => _build;
             set => this.RaiseAndSetIfChanged(ref _build, value);

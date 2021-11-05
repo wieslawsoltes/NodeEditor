@@ -2,13 +2,14 @@
 using Avalonia.Input;
 using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactions.DragAndDrop;
+using NodeEditor.Model;
 using NodeEditorDemo.ViewModels;
 
 namespace NodeEditorDemo.Behaviors
 {
     public class TemplatesListBoxDropHandler : DropHandlerBase
     {
-        private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : NodeTemplateViewModel
+        private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : INodeTemplate
         {
             if (sourceContext is not T sourceItem
                 || targetContext is not MainWindowViewModel vm
@@ -57,7 +58,7 @@ namespace NodeEditorDemo.Behaviors
         {
             if (e.Source is IControl && sender is ListBox listBox)
             {
-                return Validate<NodeTemplateViewModel>(listBox, e, sourceContext, targetContext, false);
+                return Validate<INodeTemplate>(listBox, e, sourceContext, targetContext, false);
             }
             return false;
         }
@@ -66,7 +67,7 @@ namespace NodeEditorDemo.Behaviors
         {
             if (e.Source is IControl && sender is ListBox listBox)
             {
-                return Validate<NodeTemplateViewModel>(listBox, e, sourceContext, targetContext, true);
+                return Validate<INodeTemplate>(listBox, e, sourceContext, targetContext, true);
             }
             return false;
         }

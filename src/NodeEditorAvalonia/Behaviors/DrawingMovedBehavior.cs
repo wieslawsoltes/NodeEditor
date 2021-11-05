@@ -2,7 +2,7 @@
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
-using NodeEditor.ViewModels;
+using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
@@ -35,14 +35,14 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
+            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
             {
                 return;
             }
 
             var (x, y) = e.GetPosition(AssociatedObject);
 
-            drawingNodeViewModel.ConnectorMove(x, y);
+            drawingNode.ConnectorMove(x, y);
         }
     }
 }

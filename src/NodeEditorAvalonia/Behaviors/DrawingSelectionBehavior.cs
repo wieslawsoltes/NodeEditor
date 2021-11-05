@@ -6,7 +6,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Controls;
-using NodeEditor.ViewModels;
+using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
@@ -49,7 +49,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel)
+            if (AssociatedObject.DataContext is not IDrawingNode)
             {
                 return;
             }
@@ -77,7 +77,7 @@ namespace NodeEditor.Behaviors
 
                 if (!_dragSelectedItems)
                 {
-                    if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+                    if (e.Source is Control control && control.DataContext is not IDrawingNode)
                     {
                         return;
                     }
@@ -91,21 +91,21 @@ namespace NodeEditor.Behaviors
             }
         }
 
-        private void Released(object sender, PointerReleasedEventArgs e)
+        private void Released(object? sender, PointerReleasedEventArgs e)
         {
             if (AssociatedObject is null)
             {
                 return;
             }
   
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel)
+            if (AssociatedObject.DataContext is not IDrawingNode)
             {
                 return;
             }
 
             _dragSelectedItems = false;
 
-            if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+            if (e.Source is Control control && control.DataContext is not IDrawingNode)
             {
                 return;
             }
@@ -161,7 +161,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (AssociatedObject.DataContext is not DrawingNodeViewModel drawingNodeViewModel)
+            if (AssociatedObject.DataContext is not IDrawingNode)
             {
                 return;
             }
@@ -180,14 +180,14 @@ namespace NodeEditor.Behaviors
 
                     foreach (var selectedControl in _selectedControls)
                     {
-                        if (selectedControl.DataContext is NodeViewModel nodeViewModel)
+                        if (selectedControl.DataContext is INode node)
                         {
                             var bounds = selectedControl.Bounds;
 
-                            var x = nodeViewModel.X;
-                            var y = nodeViewModel.Y;
-                            nodeViewModel.X = x + deltaX;
-                            nodeViewModel.Y = y + deltaY;
+                            var x = node.X;
+                            var y = node.Y;
+                            node.X = x + deltaX;
+                            node.Y = y + deltaY;
 
                             if (selectedRect.IsEmpty)
                             {
@@ -207,7 +207,7 @@ namespace NodeEditor.Behaviors
             }
             else
             {
-                if (e.Source is Control control && control.DataContext is not DrawingNodeViewModel)
+                if (e.Source is Control control && control.DataContext is not IDrawingNode)
                 {
                     return;
                 }

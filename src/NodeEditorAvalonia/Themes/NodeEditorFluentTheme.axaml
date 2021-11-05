@@ -1,7 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:NodeEditor.ViewModels"
-        xmlns:m="clr-namespace:NodeEditor.Model"
+        xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
         xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
         xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
         xmlns:converters="clr-namespace:NodeEditor.Converters"
@@ -41,11 +40,11 @@
   </Style>
 
   <Style Selector="controls|Node">
-    <Setter Property="Width" Value="{Binding Width}" x:DataType="vm:NodeViewModel" />
-    <Setter Property="Height" Value="{Binding Height}" x:DataType="vm:NodeViewModel" />
+    <Setter Property="Width" Value="{Binding Width}" x:DataType="m:INode" />
+    <Setter Property="Height" Value="{Binding Height}" x:DataType="m:INode" />
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Template">
-      <ControlTemplate x:DataType="vm:NodeViewModel">
+      <ControlTemplate x:DataType="m:INode">
         <Panel Width="{Binding Width}" 
                Height="{Binding Height}">
           <ContentPresenter Name="PART_ContentPresenter"
@@ -57,7 +56,7 @@
                         ClipToBounds="False"
                         Classes="pinPressed">
             <ItemsControl.Styles>
-              <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:PinViewModel">
+              <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:IPin">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
                 <Setter Property="Canvas.Top" Value="{Binding Y}" />
               </Style>
@@ -68,7 +67,7 @@
               </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-              <DataTemplate DataType="vm:PinViewModel">
+              <DataTemplate DataType="m:IPin">
                 <controls:Pin Name="PART_Pin" />
               </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -84,7 +83,7 @@
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="ContextFlyout">
       <Setter.Value>
-        <Flyout x:DataType="vm:ConnectorViewModel">
+        <Flyout x:DataType="m:IConnector">
           <DockPanel>
             <DockPanel DockPanel.Dock="Top">
               <Label Content="Orientation:" DockPanel.Dock="Top" />
@@ -110,12 +109,12 @@
   </Style>
 
   <Style Selector="controls|Pin">
-    <Setter Property="Width" Value="{Binding Width}" x:DataType="vm:PinViewModel" />
-    <Setter Property="Height" Value="{Binding Height}" x:DataType="vm:PinViewModel" />
-    <Setter Property="Margin" Value="{Binding Converter={x:Static converters:PinMarginConverter.Instance}}" x:DataType="vm:PinViewModel" />
+    <Setter Property="Width" Value="{Binding Width}" x:DataType="m:IPin" />
+    <Setter Property="Height" Value="{Binding Height}" x:DataType="m:IPin" />
+    <Setter Property="Margin" Value="{Binding Converter={x:Static converters:PinMarginConverter.Instance}}" x:DataType="m:IPin" />
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Template">
-      <ControlTemplate x:DataType="vm:PinViewModel">
+      <ControlTemplate x:DataType="m:IPin">
         <Rectangle Name="PART_Pin"
                    Width="{Binding Width}"
                    Height="{Binding Height}" />
@@ -123,7 +122,7 @@
     </Setter>
     <Setter Property="ContextFlyout">
       <Setter.Value>
-        <Flyout x:DataType="vm:PinViewModel">
+        <Flyout x:DataType="m:IPin">
           <DockPanel>
             <Label Content="Alignment:" DockPanel.Dock="Top" />
             <RadioButton Content="None"
@@ -177,12 +176,12 @@
   </Style>
 
   <Style Selector="controls|DrawingNode">
-    <Setter Property="Width" Value="{Binding Width}" x:DataType="vm:DrawingNodeViewModel" />
-    <Setter Property="Height" Value="{Binding Height}" x:DataType="vm:DrawingNodeViewModel" />
+    <Setter Property="Width" Value="{Binding Width}" x:DataType="m:IDrawingNode" />
+    <Setter Property="Height" Value="{Binding Height}" x:DataType="m:IDrawingNode" />
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Template">
-      <ControlTemplate x:DataType="vm:DrawingNodeViewModel">
+      <ControlTemplate x:DataType="m:IDrawingNode">
         <Panel Background="{TemplateBinding Background}">
           <ItemsControl Name="PART_NodesItemsControl"
                         Items="{Binding Nodes}" 
@@ -192,7 +191,7 @@
                         ClipToBounds="False"
                         Classes="dragNode pointerEvents">
             <ItemsControl.Styles>
-              <Style Selector="ItemsControl > ContentPresenter" x:DataType="vm:NodeViewModel">
+              <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
                 <Setter Property="Canvas.Top" Value="{Binding Y}" />
               </Style>
@@ -203,7 +202,7 @@
               </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-              <DataTemplate DataType="vm:NodeViewModel">
+              <DataTemplate DataType="m:INode">
                 <controls:Node Name="PART_Node" />
               </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -221,7 +220,7 @@
               </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-              <DataTemplate DataType="vm:ConnectorViewModel">
+              <DataTemplate DataType="m:IConnector">
                 <controls:Connector Name="PART_Connector"
                                     StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                                     EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"

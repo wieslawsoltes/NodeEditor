@@ -2,7 +2,6 @@
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 using NodeEditor.Model;
-using NodeEditor.ViewModels;
 
 namespace NodeEditor.Controls
 {
@@ -49,7 +48,7 @@ namespace NodeEditor.Controls
 
             context.BeginFigure(StartPoint, false);
 
-            if (DataContext is ConnectorViewModel connectorViewModel)
+            if (DataContext is IConnector connectorViewModel)
             {
                 var p1X = StartPoint.X;
                 var p1Y = StartPoint.Y;

@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
-using NodeEditor.ViewModels;
+using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
@@ -48,7 +48,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (e.Source is Control control && control.DataContext is PinViewModel)
+            if (e.Source is Control control && control.DataContext is IPin)
             {
                 return;
             }
@@ -83,12 +83,12 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (e.Source is Control control && control.DataContext is PinViewModel)
+            if (e.Source is Control control && control.DataContext is IPin)
             {
                 return;
             }
             
-            if (_draggedContainer.DataContext is not NodeViewModel nodeViewModel)
+            if (_draggedContainer.DataContext is not INode node)
             {
                 return;
             }
@@ -98,10 +98,10 @@ namespace NodeEditor.Behaviors
             var deltaY = position.Y - _start.Y;
             _moved = true;
             _start = position;
-            var x = nodeViewModel.X;
-            var y = nodeViewModel.Y;
-            nodeViewModel.X = x + deltaX;
-            nodeViewModel.Y = y + deltaY;
+            var x = node.X;
+            var y = node.Y;
+            node.X = x + deltaX;
+            node.Y = y + deltaY;
         }
 
         private void Released()

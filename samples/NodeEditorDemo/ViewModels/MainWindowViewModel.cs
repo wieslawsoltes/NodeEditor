@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using NodeEditor.Model;
 using NodeEditor.ViewModels;
 using ReactiveUI;
 
@@ -15,34 +16,34 @@ namespace NodeEditorDemo.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ObservableCollection<NodeTemplateViewModel>? _templates;
-        private DrawingNodeViewModel? _drawing;
+        private ObservableCollection<INodeTemplate>? _templates;
+        private IDrawingNode? _drawing;
 
         public MainWindowViewModel()
         {
-            _templates = new ObservableCollection<NodeTemplateViewModel>
+            _templates = new ObservableCollection<INodeTemplate>
             {
-                new()
+                new NodeTemplateViewModel
                 {
                     Title = "Rectangle",
                     Build = (x, y) => NodeFactory.CreateRectangle(x, y, 60, 60, "rect")
                 },
-                new()
+                new NodeTemplateViewModel
                 {
                     Title = "Ellipse",
                     Build = (x, y) => NodeFactory.CreateEllipse(x, y, 60, 60, "ellipse")
                 },
-                new()
+                new NodeTemplateViewModel
                 {
                     Title = "Signal",
                     Build = (x, y) => NodeFactory.CreateSignal(x, y, label: "signal", state: false)
                 },
-                new()
+                new NodeTemplateViewModel
                 {
                     Title = "AND Gate",
                     Build = (x, y) => NodeFactory.CreateAndGate(x, y, 30, 30)
                 },
-                new()
+                new NodeTemplateViewModel
                 {
                     Title = "OR Gate",
                     Build = (x, y) => NodeFactory.CreateOrGate(x, y, 30, 30)
@@ -107,13 +108,13 @@ namespace NodeEditorDemo.ViewModels
             });
         }
 
-        public ObservableCollection<NodeTemplateViewModel>? Templates
+        public ObservableCollection<INodeTemplate>? Templates
         {
             get => _templates;
             set => this.RaiseAndSetIfChanged(ref _templates, value);
         }
 
-        public DrawingNodeViewModel? Drawing
+        public IDrawingNode? Drawing
         {
             get => _drawing;
             set => this.RaiseAndSetIfChanged(ref _drawing, value);
