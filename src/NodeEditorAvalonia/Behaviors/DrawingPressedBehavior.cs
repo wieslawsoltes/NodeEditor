@@ -30,12 +30,7 @@ namespace NodeEditor.Behaviors
 
         private void Pressed(object? sender, PointerPressedEventArgs e)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-
-            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
+            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
             {
                 return;
             }
