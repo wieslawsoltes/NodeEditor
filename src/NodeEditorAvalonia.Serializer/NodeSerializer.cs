@@ -1,32 +1,32 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using NodeEditor.Model;
 
-namespace NodeEditorDemo.ViewModels
+namespace NodeEditor.Serializer
 {
-    public static class NodeSerializer
+    public class NodeSerializer : INodeSerializer
     {
-        private static readonly JsonSerializerSettings s_settings;
+        private readonly JsonSerializerSettings _settings;
 
         private class ListContractResolver : DefaultContractResolver
         {
-            private readonly Type _type;
+            private readonly Type _listType;
 
-            public ListContractResolver(Type type)
+            public ListContractResolver(Type listType)
             {
-                _type = type;
+                _listType = listType;
             }
 
             public override JsonContract ResolveContract(Type type)
             {
                 if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(IList<>))
                 {
-                    return base.ResolveContract(_type.MakeGenericType(type.GenericTypeArguments[0]));
+                    return base.ResolveContract(_listType.MakeGenericType(type.GenericTypeArguments[0]));
                 }
                 return base.ResolveContract(type);
             }
@@ -37,30 +37,30 @@ namespace NodeEditorDemo.ViewModels
             }
         }
 
-        static NodeSerializer()
+        public NodeSerializer(Type listType)
         {
-            s_settings = new JsonSerializerSettings
+            _settings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,
                 TypeNameHandling = TypeNameHandling.Objects,
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
-                ContractResolver = new ListContractResolver(typeof(ObservableCollection<>)),
+                ContractResolver = new ListContractResolver(listType),
                 NullValueHandling = NullValueHandling.Ignore,
             };
         }
 
-        public static string Serialize<T>(T value)
+        public string Serialize<T>(T value)
         {
-            return JsonConvert.SerializeObject(value, s_settings);
+            return JsonConvert.SerializeObject(value, _settings);
         }
 
-        public static T Deserialize<T>(string text)
+        public T? Deserialize<T>(string text)
         {
-            return JsonConvert.DeserializeObject<T>(text, s_settings)!;
+            return JsonConvert.DeserializeObject<T>(text, _settings);
         }
 
-        public static T Load<T>(string path)
+        public T? Load<T>(string path)
         {
             using var stream = System.IO.File.OpenRead(path);
             using var streamReader = new System.IO.StreamReader(stream, Encoding.UTF8);
@@ -68,9 +68,9 @@ namespace NodeEditorDemo.ViewModels
             return Deserialize<T>(text);
         }
 
-        public static void Save<T>(string path, T value)
+        public void Save<T>(string path, T value)
         {
-            var text = Serialize<T>(value);
+            var text = Serialize(value);
             if (string.IsNullOrWhiteSpace(text)) return;
             using var stream = System.IO.File.Create(path);
             using var streamWriter = new System.IO.StreamWriter(stream, Encoding.UTF8);

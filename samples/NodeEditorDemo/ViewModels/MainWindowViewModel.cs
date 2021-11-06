@@ -9,6 +9,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using NodeEditor.Model;
+using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
 using ReactiveUI;
 
@@ -16,6 +17,7 @@ namespace NodeEditorDemo.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private readonly INodeSerializer _serializer = new NodeSerializer(typeof(ObservableCollection<>));
         private readonly NodeFactory _factory = new();
         private ObservableCollection<INodeTemplate>? _templates;
         private IDrawingNode? _drawing;
@@ -69,7 +71,7 @@ namespace NodeEditorDemo.ViewModels
                     try
                     {
                         var json = await Task.Run(() =>  System.IO.File.ReadAllText(result.First()));
-                        var drawing = NodeSerializer.Deserialize<DrawingNodeViewModel?>(json);
+                        var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
                         if (drawing is { })
                         {
                             Drawing = drawing;
@@ -96,7 +98,7 @@ namespace NodeEditorDemo.ViewModels
                     {
                         await Task.Run(() =>
                         {
-                            var json = NodeSerializer.Serialize(_drawing);
+                            var json = _serializer.Serialize(_drawing);
                             System.IO.File.WriteAllText(result, json);
                         });
                     }
