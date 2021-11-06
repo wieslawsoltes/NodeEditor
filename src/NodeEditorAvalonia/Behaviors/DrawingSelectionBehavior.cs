@@ -10,7 +10,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
-    public class DrawingSelectionBehavior : Behavior<Control>
+    public class DrawingSelectionBehavior : Behavior<ItemsControl>
     {
         private Selection? _selection;
         private Selected? _selected;

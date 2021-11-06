@@ -6,7 +6,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
-    public class DrawingMovedBehavior : Behavior<Control>
+    public class DrawingMovedBehavior : Behavior<ItemsControl>
     {
         protected override void OnAttached()
         {

@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
@@ -7,7 +8,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
-    public class NodeDragBehavior : Behavior<Control>
+    public class NodeDragBehavior : Behavior<ContentPresenter>
     {
         private bool _enableDrag;
         private bool _moved;

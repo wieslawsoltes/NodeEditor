@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
@@ -6,7 +7,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
-    public class PinPressedBehavior : Behavior<Control>
+    public class PinPressedBehavior : Behavior<ContentPresenter>
     {
         protected override void OnAttached()
         {
