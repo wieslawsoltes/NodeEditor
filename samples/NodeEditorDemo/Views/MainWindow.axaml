@@ -28,7 +28,7 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="_File">
-        <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="Ctrl+X" />
+        <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="Ctrl+N" />
         <Separator />
         <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGesture="Ctrl+O" />
         <Separator />
