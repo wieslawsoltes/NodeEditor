@@ -17,7 +17,8 @@ namespace NodeEditor.Behaviors
         private readonly HashSet<IControl> _selectedControls = new();
         private bool _dragSelectedItems;
         private Point _start;
- 
+        private Rect _selectedRect;
+
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -111,13 +112,13 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            var selectedRect = GetSelectedRect();
+            _selectedRect = GetSelectedRect();
 
             RemoveSelection(AssociatedObject);
 
-            if (!selectedRect.IsEmpty)
+            if (!_selectedRect.IsEmpty)
             {
-                AddSelected(AssociatedObject, selectedRect);
+                AddSelected(AssociatedObject, _selectedRect);
             }
         }
 
@@ -241,6 +242,8 @@ namespace NodeEditor.Behaviors
                     }
                 }
             }
+
+            _selectedRect = selectedRect;
 
             UpdateSelected(selectedRect);
         }
