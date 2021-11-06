@@ -5,9 +5,9 @@ using NodeEditorDemo.ViewModels.Nodes;
 
 namespace NodeEditorDemo.ViewModels
 {
-    public static class NodeFactory
+    public class NodeFactory
     {
-        public static INode CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 8)
+        public INode CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 8)
         {
             var node = new NodeViewModel
             {
@@ -27,7 +27,7 @@ namespace NodeEditorDemo.ViewModels
             return node;
         }
 
-        public static INode CreateEllipse(double x, double y, double width, double height, string? label, double pinSize = 8)
+        public INode CreateEllipse(double x, double y, double width, double height, string? label, double pinSize = 8)
         {
             var node = new NodeViewModel
             {
@@ -47,7 +47,7 @@ namespace NodeEditorDemo.ViewModels
             return node;
         }
 
-        public static INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 8)
+        public INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 8)
         {
             var node = new NodeViewModel
             {
@@ -65,7 +65,7 @@ namespace NodeEditorDemo.ViewModels
             return node;
         }
 
-        public static INode CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 8)
+        public INode CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 8)
         {
             var node = new NodeViewModel
             {
@@ -85,7 +85,7 @@ namespace NodeEditorDemo.ViewModels
             return node;
         }
 
-        public static INode CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 8)
+        public INode CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 8)
         {
             var node = new NodeViewModel
             {
@@ -105,7 +105,7 @@ namespace NodeEditorDemo.ViewModels
             return node;
         }
 
-        public static IConnector CreateConnector(IPin? start, IPin? end)
+        public IConnector CreateConnector(IPin? start, IPin? end)
         {
             return new ConnectorViewModel
             { 
@@ -114,7 +114,7 @@ namespace NodeEditorDemo.ViewModels
             };
         }
 
-        public static IDrawingNode CreateDrawing()
+        public IDrawingNode CreateDrawing()
         {
             var drawing = new DrawingNodeViewModel
             {
@@ -129,7 +129,7 @@ namespace NodeEditorDemo.ViewModels
             return drawing;
         }
 
-        public static IDrawingNode CreateDemoDrawing()
+        public IDrawingNode CreateDemoDrawing()
         {
             var drawing = new DrawingNodeViewModel
             {

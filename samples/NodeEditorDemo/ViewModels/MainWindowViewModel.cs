@@ -16,6 +16,7 @@ namespace NodeEditorDemo.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private readonly NodeFactory _factory = new();
         private ObservableCollection<INodeTemplate>? _templates;
         private IDrawingNode? _drawing;
 
@@ -26,35 +27,35 @@ namespace NodeEditorDemo.ViewModels
                 new NodeTemplateViewModel
                 {
                     Title = "Rectangle",
-                    Build = (x, y) => NodeFactory.CreateRectangle(x, y, 60, 60, "rect")
+                    Build = (x, y) => _factory.CreateRectangle(x, y, 60, 60, "rect")
                 },
                 new NodeTemplateViewModel
                 {
                     Title = "Ellipse",
-                    Build = (x, y) => NodeFactory.CreateEllipse(x, y, 60, 60, "ellipse")
+                    Build = (x, y) => _factory.CreateEllipse(x, y, 60, 60, "ellipse")
                 },
                 new NodeTemplateViewModel
                 {
                     Title = "Signal",
-                    Build = (x, y) => NodeFactory.CreateSignal(x, y, label: "signal", state: false)
+                    Build = (x, y) => _factory.CreateSignal(x, y, label: "signal", state: false)
                 },
                 new NodeTemplateViewModel
                 {
                     Title = "AND Gate",
-                    Build = (x, y) => NodeFactory.CreateAndGate(x, y, 30, 30)
+                    Build = (x, y) => _factory.CreateAndGate(x, y, 30, 30)
                 },
                 new NodeTemplateViewModel
                 {
                     Title = "OR Gate",
-                    Build = (x, y) => NodeFactory.CreateOrGate(x, y, 30, 30)
+                    Build = (x, y) => _factory.CreateOrGate(x, y, 30, 30)
                 },
             };
 
-            Drawing = NodeFactory.CreateDemoDrawing();
+            Drawing = _factory.CreateDemoDrawing();
 
             NewCommand = ReactiveCommand.Create(() =>
             {
-                Drawing = NodeFactory.CreateDrawing();
+                Drawing = _factory.CreateDrawing();
             });
 
             OpenCommand = ReactiveCommand.CreateFromTask(async () =>
