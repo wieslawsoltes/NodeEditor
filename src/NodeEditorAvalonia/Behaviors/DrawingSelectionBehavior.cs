@@ -218,7 +218,6 @@ namespace NodeEditor.Behaviors
 
                 node.X += deltaX;
                 node.Y += deltaY;
-
                 selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
             }
 
