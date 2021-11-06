@@ -64,7 +64,7 @@ namespace NodeEditorDemo.ViewModels
                 dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
                 dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
                 var result = await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow);
-                if (result is { } && result.Length == 1)
+                if (result is { Length: 1 })
                 {
                     try
                     {
