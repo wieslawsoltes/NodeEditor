@@ -71,7 +71,7 @@ namespace NodeEditor.Controls
             }
 
             context.EndFigure(false);
-            
+
             return geometry;
         }
     }
