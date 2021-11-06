@@ -24,6 +24,37 @@ namespace NodeEditorDemo.ViewModels
 
         public MainWindowViewModel()
         {
+            CreateTemplates();
+
+            Drawing = _factory.CreateDemoDrawing();
+
+            NewCommand = ReactiveCommand.Create(New);
+
+            OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
+
+            SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
+        }
+
+        public ObservableCollection<INodeTemplate>? Templates
+        {
+            get => _templates;
+            set => this.RaiseAndSetIfChanged(ref _templates, value);
+        }
+
+        public IDrawingNode? Drawing
+        {
+            get => _drawing;
+            set => this.RaiseAndSetIfChanged(ref _drawing, value);
+        }
+
+        public ICommand NewCommand { get; }
+
+        public ICommand OpenCommand { get; }
+
+        public ICommand SaveCommand { get; }
+
+        private void CreateTemplates()
+        {
             _templates = new ObservableCollection<INodeTemplate>
             {
                 new NodeTemplateViewModel
@@ -50,83 +81,67 @@ namespace NodeEditorDemo.ViewModels
                 {
                     Title = "OR Gate",
                     Build = (x, y) => _factory.CreateOrGate(x, y, 30, 30)
-                },
+                }
             };
+        }
 
-            Drawing = _factory.CreateDemoDrawing();
+        private void New()
+        {
+            Drawing = _factory.CreateDrawing();
+        }
 
-            NewCommand = ReactiveCommand.Create(() =>
+        private async Task Open()
+        {
+            var dlg = new OpenFileDialog { AllowMultiple = false };
+            dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
+            dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
+            var result =
+                await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)
+                    ?.MainWindow);
+            if (result is { Length: 1 })
             {
-                Drawing = _factory.CreateDrawing();
-            });
-
-            OpenCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                var dlg = new OpenFileDialog { AllowMultiple = false };
-                dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-                dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-                var result = await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow);
-                if (result is { Length: 1 })
+                try
                 {
-                    try
+                    var json = await Task.Run(() => System.IO.File.ReadAllText(result.First()));
+                    var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
+                    if (drawing is { })
                     {
-                        var json = await Task.Run(() =>  System.IO.File.ReadAllText(result.First()));
-                        var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
-                        if (drawing is { })
-                        {
-                            Drawing = drawing;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                        Debug.WriteLine(ex.StackTrace);
+                        Drawing = drawing;
                     }
                 }
-            });
-
-            SaveCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                var dlg = new SaveFileDialog();
-                dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-                dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-                dlg.InitialFileName = System.IO.Path.GetFileNameWithoutExtension("drawing");
-                var result = await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow);
-                if (result is { })
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        await Task.Run(() =>
-                        {
-                            var json = _serializer.Serialize(_drawing);
-                            System.IO.File.WriteAllText(result, json);
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(ex.Message);
-                        Debug.WriteLine(ex.StackTrace);
-                    }
+                    Debug.WriteLine(ex.Message);
+                    Debug.WriteLine(ex.StackTrace);
                 }
-            });
+            }
         }
 
-        public ObservableCollection<INodeTemplate>? Templates
+        private async Task Save()
         {
-            get => _templates;
-            set => this.RaiseAndSetIfChanged(ref _templates, value);
+            var dlg = new SaveFileDialog();
+            dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
+            dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
+            dlg.InitialFileName = System.IO.Path.GetFileNameWithoutExtension("drawing");
+            var result =
+                await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)
+                    ?.MainWindow);
+            if (result is { })
+            {
+                try
+                {
+                    await Task.Run(() =>
+                    {
+                        var json = _serializer.Serialize(_drawing);
+                        System.IO.File.WriteAllText(result, json);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    Debug.WriteLine(ex.StackTrace);
+                }
+            }
         }
-
-        public IDrawingNode? Drawing
-        {
-            get => _drawing;
-            set => this.RaiseAndSetIfChanged(ref _drawing, value);
-        }
-
-        public ICommand NewCommand { get; }
-
-        public ICommand OpenCommand { get; }
-
-        public ICommand SaveCommand { get; }
     }
 }
