@@ -97,12 +97,10 @@ namespace NodeEditor.Behaviors
             var position = e.GetPosition(_parent);
             var deltaX = position.X - _start.X;
             var deltaY = position.Y - _start.Y;
+            node.X += deltaX;
+            node.Y += deltaY;
             _moved = true;
             _start = position;
-            var x = node.X;
-            var y = node.Y;
-            node.X = x + deltaX;
-            node.Y = y + deltaY;
         }
 
         private void Released()
