@@ -128,7 +128,7 @@ namespace NodeEditor.Behaviors
                 return Rect.Empty;
             }
 
-            if (AssociatedObject is not ItemsControl itemsControl)
+            if (AssociatedObject is not { } itemsControl)
             {
                 return Rect.Empty;
             }
