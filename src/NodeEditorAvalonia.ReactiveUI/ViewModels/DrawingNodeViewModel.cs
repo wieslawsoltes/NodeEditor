@@ -11,6 +11,7 @@ namespace NodeEditor.ViewModels
     {
         private IList<INode>? _nodes;
         private IList<IConnector>? _connectors;
+        private IConnector? _connector;
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public IList<INode>? Nodes
@@ -27,11 +28,9 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _connectors, value);
         }
 
-        private IConnector? _connector;
-
         public void DrawingPressed(double x, double y)
         {
-            // TODO:
+            // TODO: Handle pressed event.
         }
 
         public void DrawingCancel()
