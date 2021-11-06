@@ -135,6 +135,8 @@ namespace NodeEditor.ViewModels
                 {
                     Nodes?.Remove(node);
                 }
+
+                SelectedNodes = null;
             }
         }
 
@@ -165,6 +167,9 @@ namespace NodeEditor.ViewModels
 
             var nodes = Serializer.Deserialize<ISet<INode>>(_clipboard);
 
+            SelectedNodes = null;
+            SelectedNodes = new HashSet<INode>();
+
             if (nodes is { Count: > 0 })
             {
                 foreach (var node in nodes)
@@ -174,6 +179,7 @@ namespace NodeEditor.ViewModels
                     node.Parent = this;
 
                     Nodes?.Add(node);
+                    SelectedNodes.Add(node);
                 }
             }
         }
