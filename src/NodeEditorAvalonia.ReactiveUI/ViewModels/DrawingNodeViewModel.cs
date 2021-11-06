@@ -10,8 +10,11 @@ namespace NodeEditor.ViewModels
     public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     {
         private IList<INode>? _nodes;
+        private ISet<INode>? _selectedNodes;
         private IList<IConnector>? _connectors;
+        private INodeSerializer? _serializer;
         private IConnector? _connector;
+        private string? _clipboard;
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public IList<INode>? Nodes
@@ -20,12 +23,25 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _nodes, value);
         }
 
-        
+        [IgnoreDataMember]
+        public ISet<INode>? SelectedNodes
+        {
+            get => _selectedNodes;
+            set => this.RaiseAndSetIfChanged(ref _selectedNodes, value);
+        }
+
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public IList<IConnector>? Connectors
         {
             get => _connectors;
             set => this.RaiseAndSetIfChanged(ref _connectors, value);
+        }
+
+        [IgnoreDataMember]
+        public INodeSerializer? Serializer
+        {
+            get => _serializer;
+            set => this.RaiseAndSetIfChanged(ref _serializer, value);
         }
 
         public void DrawingPressed(double x, double y)
@@ -100,6 +116,64 @@ namespace NodeEditor.ViewModels
                 {
                     _connector.End.X = x;
                     _connector.End.Y = y;
+                }
+            }
+        }
+
+        public void CutNodes()
+        {
+            if (Serializer is null)
+            {
+                return;
+            }
+ 
+            if (SelectedNodes is { Count: > 0 })
+            {
+                _clipboard = Serializer.Serialize(SelectedNodes);
+
+                foreach (var node in SelectedNodes)
+                {
+                    Nodes?.Remove(node);
+                }
+            }
+        }
+
+        public void CopyNodes()
+        {
+            if (Serializer is null)
+            {
+                return;
+            }
+ 
+            if (SelectedNodes is { Count: > 0 })
+            {
+                _clipboard = Serializer.Serialize(SelectedNodes);
+            }
+        }
+
+        public void PasteNodes(double x = 0.0, double y = 0.0)
+        {
+            if (Serializer is null)
+            {
+                return;
+            }
+
+            if (_clipboard is null)
+            {
+                return;
+            }
+
+            var nodes = Serializer.Deserialize<ISet<INode>>(_clipboard);
+
+            if (nodes is { Count: > 0 })
+            {
+                foreach (var node in nodes)
+                {
+                    node.X += x;
+                    node.Y += y;
+                    node.Parent = this;
+
+                    Nodes?.Add(node);
                 }
             }
         }

@@ -49,7 +49,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (AssociatedObject.DataContext is not IDrawingNode)
+            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
             {
                 return;
             }
@@ -83,6 +83,7 @@ namespace NodeEditor.Behaviors
                     }
 
                     _selectedControls.Clear();
+                    drawingNode.SelectedNodes = null;
 
                     RemoveSelected(AssociatedObject);
                     
@@ -110,41 +111,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            var selectedRect = new Rect();
-
-            if (_selection is { })
-            {
-                var rect = _selection.GetRect();
-
-                if (AssociatedObject is ItemsControl itemsControl)
-                {
-                    var itemContainerGenerator = itemsControl.ItemContainerGenerator;
-
-                    _selectedControls.Clear();
-
-                    foreach (var container in itemContainerGenerator.Containers)
-                    {
-                        if (container.ContainerControl is { } containerControl)
-                        {
-                            var bounds = containerControl.Bounds;
-                            if (rect.Intersects(bounds))
-                            {
-                                _selectedControls.Add(containerControl);
-
-                                if (selectedRect.IsEmpty)
-                                {
-                                    selectedRect = bounds;
-                                }
-                                else
-                                {
-                                    selectedRect = selectedRect.Union(bounds);
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
+            var selectedRect = GetSelectedRect();
 
             RemoveSelection(AssociatedObject);
 
@@ -152,6 +119,61 @@ namespace NodeEditor.Behaviors
             {
                 AddSelected(AssociatedObject, selectedRect);
             }
+        }
+
+        private Rect GetSelectedRect()
+        {
+            if (_selection is null)
+            {
+                return Rect.Empty;
+            }
+
+            if (AssociatedObject is not ItemsControl itemsControl)
+            {
+                return Rect.Empty;
+            }
+
+            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
+            {
+                return Rect.Empty;
+            }
+
+            var selectedRect = new Rect();
+            var rect = _selection.GetRect();
+
+            var itemContainerGenerator = itemsControl.ItemContainerGenerator;
+
+            _selectedControls.Clear();
+
+            drawingNode.SelectedNodes = null;
+            drawingNode.SelectedNodes = new HashSet<INode>();
+
+            foreach (var container in itemContainerGenerator.Containers)
+            {
+                if (container.ContainerControl is { } containerControl)
+                {
+                    if (containerControl.DataContext is INode node)
+                    {
+                        var bounds = containerControl.Bounds;
+                        if (rect.Intersects(bounds))
+                        {
+                            _selectedControls.Add(containerControl);
+                            drawingNode.SelectedNodes.Add(node);
+
+                            if (selectedRect.IsEmpty)
+                            {
+                                selectedRect = bounds;
+                            }
+                            else
+                            {
+                                selectedRect = selectedRect.Union(bounds);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return selectedRect;
         }
 
         private void Moved(object? sender, PointerEventArgs e)
@@ -170,38 +192,7 @@ namespace NodeEditor.Behaviors
 
             if (_dragSelectedItems)
             {
-                if (_selectedControls.Count > 0)
-                {
-                    var selectedRect = new Rect();
-
-                    var deltaX = position.X - _start.X;
-                    var deltaY = position.Y - _start.Y;
-                    _start = position;
-
-                    foreach (var selectedControl in _selectedControls)
-                    {
-                        if (selectedControl.DataContext is INode node)
-                        {
-                            var bounds = selectedControl.Bounds;
-
-                            var x = node.X;
-                            var y = node.Y;
-                            node.X = x + deltaX;
-                            node.Y = y + deltaY;
-
-                            if (selectedRect.IsEmpty)
-                            {
-                                selectedRect = bounds;
-                            }
-                            else
-                            {
-                                selectedRect = selectedRect.Union(bounds);
-                            }
-                        }
-                    }
-
-                    UpdateSelected(selectedRect);
-                }
+                Move(position);
 
                 e.Handled = true;
             }
@@ -214,6 +205,44 @@ namespace NodeEditor.Behaviors
 
                 UpdateSelection(position.X, position.Y);
             }
+        }
+
+        private void Move(Point position)
+        {
+            if (_selectedControls.Count <= 0)
+            {
+                return;
+            }
+            
+            var selectedRect = new Rect();
+
+            var deltaX = position.X - _start.X;
+            var deltaY = position.Y - _start.Y;
+            _start = position;
+
+            foreach (var selectedControl in _selectedControls)
+            {
+                if (selectedControl.DataContext is INode node)
+                {
+                    var bounds = selectedControl.Bounds;
+
+                    var x = node.X;
+                    var y = node.Y;
+                    node.X = x + deltaX;
+                    node.Y = y + deltaY;
+
+                    if (selectedRect.IsEmpty)
+                    {
+                        selectedRect = bounds;
+                    }
+                    else
+                    {
+                        selectedRect = selectedRect.Union(bounds);
+                    }
+                }
+            }
+
+            UpdateSelected(selectedRect);
         }
 
         private void AddSelection(Control control, double x, double y)

@@ -17,14 +17,27 @@
   <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>
+  <Window.KeyBindings>
+    <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
+    <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"  />
+    <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"  />
+    <KeyBinding Command="{Binding CutCommand}" Gesture="Ctrl+X"  />
+    <KeyBinding Command="{Binding CopyCommand}" Gesture="Ctrl+C"  />
+    <KeyBinding Command="{Binding PasteCommand}" Gesture="Ctrl+V"  />
+  </Window.KeyBindings>
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="_File">
-        <MenuItem Header="_New" Command="{Binding NewCommand}" />
+        <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="Ctrl+X" />
         <Separator />
-        <MenuItem Header="_Open..." Command="{Binding OpenCommand}" />
+        <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGesture="Ctrl+O" />
         <Separator />
-        <MenuItem Header="_Save..." Command="{Binding SaveCommand}" />
+        <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="Ctrl+S" />
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
+        <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
+        <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
       </MenuItem>
     </Menu>
     <Grid ColumnDefinitions="200,*">

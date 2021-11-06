@@ -17,8 +17,8 @@ namespace NodeEditorDemo.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly INodeSerializer _serializer = new NodeSerializer(typeof(ObservableCollection<>));
-        private readonly NodeFactory _factory = new();
+        private readonly INodeSerializer _serializer;
+        private readonly NodeFactory _factory;
         private ObservableCollection<INodeTemplate>? _templates;
         private IDrawingNode? _drawing;
 
@@ -26,13 +26,23 @@ namespace NodeEditorDemo.ViewModels
         {
             CreateTemplates();
 
+            _serializer = new NodeSerializer(typeof(ObservableCollection<>));
+            _factory = new();
+
             Drawing = _factory.CreateDemoDrawing();
+            Drawing.Serializer = _serializer;
 
             NewCommand = ReactiveCommand.Create(New);
 
             OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
 
             SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
+
+            CutCommand = ReactiveCommand.Create(() => Drawing.CutNodes());
+
+            CopyCommand = ReactiveCommand.Create(() => Drawing.CopyNodes());
+
+            PasteCommand = ReactiveCommand.Create(() => Drawing.PasteNodes());
         }
 
         public ObservableCollection<INodeTemplate>? Templates
@@ -52,6 +62,12 @@ namespace NodeEditorDemo.ViewModels
         public ICommand OpenCommand { get; }
 
         public ICommand SaveCommand { get; }
+
+        public ICommand CutCommand { get; }
+
+        public ICommand CopyCommand { get; }
+
+        public ICommand PasteCommand { get; }
 
         private void CreateTemplates()
         {
@@ -88,6 +104,7 @@ namespace NodeEditorDemo.ViewModels
         private void New()
         {
             Drawing = _factory.CreateDrawing();
+            Drawing.Serializer = _serializer;
         }
 
         private async Task Open()
@@ -107,6 +124,7 @@ namespace NodeEditorDemo.ViewModels
                     if (drawing is { })
                     {
                         Drawing = drawing;
+                        Drawing.Serializer = _serializer;
                     }
                 }
                 catch (Exception ex)
