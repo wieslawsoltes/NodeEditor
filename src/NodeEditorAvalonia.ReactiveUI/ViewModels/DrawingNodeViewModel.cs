@@ -110,13 +110,10 @@ namespace NodeEditor.ViewModels
 
         public void ConnectorMove(double x, double y)
         {
-            if (_connector is { })
+            if (_connector is { End: { } })
             {
-                if (_connector.End is { })
-                {
-                    _connector.End.X = x;
-                    _connector.End.Y = y;
-                }
+                _connector.End.X = x;
+                _connector.End.Y = y;
             }
         }
 
