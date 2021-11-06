@@ -60,8 +60,8 @@ namespace NodeEditorDemo.ViewModels
             OpenCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 var dlg = new OpenFileDialog { AllowMultiple = false };
-                dlg.Filters.Add(new FileDialogFilter() { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-                dlg.Filters.Add(new FileDialogFilter() { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
+                dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
+                dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
                 var result = await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow);
                 if (result is { } && result.Length == 1)
                 {
@@ -85,8 +85,8 @@ namespace NodeEditorDemo.ViewModels
             SaveCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 var dlg = new SaveFileDialog();
-                dlg.Filters.Add(new FileDialogFilter() { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-                dlg.Filters.Add(new FileDialogFilter() { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
+                dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
+                dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
                 dlg.InitialFileName = System.IO.Path.GetFileNameWithoutExtension("drawing");
                 var result = await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow);
                 if (result is { })

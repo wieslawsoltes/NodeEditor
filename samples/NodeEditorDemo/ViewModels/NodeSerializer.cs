@@ -39,7 +39,7 @@ namespace NodeEditorDemo.ViewModels
 
         static NodeSerializer()
         {
-            s_settings = new JsonSerializerSettings()
+            s_settings = new JsonSerializerSettings
             {
                 Formatting = Formatting.Indented,
                 TypeNameHandling = TypeNameHandling.Objects,

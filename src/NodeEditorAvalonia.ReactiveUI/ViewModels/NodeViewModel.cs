@@ -68,7 +68,7 @@ namespace NodeEditor.ViewModels
 
         public IPin AddPin(double x, double y, double width, double height, PinAlignment alignment = PinAlignment.None)
         {
-            var pin = new PinViewModel()
+            var pin = new PinViewModel
             {
                 Parent = this,
                 X = x,

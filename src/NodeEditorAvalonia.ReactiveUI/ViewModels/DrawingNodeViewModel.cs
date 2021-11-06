@@ -65,7 +65,7 @@ namespace NodeEditor.ViewModels
                     y += pin.Parent.Y;
                 }
 
-                var end = new PinViewModel()
+                var end = new PinViewModel
                 {
                     Parent = null,
                     X = x,

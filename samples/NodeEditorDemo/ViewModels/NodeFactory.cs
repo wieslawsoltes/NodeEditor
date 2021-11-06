@@ -74,7 +74,7 @@ namespace NodeEditorDemo.ViewModels
                 Width = width,
                 Height = height,
                 Pins = new ObservableCollection<IPin>(),
-                Content = new AndGateViewModel() { Label = "&" }
+                Content = new AndGateViewModel { Label = "&" }
             };
 
             node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
@@ -94,7 +94,7 @@ namespace NodeEditorDemo.ViewModels
                 Width = width,
                 Height = height,
                 Pins = new ObservableCollection<IPin>(),
-                Content = new OrGateViewModel() { Label = "≥", Count = count}
+                Content = new OrGateViewModel { Label = "≥", Count = count}
             };
 
             node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);

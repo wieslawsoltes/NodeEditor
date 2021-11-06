@@ -224,7 +224,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            _selection = new Selection()
+            _selection = new Selection
             {
                 [AdornerLayer.AdornedElementProperty] = control,
                 TopLeft = new Point(x, y),
@@ -264,7 +264,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            _selected = new Selected()
+            _selected = new Selected
             {
                 [AdornerLayer.AdornedElementProperty] = control,
                 IsHitTestVisible = false,
