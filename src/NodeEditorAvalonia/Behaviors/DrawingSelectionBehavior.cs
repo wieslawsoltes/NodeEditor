@@ -63,19 +63,24 @@ namespace NodeEditor.Behaviors
                         _start = position;
                         e.Handled = true;
                     }
+                    else
+                    {
+                        drawingNode.SelectedNodes = null;
+                        RemoveSelected(AssociatedObject);
+ 
+                    }
                 }
 
                 if (!_dragSelectedItems)
                 {
+                    drawingNode.SelectedNodes = null;
+                    RemoveSelected(AssociatedObject);
+
                     if (e.Source is Control { DataContext: not IDrawingNode })
                     {
                         return;
                     }
 
-                    drawingNode.SelectedNodes = null;
-
-                    RemoveSelected(AssociatedObject);
-                    
                     AddSelection(AssociatedObject, position.X, position.Y);
                 }
             }
@@ -104,7 +109,10 @@ namespace NodeEditor.Behaviors
 
             if (!_selectedRect.IsEmpty)
             {
-                AddSelected(AssociatedObject, _selectedRect);
+                if (_selected is null)
+                {
+                    AddSelected(AssociatedObject, _selectedRect);
+                }
             }
         }
 
