@@ -1,5 +1,4 @@
-﻿using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
+﻿using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
@@ -31,12 +30,7 @@ namespace NodeEditor.Behaviors
 
         private void Pressed(object? sender, PointerPressedEventArgs e)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-
-            if (AssociatedObject.DataContext is not IPin pin)
+            if (AssociatedObject?.DataContext is not IPin pin)
             {
                 return;
             }
