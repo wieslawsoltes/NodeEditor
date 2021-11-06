@@ -44,12 +44,7 @@ namespace NodeEditor.Behaviors
 
         private void Pressed(object? sender, PointerPressedEventArgs e)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-  
-            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
+            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
             {
                 return;
             }
@@ -72,7 +67,7 @@ namespace NodeEditor.Behaviors
 
                 if (!_dragSelectedItems)
                 {
-                    if (e.Source is Control control && control.DataContext is not IDrawingNode)
+                    if (e.Source is Control { DataContext: not IDrawingNode })
                     {
                         return;
                     }
@@ -88,24 +83,22 @@ namespace NodeEditor.Behaviors
 
         private void Released(object? sender, PointerReleasedEventArgs e)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-  
-            if (AssociatedObject.DataContext is not IDrawingNode)
+            if (AssociatedObject?.DataContext is not IDrawingNode)
             {
                 return;
             }
 
             _dragSelectedItems = false;
 
-            if (e.Source is Control control && control.DataContext is not IDrawingNode)
+            if (e.Source is Control { DataContext: not IDrawingNode })
             {
                 return;
             }
 
-            _selectedRect = GetSelectedRect();
+            if (_selection is { })
+            {
+                _selectedRect = GetSelectedRect(_selection.GetRect());
+            }
 
             RemoveSelection(AssociatedObject);
 
@@ -115,30 +108,19 @@ namespace NodeEditor.Behaviors
             }
         }
 
-        private Rect GetSelectedRect()
+        private Rect GetSelectedRect(Rect rect)
         {
-            if (_selection is null)
-            {
-                return Rect.Empty;
-            }
-
-            if (AssociatedObject is not { } itemsControl)
-            {
-                return Rect.Empty;
-            }
-
-            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
+            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
             {
                 return Rect.Empty;
             }
 
             var selectedRect = new Rect();
-            var rect = _selection.GetRect();
 
             drawingNode.SelectedNodes = null;
             drawingNode.SelectedNodes = new HashSet<INode>();
 
-            foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+            foreach (var container in AssociatedObject.ItemContainerGenerator.Containers)
             {
                 if (container.ContainerControl is { DataContext: INode node } containerControl)
                 {
@@ -158,12 +140,7 @@ namespace NodeEditor.Behaviors
 
         private void Moved(object? sender, PointerEventArgs e)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-  
-            if (AssociatedObject.DataContext is not IDrawingNode)
+            if (AssociatedObject?.DataContext is not IDrawingNode)
             {
                 return;
             }
@@ -178,7 +155,7 @@ namespace NodeEditor.Behaviors
             }
             else
             {
-                if (e.Source is Control control && control.DataContext is not IDrawingNode)
+                if (e.Source is Control { DataContext: not IDrawingNode } control)
                 {
                     return;
                 }
@@ -189,12 +166,7 @@ namespace NodeEditor.Behaviors
 
         private void Move(Point position)
         {
-            if (AssociatedObject is null)
-            {
-                return;
-            }
-  
-            if (AssociatedObject.DataContext is not IDrawingNode drawingNode)
+            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
             {
                 return;
             }
@@ -203,9 +175,8 @@ namespace NodeEditor.Behaviors
             {
                 return;
             }
-            
-            var selectedRect = new Rect();
 
+            var selectedRect = new Rect();
             var deltaX = position.X - _start.X;
             var deltaY = position.Y - _start.Y;
             _start = position;
