@@ -49,7 +49,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
   
-            if (e.Source is Control control && control.DataContext is IPin)
+            if (e.Source is Control { DataContext: IPin })
             {
                 return;
             }
@@ -84,7 +84,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (e.Source is Control control && control.DataContext is IPin)
+            if (e.Source is Control { DataContext: IPin })
             {
                 return;
             }
