@@ -21,9 +21,9 @@
     <Setter Property="(i:Interaction.Behaviors)">
       <i:BehaviorCollectionTemplate>
         <i:BehaviorCollection>
-          <behaviors:DrawingMovedBehavior />
-          <behaviors:DrawingPressedBehavior />
           <behaviors:DrawingSelectionBehavior />
+          <behaviors:DrawingPressedBehavior />
+          <behaviors:DrawingMovedBehavior />
         </i:BehaviorCollection>
       </i:BehaviorCollectionTemplate>
     </Setter>
