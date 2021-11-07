@@ -121,8 +121,8 @@ namespace NodeEditorDemo.ViewModels
             {
                 X = 0,
                 Y = 0,
-                Width = 750,
-                Height = 480,
+                Width = 900,
+                Height = 600,
                 Nodes = new ObservableCollection<INode>(),
                 Connectors = new ObservableCollection<IConnector>()
             };
@@ -136,8 +136,8 @@ namespace NodeEditorDemo.ViewModels
             {
                 X = 0,
                 Y = 0,
-                Width = 750,
-                Height = 480,
+                Width = 900,
+                Height = 600,
                 Nodes = new ObservableCollection<INode>(),
                 Connectors = new ObservableCollection<IConnector>()
             };
