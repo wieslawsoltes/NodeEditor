@@ -44,7 +44,7 @@ namespace NodeEditor.Behaviors
             {
                 if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
                 {
-                    drawingNode.ConnectorPressed(pin);
+                    drawingNode.ConnectorLeftPressed(pin);
                     e.Handled = true;
                 }
             }

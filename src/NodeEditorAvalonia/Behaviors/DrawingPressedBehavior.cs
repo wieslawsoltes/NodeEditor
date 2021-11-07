@@ -39,11 +39,11 @@ namespace NodeEditor.Behaviors
 
             if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
-                drawingNode.DrawingPressed(x, y);
+                drawingNode.DrawingLeftPressed(x, y);
             }
             else if (e.GetCurrentPoint(AssociatedObject).Properties.IsRightButtonPressed)
             {
-                drawingNode.DrawingCancel();
+                drawingNode.DrawingRightPressed(x, y);
             }
         }
     }

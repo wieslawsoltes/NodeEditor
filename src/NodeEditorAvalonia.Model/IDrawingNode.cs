@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace NodeEditor.Model
 {
@@ -8,12 +9,17 @@ namespace NodeEditor.Model
         ISet<INode>? SelectedNodes { get; set; }
         IList<IConnector>? Connectors { get; set; }
         INodeSerializer? Serializer { get; set; }
-        void DrawingPressed(double x, double y);
-        void DrawingCancel();
-        void ConnectorPressed(IPin pin);
+        void DrawingLeftPressed(double x, double y);
+        void DrawingRightPressed(double x, double y);
+        void ConnectorLeftPressed(IPin pin);
         void ConnectorMove(double x, double y);
         void CutNodes();
         void CopyNodes();
-        void PasteNodes(double x = 0.0, double y = 0.0);
+        void PasteNodes();
+        void DeleteNodes();
+        ICommand CutCommand { get; }
+        ICommand CopyCommand { get; }
+        ICommand PasteCommand { get; }
+        ICommand DeleteCommand { get; }
     }
 }

@@ -21,9 +21,10 @@
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
     <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"  />
     <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"  />
-    <KeyBinding Command="{Binding CutCommand}" Gesture="Ctrl+X"  />
-    <KeyBinding Command="{Binding CopyCommand}" Gesture="Ctrl+C"  />
-    <KeyBinding Command="{Binding PasteCommand}" Gesture="Ctrl+V"  />
+    <KeyBinding Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+X"  />
+    <KeyBinding Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" Gesture="Ctrl+C"  />
+    <KeyBinding Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" Gesture="Ctrl+V"  />
+    <KeyBinding Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" Gesture="Delete"  />
   </Window.KeyBindings>
   <DockPanel>
     <Menu DockPanel.Dock="Top">
@@ -35,37 +36,47 @@
         <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="Ctrl+S" />
       </MenuItem>
       <MenuItem Header="_Edit">
-        <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
-        <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
-        <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
+        <MenuItem Header="Cu_t" Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+X" />
+        <MenuItem Header="_Copy" Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+C" />
+        <MenuItem Header="_Paste" Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+V" />
+        <MenuItem Header="_Delete" Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
       </MenuItem>
     </Menu>
     <Grid ColumnDefinitions="200,*">
-      <ListBox Items="{Binding Templates}" 
-               Grid.Column="0">
-        <ListBox.Resources>
-          <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
-        </ListBox.Resources>
-        <i:Interaction.Behaviors>
-          <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
-        </i:Interaction.Behaviors>
-        <ListBox.Styles>
-          <Style Selector="ListBox > ListBoxItem">
-            <Setter Property="(i:Interaction.Behaviors)">
-              <i:BehaviorCollectionTemplate>
-                <i:BehaviorCollection>
-                  <idd:ContextDragBehavior />
-                </i:BehaviorCollection>
-              </i:BehaviorCollectionTemplate>
-            </Setter>
-          </Style>
-        </ListBox.Styles>
-        <ListBox.ItemTemplate>
-          <DataTemplate DataType="m:INodeTemplate">
-            <TextBlock Text="{Binding Title}" />
-          </DataTemplate>
-        </ListBox.ItemTemplate>
-      </ListBox>
+      <DockPanel Grid.Column="0">
+        <Grid ColumnDefinitions="50*,50*" DockPanel.Dock="Bottom">
+          <TextBox Grid.Column="0" 
+                   Margin="4"
+                   Text="{Binding Drawing.Width, FallbackValue=''}" />
+          <TextBox Grid.Column="1" 
+                   Margin="4"
+                   Text="{Binding Drawing.Height, FallbackValue=''}" />
+        </Grid>
+        <ListBox Items="{Binding Templates}" >
+          <ListBox.Resources>
+            <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
+          </ListBox.Resources>
+          <i:Interaction.Behaviors>
+            <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
+          </i:Interaction.Behaviors>
+          <ListBox.Styles>
+            <Style Selector="ListBox > ListBoxItem">
+              <Setter Property="(i:Interaction.Behaviors)">
+                <i:BehaviorCollectionTemplate>
+                  <i:BehaviorCollection>
+                    <idd:ContextDragBehavior />
+                  </i:BehaviorCollection>
+                </i:BehaviorCollectionTemplate>
+              </Setter>
+            </Style>
+          </ListBox.Styles>
+          <ListBox.ItemTemplate>
+            <DataTemplate DataType="m:INodeTemplate">
+              <TextBlock Text="{Binding Title}" />
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
+      </DockPanel>
       <ScrollViewer VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto"
                     DataContext="{Binding Drawing}"
@@ -83,7 +94,16 @@
             </idd:ContextDropBehavior>
           </i:Interaction.Behaviors>
           <editor:DrawingNode Name="Drawing"
-                              Background="LightGray" />
+                              Background="LightGray">
+            <editor:DrawingNode.ContextFlyout>
+              <MenuFlyout>
+                <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
+                <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
+                <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
+                <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
+              </MenuFlyout>
+            </editor:DrawingNode.ContextFlyout>
+          </editor:DrawingNode>
         </paz:ZoomBorder>
       </ScrollViewer>
     </Grid>

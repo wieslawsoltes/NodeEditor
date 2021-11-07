@@ -37,12 +37,6 @@ namespace NodeEditorDemo.ViewModels
             OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
 
             SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
-
-            CutCommand = ReactiveCommand.Create(() => Drawing.CutNodes());
-
-            CopyCommand = ReactiveCommand.Create(() => Drawing.CopyNodes());
-
-            PasteCommand = ReactiveCommand.Create(() => Drawing.PasteNodes());
         }
 
         public IList<INodeTemplate>? Templates
@@ -62,12 +56,6 @@ namespace NodeEditorDemo.ViewModels
         public ICommand OpenCommand { get; }
 
         public ICommand SaveCommand { get; }
-
-        public ICommand CutCommand { get; }
-
-        public ICommand CopyCommand { get; }
-
-        public ICommand PasteCommand { get; }
 
         private void CreateTemplates()
         {
