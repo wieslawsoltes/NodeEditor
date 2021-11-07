@@ -8,6 +8,8 @@
 
 A node editor control for Avalonia.
 
+![NodeEditorDemo_J3cXfNsgEJ](https://user-images.githubusercontent.com/2297442/140658747-5db2e999-9bd8-4f46-964a-9ab32b6e1080.png)
+
 ## Building NodeEditor
 
 First, clone the repository or download the latest zip.
@@ -49,6 +51,13 @@ NodeEditor is delivered as a NuGet package.
 You can find the packages here [NuGet](https://www.nuget.org/packages/NodeEditorAvalonia/) and install the package like this:
 
 `Install-Package NodeEditorAvalonia`
+
+## Available Packages
+
+* [NodeEditorAvalonia](https://www.nuget.org/packages/NodeEditorAvalonia) - The main package with Avalonia controls and default theme.
+* [NodeEditorAvalonia.ReactiveUI](https://www.nuget.org/packages/NodeEditorAvalonia.ReactiveUI)  - The ReactiveUI view models with default implementation.
+* [NodeEditorAvalonia.Model](https://www.nuget.org/packages/NodeEditorAvalonia.Model) - The base interfaces used in controls and view models.
+* [NodeEditorAvalonia.Serializer](https://www.nuget.org/packages/NodeEditorAvalonia.Serializer)  - The serializer for ReactiveUI view models.
 
 ### Package Sources
 
