@@ -48,6 +48,9 @@ namespace NodeEditor.Behaviors
                                 }
                             }
 
+                            RemoveSelection(AssociatedObject);
+                            RemoveSelected(AssociatedObject);
+
                             _drawingNode = drawingNode;
 
                             if (_drawingNode is INotifyPropertyChanged notifyPropertyChanged)
@@ -55,6 +58,11 @@ namespace NodeEditor.Behaviors
                                 _drawingNodePropertyChanged = notifyPropertyChanged;
                                 _drawingNodePropertyChanged.PropertyChanged += DrawingNode_PropertyChanged;
                             }
+                        }
+                        else
+                        {
+                            RemoveSelection(AssociatedObject);
+                            RemoveSelected(AssociatedObject);
                         }
                     });
             }
