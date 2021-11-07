@@ -19,7 +19,7 @@ namespace NodeEditorDemo.ViewModels
     {
         private readonly INodeSerializer _serializer;
         private readonly NodeFactory _factory;
-        private ObservableCollection<INodeTemplate>? _templates;
+        private IList<INodeTemplate>? _templates;
         private IDrawingNode? _drawing;
 
         public MainWindowViewModel()
@@ -45,7 +45,7 @@ namespace NodeEditorDemo.ViewModels
             PasteCommand = ReactiveCommand.Create(() => Drawing.PasteNodes());
         }
 
-        public ObservableCollection<INodeTemplate>? Templates
+        public IList<INodeTemplate>? Templates
         {
             get => _templates;
             set => this.RaiseAndSetIfChanged(ref _templates, value);
