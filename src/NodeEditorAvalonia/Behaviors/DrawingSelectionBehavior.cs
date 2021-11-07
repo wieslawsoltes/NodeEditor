@@ -94,11 +94,11 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (e.PropertyName == nameof(IDrawingNode.SelectedNodes))
+            if (e.PropertyName == nameof(IDrawingNode.SelectedNodes) || e.PropertyName == nameof(IDrawingNode.SelectedConnectors))
             {
                 if (_drawingNode is { })
                 {
-                    if (_drawingNode.SelectedNodes is { Count: > 0 })
+                    if (_drawingNode.SelectedNodes is { Count: > 0 } || _drawingNode.SelectedConnectors is { Count: > 0 })
                     {
                         _selectedRect = CalculateSelectedRect();
 
@@ -133,7 +133,7 @@ namespace NodeEditor.Behaviors
             {
                 _dragSelectedItems = false;
 
-                if (drawingNode.SelectedNodes is { Count: > 0 })
+                if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                 {
                     if (_selectedRect.Contains(position))
                     {
@@ -144,6 +144,7 @@ namespace NodeEditor.Behaviors
                     else
                     {
                         drawingNode.SelectedNodes = null;
+                        drawingNode.SelectedConnectors = null;
                         RemoveSelected(AssociatedObject);
                     }
                 }
@@ -151,6 +152,7 @@ namespace NodeEditor.Behaviors
                 if (!_dragSelectedItems)
                 {
                     drawingNode.SelectedNodes = null;
+                    drawingNode.SelectedConnectors = null;
                     RemoveSelected(AssociatedObject);
 
                     if (e.Source is Control { DataContext: not IDrawingNode })
@@ -269,6 +271,80 @@ namespace NodeEditor.Behaviors
             return false;
         }
 
+        private static Rect GetConnectorBounds(IConnector connector)
+        {
+            var start = connector.Start;
+            var end = connector.End;
+            if (start is null || end is null)
+            {
+                return Rect.Empty;
+            }
+
+            var p0X = start.X;
+            var p0Y = start.Y;
+            if (start.Parent is { })
+            {
+                p0X += start.Parent.X;
+                p0Y += start.Parent.Y; 
+            }
+
+            var p3X = end.X;
+            var p3Y = end.Y;
+            if (end.Parent is { })
+            {
+                p3X += end.Parent.X;
+                p3Y += end.Parent.Y; 
+            }
+
+            var p1X = p0X;
+            var p1Y = p0Y;
+
+            var p2X = p3X;
+            var p2Y = p3Y;
+
+            connector.GetControlPoints(
+                connector.Orientation, 
+                connector.Offset, 
+                start.Alignment,
+                end.Alignment,
+                ref p1X, ref p1Y, 
+                ref p2X, ref p2Y);
+
+            var pt0 = new Point(p0X, p0Y);
+            var pt1 = new Point(p1X, p1Y);
+            var pt2 = new Point(p2X, p2Y);
+            var pt3 = new Point(p3X, p3Y);
+
+            var points = FlattenCubic(pt0, pt1, pt2, pt3);
+
+            var topLeftX = 0.0;
+            var topLeftY = 0.0;
+            var bottomRightX = 0.0;
+            var bottomRightY = 0.0;
+
+            for (var i = 0; i < points.Length; i++)
+            {
+                if (i == 0)
+                {
+                    topLeftX = points[i].X;
+                    topLeftY = points[i].Y;
+                    bottomRightX = points[i].X;
+                    bottomRightY = points[i].Y;
+                }
+                else
+                {
+                    topLeftX = Math.Min(topLeftX, points[i].X);
+                    topLeftY = Math.Min(topLeftY, points[i].Y);
+                    bottomRightX = Math.Max(bottomRightX, points[i].X);
+                    bottomRightY = Math.Max(bottomRightY, points[i].Y);
+                }
+            }
+
+            return new Rect(
+                new Point(topLeftX, topLeftY), 
+                new Point(bottomRightX, bottomRightY));
+        }
+
         private void FindSelectedNodes(Rect rect)
         {
             if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
@@ -337,21 +413,28 @@ namespace NodeEditor.Behaviors
                 return Rect.Empty;
             }
 
-            if (drawingNode.SelectedNodes is not { Count: > 0 } || drawingNode.Nodes is not { Count: > 0 })
-            {
-                return Rect.Empty;
-            }
-
             var selectedRect = new Rect();
 
             ExecuteLayoutPass();
 
-            foreach (var node in drawingNode.SelectedNodes)
+            if (drawingNode.SelectedNodes is { Count: > 0 } && drawingNode.Nodes is { Count: > 0 })
             {
-                var index = drawingNode.Nodes.IndexOf(node);
-                var selectedControl = AssociatedObject.ItemContainerGenerator.ContainerFromIndex(index);
-                var bounds = selectedControl.Bounds;
-                selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
+                foreach (var node in drawingNode.SelectedNodes)
+                {
+                    var index = drawingNode.Nodes.IndexOf(node);
+                    var selectedControl = AssociatedObject.ItemContainerGenerator.ContainerFromIndex(index);
+                    var bounds = selectedControl.Bounds;
+                    selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
+                }
+            }
+
+            if (drawingNode.SelectedConnectors is { Count: > 0 } && drawingNode.Connectors is { Count: > 0 })
+            {
+                foreach (var connector in drawingNode.SelectedConnectors)
+                {
+                    var bounds = GetConnectorBounds(connector);
+                    selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
+                }
             }
 
             return selectedRect;
