@@ -126,9 +126,11 @@ namespace NodeEditor.ViewModels
  
             if (SelectedNodes is { Count: > 0 })
             {
-                _clipboard = Serializer.Serialize(SelectedNodes);
+                var selectedNodes = SelectedNodes;
+                
+                _clipboard = Serializer.Serialize(selectedNodes);
 
-                foreach (var node in SelectedNodes)
+                foreach (var node in selectedNodes)
                 {
                     Nodes?.Remove(node);
                 }
@@ -165,7 +167,8 @@ namespace NodeEditor.ViewModels
             var nodes = Serializer.Deserialize<ISet<INode>>(_clipboard);
 
             SelectedNodes = null;
-            SelectedNodes = new HashSet<INode>();
+
+            var selectedNodes = new HashSet<INode>();
 
             if (nodes is { Count: > 0 })
             {
@@ -176,9 +179,11 @@ namespace NodeEditor.ViewModels
                     node.Parent = this;
 
                     Nodes?.Add(node);
-                    SelectedNodes.Add(node);
+                    selectedNodes.Add(node);
                 }
             }
+
+            SelectedNodes = selectedNodes;
         }
     }
 }

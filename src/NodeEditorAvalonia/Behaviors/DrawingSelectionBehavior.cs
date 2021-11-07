@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
@@ -12,6 +14,9 @@ namespace NodeEditor.Behaviors
 {
     public class DrawingSelectionBehavior : Behavior<ItemsControl>
     {
+        private IDisposable? _dataContextDisposable;
+        private INotifyPropertyChanged? _drawingNodePropertyChanged;
+        private IDrawingNode? _drawingNode;
         private Selection? _selection;
         private Selected? _selected;
         private bool _dragSelectedItems;
@@ -27,6 +32,30 @@ namespace NodeEditor.Behaviors
                 AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
                 AssociatedObject.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
                 AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
+
+                _dataContextDisposable = AssociatedObject
+                    .GetObservable(StyledElement.DataContextProperty)
+                    .Subscribe(x =>
+                    {
+                        if (x is IDrawingNode drawingNode)
+                        {
+                            if (_drawingNode == drawingNode)
+                            {
+                                if (_drawingNodePropertyChanged != null)
+                                {
+                                    _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
+                                }
+                            }
+
+                            _drawingNode = drawingNode;
+
+                            if (_drawingNode is INotifyPropertyChanged notifyPropertyChanged)
+                            {
+                                _drawingNodePropertyChanged = notifyPropertyChanged;
+                                _drawingNodePropertyChanged.PropertyChanged += DrawingNode_PropertyChanged;
+                            }
+                        }
+                    });
             }
         }
 
@@ -39,6 +68,46 @@ namespace NodeEditor.Behaviors
                 AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
                 AssociatedObject.RemoveHandler(InputElement.PointerReleasedEvent, Released);
                 AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
+
+                if (_drawingNodePropertyChanged is { })
+                {
+                    _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
+                }
+
+                _dataContextDisposable?.Dispose();
+            }
+        }
+
+        private void DrawingNode_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (AssociatedObject?.DataContext is not IDrawingNode)
+            {
+                return;
+            }
+
+            if (e.PropertyName == nameof(IDrawingNode.SelectedNodes))
+            {
+                if (_drawingNode is { })
+                {
+                    if (_drawingNode.SelectedNodes is { Count: > 0 })
+                    {
+                        _selectedRect = CalculateSelectedRect();
+
+                        if (_selected is { })
+                        {
+                            RemoveSelected(AssociatedObject);
+                        }
+
+                        if (!_selectedRect.IsEmpty && _selected is null)
+                        {
+                            AddSelected(AssociatedObject, _selectedRect);
+                        }
+                    }
+                    else
+                    {
+                        RemoveSelected(AssociatedObject);
+                    }
+                }
             }
         }
 
@@ -67,7 +136,6 @@ namespace NodeEditor.Behaviors
                     {
                         drawingNode.SelectedNodes = null;
                         RemoveSelected(AssociatedObject);
- 
                     }
                 }
 
@@ -102,45 +170,66 @@ namespace NodeEditor.Behaviors
 
             if (_selection is { })
             {
-                _selectedRect = GetSelectedRect(_selection.GetRect());
+                FindSelectedNodes(_selection.GetRect());
             }
 
             RemoveSelection(AssociatedObject);
+        }
 
-            if (!_selectedRect.IsEmpty)
+        private void FindSelectedNodes(Rect rect)
+        {
+            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
             {
-                if (_selected is null)
+                return;
+            }
+
+            drawingNode.SelectedNodes = null;
+
+            var selectedNodes = new HashSet<INode>();
+
+            foreach (var container in AssociatedObject.ItemContainerGenerator.Containers)
+            {
+                if (container.ContainerControl is not { DataContext: INode node } containerControl)
                 {
-                    AddSelected(AssociatedObject, _selectedRect);
+                    continue;
                 }
+
+                var bounds = containerControl.Bounds;
+
+                if (!rect.Intersects(bounds))
+                {
+                    continue;
+                }
+
+                selectedNodes.Add(node);
+            }
+
+            if (selectedNodes.Count > 0)
+            {
+                drawingNode.SelectedNodes = selectedNodes;
             }
         }
 
-        private Rect GetSelectedRect(Rect rect)
+        private Rect CalculateSelectedRect()
         {
             if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
             {
                 return Rect.Empty;
             }
 
+            if (drawingNode.SelectedNodes is not { Count: > 0 } || drawingNode.Nodes is not { Count: > 0 })
+            {
+                return Rect.Empty;
+            }
+
             var selectedRect = new Rect();
 
-            drawingNode.SelectedNodes = null;
-            drawingNode.SelectedNodes = new HashSet<INode>();
-
-            foreach (var container in AssociatedObject.ItemContainerGenerator.Containers)
+            foreach (var node in drawingNode.SelectedNodes)
             {
-                if (container.ContainerControl is { DataContext: INode node } containerControl)
-                {
-                    var bounds = containerControl.Bounds;
-                    if (!rect.Intersects(bounds))
-                    {
-                        continue;
-                    }
-
-                    drawingNode.SelectedNodes.Add(node);
-                    selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
-                }
+                var index = drawingNode.Nodes.IndexOf(node);
+                var selectedControl = AssociatedObject.ItemContainerGenerator.ContainerFromIndex(index);
+                var bounds = selectedControl.Bounds;
+                selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
             }
 
             return selectedRect;
@@ -163,7 +252,7 @@ namespace NodeEditor.Behaviors
             }
             else
             {
-                if (e.Source is Control { DataContext: not IDrawingNode } control)
+                if (e.Source is Control { DataContext: not IDrawingNode })
                 {
                     return;
                 }
@@ -184,23 +273,19 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            var selectedRect = new Rect();
             var deltaX = position.X - _start.X;
             var deltaY = position.Y - _start.Y;
             _start = position;
 
-            foreach (var node in drawingNode.SelectedNodes)
-            {
-                var index = drawingNode.Nodes.IndexOf(node);
-                var selectedControl = AssociatedObject.ItemContainerGenerator.ContainerFromIndex(index);
-                var bounds = selectedControl.Bounds;
-
-                node.X += deltaX;
-                node.Y += deltaY;
-                selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
-            }
+            var selectedRect = CalculateSelectedRect();
 
             _selectedRect = selectedRect;
+
+            foreach (var node in drawingNode.SelectedNodes)
+            {
+                node.X += deltaX;
+                node.Y += deltaY;
+            }
 
             UpdateSelected(selectedRect);
         }
