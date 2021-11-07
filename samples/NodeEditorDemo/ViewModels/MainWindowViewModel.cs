@@ -65,12 +65,15 @@ namespace NodeEditorDemo.ViewModels
 
         private async Task Open()
         {
+            var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+            if (window is null)
+            {
+                return;
+            }
             var dlg = new OpenFileDialog { AllowMultiple = false };
             dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
             dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-            var result =
-                await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)
-                    ?.MainWindow);
+            var result = await dlg.ShowAsync(window);
             if (result is { Length: 1 })
             {
                 try
@@ -93,13 +96,16 @@ namespace NodeEditorDemo.ViewModels
 
         private async Task Save()
         {
+            var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+            if (window is null)
+            {
+                return;
+            }
             var dlg = new SaveFileDialog();
             dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
             dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
             dlg.InitialFileName = System.IO.Path.GetFileNameWithoutExtension("drawing");
-            var result =
-                await dlg.ShowAsync((Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)
-                    ?.MainWindow);
+            var result = await dlg.ShowAsync(window);
             if (result is { })
             {
                 try
