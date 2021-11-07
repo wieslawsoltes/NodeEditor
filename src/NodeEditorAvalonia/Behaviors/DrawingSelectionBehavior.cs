@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Controls;
 using NodeEditor.Model;
@@ -210,6 +211,14 @@ namespace NodeEditor.Behaviors
             }
         }
 
+        private void ExecuteLayoutPass()
+        {
+            if (AssociatedObject?.GetVisualRoot() is TopLevel topLevel)
+            {
+                topLevel.LayoutManager.ExecuteLayoutPass();
+            }
+        }
+
         private Rect CalculateSelectedRect()
         {
             if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
@@ -223,6 +232,8 @@ namespace NodeEditor.Behaviors
             }
 
             var selectedRect = new Rect();
+
+            ExecuteLayoutPass();
 
             foreach (var node in drawingNode.SelectedNodes)
             {
