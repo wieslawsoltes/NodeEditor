@@ -12,13 +12,20 @@ namespace NodeEditor.ViewModels
     public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     {
         private IList<INode>? _nodes;
-        private ISet<INode>? _selectedNodes;
         private IList<IConnector>? _connectors;
+        private ISet<INode>? _selectedNodes;
+        private ISet<IConnector>? _selectedConnectors;
         private INodeSerializer? _serializer;
         private IConnector? _connector;
         private string? _clipboard;
         private double _pressedX = double.NaN;
         private double _pressedY = double.NaN;
+
+        private class Clipboard
+        {
+            public ISet<INode>? SelectedNodes { get; set; }
+            public ISet<IConnector>? SelectedConnectors { get; set; }
+        }
 
         public DrawingNodeViewModel()
         {
@@ -42,6 +49,13 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _nodes, value);
         }
 
+        [DataMember(IsRequired = true, EmitDefaultValue = true)]
+        public IList<IConnector>? Connectors
+        {
+            get => _connectors;
+            set => this.RaiseAndSetIfChanged(ref _connectors, value);
+        }
+
         [IgnoreDataMember]
         public ISet<INode>? SelectedNodes
         {
@@ -49,11 +63,11 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedNodes, value);
         }
 
-        [DataMember(IsRequired = true, EmitDefaultValue = true)]
-        public IList<IConnector>? Connectors
+        [IgnoreDataMember]
+        public ISet<IConnector>? SelectedConnectors
         {
-            get => _connectors;
-            set => this.RaiseAndSetIfChanged(ref _connectors, value);
+            get => _selectedConnectors;
+            set => this.RaiseAndSetIfChanged(ref _selectedConnectors, value);
         }
 
         [IgnoreDataMember]
@@ -157,21 +171,37 @@ namespace NodeEditor.ViewModels
                 return;
             }
 
-            if (SelectedNodes is not { Count: > 0 })
+            if (SelectedNodes is not { Count: > 0 } && SelectedConnectors is not { Count: > 0 })
             {
                 return;
             }
 
-            var selectedNodes = SelectedNodes;
-                
-            _clipboard = Serializer.Serialize(selectedNodes);
-
-            foreach (var node in selectedNodes)
+            var clipboard = new Clipboard
             {
-                Nodes?.Remove(node);
+                SelectedNodes = SelectedNodes,
+                SelectedConnectors = SelectedConnectors
+            };
+
+            _clipboard = Serializer.Serialize(clipboard);
+
+            if (clipboard.SelectedNodes is { })
+            {
+                foreach (var node in clipboard.SelectedNodes)
+                {
+                    Nodes?.Remove(node);
+                }
+            }
+
+            if (clipboard.SelectedConnectors is { })
+            {
+                foreach (var connector in clipboard.SelectedConnectors)
+                {
+                    Connectors?.Remove(connector);
+                }
             }
 
             SelectedNodes = null;
+            SelectedConnectors = null;
         }
 
         public void CopyNodes()
@@ -181,12 +211,18 @@ namespace NodeEditor.ViewModels
                 return;
             }
 
-            if (SelectedNodes is not { Count: > 0 })
+            if (SelectedNodes is not { Count: > 0 } && SelectedConnectors is not { Count: > 0 })
             {
                 return;
             }
 
-            _clipboard = Serializer.Serialize(SelectedNodes);
+            var clipboard = new Clipboard
+            {
+                SelectedNodes = SelectedNodes,
+                SelectedConnectors = SelectedConnectors
+            };
+
+            _clipboard = Serializer.Serialize(clipboard);
         }
 
         public void PasteNodes()
@@ -204,19 +240,25 @@ namespace NodeEditor.ViewModels
             var pressedX = _pressedX;
             var pressedY = _pressedY;
 
-            var nodes = Serializer.Deserialize<ISet<INode>>(_clipboard);
+            var clipboard = Serializer.Deserialize<Clipboard?>(_clipboard);
+            if (clipboard is null)
+            {
+                return;
+            }
 
             SelectedNodes = null;
+            SelectedConnectors = null;
 
             var selectedNodes = new HashSet<INode>();
+            var selectedConnectors = new HashSet<IConnector>();
 
-            if (nodes is { Count: > 0 })
+            if (clipboard.SelectedNodes is { Count: > 0 })
             {
                 var minX = 0.0;
                 var minY = 0.0;
                 var i = 0;
 
-                foreach (var node in nodes)
+                foreach (var node in clipboard.SelectedNodes)
                 {
                     minX = i == 0 ? node.X : Math.Min(minX, node.X);
                     minY = i == 0 ? node.Y : Math.Min(minY, node.Y);
@@ -226,7 +268,7 @@ namespace NodeEditor.ViewModels
                 var deltaX = double.IsNaN(pressedX) ? 0.0 : pressedX - minX;
                 var deltaY = double.IsNaN(pressedY) ? 0.0 : pressedY - minY;
 
-                foreach (var node in nodes)
+                foreach (var node in clipboard.SelectedNodes)
                 {
                     node.X += deltaX;
                     node.Y += deltaY;
@@ -237,7 +279,19 @@ namespace NodeEditor.ViewModels
                 }
             }
 
+            if (clipboard.SelectedConnectors is { Count: > 0 })
+            {
+                foreach (var connector in clipboard.SelectedConnectors)
+                {
+                    connector.Parent = this;
+
+                    Connectors?.Add(connector);
+                    selectedConnectors.Add(connector);
+                }
+            }
+
             SelectedNodes = selectedNodes;
+            SelectedConnectors = selectedConnectors;
 
             _pressedX = double.NaN;
             _pressedY = double.NaN;
@@ -245,44 +299,68 @@ namespace NodeEditor.ViewModels
 
         public void DeleteNodes()
         {
-            if (SelectedNodes is not { Count: > 0 })
+            if (SelectedNodes is { Count: > 0 })
             {
-                return;
+                var selectedNodes = SelectedNodes;
+
+                foreach (var node in selectedNodes)
+                {
+                    Nodes?.Remove(node);
+                }
+
+                SelectedNodes = null;
             }
 
-            var selectedNodes = SelectedNodes;
-
-            foreach (var node in selectedNodes)
+            if (SelectedConnectors is { Count: > 0 })
             {
-                Nodes?.Remove(node);
-            }
+                var selectedConnectors = SelectedConnectors;
 
-            SelectedNodes = null;
+                foreach (var connector in selectedConnectors)
+                {
+                    Connectors?.Remove(connector);
+                }
+
+                SelectedConnectors = null;
+            }
         }
 
         public void SelectAllNodes()
         {
-            if (Nodes is null)
+            if (Nodes is not null)
             {
-                return;
+                SelectedNodes = null;
+
+                var selectedNodes = new HashSet<INode>();
+                var nodes = Nodes;
+
+                foreach (var node in nodes)
+                {
+                    selectedNodes.Add(node);
+                }
+
+                SelectedNodes = selectedNodes;
             }
 
-            SelectedNodes = null;
-
-            var selectedNodes = new HashSet<INode>();
-            var nodes = Nodes;
-            
-            foreach (var node in nodes)
+            if (Connectors is not null)
             {
-                selectedNodes.Add(node);
-            }
+                SelectedConnectors = null;
 
-            SelectedNodes = selectedNodes;
+                var selectedConnectors = new HashSet<IConnector>();
+                var connectors = Connectors;
+
+                foreach (var connector in connectors)
+                {
+                    selectedConnectors.Add(connector);
+                }
+
+                SelectedConnectors = selectedConnectors;
+            }
         }
 
         public void DeselectAllNodes()
         {
             SelectedNodes = null;
+            SelectedConnectors = null;
         }
     }
 }
