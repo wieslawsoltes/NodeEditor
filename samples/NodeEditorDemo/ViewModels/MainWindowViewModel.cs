@@ -24,10 +24,10 @@ namespace NodeEditorDemo.ViewModels
 
         public MainWindowViewModel()
         {
-            CreateTemplates();
-
             _serializer = new NodeSerializer(typeof(ObservableCollection<>));
             _factory = new();
+
+            _templates = _factory.CreateTemplates();
 
             Drawing = _factory.CreateDemoDrawing();
             Drawing.Serializer = _serializer;
@@ -56,38 +56,6 @@ namespace NodeEditorDemo.ViewModels
         public ICommand OpenCommand { get; }
 
         public ICommand SaveCommand { get; }
-
-        private void CreateTemplates()
-        {
-            _templates = new ObservableCollection<INodeTemplate>
-            {
-                new NodeTemplateViewModel
-                {
-                    Title = "Rectangle",
-                    Build = (x, y) => _factory.CreateRectangle(x, y, 60, 60, "rect")
-                },
-                new NodeTemplateViewModel
-                {
-                    Title = "Ellipse",
-                    Build = (x, y) => _factory.CreateEllipse(x, y, 60, 60, "ellipse")
-                },
-                new NodeTemplateViewModel
-                {
-                    Title = "Signal",
-                    Build = (x, y) => _factory.CreateSignal(x, y, label: "signal", state: false)
-                },
-                new NodeTemplateViewModel
-                {
-                    Title = "AND Gate",
-                    Build = (x, y) => _factory.CreateAndGate(x, y, 30, 30)
-                },
-                new NodeTemplateViewModel
-                {
-                    Title = "OR Gate",
-                    Build = (x, y) => _factory.CreateOrGate(x, y, 30, 30)
-                }
-            };
-        }
 
         private void New()
         {

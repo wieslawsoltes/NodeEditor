@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using NodeEditor.Model;
 using NodeEditor.ViewModels;
 using NodeEditorDemo.ViewModels.Nodes;
@@ -202,6 +203,38 @@ namespace NodeEditorDemo.ViewModels
             }
 
             return drawing;
+        }
+        
+        public IList<INodeTemplate> CreateTemplates()
+        {
+            return new ObservableCollection<INodeTemplate>
+            {
+                new NodeTemplateViewModel
+                {
+                    Title = "Rectangle",
+                    Build = (x, y) => CreateRectangle(x, y, 60, 60, "rect")
+                },
+                new NodeTemplateViewModel
+                {
+                    Title = "Ellipse",
+                    Build = (x, y) => CreateEllipse(x, y, 60, 60, "ellipse")
+                },
+                new NodeTemplateViewModel
+                {
+                    Title = "Signal",
+                    Build = (x, y) => CreateSignal(x, y, label: "signal", state: false)
+                },
+                new NodeTemplateViewModel
+                {
+                    Title = "AND Gate",
+                    Build = (x, y) => CreateAndGate(x, y, 30, 30)
+                },
+                new NodeTemplateViewModel
+                {
+                    Title = "OR Gate",
+                    Build = (x, y) => CreateOrGate(x, y, 30, 30)
+                }
+            };
         }
     }
 }
