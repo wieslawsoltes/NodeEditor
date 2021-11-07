@@ -29,6 +29,10 @@ namespace NodeEditor.ViewModels
             PasteCommand = ReactiveCommand.Create(PasteNodes);
 
             DeleteCommand = ReactiveCommand.Create(DeleteNodes);
+
+            SelectAllCommand = ReactiveCommand.Create(SelectAllNodes);
+
+            DeselectAllCommand = ReactiveCommand.Create(DeselectAllNodes);
         }
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
@@ -66,6 +70,10 @@ namespace NodeEditor.ViewModels
         public ICommand PasteCommand { get; }
 
         public ICommand DeleteCommand { get; }
+
+        public ICommand SelectAllCommand { get; }
+
+        public ICommand DeselectAllCommand { get; }
 
         public void DrawingLeftPressed(double x, double y)
         {
@@ -249,6 +257,31 @@ namespace NodeEditor.ViewModels
                 Nodes?.Remove(node);
             }
 
+            SelectedNodes = null;
+        }
+
+        public void SelectAllNodes()
+        {
+            if (Nodes is null)
+            {
+                return;
+            }
+
+            SelectedNodes = null;
+
+            var selectedNodes = new HashSet<INode>();
+            var nodes = Nodes;
+            
+            foreach (var node in nodes)
+            {
+                selectedNodes.Add(node);
+            }
+
+            SelectedNodes = selectedNodes;
+        }
+
+        public void DeselectAllNodes()
+        {
             SelectedNodes = null;
         }
     }

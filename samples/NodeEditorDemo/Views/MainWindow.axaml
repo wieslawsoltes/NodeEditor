@@ -25,6 +25,8 @@
     <KeyBinding Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" Gesture="Ctrl+C"  />
     <KeyBinding Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" Gesture="Ctrl+V"  />
     <KeyBinding Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" Gesture="Delete"  />
+    <KeyBinding Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" Gesture="Ctrl+A"  />
+    <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
   </Window.KeyBindings>
   <DockPanel>
     <Menu DockPanel.Dock="Top">
@@ -40,6 +42,9 @@
         <MenuItem Header="_Copy" Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+C" />
         <MenuItem Header="_Paste" Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+V" />
         <MenuItem Header="_Delete" Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
+        <Separator />
+        <MenuItem Header="Select _All" Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
+        <MenuItem Header="De_select All" Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
       </MenuItem>
     </Menu>
     <Grid ColumnDefinitions="200,*">
@@ -101,6 +106,9 @@
                 <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
                 <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
                 <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
+                <MenuItem Header="-" />
+                <MenuItem Header="Select _All" Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
+                <MenuItem Header="De_select All" Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
               </MenuFlyout>
             </editor:DrawingNode.ContextFlyout>
           </editor:DrawingNode>
