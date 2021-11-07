@@ -17,8 +17,8 @@ namespace NodeEditor.ViewModels
         private INodeSerializer? _serializer;
         private IConnector? _connector;
         private string? _clipboard;
-        private double _pressedX;
-        private double _pressedY;
+        private double _pressedX = double.NaN;
+        private double _pressedY = double.NaN;
 
         public DrawingNodeViewModel()
         {
@@ -215,8 +215,8 @@ namespace NodeEditor.ViewModels
                     i++;
                 }
 
-                var deltaX = pressedX - minX;
-                var deltaY = pressedY - minY;
+                var deltaX = double.IsNaN(pressedX) ? 0.0 : pressedX - minX;
+                var deltaY = double.IsNaN(pressedY) ? 0.0 : pressedY - minY;
 
                 foreach (var node in nodes)
                 {
@@ -231,8 +231,8 @@ namespace NodeEditor.ViewModels
 
             SelectedNodes = selectedNodes;
 
-            _pressedX = 0;
-            _pressedY = 0;
+            _pressedX = double.NaN;
+            _pressedY = double.NaN;
         }
 
         public void DeleteNodes()
