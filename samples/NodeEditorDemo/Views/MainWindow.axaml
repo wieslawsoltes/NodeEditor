@@ -29,7 +29,8 @@
     <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
   </Window.KeyBindings>
   <DockPanel>
-    <Menu DockPanel.Dock="Top">
+    <Menu Background="#F3F3F3"
+          DockPanel.Dock="Top">
       <MenuItem Header="_File">
         <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="Ctrl+N" />
         <Separator />
@@ -51,13 +52,18 @@
       <DockPanel Grid.Column="0">
         <Grid ColumnDefinitions="50*,50*" DockPanel.Dock="Bottom">
           <TextBox Grid.Column="0" 
-                   Margin="4"
+                   Margin="4,4,0,4"
+                   BorderBrush="Transparent"
+                   TextAlignment="Center"
                    Text="{Binding Drawing.Width, FallbackValue=''}" />
           <TextBox Grid.Column="1" 
-                   Margin="4"
+                   Margin="0,4,4,4"
+                   BorderBrush="Transparent"
+                   TextAlignment="Center"
                    Text="{Binding Drawing.Height, FallbackValue=''}" />
         </Grid>
-        <ListBox Items="{Binding Templates}" >
+        <ListBox Items="{Binding Templates}"
+                 Background="Transparent">
           <ListBox.Resources>
             <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
           </ListBox.Resources>
@@ -85,6 +91,7 @@
       <ScrollViewer VerticalScrollBarVisibility="Auto"
                     HorizontalScrollBarVisibility="Auto"
                     DataContext="{Binding Drawing}"
+                    Background="#E5E5E5"
                     Grid.Column="1">
         <paz:ZoomBorder Stretch="None"
                         ZoomSpeed="1.2"
@@ -99,7 +106,7 @@
             </idd:ContextDropBehavior>
           </i:Interaction.Behaviors>
           <editor:DrawingNode Name="Drawing"
-                              Background="LightGray">
+                              Background="White">
             <editor:DrawingNode.ContextFlyout>
               <MenuFlyout>
                 <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
