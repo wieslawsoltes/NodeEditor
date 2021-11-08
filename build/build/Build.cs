@@ -90,6 +90,7 @@ class Build : NukeBuild
             DotNetTest(s => s
                 .SetProjectFile(Solution)
                 .SetConfiguration(Configuration)
+                .SetLoggers("trx")
                 .SetResultsDirectory(ArtifactsDirectory / "TestResults")
                 .EnableNoBuild()
                 .EnableNoRestore());
