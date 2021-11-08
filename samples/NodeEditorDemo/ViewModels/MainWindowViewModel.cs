@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using NodeEditor.Controls;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
@@ -40,7 +41,7 @@ namespace NodeEditorDemo.ViewModels
 
             SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
 
-            ExportCommand = ReactiveCommand.CreateFromTask<Control>(async control => await Export(control));
+            ExportCommand = ReactiveCommand.CreateFromTask(async control => await Export());
 
             ExitCommand = ReactiveCommand.Create(() =>
             {
@@ -165,8 +166,13 @@ namespace NodeEditorDemo.ViewModels
             }
         }
 
-        public async Task Export(Control control)
+        public async Task Export()
         {
+            if (Drawing is null)
+            {
+                return;
+            }
+            
             var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
             if (window is null)
             {
@@ -183,7 +189,25 @@ namespace NodeEditorDemo.ViewModels
             var result = await dlg.ShowAsync(window);
             if (result is { } path)
             {
-                Save(control, control.Bounds.Size, path);
+                var control = new DrawingNode
+                {
+                    DataContext = Drawing
+                };
+                
+                var preview = new Window()
+                {
+                    Width = Drawing.Width,
+                    Height = Drawing.Height,
+                    Content = control,
+                    ShowInTaskbar = false,
+                    WindowState = WindowState.Minimized
+                };
+
+                preview.Show();
+
+                Save(preview, new Size(Drawing.Width, Drawing.Height), path);
+
+                preview.Close();
             }
         }
     }
