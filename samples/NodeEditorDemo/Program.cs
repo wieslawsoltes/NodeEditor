@@ -18,6 +18,7 @@ namespace NodeEditorDemo
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
                 .LogToTrace()
-                .UseReactiveUI();
+                .UseReactiveUI()
+                .UseSkia();
     }
 }

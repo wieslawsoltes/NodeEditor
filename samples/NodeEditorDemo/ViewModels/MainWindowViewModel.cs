@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,6 +12,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
+using NodeEditorDemo.Capture;
 using ReactiveUI;
 
 namespace NodeEditorDemo.ViewModels
@@ -37,6 +39,16 @@ namespace NodeEditorDemo.ViewModels
             OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
 
             SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
+
+            ExportCommand = ReactiveCommand.CreateFromTask<Control>(async control => await Export(control));
+
+            ExitCommand = ReactiveCommand.Create(() =>
+            {
+                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+                {
+                    desktopLifetime.Shutdown();
+                }
+            });
         }
 
         public IList<INodeTemplate>? Templates
@@ -56,6 +68,10 @@ namespace NodeEditorDemo.ViewModels
         public ICommand OpenCommand { get; }
 
         public ICommand SaveCommand { get; }
+
+        public ICommand ExportCommand { get; }
+
+        public ICommand ExitCommand { get; }
 
         private void New()
         {
@@ -78,7 +94,7 @@ namespace NodeEditorDemo.ViewModels
             {
                 try
                 {
-                    var json = await Task.Run(() => System.IO.File.ReadAllText(result.First()));
+                    var json = await Task.Run(() => File.ReadAllText(result.First()));
                     var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
                     if (drawing is { })
                     {
@@ -104,7 +120,7 @@ namespace NodeEditorDemo.ViewModels
             var dlg = new SaveFileDialog();
             dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
             dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-            dlg.InitialFileName = System.IO.Path.GetFileNameWithoutExtension("drawing");
+            dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
             var result = await dlg.ShowAsync(window);
             if (result is { })
             {
@@ -113,7 +129,7 @@ namespace NodeEditorDemo.ViewModels
                     await Task.Run(() =>
                     {
                         var json = _serializer.Serialize(_drawing);
-                        System.IO.File.WriteAllText(result, json);
+                        File.WriteAllText(result, json);
                     });
                 }
                 catch (Exception ex)
@@ -121,6 +137,53 @@ namespace NodeEditorDemo.ViewModels
                     Debug.WriteLine(ex.Message);
                     Debug.WriteLine(ex.StackTrace);
                 }
+            }
+        }
+
+        private void Save(Control? control, Size size, string path)
+        {
+            if (control is null)
+            {
+                return;
+            }
+
+            if (path.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+            {
+                PngRenderer.Render(control, size, path);
+            }
+
+            if (path.EndsWith("svg", StringComparison.OrdinalIgnoreCase))
+            {
+                using var stream = File.Create(path);
+                SvgRenderer.Render(control, size, stream);
+            }
+
+            if (path.EndsWith("pdf", StringComparison.OrdinalIgnoreCase))
+            {
+                using var stream = File.Create(path);
+                PdfRenderer.Render(control, size, stream, 96);
+            }
+        }
+
+        public async Task Export(Control control)
+        {
+            var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+            if (window is null)
+            {
+                return;
+            }
+
+            var dlg = new SaveFileDialog() { Title = "Save" };
+            dlg.Filters.Add(new FileDialogFilter() { Name = "Png", Extensions = { "png" } });
+            dlg.Filters.Add(new FileDialogFilter() { Name = "Svg", Extensions = { "svg" } });
+            dlg.Filters.Add(new FileDialogFilter() { Name = "Pdf", Extensions = { "pdf" } });
+            dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
+            dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
+            dlg.DefaultExtension = "png";
+            var result = await dlg.ShowAsync(window);
+            if (result is { } path)
+            {
+                Save(control, control.Bounds.Size, path);
             }
         }
     }

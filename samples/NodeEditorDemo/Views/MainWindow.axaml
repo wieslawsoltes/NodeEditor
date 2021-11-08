@@ -22,6 +22,7 @@
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
     <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"  />
     <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"  />
+    <KeyBinding Command="{Binding ExportCommand}" CommandParameter="{Binding #Drawing}" Gesture="Ctrl+E"  />
     <KeyBinding Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+X"  />
     <KeyBinding Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" Gesture="Ctrl+C"  />
     <KeyBinding Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" Gesture="Ctrl+V"  />
@@ -38,6 +39,10 @@
         <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGesture="Ctrl+O" />
         <Separator />
         <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="Ctrl+S" />
+        <Separator />
+        <MenuItem Header="Export..." Command="{Binding ExportCommand}" CommandParameter="{Binding #Drawing}" InputGesture="Ctrl+E" />
+        <Separator />
+        <MenuItem Header="E_xit" Command="{Binding ExitCommand}" />
       </MenuItem>
       <MenuItem Header="_Edit">
         <MenuItem Header="Cu_t" Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+X" />
