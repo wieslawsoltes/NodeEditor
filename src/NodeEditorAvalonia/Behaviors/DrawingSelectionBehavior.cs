@@ -127,11 +127,18 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
+            if (e.Source is Control { DataContext: IPin })
+            {
+                return;
+            }
+
             var position = e.GetPosition(AssociatedObject);
 
             if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
                 _dragSelectedItems = false;
+
+                var pointerHitTestRect = new Rect(position.X - 1, position.Y - 1, 3, 3);
 
                 if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                 {
@@ -143,10 +150,32 @@ namespace NodeEditor.Behaviors
                     }
                     else
                     {
-                        drawingNode.SelectedNodes = null;
-                        drawingNode.SelectedConnectors = null;
-                        RemoveSelected(AssociatedObject);
+                        FindSelectedNodes(pointerHitTestRect);
+
+                        if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
+                        {
+                            _dragSelectedItems = true;
+                            _start = position;
+                            e.Handled = true;
+                        }
+                        else
+                        {
+                            drawingNode.SelectedNodes = null;
+                            drawingNode.SelectedConnectors = null;
+                            RemoveSelected(AssociatedObject);
+                        }
                     }
+                }
+                else
+                {
+                    FindSelectedNodes(pointerHitTestRect);
+
+                    if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
+                    {
+                        _dragSelectedItems = true;
+                        _start = position;
+                        e.Handled = true;
+                    } 
                 }
 
                 if (!_dragSelectedItems)
