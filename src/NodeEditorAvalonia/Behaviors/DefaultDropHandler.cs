@@ -5,7 +5,7 @@ using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactions.DragAndDrop;
 
-namespace NodeEditorDemo.Behaviors
+namespace NodeEditor.Behaviors
 {
     public abstract class DefaultDropHandler : AvaloniaObject, IDropHandler
     {

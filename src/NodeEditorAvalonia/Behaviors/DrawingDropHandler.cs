@@ -3,9 +3,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using NodeEditor.Model;
-using NodeEditor.ViewModels;
 
-namespace NodeEditorDemo.Behaviors
+namespace NodeEditor.Behaviors
 {
     public class DrawingDropHandler : DefaultDropHandler
     {
@@ -43,7 +42,7 @@ namespace NodeEditorDemo.Behaviors
 
                 switch (data)
                 {
-                    case NodeTemplateViewModel template:
+                    case INodeTemplate template:
                     {
                         if (bExecute)
                         {
@@ -61,6 +60,7 @@ namespace NodeEditorDemo.Behaviors
 
             if (e.Data.Contains(DataFormats.FileNames))
             {
+                // ReSharper disable once UnusedVariable
                 var files = e.Data.GetFileNames()?.ToArray();
                 if (bExecute)
                 {

@@ -4,7 +4,7 @@ using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactions.DragAndDrop;
 using NodeEditor.Model;
 
-namespace NodeEditorDemo.Behaviors
+namespace NodeEditor.Behaviors
 {
     public class TemplatesListBoxDropHandler : DropHandlerBase
     {
