@@ -41,7 +41,7 @@ namespace NodeEditorDemo.ViewModels
 
             SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
 
-            ExportCommand = ReactiveCommand.CreateFromTask(async control => await Export());
+            ExportCommand = ReactiveCommand.CreateFromTask(async () => await Export());
 
             ExitCommand = ReactiveCommand.Create(() =>
             {
