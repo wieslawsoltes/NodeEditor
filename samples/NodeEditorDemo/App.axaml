@@ -12,7 +12,7 @@
     <FluentTheme Mode="Light" />
 
     <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorFluentTheme.axaml" />
-    
+
     <Style Selector="Rectangle.node">
       <Setter Property="Fill" Value="White" />
       <Setter Property="Stroke" Value="Black" />
