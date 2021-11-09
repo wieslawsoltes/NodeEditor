@@ -3,7 +3,6 @@ using Avalonia.Input;
 using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactions.DragAndDrop;
 using NodeEditor.Model;
-using NodeEditorDemo.ViewModels;
 
 namespace NodeEditorDemo.Behaviors
 {
@@ -12,16 +11,16 @@ namespace NodeEditorDemo.Behaviors
         private bool Validate<T>(ListBox listBox, DragEventArgs e, object? sourceContext, object? targetContext, bool bExecute) where T : INodeTemplate
         {
             if (sourceContext is not T sourceItem
-                || targetContext is not MainWindowViewModel vm
-                || vm.Templates is null
+                || targetContext is not INodeTemplatesHost nodeTemplatesHost
+                || nodeTemplatesHost.Templates is null
                 || listBox.GetVisualAt(e.GetPosition(listBox)) is not IControl targetControl
                 || targetControl.DataContext is not T targetItem)
             {
                 return false;
             }
 
-            var sourceIndex = vm.Templates.IndexOf(sourceItem);
-            var targetIndex = vm.Templates.IndexOf(targetItem);
+            var sourceIndex = nodeTemplatesHost.Templates.IndexOf(sourceItem);
+            var targetIndex = nodeTemplatesHost.Templates.IndexOf(targetItem);
 
             if (sourceIndex < 0 || targetIndex < 0)
             {
@@ -37,7 +36,7 @@ namespace NodeEditorDemo.Behaviors
             {
                 if (bExecute)
                 {
-                    MoveItem(vm.Templates, sourceIndex, targetIndex);
+                    MoveItem(nodeTemplatesHost.Templates, sourceIndex, targetIndex);
                 }
                 return true;
             }
@@ -46,7 +45,7 @@ namespace NodeEditorDemo.Behaviors
             {
                 if (bExecute)
                 {
-                    SwapItem(vm.Templates, sourceIndex, targetIndex);
+                    SwapItem(nodeTemplatesHost.Templates, sourceIndex, targetIndex);
                 }
                 return true;
             }
