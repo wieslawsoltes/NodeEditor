@@ -7,16 +7,6 @@
         xmlns:controls="clr-namespace:NodeEditor.Controls"
         x:CompileBindings="True">
 
-  <Style Selector=":is(ItemsControl).dragNode > :is(ContentPresenter)">
-    <Setter Property="(i:Interaction.Behaviors)">
-      <i:BehaviorCollectionTemplate>
-        <i:BehaviorCollection>
-          <behaviors:NodeDragBehavior />
-        </i:BehaviorCollection>
-      </i:BehaviorCollectionTemplate>
-    </Setter>
-  </Style>
-
   <Style Selector=":is(ItemsControl).pointerEvents">
     <Setter Property="(i:Interaction.Behaviors)">
       <i:BehaviorCollectionTemplate>
@@ -189,7 +179,7 @@
                         Height="{Binding Height}"
                         Background="Transparent"
                         ClipToBounds="False"
-                        Classes="dragNode pointerEvents">
+                        Classes="pointerEvents">
             <ItemsControl.Styles>
               <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
