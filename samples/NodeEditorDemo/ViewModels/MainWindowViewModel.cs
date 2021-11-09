@@ -141,32 +141,6 @@ namespace NodeEditorDemo.ViewModels
             }
         }
 
-        private void Export(string path, Control? control, Size size)
-        {
-            if (control is null)
-            {
-                return;
-            }
-
-            if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
-            {
-                using var stream = File.Create(path);
-                PngRenderer.Render(control, size, stream);
-            }
-
-            if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
-            {
-                using var stream = File.Create(path);
-                SvgRenderer.Render(control, size, stream);
-            }
-
-            if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                using var stream = File.Create(path);
-                PdfRenderer.Render(control, size, stream, 96);
-            }
-        }
-
         public async Task Export()
         {
             if (Drawing is null)
@@ -207,8 +181,26 @@ namespace NodeEditorDemo.ViewModels
 
                 preview.Show();
 
-                Export(path, preview, new Size(Drawing.Width, Drawing.Height));
+                var size = new Size(Drawing.Width, Drawing.Height);
 
+                if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    await using var stream = File.Create(path);
+                    PngRenderer.Render(preview, size, stream);
+                }
+
+                if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+                {
+                    await using var stream = File.Create(path);
+                    SvgRenderer.Render(preview, size, stream);
+                }
+
+                if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                {
+                    await using var stream = File.Create(path);
+                    PdfRenderer.Render(preview, size, stream, 96);
+                }
+                
                 preview.Close();
             }
         }
