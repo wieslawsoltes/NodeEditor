@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Rendering;
 using SkiaSharp;
 
-namespace NodeEditorDemo.Capture
+namespace NodeEditor.Export
 {
     public static class CanvasRenderer
     {

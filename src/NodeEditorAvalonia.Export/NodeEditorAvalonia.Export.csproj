@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+    <IsPackable>True</IsPackable>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>NodeEditor.Export</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>NodeEditorAvalonia.Export</PackageId>
+    <Description>A node editor control for Avalonia.</Description>
+    <PackageTags>node;editor;nodeeditor;graph;control;xaml;axaml;avalonia;avaloniaui</PackageTags>
+  </PropertyGroup>
+
+  <Import Project="..\..\build\Base.props" />
+  <Import Project="..\..\build\SignAssembly.props" />
+  <Import Project="..\..\build\SourceLink.props" />
+  <Import Project="..\..\build\ReferenceAssemblies.props" />
+  <Import Project="..\..\build\Avalonia.props" />
+  <Import Project="..\..\build\Avalonia.Skia.props" />
+
+</Project>

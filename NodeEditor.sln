@@ -54,6 +54,7 @@ ProjectSection(SolutionItems) = preProject
 	build\Newtonsoft.Json.props = build\Newtonsoft.Json.props
 	build\Avalonia.Controls.PanAndZoom.props = build\Avalonia.Controls.PanAndZoom.props
 	build\ReactiveUI.props = build\ReactiveUI.props
+	build\Avalonia.Skia.props = build\Avalonia.Skia.props
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "build\build\_build.csproj", "{0737F4A8-E674-4518-A362-0A78D03F8165}"
@@ -63,6 +64,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Model", "src\NodeEditorAvalonia.Model\NodeEditorAvalonia.Model.csproj", "{5DECE45D-598C-47F0-9776-2BE77A4572BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Serializer", "src\NodeEditorAvalonia.Serializer\NodeEditorAvalonia.Serializer.csproj", "{9221D195-FCFF-4D53-B278-925A387ABA87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Export", "src\NodeEditorAvalonia.Export\NodeEditorAvalonia.Export.csproj", "{EE456454-F26E-4905-8889-5660272C4EC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,6 +101,10 @@ Global
 		{9221D195-FCFF-4D53-B278-925A387ABA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9221D195-FCFF-4D53-B278-925A387ABA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9221D195-FCFF-4D53-B278-925A387ABA87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE456454-F26E-4905-8889-5660272C4EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE456454-F26E-4905-8889-5660272C4EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE456454-F26E-4905-8889-5660272C4EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE456454-F26E-4905-8889-5660272C4EC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD} = {02D6D6DC-21FA-435F-9526-E6F635127483}
@@ -110,5 +117,6 @@ Global
 		{0866A0D7-055F-4FA0-8F9E-CED158F2DEA6} = {02D6D6DC-21FA-435F-9526-E6F635127483}
 		{5DECE45D-598C-47F0-9776-2BE77A4572BC} = {02D6D6DC-21FA-435F-9526-E6F635127483}
 		{9221D195-FCFF-4D53-B278-925A387ABA87} = {02D6D6DC-21FA-435F-9526-E6F635127483}
+		{EE456454-F26E-4905-8889-5660272C4EC4} = {02D6D6DC-21FA-435F-9526-E6F635127483}
 	EndGlobalSection
 EndGlobal

@@ -10,15 +10,15 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using NodeEditor.Controls;
+using NodeEditor.Export;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
-using NodeEditorDemo.Capture;
 using ReactiveUI;
 
 namespace NodeEditorDemo.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     {
         private readonly INodeSerializer _serializer;
         private readonly NodeFactory _factory;
@@ -141,25 +141,26 @@ namespace NodeEditorDemo.ViewModels
             }
         }
 
-        private void Save(Control? control, Size size, string path)
+        private void Export(string path, Control? control, Size size)
         {
             if (control is null)
             {
                 return;
             }
 
-            if (path.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+            if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
             {
-                PngRenderer.Render(control, size, path);
+                using var stream = File.Create(path);
+                PngRenderer.Render(control, size, stream);
             }
 
-            if (path.EndsWith("svg", StringComparison.OrdinalIgnoreCase))
+            if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
             {
                 using var stream = File.Create(path);
                 SvgRenderer.Render(control, size, stream);
             }
 
-            if (path.EndsWith("pdf", StringComparison.OrdinalIgnoreCase))
+            if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
             {
                 using var stream = File.Create(path);
                 PdfRenderer.Render(control, size, stream, 96);
@@ -186,6 +187,7 @@ namespace NodeEditorDemo.ViewModels
             dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
             dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
             dlg.DefaultExtension = "png";
+
             var result = await dlg.ShowAsync(window);
             if (result is { } path)
             {
@@ -205,7 +207,7 @@ namespace NodeEditorDemo.ViewModels
 
                 preview.Show();
 
-                Save(preview, new Size(Drawing.Width, Drawing.Height), path);
+                Export(path, preview, new Size(Drawing.Width, Drawing.Height));
 
                 preview.Close();
             }

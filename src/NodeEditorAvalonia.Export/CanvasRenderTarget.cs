@@ -4,7 +4,7 @@ using Avalonia.Rendering;
 using Avalonia.Skia.Helpers;
 using SkiaSharp;
 
-namespace NodeEditorDemo.Capture
+namespace NodeEditor.Export
 {
     public class CanvasRenderTarget : IRenderTarget
     {

@@ -3,7 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using SkiaSharp;
 
-namespace NodeEditorDemo.Capture
+namespace NodeEditor.Export
 {
     public static class PdfRenderer
     {
