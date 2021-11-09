@@ -12,7 +12,7 @@
         mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
         x:Class="NodeEditorDemo.Views.MainWindow"
         WindowState="Maximized" WindowStartupLocation="CenterScreen"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/Icon.ico"
         Title="NodeEditorDemo"
         x:CompileBindings="True" x:DataType="vm:MainWindowViewModel">
   <Design.DataContext>
