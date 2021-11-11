@@ -16,7 +16,7 @@
   <Import Project="..\..\build\Avalonia.Desktop.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\NodeEditor\NodeEditor.csproj" />
+    <ProjectReference Include="..\NodeEditorBase\NodeEditorBase.csproj" />
   </ItemGroup>
 
 </Project>

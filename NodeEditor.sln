@@ -67,7 +67,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Serializ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Export", "src\NodeEditorAvalonia.Export\NodeEditorAvalonia.Export.csproj", "{EE456454-F26E-4905-8889-5660272C4EC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor", "samples\NodeEditor\NodeEditor.csproj", "{1AC073FC-6F01-4F5B-AE78-17EE10F74D37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorBase", "samples\NodeEditorBase\NodeEditorBase.csproj", "{1AC073FC-6F01-4F5B-AE78-17EE10F74D37}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
