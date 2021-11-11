@@ -22,6 +22,14 @@ namespace NodeEditorDemo
                     DataContext = new MainWindowViewModel()
                 };
             }
+            
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+            {
+                singleViewLifetime.MainView = new MainView
+                {
+                    DataContext = new MainWindowViewModel()
+                };
+            }
 
             base.OnFrameworkInitializationCompleted();
         }

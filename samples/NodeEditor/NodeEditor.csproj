@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>False</IsPackable>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NodeEditorDemo</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <Import Project="..\..\build\Base.props" />
+  <Import Project="..\..\build\ReferenceAssemblies.props" />
+  <Import Project="..\..\build\Avalonia.props" />
+  <Import Project="..\..\build\Avalonia.Diagnostics.props" Condition="'$(Configuration)' == 'Debug'" />
+  <Import Project="..\..\build\Avalonia.ReactiveUI.props" />
+  <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
+  <Import Project="..\..\build\Avalonia.Controls.PanAndZoom.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NodeEditorAvalonia.Export\NodeEditorAvalonia.Export.csproj" />
+    <ProjectReference Include="..\..\src\NodeEditorAvalonia.ReactiveUI\NodeEditorAvalonia.ReactiveUI.csproj" />
+    <ProjectReference Include="..\..\src\NodeEditorAvalonia.Serializer\NodeEditorAvalonia.Serializer.csproj" />
+    <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
+  </ItemGroup>
+
+</Project>

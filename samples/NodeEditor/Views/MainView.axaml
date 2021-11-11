@@ -1,24 +1,22 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
-        xmlns:vm="using:NodeEditorDemo.ViewModels"
-        xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
-        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-        xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
-        xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
-        xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
-        x:Class="NodeEditorDemo.Views.MainWindow"
-        WindowState="Maximized" WindowStartupLocation="CenterScreen"
-        Icon="/Assets/Icon.ico"
-        Title="NodeEditorDemo"
-        x:CompileBindings="True" x:DataType="vm:MainWindowViewModel">
-  <Design.DataContext>
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+             xmlns:vm="using:NodeEditorDemo.ViewModels"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
+             xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
+             xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="60" d:DesignHeight="60"
+             x:Class="NodeEditorDemo.Views.MainView"
+             x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
+             ClipToBounds="False">
+ <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>
-  <Window.KeyBindings>
+  <UserControl.KeyBindings>
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
     <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"  />
     <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"  />
@@ -29,7 +27,7 @@
     <KeyBinding Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" Gesture="Delete"  />
     <KeyBinding Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" Gesture="Ctrl+A"  />
     <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
-  </Window.KeyBindings>
+  </UserControl.KeyBindings>
   <DockPanel>
     <Menu Background="#F3F3F3"
           DockPanel.Dock="Top">
@@ -131,4 +129,5 @@
       </ScrollViewer>
     </Grid>
   </DockPanel>
-</Window>
+</UserControl>
+

@@ -185,19 +185,19 @@ namespace NodeEditorDemo.ViewModels
 
                 if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = File.Create(path);
+                    using var stream = File.Create(path);
                     PngRenderer.Render(preview, size, stream);
                 }
 
                 if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = File.Create(path);
+                    using var stream = File.Create(path);
                     SvgRenderer.Render(preview, size, stream);
                 }
 
                 if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = File.Create(path);
+                    using var stream = File.Create(path);
                     PdfRenderer.Render(preview, size, stream, 96);
                 }
                 
