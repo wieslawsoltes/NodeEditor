@@ -100,7 +100,7 @@ namespace NodeEditor.Behaviors
                 {
                     if (_drawingNode.SelectedNodes is { Count: > 0 } || _drawingNode.SelectedConnectors is { Count: > 0 })
                     {
-                        _selectedRect = CalculateSelectedRect();
+                        _selectedRect = CalculateSelectedRect(AssociatedObject);
 
                         if (_selected is { })
                         {
@@ -150,7 +150,7 @@ namespace NodeEditor.Behaviors
                     }
                     else
                     {
-                        FindSelectedNodes(pointerHitTestRect);
+                        FindSelectedNodes(AssociatedObject, pointerHitTestRect);
 
                         if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                         {
@@ -168,7 +168,7 @@ namespace NodeEditor.Behaviors
                 }
                 else
                 {
-                    FindSelectedNodes(pointerHitTestRect);
+                    FindSelectedNodes(AssociatedObject, pointerHitTestRect);
 
                     if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                     {
@@ -210,7 +210,7 @@ namespace NodeEditor.Behaviors
 
             if (_selection is { })
             {
-                FindSelectedNodes(_selection.GetRect());
+                FindSelectedNodes(AssociatedObject, _selection.GetRect());
             }
 
             RemoveSelection(AssociatedObject);
@@ -374,9 +374,9 @@ namespace NodeEditor.Behaviors
                 new Point(bottomRightX, bottomRightY));
         }
 
-        private void FindSelectedNodes(Rect rect)
+        private static void FindSelectedNodes(ItemsControl? itemsControl, Rect rect)
         {
-            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
+            if (itemsControl?.DataContext is not IDrawingNode drawingNode)
             {
                 return;
             }
@@ -386,7 +386,7 @@ namespace NodeEditor.Behaviors
 
             var selectedNodes = new HashSet<INode>();
 
-            foreach (var container in AssociatedObject.ItemContainerGenerator.Containers)
+            foreach (var container in itemsControl.ItemContainerGenerator.Containers)
             {
                 if (container.ContainerControl is not { DataContext: INode node } containerControl)
                 {
@@ -427,31 +427,26 @@ namespace NodeEditor.Behaviors
             }
         }
 
-        private void ExecuteLayoutPass()
+        private static Rect CalculateSelectedRect(ItemsControl? itemsControl)
         {
-            if (AssociatedObject?.GetVisualRoot() is TopLevel topLevel)
-            {
-                topLevel.LayoutManager.ExecuteLayoutPass();
-            }
-        }
-
-        private Rect CalculateSelectedRect()
-        {
-            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
+            if (itemsControl?.DataContext is not IDrawingNode drawingNode)
             {
                 return Rect.Empty;
             }
 
             var selectedRect = new Rect();
 
-            ExecuteLayoutPass();
+            if (itemsControl.GetVisualRoot() is TopLevel topLevel)
+            {
+                topLevel.LayoutManager.ExecuteLayoutPass();
+            }
 
             if (drawingNode.SelectedNodes is { Count: > 0 } && drawingNode.Nodes is { Count: > 0 })
             {
                 foreach (var node in drawingNode.SelectedNodes)
                 {
                     var index = drawingNode.Nodes.IndexOf(node);
-                    var selectedControl = AssociatedObject.ItemContainerGenerator.ContainerFromIndex(index);
+                    var selectedControl = itemsControl.ItemContainerGenerator.ContainerFromIndex(index);
                     var bounds = selectedControl.Bounds;
                     selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
                 }
@@ -511,7 +506,7 @@ namespace NodeEditor.Behaviors
             var deltaY = position.Y - _start.Y;
             _start = position;
 
-            var selectedRect = CalculateSelectedRect();
+            var selectedRect = CalculateSelectedRect(AssociatedObject);
 
             _selectedRect = selectedRect;
 
