@@ -285,9 +285,6 @@ namespace NodeEditor.Behaviors
                 BottomRight = new Point(x, y)
             };
 
-            // layer.IsHitTestVisible = false;
-            // AdornerLayer.SetIsClipEnabled(_selection, false);
-
             ((ISetLogicalParent) _selection).SetParent(control);
             layer.Children.Add(_selection);
         }
@@ -327,9 +324,6 @@ namespace NodeEditor.Behaviors
                 IsHitTestVisible = false,
                 Rect = rect
             };
-
-            // layer.IsHitTestVisible = false;
-            // AdornerLayer.SetIsClipEnabled(_selected, false);
 
             ((ISetLogicalParent) _selected).SetParent(control);
             layer.Children.Add(_selected);
