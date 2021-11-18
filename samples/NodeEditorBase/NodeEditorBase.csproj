@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\src\NodeEditorAvalonia.ReactiveUI\NodeEditorAvalonia.ReactiveUI.csproj" />
     <ProjectReference Include="..\..\src\NodeEditorAvalonia.Serializer\NodeEditorAvalonia.Serializer.csproj" />
     <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
+    <PackageReference Include="Material.Avalonia" Version="2.4.1" />
   </ItemGroup>
 
 </Project>

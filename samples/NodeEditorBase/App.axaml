@@ -1,18 +1,47 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:NodeEditorDemo"
+             xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
              x:Class="NodeEditorDemo.App">
 
   <Application.DataTemplates>
     <local:ViewLocator />
   </Application.DataTemplates>
 
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <themes:BundledTheme BaseTheme="Light" PrimaryColor="Teal" SecondaryColor="Amber"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+
   <Application.Styles>
 
-    <FluentTheme Mode="Light" />
+    <!-- <FluentTheme Mode="Light" /> -->
+    <StyleInclude Source="avares://Material.Avalonia/Material.Avalonia.Templates.xaml" />
 
     <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorFluentTheme.axaml" />
 
+    <Style Selector="Label">
+      <Setter Property="Padding" Value="3"/>
+      <Setter Property="Template">
+        <ControlTemplate>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"                        
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Content="{TemplateBinding Content}"
+                            Padding="{TemplateBinding Padding}"
+                            RecognizesAccessKey="True"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    
     <Style Selector="Rectangle.node">
       <Setter Property="Fill" Value="White" />
       <Setter Property="Stroke" Value="Black" />
