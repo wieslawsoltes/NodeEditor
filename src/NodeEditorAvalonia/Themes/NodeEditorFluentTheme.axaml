@@ -226,7 +226,7 @@
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="ClipToBounds" Value="False" />
-    <Setter Property="IsVisible" Value="True" />
+    <Setter Property="IsVisible" Value="False" />
   </Style>
 
   <Style Selector="controls|Selected /template/ StackPanel#PART_StackPanel TextBlock">
