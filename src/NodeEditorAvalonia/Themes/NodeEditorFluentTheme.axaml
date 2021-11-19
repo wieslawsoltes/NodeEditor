@@ -150,19 +150,37 @@
   </Style>
 
   <Style Selector="controls|Selection">
-    <Setter Property="Brush">
-      <SolidColorBrush Color="Blue" Opacity="0.3" />
-    </Setter>
-    <Setter Property="Pen">
-      <Pen Brush="Blue" Thickness="2" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Rectangle Name="PART_Rectangle" />
+      </ControlTemplate>
     </Setter>
   </Style>
 
-  <Style Selector="controls|Selected">
-    <Setter Property="Brush" Value="Transparent" />
-    <Setter Property="Pen">
-      <Pen Brush="Cyan" Thickness="2" />
+  <Style Selector="controls|Selection /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Fill">
+     <SolidColorBrush Color="Blue" Opacity="0.3" />
     </Setter>
+    <Setter Property="Stroke" Value="Blue" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="controls|Selected">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Rectangle Name="PART_Rectangle" />
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|Selected /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Fill" Value="Transparent" />
+    <Setter Property="Stroke" Value="Cyan" />
+    <Setter Property="StrokeThickness" Value="2" />
   </Style>
 
   <Style Selector="controls|DrawingNode">

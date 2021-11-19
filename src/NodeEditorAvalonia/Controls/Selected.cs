@@ -1,37 +1,12 @@
 ﻿using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Media;
 
 namespace NodeEditor.Controls
 {
-    public class Selected : Control
+    public class Selected : TemplatedControl
     {
-        public static readonly StyledProperty<IBrush?> BrushProperty =
-            AvaloniaProperty.Register<Selected, IBrush?>(nameof(Brush), Brushes.Transparent);
-
-        public static readonly StyledProperty<IPen?> PenProperty =
-            AvaloniaProperty.Register<Selected, IPen?>(nameof(Pen), new Pen(Brushes.Cyan, 2));
-
         public static readonly StyledProperty<Rect> RectProperty =
             AvaloniaProperty.Register<Selected, Rect>(nameof(Rect));
-
-        static Selected()
-        {
-            AffectsRender<Selected>(BrushProperty, PenProperty, RectProperty);
-        }
-
-        public IBrush? Brush
-        {
-            get => GetValue(BrushProperty);
-            set => SetValue(BrushProperty, value);
-        }
-
-        public IPen? Pen
-        {
-            get => GetValue(PenProperty);
-            set => SetValue(PenProperty, value);
-        }
 
         public Rect Rect
         {
@@ -39,15 +14,19 @@ namespace NodeEditor.Controls
             set => SetValue(RectProperty, value);
         }
 
-        public override void Render(DrawingContext context)
+        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
         {
-            var adornedElement = GetValue(AdornerLayer.AdornedElementProperty);
-            if (adornedElement is null)
-            {
-                return;
-            }
+#pragma warning disable 8631
+            base.OnPropertyChanged(change);
+#pragma warning restore 8631
 
-            context.DrawRectangle(Brush, Pen, Rect);
+            if (change.Property == RectProperty)
+            {
+                var rect = Rect;
+                Margin = new Thickness(rect.Left, rect.Top, 0, 0);
+                Width = rect.Width;
+                Height = rect.Height;
+            }
         }
     }
 }
