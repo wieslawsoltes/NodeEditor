@@ -152,9 +152,21 @@
   <Style Selector="controls|Selection">
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Template">
       <ControlTemplate>
-        <Rectangle Name="PART_Rectangle" />
+        <Panel ClipToBounds="False">
+          <Rectangle Name="PART_Rectangle" />
+          <StackPanel Name="PART_StackPanel">
+            <TextBlock Text="{Binding $parent[controls:Selection].Bounds.Left}" x:CompileBindings="False" />
+            <TextBlock Text="," />
+            <TextBlock Text="{Binding $parent[controls:Selection].Bounds.Top}" x:CompileBindings="False" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Width}" x:CompileBindings="False" />
+            <TextBlock Text="x" />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Height}" x:CompileBindings="False" />
+          </StackPanel>
+        </Panel>
       </ControlTemplate>
     </Setter>
   </Style>
@@ -167,12 +179,37 @@
     <Setter Property="StrokeThickness" Value="2" />
   </Style>
 
+  <Style Selector="controls|Selection /template/ StackPanel#PART_StackPanel">
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Margin" Value="0,-18,0,0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+
+  <Style Selector="controls|Selection /template/ StackPanel#PART_StackPanel TextBlock">
+    <Setter Property="Foreground" Value="Blue" />
+  </Style>
+
   <Style Selector="controls|Selected">
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Template">
       <ControlTemplate>
-        <Rectangle Name="PART_Rectangle" />
+        <Panel ClipToBounds="False">
+          <Rectangle Name="PART_Rectangle" />
+          <StackPanel Name="PART_StackPanel">
+            <TextBlock Text="{Binding $parent[controls:Selected].Bounds.Left}" x:CompileBindings="False" />
+            <TextBlock Text="," />
+            <TextBlock Text="{Binding $parent[controls:Selected].Bounds.Top}" x:CompileBindings="False" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Width}" x:CompileBindings="False" />
+            <TextBlock Text="x" />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Height}" x:CompileBindings="False" />
+          </StackPanel>
+        </Panel>
       </ControlTemplate>
     </Setter>
   </Style>
@@ -181,6 +218,19 @@
     <Setter Property="Fill" Value="Transparent" />
     <Setter Property="Stroke" Value="Cyan" />
     <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="controls|Selected /template/ StackPanel#PART_StackPanel">
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Margin" Value="0,-18,0,0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="IsVisible" Value="True" />
+  </Style>
+
+  <Style Selector="controls|Selected /template/ StackPanel#PART_StackPanel TextBlock">
+    <Setter Property="Foreground" Value="Cyan" />
   </Style>
 
   <Style Selector="controls|DrawingNode">
