@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
 namespace NodeEditor.Controls
@@ -22,11 +23,38 @@ namespace NodeEditor.Controls
 
             if (change.Property == RectProperty)
             {
-                var rect = Rect;
-                Margin = new Thickness(rect.Left, rect.Top, 0, 0);
-                Width = rect.Width;
-                Height = rect.Height;
+                InvalidateMeasure();
             }
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            var rect = Rect;
+
+            foreach (var visualChild in VisualChildren)
+            {
+                if (visualChild is Control control)
+                {
+                    control.Measure(rect.Size);
+                }
+            }
+
+            return rect.Size;
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var rect = Rect;
+
+            foreach (var visualChild in VisualChildren)
+            {
+                if (visualChild is Control control)
+                {
+                    control.Arrange(rect);
+                }
+            }
+
+            return rect.Size;
         }
     }
 }
