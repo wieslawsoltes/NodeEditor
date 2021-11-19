@@ -11,7 +11,7 @@
 
     <FluentTheme Mode="Light" />
 
-    <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorFluentTheme.axaml" />
+    <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml" />
 
     <Style Selector="Rectangle.node">
       <Setter Property="Fill" Value="White" />
