@@ -7,13 +7,24 @@
         xmlns:controls="clr-namespace:NodeEditor.Controls"
         x:CompileBindings="True">
 
-  <Style Selector=":is(ItemsControl).pointerEvents">
+  <Style Selector=":is(ItemsControl).nodesSelection">
     <Setter Property="(i:Interaction.Behaviors)">
       <i:BehaviorCollectionTemplate>
         <i:BehaviorCollection>
+          <behaviors:NodesSelectedBehavior />
           <behaviors:DrawingSelectionBehavior />
           <behaviors:DrawingPressedBehavior />
           <behaviors:DrawingMovedBehavior />
+        </i:BehaviorCollection>
+      </i:BehaviorCollectionTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector=":is(ItemsControl).connectorsSelection">
+    <Setter Property="(i:Interaction.Behaviors)">
+      <i:BehaviorCollectionTemplate>
+        <i:BehaviorCollection>
+          <behaviors:ConnectorsSelectedBehavior />
         </i:BehaviorCollection>
       </i:BehaviorCollectionTemplate>
     </Setter>
@@ -67,6 +78,10 @@
     </Setter>
   </Style>
 
+  <!--<Style Selector="controls|Node:selected ItemsControl#PART_PinsItemsControl">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>-->
+
   <Style Selector="controls|Connector">
     <Setter Property="Stroke" Value="Red" />
     <Setter Property="StrokeThickness" Value="2" />
@@ -97,6 +112,10 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <!--<Style Selector="controls|Connector:selected">
+    <Setter Property="Stroke" Value="Blue" />
+  </Style>-->
 
   <Style Selector="controls|Pin">
     <Setter Property="Width" Value="{Binding Width}" x:DataType="m:IPin" />
@@ -247,7 +266,7 @@
                         Height="{Binding Height}"
                         Background="Transparent"
                         ClipToBounds="False"
-                        Classes="pointerEvents">
+                        Classes="nodesSelection">
             <ItemsControl.Styles>
               <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
@@ -271,7 +290,8 @@
                         Height="{Binding Height}"
                         Background="Transparent"
                         IsHitTestVisible="False"
-                        ClipToBounds="False">
+                        ClipToBounds="False"
+                        Classes="connectorsSelection">
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>
                 <Canvas />
