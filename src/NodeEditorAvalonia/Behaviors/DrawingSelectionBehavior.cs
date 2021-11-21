@@ -16,8 +16,8 @@ namespace NodeEditor.Behaviors
         private IDisposable? _dataContextDisposable;
         private INotifyPropertyChanged? _drawingNodePropertyChanged;
         private IDrawingNode? _drawingNode;
-        private Selection? _selection;
-        private Selected? _selected;
+        private SelectionAdorner? _selectionAdorner;
+        private SelectedAdorner? _selectedAdorner;
         private bool _dragSelectedItems;
         private Point _start;
         private Rect _selectedRect;
@@ -100,12 +100,12 @@ namespace NodeEditor.Behaviors
                     {
                         _selectedRect = HitTest.CalculateSelectedRect(AssociatedObject);
 
-                        if (_selected is { })
+                        if (_selectedAdorner is { })
                         {
                             RemoveSelected(AssociatedObject);
                         }
 
-                        if (!_selectedRect.IsEmpty && _selected is null)
+                        if (!_selectedRect.IsEmpty && _selectedAdorner is null)
                         {
                             AddSelected(AssociatedObject, _selectedRect);
                         }
@@ -206,9 +206,9 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            if (_selection is { })
+            if (_selectionAdorner is { })
             {
-                HitTest.FindSelectedNodes(AssociatedObject, _selection.GetRect());
+                HitTest.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
             }
 
             RemoveSelection(AssociatedObject);
@@ -277,7 +277,7 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            _selection = new Selection
+            _selectionAdorner = new SelectionAdorner
             {
                 [AdornerLayer.AdornedElementProperty] = control,
                 IsHitTestVisible = false,
@@ -285,26 +285,26 @@ namespace NodeEditor.Behaviors
                 BottomRight = new Point(x, y)
             };
 
-            ((ISetLogicalParent) _selection).SetParent(control);
-            layer.Children.Add(_selection);
+            ((ISetLogicalParent) _selectionAdorner).SetParent(control);
+            layer.Children.Add(_selectionAdorner);
         }
 
         private void RemoveSelection(Control control)
         {
             var layer = AdornerLayer.GetAdornerLayer(control);
-            if (layer is null || _selection is null)
+            if (layer is null || _selectionAdorner is null)
             {
                 return;
             }
 
-            layer.Children.Remove(_selection);
-            ((ISetLogicalParent) _selection).SetParent(null);
-            _selection = null;
+            layer.Children.Remove(_selectionAdorner);
+            ((ISetLogicalParent) _selectionAdorner).SetParent(null);
+            _selectionAdorner = null;
         }
 
         private void UpdateSelection(double x, double y)
         {
-            if (_selection is { } selection)
+            if (_selectionAdorner is { } selection)
             {
                 selection.BottomRight = new Point(x, y);
             }
@@ -318,33 +318,33 @@ namespace NodeEditor.Behaviors
                 return;
             }
 
-            _selected = new Selected
+            _selectedAdorner = new SelectedAdorner
             {
                 [AdornerLayer.AdornedElementProperty] = control,
                 IsHitTestVisible = false,
                 Rect = rect
             };
 
-            ((ISetLogicalParent) _selected).SetParent(control);
-            layer.Children.Add(_selected);
+            ((ISetLogicalParent) _selectedAdorner).SetParent(control);
+            layer.Children.Add(_selectedAdorner);
         }
 
         private void RemoveSelected(Control control)
         {
             var layer = AdornerLayer.GetAdornerLayer(control);
-            if (layer is null || _selected is null)
+            if (layer is null || _selectedAdorner is null)
             {
                 return;
             }
 
-            layer.Children.Remove(_selected);
-            ((ISetLogicalParent) _selected).SetParent(null);
-            _selected = null;
+            layer.Children.Remove(_selectedAdorner);
+            ((ISetLogicalParent) _selectedAdorner).SetParent(null);
+            _selectedAdorner = null;
         }
 
         private void UpdateSelected(Rect rect)
         {
-            if (_selected is { } selected)
+            if (_selectedAdorner is { } selected)
             {
                 selected.Rect = rect;
             }

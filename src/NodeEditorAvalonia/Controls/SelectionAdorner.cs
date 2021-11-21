@@ -5,13 +5,13 @@ using Avalonia.Controls.Primitives;
 
 namespace NodeEditor.Controls
 {
-    public class Selection : TemplatedControl
+    public class SelectionAdorner : TemplatedControl
     {
         public static readonly StyledProperty<Point> TopLeftProperty =
-            AvaloniaProperty.Register<Selection, Point>(nameof(TopLeft));
+            AvaloniaProperty.Register<SelectionAdorner, Point>(nameof(TopLeft));
 
         public static readonly StyledProperty<Point> BottomRightProperty =
-            AvaloniaProperty.Register<Selection, Point>(nameof(BottomRight));
+            AvaloniaProperty.Register<SelectionAdorner, Point>(nameof(BottomRight));
 
         public Point TopLeft
         {

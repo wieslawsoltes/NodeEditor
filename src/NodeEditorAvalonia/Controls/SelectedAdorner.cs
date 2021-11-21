@@ -4,10 +4,10 @@ using Avalonia.Controls.Primitives;
 
 namespace NodeEditor.Controls
 {
-    public class Selected : TemplatedControl
+    public class SelectedAdorner : TemplatedControl
     {
         public static readonly StyledProperty<Rect> RectProperty =
-            AvaloniaProperty.Register<Selected, Rect>(nameof(Rect));
+            AvaloniaProperty.Register<SelectedAdorner, Rect>(nameof(Rect));
 
         public Rect Rect
         {
