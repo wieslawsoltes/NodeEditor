@@ -13,6 +13,7 @@ namespace NodeEditor.Behaviors
 {
     public class DrawingSelectionBehavior : Behavior<ItemsControl>
     {
+        private IDisposable? _isEditModeDisposable;
         private IDisposable? _dataContextDisposable;
         private INotifyPropertyChanged? _drawingNodePropertyChanged;
         private IDrawingNode? _drawingNode;
@@ -31,6 +32,16 @@ namespace NodeEditor.Behaviors
                 AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
                 AssociatedObject.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
                 AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
+                
+                _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
+                    .Subscribe(x =>
+                    {
+                        if (x == false)
+                        {
+                            RemoveSelection(AssociatedObject);
+                            RemoveSelected(AssociatedObject);
+                        }
+                    });
 
                 _dataContextDisposable = AssociatedObject
                     .GetObservable(StyledElement.DataContextProperty)
@@ -81,6 +92,7 @@ namespace NodeEditor.Behaviors
                     _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
                 }
 
+                _isEditModeDisposable?.Dispose();
                 _dataContextDisposable?.Dispose();
             }
         }
@@ -126,6 +138,11 @@ namespace NodeEditor.Behaviors
             }
 
             if (e.Source is Control { DataContext: IPin })
+            {
+                return;
+            }
+
+            if (!AssociatedObject.GetValue(DrawingNode.IsEditModeProperty))
             {
                 return;
             }

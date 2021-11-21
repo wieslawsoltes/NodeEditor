@@ -49,7 +49,7 @@
         <Panel Width="{Binding Width}" 
                Height="{Binding Height}">
           <ContentPresenter Name="PART_ContentPresenter"
-                            Content="{Binding Content}" />
+                            Content="{Binding Content}"/>
           <ItemsControl Name="PART_PinsItemsControl"
                         Items="{Binding Pins}"
                         Width="{Binding Width}"
@@ -78,7 +78,13 @@
     </Setter>
   </Style>
 
-  <!--<Style Selector="controls|Node:selected ItemsControl#PART_PinsItemsControl">
+  <Style Selector="controls|Node /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="IsHitTestVisible" Value="{Binding $self.(controls:DrawingNode.IsEditMode), Mode=OneWay, Converter={x:Static BoolConverters.Not}}" 
+            x:DataType="controls:Node"
+            x:CompileBindings="False"/>
+  </Style>
+
+  <!--<Style Selector="controls|Node:selected /template/ ItemsControl#PART_PinsItemsControl">
     <Setter Property="IsVisible" Value="False" />
   </Style>-->
 

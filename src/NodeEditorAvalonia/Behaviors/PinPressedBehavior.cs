@@ -2,6 +2,7 @@
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
+using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
@@ -31,6 +32,11 @@ namespace NodeEditor.Behaviors
         private void Pressed(object? sender, PointerPressedEventArgs e)
         {
             if (AssociatedObject?.DataContext is not IPin pin)
+            {
+                return;
+            }
+
+            if (!AssociatedObject.GetValue(DrawingNode.IsEditModeProperty))
             {
                 return;
             }

@@ -4,12 +4,14 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Xaml.Interactivity;
+using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors
 {
     public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
     {
+        private IDisposable? _isEditModeDisposable;
         private IDisposable? _dataContextDisposable;
         private INotifyPropertyChanged? _drawingNodePropertyChanged;
         private IDrawingNode? _drawingNode;
@@ -20,6 +22,15 @@ namespace NodeEditor.Behaviors
 
             if (AssociatedObject is { })
             {
+                _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
+                    .Subscribe(x =>
+                    {
+                        if (x == false)
+                        {
+                            RemoveSelectedPseudoClasses(AssociatedObject);
+                        }
+                    });
+
                 _dataContextDisposable = AssociatedObject
                     .GetObservable(StyledElement.DataContextProperty)
                     .Subscribe(x =>
@@ -63,6 +74,7 @@ namespace NodeEditor.Behaviors
                     _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
                 }
 
+                _isEditModeDisposable?.Dispose();
                 _dataContextDisposable?.Dispose();
             }
         }
@@ -103,14 +115,20 @@ namespace NodeEditor.Behaviors
                 {
                     if (containerControl is ContentPresenter { Child: { } child })
                     {
-                        ((IPseudoClasses)child.Classes).Add(":selected");
+                        if (child.Classes is IPseudoClasses pseudoClasses)
+                        {
+                            pseudoClasses.Add(":selected");
+                        }
                     }
                 }
                 else
                 {
                     if (containerControl is ContentPresenter { Child: { } child })
                     {
-                        ((IPseudoClasses)child.Classes).Remove(":selected");
+                        if (child.Classes is IPseudoClasses pseudoClasses)
+                        {
+                           pseudoClasses.Remove(":selected");
+                        }
                     }
                 }
             }
@@ -127,7 +145,10 @@ namespace NodeEditor.Behaviors
 
                 if (containerControl is ContentPresenter { Child: { } child })
                 {
-                    ((IPseudoClasses)child.Classes).Remove(":selected");
+                    if (child.Classes is IPseudoClasses pseudoClasses)
+                    {
+                        pseudoClasses.Remove(":selected");
+                    }
                 }
             }
         }

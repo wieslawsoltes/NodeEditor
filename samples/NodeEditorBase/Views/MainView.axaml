@@ -9,18 +9,19 @@
              xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="60" d:DesignHeight="60"
+             mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
              x:Class="NodeEditorDemo.Views.MainView"
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
-             ClipToBounds="False">
+             ClipToBounds="False"
+             editor:DrawingNode.IsEditMode="{Binding IsEditMode}">
  <Design.DataContext>
     <vm:MainWindowViewModel />
   </Design.DataContext>
   <UserControl.KeyBindings>
+    <KeyBinding Command="{Binding ToggleEditModeCommand}" Gesture="Ctrl+E"  />
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
     <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"  />
     <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"  />
-    <KeyBinding Command="{Binding ExportCommand}" Gesture="Ctrl+E"  />
     <KeyBinding Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+X"  />
     <KeyBinding Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" Gesture="Ctrl+C"  />
     <KeyBinding Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" Gesture="Ctrl+V"  />
@@ -28,6 +29,12 @@
     <KeyBinding Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" Gesture="Ctrl+A"  />
     <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
   </UserControl.KeyBindings>
+  <UserControl.Styles>
+    <Style Selector="MenuItem /template/ ContentPresenter#PART_IconPresenter">
+      <Setter Property="Width" Value="20" />
+      <Setter Property="Height" Value="20" />
+    </Style>
+  </UserControl.Styles>
   <DockPanel>
     <Menu Background="#F3F3F3"
           DockPanel.Dock="Top">
@@ -38,7 +45,7 @@
         <Separator />
         <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="Ctrl+S" />
         <Separator />
-        <MenuItem Header="Export..." Command="{Binding ExportCommand}" InputGesture="Ctrl+E" />
+        <MenuItem Header="Export..." Command="{Binding ExportCommand}" />
         <Separator />
         <MenuItem Header="E_xit" Command="{Binding ExitCommand}" />
       </MenuItem>
@@ -56,18 +63,22 @@
       <DockPanel Grid.Column="0">
         <Grid ColumnDefinitions="50*,50*" DockPanel.Dock="Bottom">
           <TextBox Grid.Column="0" 
-                   Margin="4,4,0,4"
+                   Margin="4,4,2,4"
                    Padding="6"
-                   BorderBrush="Transparent"
                    TextAlignment="Center"
                    Text="{Binding Drawing.Width, FallbackValue=''}" />
           <TextBox Grid.Column="1" 
-                   Margin="0,4,4,4"
+                   Margin="2,4,4,4"
                    Padding="6"
-                   BorderBrush="Transparent"
                    TextAlignment="Center"
                    Text="{Binding Drawing.Height, FallbackValue=''}" />
         </Grid>
+        <CheckBox IsChecked="{Binding IsEditMode}"
+                  Content="Edit Mode"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Margin="4,4,4,0"
+                  DockPanel.Dock="Bottom" />
         <ListBox Items="{Binding Templates}"
                  Background="Transparent">
           <ListBox.Resources>
@@ -115,6 +126,18 @@
                               Background="White">
             <editor:DrawingNode.ContextFlyout>
               <MenuFlyout>
+                <MenuItem Header="_Edit" 
+                          InputGesture="Ctrl+E"
+                          DataContext="{Binding $parent[UserControl].DataContext}"
+                          Command="{Binding ToggleEditModeCommand}" 
+                          x:DataType="vm:MainWindowViewModel">
+                  <MenuItem.Icon>
+                    <CheckBox BorderThickness="0" 
+                              IsHitTestVisible="False" 
+                              IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="-" />
                 <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
                 <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
                 <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
