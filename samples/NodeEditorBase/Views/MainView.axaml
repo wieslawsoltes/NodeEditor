@@ -6,6 +6,7 @@
              xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
              xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
+             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditorBase"
              xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -57,6 +58,31 @@
         <Separator />
         <MenuItem Header="Select _All" Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
         <MenuItem Header="De_select All" Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+      </MenuItem>
+      <MenuItem Header="_Zoom" 
+                DataContext="{Binding #ZoomBorder}"
+                x:DataType="paz:ZoomBorder" 
+                x:CompileBindings="False">
+        <MenuItem Header="_50%" 
+                  Command="{Binding ZoomToCommand, FallbackValue={x:Null}}"
+                  CommandParameter="0.5" />
+        <MenuItem Header="_100%" 
+                  Command="{Binding ResetZoomCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="_200%" 
+                  Command="{Binding ZoomToCommand, FallbackValue={x:Null}}"
+                  CommandParameter="2" />
+        <Separator />
+        <MenuItem Header="Zoom _In" 
+                  Command="{Binding ZoomInCommand, FallbackValue={x:Null}}"  />
+        <MenuItem Header="Zoom _Out" 
+                  Command="{Binding ZoomOutCommand, FallbackValue={x:Null}}" />
+        <Separator />
+        <MenuItem Header="Fit Canvas" 
+                  Command="{Binding FitCanvasCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Fit to Fill" 
+                  Command="{Binding FitToFillCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Fill Canvas" 
+                  Command="{Binding FillCanvasCommand, FallbackValue={x:Null}}" />
       </MenuItem>
     </Menu>
     <Grid ColumnDefinitions="200,*">
@@ -110,11 +136,15 @@
                     DataContext="{Binding Drawing}"
                     Background="#E5E5E5"
                     Grid.Column="1">
-        <paz:ZoomBorder Stretch="None"
-                        ZoomSpeed="1.2"
-                        EnableConstrains="False"
-                        Background="Transparent" ClipToBounds="True" Focusable="True"
-                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <controls:NodeZoomBorder Name="ZoomBorder"
+                                 Stretch="None"
+                                 ZoomSpeed="1.5"
+                                 EnableConstrains="False"
+                                 Background="Transparent" 
+                                 ClipToBounds="True" 
+                                 Focusable="True"
+                                 VerticalAlignment="Stretch" 
+                                 HorizontalAlignment="Stretch">
           <i:Interaction.Behaviors>
             <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
               <idd:ContextDropBehavior.Handler>
@@ -148,7 +178,7 @@
               </MenuFlyout>
             </editor:DrawingNode.ContextFlyout>
           </editor:DrawingNode>
-        </paz:ZoomBorder>
+        </controls:NodeZoomBorder>
       </ScrollViewer>
     </Grid>
   </DockPanel>
