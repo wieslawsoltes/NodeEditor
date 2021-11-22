@@ -1,10 +1,12 @@
 ﻿using Avalonia;
+using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Shapes;
 using Avalonia.Media;
 using NodeEditor.Model;
 
 namespace NodeEditor.Controls
 {
+    [PseudoClasses(":selected")]
     public class Connector : Shape
     {
         public static readonly StyledProperty<Point> StartPointProperty =

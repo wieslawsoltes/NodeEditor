@@ -22,6 +22,8 @@
     <CheckBox Classes="node"
               IsChecked="{Binding State}" 
               Content="{Binding Label}"
+              HorizontalAlignment="Stretch"
+              HorizontalContentAlignment="Stretch"
               IsHitTestVisible="True"/>
   </Panel>
 </UserControl>

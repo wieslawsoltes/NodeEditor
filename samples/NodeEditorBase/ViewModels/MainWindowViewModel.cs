@@ -24,6 +24,7 @@ namespace NodeEditorDemo.ViewModels
         private readonly NodeFactory _factory;
         private IList<INodeTemplate>? _templates;
         private IDrawingNode? _drawing;
+        private bool _isEditMode;
 
         public MainWindowViewModel()
         {
@@ -34,6 +35,13 @@ namespace NodeEditorDemo.ViewModels
 
             Drawing = _factory.CreateDemoDrawing();
             Drawing.Serializer = _serializer;
+
+            _isEditMode = true;
+
+            ToggleEditModeCommand = ReactiveCommand.Create(() =>
+            {
+                IsEditMode = !IsEditMode;
+            });
 
             NewCommand = ReactiveCommand.Create(New);
 
@@ -63,6 +71,14 @@ namespace NodeEditorDemo.ViewModels
             get => _drawing;
             set => this.RaiseAndSetIfChanged(ref _drawing, value);
         }
+
+        public bool IsEditMode
+        {
+            get => _isEditMode;
+            set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
+        }
+
+        public ICommand ToggleEditModeCommand { get; }
 
         public ICommand NewCommand { get; }
 

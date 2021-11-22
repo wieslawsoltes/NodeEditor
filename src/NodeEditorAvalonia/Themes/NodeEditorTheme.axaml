@@ -7,13 +7,24 @@
         xmlns:controls="clr-namespace:NodeEditor.Controls"
         x:CompileBindings="True">
 
-  <Style Selector=":is(ItemsControl).pointerEvents">
+  <Style Selector=":is(ItemsControl).nodesSelection">
     <Setter Property="(i:Interaction.Behaviors)">
       <i:BehaviorCollectionTemplate>
         <i:BehaviorCollection>
+          <behaviors:NodesSelectedBehavior />
           <behaviors:DrawingSelectionBehavior />
           <behaviors:DrawingPressedBehavior />
           <behaviors:DrawingMovedBehavior />
+        </i:BehaviorCollection>
+      </i:BehaviorCollectionTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector=":is(ItemsControl).connectorsSelection">
+    <Setter Property="(i:Interaction.Behaviors)">
+      <i:BehaviorCollectionTemplate>
+        <i:BehaviorCollection>
+          <behaviors:ConnectorsSelectedBehavior />
         </i:BehaviorCollection>
       </i:BehaviorCollectionTemplate>
     </Setter>
@@ -38,7 +49,7 @@
         <Panel Width="{Binding Width}" 
                Height="{Binding Height}">
           <ContentPresenter Name="PART_ContentPresenter"
-                            Content="{Binding Content}" />
+                            Content="{Binding Content}"/>
           <ItemsControl Name="PART_PinsItemsControl"
                         Items="{Binding Pins}"
                         Width="{Binding Width}"
@@ -66,6 +77,16 @@
       </ControlTemplate>
     </Setter>
   </Style>
+
+  <Style Selector="controls|Node /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="IsHitTestVisible" Value="{Binding $self.(controls:DrawingNode.IsEditMode), Mode=OneWay, Converter={x:Static BoolConverters.Not}}" 
+            x:DataType="controls:Node"
+            x:CompileBindings="False"/>
+  </Style>
+
+  <!--<Style Selector="controls|Node:selected /template/ ItemsControl#PART_PinsItemsControl">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>-->
 
   <Style Selector="controls|Connector">
     <Setter Property="Stroke" Value="Red" />
@@ -97,6 +118,10 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <!--<Style Selector="controls|Connector:selected">
+    <Setter Property="Stroke" Value="Blue" />
+  </Style>-->
 
   <Style Selector="controls|Pin">
     <Setter Property="Width" Value="{Binding Width}" x:DataType="m:IPin" />
@@ -149,20 +174,88 @@
     <Setter Property="Fill" Value="Red" />
   </Style>
 
-  <Style Selector="controls|Selection">
-    <Setter Property="Brush">
-      <SolidColorBrush Color="Blue" Opacity="0.3" />
-    </Setter>
-    <Setter Property="Pen">
-      <Pen Brush="Blue" Thickness="2" />
+  <Style Selector="controls|SelectionAdorner">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel ClipToBounds="False">
+          <Rectangle Name="PART_Rectangle" />
+          <StackPanel Name="PART_StackPanel">
+            <TextBlock Text="{Binding $parent[controls:SelectionAdorner].Bounds.Left}" x:CompileBindings="False" />
+            <TextBlock Text="," />
+            <TextBlock Text="{Binding $parent[controls:SelectionAdorner].Bounds.Top}" x:CompileBindings="False" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Width}" x:CompileBindings="False" />
+            <TextBlock Text="x" />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Height}" x:CompileBindings="False" />
+          </StackPanel>
+        </Panel>
+      </ControlTemplate>
     </Setter>
   </Style>
 
-  <Style Selector="controls|Selected">
-    <Setter Property="Brush" Value="Transparent" />
-    <Setter Property="Pen">
-      <Pen Brush="Cyan" Thickness="2" />
+  <Style Selector="controls|SelectionAdorner /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Fill">
+     <SolidColorBrush Color="Blue" Opacity="0.3" />
     </Setter>
+    <Setter Property="Stroke" Value="Blue" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="controls|SelectionAdorner /template/ StackPanel#PART_StackPanel">
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Margin" Value="0,-18,0,0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+
+  <Style Selector="controls|SelectionAdorner /template/ StackPanel#PART_StackPanel TextBlock">
+    <Setter Property="Foreground" Value="Blue" />
+  </Style>
+
+  <Style Selector="controls|SelectedAdorner">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel ClipToBounds="False">
+          <Rectangle Name="PART_Rectangle" />
+          <StackPanel Name="PART_StackPanel">
+            <TextBlock Text="{Binding $parent[controls:SelectedAdorner].Bounds.Left}" x:CompileBindings="False" />
+            <TextBlock Text="," />
+            <TextBlock Text="{Binding $parent[controls:SelectedAdorner].Bounds.Top}" x:CompileBindings="False" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Width}" x:CompileBindings="False" />
+            <TextBlock Text="x" />
+            <TextBlock Text="{Binding #PART_Rectangle.Bounds.Height}" x:CompileBindings="False" />
+          </StackPanel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|SelectedAdorner /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Fill" Value="Transparent" />
+    <Setter Property="Stroke" Value="Cyan" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="controls|SelectedAdorner /template/ StackPanel#PART_StackPanel">
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Margin" Value="0,-18,0,0" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+
+  <Style Selector="controls|SelectedAdorner /template/ StackPanel#PART_StackPanel TextBlock">
+    <Setter Property="Foreground" Value="Cyan" />
   </Style>
 
   <Style Selector="controls|DrawingNode">
@@ -179,7 +272,7 @@
                         Height="{Binding Height}"
                         Background="Transparent"
                         ClipToBounds="False"
-                        Classes="pointerEvents">
+                        Classes="nodesSelection">
             <ItemsControl.Styles>
               <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
@@ -203,7 +296,8 @@
                         Height="{Binding Height}"
                         Background="Transparent"
                         IsHitTestVisible="False"
-                        ClipToBounds="False">
+                        ClipToBounds="False"
+                        Classes="connectorsSelection">
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>
                 <Canvas />
