@@ -199,7 +199,7 @@
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Template">
       <ControlTemplate>
-        <Panel ClipToBounds="False">
+        <Panel ClipToBounds="False" Background="{x:Null}">
           <Rectangle Name="PART_Rectangle" />
           <StackPanel Name="PART_StackPanel">
             <TextBlock Text="{Binding $parent[controls:SelectedAdorner].Bounds.Left}" x:CompileBindings="False" />
@@ -210,15 +210,110 @@
             <TextBlock Text="x" />
             <TextBlock Text="{Binding #PART_Rectangle.Bounds.Height}" x:CompileBindings="False" />
           </StackPanel>
+          <Canvas Name="PART_Canvas" Background="{x:Null}">
+            <Thumb Name="PART_Drag" Classes="drag sizeAll" />
+            <Thumb Name="PART_Top" Classes="resize topSide" />
+            <Thumb Name="PART_Bottom" Classes="resize bottomSide" />
+            <Thumb Name="PART_Left" Classes="resize leftSide" />
+            <Thumb Name="PART_Right" Classes="resize rightSide" />
+            <Thumb Name="PART_TopLeft" Classes="resize topLeftCorner" />
+            <Thumb Name="PART_TopRight" Classes="resize topRightCorner" />
+            <Thumb Name="PART_BottomLeft" Classes="resize bottomLeftCorner" />
+            <Thumb Name="PART_BottomRight" Classes="resize bottomRightCorner" />
+          </Canvas>
         </Panel>
       </ControlTemplate>
     </Setter>
+  </Style>
+
+  <Style Selector="controls|SelectedAdorner /template/ Canvas#PART_Canvas">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+
+  <Style Selector="Thumb.drag">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="IsHitTestVisible" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Name="PART_Rectangle">
+            <Rectangle.Styles>
+              <Style Selector="Rectangle">
+                <Setter Property="Fill" Value="Transparent" />
+              </Style>
+            </Rectangle.Styles>
+          </Rectangle>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Thumb.resize">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate>
+          <Rectangle Name="PART_Rectangle">
+            <Rectangle.Styles>
+              <Style Selector="Rectangle">
+                <Setter Property="Fill" Value="White" />
+                <Setter Property="Stroke" Value="Black" />
+                <Setter Property="StrokeThickness" Value="2" />
+                <Setter Property="Margin" Value="-5,-5,0,0" />
+                <Setter Property="Width" Value="10" />
+                <Setter Property="Height" Value="10" />
+              </Style>
+            </Rectangle.Styles>
+          </Rectangle>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style Selector="Thumb:pointerover.sizeAll /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="SizeAll" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.topSide /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="TopSide" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.bottomSide /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="BottomSide" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.leftSide /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="LeftSide" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.rightSide /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="RightSide" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.topLeftCorner /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="TopLeftCorner" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.topRightCorner /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="TopRightCorner" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.bottomLeftCorner /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="BottomLeftCorner" />
+  </Style>
+
+  <Style Selector="Thumb:pointerover.bottomRightCorner /template/ Rectangle#PART_Rectangle">
+    <Setter Property="Cursor" Value="BottomRightCorner" />
   </Style>
 
   <Style Selector="controls|SelectedAdorner /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="Transparent" />
     <Setter Property="Stroke" Value="Cyan" />
     <Setter Property="StrokeThickness" Value="2" />
+    <Setter Property="IsHitTestVisible" Value="False" />
   </Style>
 
   <Style Selector="controls|SelectedAdorner /template/ StackPanel#PART_StackPanel">
@@ -228,6 +323,7 @@
     <Setter Property="VerticalAlignment" Value="Top" />
     <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="IsVisible" Value="False" />
+    <Setter Property="IsHitTestVisible" Value="False" />
   </Style>
 
   <Style Selector="controls|SelectedAdorner /template/ StackPanel#PART_StackPanel TextBlock">

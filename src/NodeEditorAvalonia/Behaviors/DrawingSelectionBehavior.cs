@@ -338,8 +338,9 @@ namespace NodeEditor.Behaviors
             _selectedAdorner = new SelectedAdorner
             {
                 [AdornerLayer.AdornedElementProperty] = control,
-                IsHitTestVisible = false,
-                Rect = rect
+                IsHitTestVisible = true,
+                Rect = rect,
+                Control = control
             };
 
             ((ISetLogicalParent) _selectedAdorner).SetParent(control);
