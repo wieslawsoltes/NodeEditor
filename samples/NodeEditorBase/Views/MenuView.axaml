@@ -1,0 +1,59 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NodeEditorDemo.ViewModels"
+             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditorBase"
+             xmlns:views="clr-namespace:NodeEditorDemo.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="NodeEditorDemo.Views.MenuView"
+             x:CompileBindings="True" x:DataType="vm:MainWindowViewModel">
+    <Menu>
+      <MenuItem Header="_File">
+        <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="Ctrl+N" />
+        <Separator />
+        <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGesture="Ctrl+O" />
+        <Separator />
+        <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="Ctrl+S" />
+        <Separator />
+        <MenuItem Header="Export..." Command="{Binding ExportCommand}" />
+        <Separator />
+        <MenuItem Header="E_xit" Command="{Binding ExitCommand}" />
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="Cu_t" Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+X" />
+        <MenuItem Header="_Copy" Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+C" />
+        <MenuItem Header="_Paste" Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+V" />
+        <MenuItem Header="_Delete" Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
+        <Separator />
+        <MenuItem Header="Select _All" Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
+        <MenuItem Header="De_select All" Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+      </MenuItem>
+      <MenuItem Header="_Zoom" 
+                DataContext="{Binding $parent[views:MenuView].ZoomControl}"
+                x:DataType="controls:NodeZoomBorder" 
+                x:CompileBindings="False">
+        <MenuItem Header="_50%" 
+                  Command="{Binding ZoomToCommand, FallbackValue={x:Null}}"
+                  CommandParameter="0.5" />
+        <MenuItem Header="_100%" 
+                  Command="{Binding ResetZoomCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="_200%" 
+                  Command="{Binding ZoomToCommand, FallbackValue={x:Null}}"
+                  CommandParameter="2" />
+        <Separator />
+        <MenuItem Header="Zoom _In" 
+                  Command="{Binding ZoomInCommand, FallbackValue={x:Null}}"  />
+        <MenuItem Header="Zoom _Out" 
+                  Command="{Binding ZoomOutCommand, FallbackValue={x:Null}}" />
+        <Separator />
+        <MenuItem Header="Fit Canvas" 
+                  Command="{Binding FitCanvasCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Fit to Fill" 
+                  Command="{Binding FitToFillCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Fill Canvas" 
+                  Command="{Binding FillCanvasCommand, FallbackValue={x:Null}}" />
+      </MenuItem>
+    </Menu>
+</UserControl>
+

@@ -6,7 +6,7 @@
     <local:ViewLocator />
   </Application.DataTemplates>
   <Application.Styles>
-    <FluentTheme Mode="Light" />
+    <FluentTheme Mode="Dark" />
     <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml" />
     <StyleInclude Source="avares://NodeEditorBase/Styles/Nodes.axaml" />
   </Application.Styles>

@@ -10,10 +10,12 @@
              xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:NodeEditorDemo.Views"
              mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
              x:Class="NodeEditorDemo.Views.MainView"
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
              ClipToBounds="False"
+             Background="#ff1f1f1f"
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}">
  <Design.DataContext>
     <vm:MainWindowViewModel />
@@ -36,57 +38,19 @@
       <Setter Property="Height" Value="20" />
     </Style>
   </UserControl.Styles>
+  <UserControl.Resources>
+    <VisualBrush x:Key="TemplateCheckerBoard" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
+      <VisualBrush.Visual>
+        <Path Data="M 0,0 L 0,10 L 10,10 L 10,0 Z M 10,10 L 10,20 L 20,20 L 20,10 Z" Fill="#FFF0F0F0" />
+      </VisualBrush.Visual>
+    </VisualBrush>
+  </UserControl.Resources>
   <DockPanel>
-    <Menu Background="#F3F3F3"
-          DockPanel.Dock="Top">
-      <MenuItem Header="_File">
-        <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="Ctrl+N" />
-        <Separator />
-        <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGesture="Ctrl+O" />
-        <Separator />
-        <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="Ctrl+S" />
-        <Separator />
-        <MenuItem Header="Export..." Command="{Binding ExportCommand}" />
-        <Separator />
-        <MenuItem Header="E_xit" Command="{Binding ExitCommand}" />
-      </MenuItem>
-      <MenuItem Header="_Edit">
-        <MenuItem Header="Cu_t" Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+X" />
-        <MenuItem Header="_Copy" Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+C" />
-        <MenuItem Header="_Paste" Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+V" />
-        <MenuItem Header="_Delete" Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
-        <Separator />
-        <MenuItem Header="Select _All" Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
-        <MenuItem Header="De_select All" Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
-      </MenuItem>
-      <MenuItem Header="_Zoom" 
-                DataContext="{Binding #ZoomBorder}"
-                x:DataType="paz:ZoomBorder" 
-                x:CompileBindings="False">
-        <MenuItem Header="_50%" 
-                  Command="{Binding ZoomToCommand, FallbackValue={x:Null}}"
-                  CommandParameter="0.5" />
-        <MenuItem Header="_100%" 
-                  Command="{Binding ResetZoomCommand, FallbackValue={x:Null}}" />
-        <MenuItem Header="_200%" 
-                  Command="{Binding ZoomToCommand, FallbackValue={x:Null}}"
-                  CommandParameter="2" />
-        <Separator />
-        <MenuItem Header="Zoom _In" 
-                  Command="{Binding ZoomInCommand, FallbackValue={x:Null}}"  />
-        <MenuItem Header="Zoom _Out" 
-                  Command="{Binding ZoomOutCommand, FallbackValue={x:Null}}" />
-        <Separator />
-        <MenuItem Header="Fit Canvas" 
-                  Command="{Binding FitCanvasCommand, FallbackValue={x:Null}}" />
-        <MenuItem Header="Fit to Fill" 
-                  Command="{Binding FitToFillCommand, FallbackValue={x:Null}}" />
-        <MenuItem Header="Fill Canvas" 
-                  Command="{Binding FillCanvasCommand, FallbackValue={x:Null}}" />
-      </MenuItem>
-    </Menu>
+    <views:MenuView ZoomControl="{Binding #ZoomBorder}"
+                    x:CompileBindings="False"
+                    DockPanel.Dock="Top" />
     <Grid ColumnDefinitions="200,*">
-      <DockPanel Grid.Column="0">
+      <DockPanel Background="#ff292929" Grid.Column="0">
         <Grid ColumnDefinitions="50*,50*" DockPanel.Dock="Bottom">
           <TextBox Grid.Column="0" 
                    Margin="4,4,2,4"
@@ -131,20 +95,21 @@
           </ListBox.ItemTemplate>
         </ListBox>
       </DockPanel>
-      <ScrollViewer VerticalScrollBarVisibility="Auto"
-                    HorizontalScrollBarVisibility="Auto"
-                    DataContext="{Binding Drawing}"
-                    Background="#E5E5E5"
-                    Grid.Column="1">
-        <controls:NodeZoomBorder Name="ZoomBorder"
-                                 Stretch="None"
-                                 ZoomSpeed="1.5"
-                                 EnableConstrains="False"
-                                 Background="Transparent" 
-                                 ClipToBounds="True" 
-                                 Focusable="True"
-                                 VerticalAlignment="Stretch" 
-                                 HorizontalAlignment="Stretch">
+      <Panel Grid.Column="1">
+        <Panel Background="#FFF5F5F5" />
+        <Panel Background="{DynamicResource TemplateCheckerBoard}" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      DataContext="{Binding Drawing}">
+          <controls:NodeZoomBorder Name="ZoomBorder"
+                                   Stretch="None"
+                                   ZoomSpeed="1.5"
+                                   EnableConstrains="False"
+                                   Background="Transparent" 
+                                   ClipToBounds="True" 
+                                   Focusable="True"
+                                   VerticalAlignment="Stretch" 
+                                   HorizontalAlignment="Stretch">
           <i:Interaction.Behaviors>
             <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
               <idd:ContextDropBehavior.Handler>
@@ -185,6 +150,7 @@
           </editor:DrawingNode>
         </controls:NodeZoomBorder>
       </ScrollViewer>
+      </Panel>
     </Grid>
   </DockPanel>
 </UserControl>
