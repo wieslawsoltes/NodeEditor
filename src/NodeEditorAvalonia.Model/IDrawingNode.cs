@@ -17,14 +17,16 @@ namespace NodeEditor.Model
         void CutNodes();
         void CopyNodes();
         void PasteNodes();
+        void DuplicateNodes();
         void DeleteNodes();
         void SelectAllNodes();
         void DeselectAllNodes();
         ICommand CutCommand { get; }
         ICommand CopyCommand { get; }
         ICommand PasteCommand { get; }
-        ICommand DeleteCommand { get; }
+        ICommand DuplicateCommand { get; }
         ICommand SelectAllCommand { get; }
         ICommand DeselectAllCommand { get; }
+        ICommand DeleteCommand { get; }
     }
 }

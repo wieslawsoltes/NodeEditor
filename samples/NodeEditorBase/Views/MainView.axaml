@@ -28,6 +28,7 @@
     <KeyBinding Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+X"  />
     <KeyBinding Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" Gesture="Ctrl+C"  />
     <KeyBinding Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" Gesture="Ctrl+V"  />
+    <KeyBinding Command="{Binding Drawing.DuplicateCommand, FallbackValue={x:Null}}" Gesture="Ctrl+D"  />
     <KeyBinding Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" Gesture="Delete"  />
     <KeyBinding Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" Gesture="Ctrl+A"  />
     <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
@@ -139,10 +140,12 @@
                   <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
                   <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
                   <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
-                  <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
+                  <MenuItem Header="D_uplicate" Command="{Binding DuplicateCommand}" InputGesture="Ctrl+D" />
                   <MenuItem Header="-" />
                   <MenuItem Header="Select _All" Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
                   <MenuItem Header="De_select All" Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+                  <MenuItem Header="-" />
+                  <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
                 </MenuFlyout>
               </editor:DrawingNode.ContextFlyout>
             </editor:DrawingNode>

@@ -35,11 +35,14 @@ namespace NodeEditor.ViewModels
 
             PasteCommand = ReactiveCommand.Create(PasteNodes);
 
-            DeleteCommand = ReactiveCommand.Create(DeleteNodes);
+            DuplicateCommand = ReactiveCommand.Create(DuplicateNodes);
 
             SelectAllCommand = ReactiveCommand.Create(SelectAllNodes);
 
             DeselectAllCommand = ReactiveCommand.Create(DeselectAllNodes);
+
+            DeleteCommand = ReactiveCommand.Create(DeleteNodes);
+
         }
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
@@ -83,11 +86,13 @@ namespace NodeEditor.ViewModels
 
         public ICommand PasteCommand { get; }
 
-        public ICommand DeleteCommand { get; }
+        public ICommand DuplicateCommand { get; }
 
         public ICommand SelectAllCommand { get; }
 
         public ICommand DeselectAllCommand { get; }
+
+        public ICommand DeleteCommand { get; }
 
         public void DrawingLeftPressed(double x, double y)
         {
@@ -295,6 +300,15 @@ namespace NodeEditor.ViewModels
 
             _pressedX = double.NaN;
             _pressedY = double.NaN;
+        }
+
+        public void DuplicateNodes()
+        {
+            _pressedX = double.NaN;
+            _pressedY = double.NaN;
+
+            CopyNodes();
+            PasteNodes();
         }
 
         public void DeleteNodes()

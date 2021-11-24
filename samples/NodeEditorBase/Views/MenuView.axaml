@@ -24,10 +24,12 @@
         <MenuItem Header="Cu_t" Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+X" />
         <MenuItem Header="_Copy" Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+C" />
         <MenuItem Header="_Paste" Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+V" />
-        <MenuItem Header="_Delete" Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
+        <MenuItem Header="D_uplicate" Command="{Binding Drawing.DuplicateCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+D" />
         <Separator />
         <MenuItem Header="Select _All" Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
         <MenuItem Header="De_select All" Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+        <Separator />
+        <MenuItem Header="_Delete" Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
       </MenuItem>
       <MenuItem Header="_Zoom" 
                 DataContext="{Binding $parent[views:MenuView].ZoomControl}"
