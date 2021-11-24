@@ -7,39 +7,6 @@
         xmlns:controls="clr-namespace:NodeEditor.Controls"
         x:CompileBindings="True">
 
-  <Style Selector=":is(ItemsControl).nodesSelection">
-    <Setter Property="(i:Interaction.Behaviors)">
-      <i:BehaviorCollectionTemplate>
-        <i:BehaviorCollection>
-          <behaviors:NodesSelectedBehavior />
-          <behaviors:DrawingSelectionBehavior />
-          <behaviors:DrawingPressedBehavior />
-          <behaviors:DrawingMovedBehavior />
-        </i:BehaviorCollection>
-      </i:BehaviorCollectionTemplate>
-    </Setter>
-  </Style>
-
-  <Style Selector=":is(ItemsControl).connectorsSelection">
-    <Setter Property="(i:Interaction.Behaviors)">
-      <i:BehaviorCollectionTemplate>
-        <i:BehaviorCollection>
-          <behaviors:ConnectorsSelectedBehavior />
-        </i:BehaviorCollection>
-      </i:BehaviorCollectionTemplate>
-    </Setter>
-  </Style>
-
-  <Style Selector=":is(ItemsControl).pinPressed > :is(ContentPresenter)">
-    <Setter Property="(i:Interaction.Behaviors)">
-      <i:BehaviorCollectionTemplate>
-        <i:BehaviorCollection>
-          <behaviors:PinPressedBehavior />
-        </i:BehaviorCollection>
-      </i:BehaviorCollectionTemplate>
-    </Setter>
-  </Style>
-
   <Style Selector="controls|Node">
     <Setter Property="Width" Value="{Binding Width}" x:DataType="m:INode" />
     <Setter Property="Height" Value="{Binding Height}" x:DataType="m:INode" />
@@ -54,8 +21,7 @@
                         Items="{Binding Pins}"
                         Width="{Binding Width}"
                         Height="{Binding Height}"
-                        ClipToBounds="False"
-                        Classes="pinPressed">
+                        ClipToBounds="False">
             <ItemsControl.Styles>
               <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:IPin">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
@@ -75,6 +41,16 @@
           </ItemsControl>
         </Panel>
       </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="controls|Node /template/ ItemsControl#PART_PinsItemsControl > :is(ContentPresenter)">
+    <Setter Property="(i:Interaction.Behaviors)">
+      <i:BehaviorCollectionTemplate>
+        <i:BehaviorCollection>
+          <behaviors:PinPressedBehavior />
+        </i:BehaviorCollection>
+      </i:BehaviorCollectionTemplate>
     </Setter>
   </Style>
 
@@ -271,8 +247,7 @@
                         Width="{Binding Width}" 
                         Height="{Binding Height}"
                         Background="Transparent"
-                        ClipToBounds="False"
-                        Classes="nodesSelection">
+                        ClipToBounds="False">
             <ItemsControl.Styles>
               <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
@@ -296,8 +271,7 @@
                         Height="{Binding Height}"
                         Background="Transparent"
                         IsHitTestVisible="False"
-                        ClipToBounds="False"
-                        Classes="connectorsSelection">
+                        ClipToBounds="False">
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>
                 <Canvas />
@@ -314,6 +288,19 @@
           </ItemsControl>
         </Panel>
       </ControlTemplate>
+    </Setter>
+  </Style>
+  
+  <Style Selector="controls|DrawingNode /template/ ItemsControl#PART_NodesItemsControl">
+    <Setter Property="(i:Interaction.Behaviors)">
+      <i:BehaviorCollectionTemplate>
+        <i:BehaviorCollection>
+          <behaviors:NodesSelectedBehavior />
+          <behaviors:DrawingSelectionBehavior />
+          <behaviors:DrawingPressedBehavior />
+          <behaviors:DrawingMovedBehavior />
+        </i:BehaviorCollection>
+      </i:BehaviorCollectionTemplate>
     </Setter>
   </Style>
 
