@@ -11,9 +11,6 @@ namespace NodeEditor.Controls
         public static readonly StyledProperty<Rect> RectProperty =
             AvaloniaProperty.Register<SelectedAdorner, Rect>(nameof(Rect));
 
-        public static readonly StyledProperty<Control?> ControlProperty = 
-            AvaloniaProperty.Register<SelectedAdorner, Control?>(nameof(Control));
-
         private Canvas? _canvas;
         private Thumb? _drag;
         private Thumb? _top;
@@ -24,19 +21,13 @@ namespace NodeEditor.Controls
         private Thumb? _topRight;
         private Thumb? _bottomLeft;
         private Thumb? _bottomRight;
-        private double _leftOffset;
-        private double _topOffset;
+        // private double _leftOffset;
+        // private double _topOffset;
 
         public Rect Rect
         {
             get => GetValue(RectProperty);
             set => SetValue(RectProperty, value);
-        }
-
-        public Control? Control
-        {
-            get => GetValue(ControlProperty);
-            set => SetValue(ControlProperty, value);
         }
 
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
@@ -117,27 +108,22 @@ namespace NodeEditor.Controls
                 _drag.DragDelta += OnDragDeltaDrag;
             }
 
-            if (Control is { })
+            // _leftOffset = 0.0;
+            // _topOffset = 0.0;
+
+            var rect = new Rect(
+                0,
+                0,
+                Rect.Width, 
+                Rect.Height);
+
+            UpdateThumbs(rect);
+            UpdateDrag(rect);
+
+            if (_canvas is { })
             {
-                _leftOffset = 0.0; //Canvas.GetLeft(Control);
-                _topOffset = 0.0; //Canvas.GetTop(Control);
-
-                var rect = new Rect(
-                    Rect.Left,
-                    Rect.Top,
-                    Rect.Width, 
-                    Rect.Height);
-
-                UpdateThumbs(rect);
-                UpdateDrag(rect);
-
-                if (_canvas is { })
-                {
-                    //Canvas.SetLeft(_canvas, rect.Left);
-                    //Canvas.SetTop(_canvas, rect.Top);
-                    _canvas.Width = rect.Width;
-                    _canvas.Height = rect.Height;
-                }
+                _canvas.Width = rect.Width;
+                _canvas.Height = rect.Height;
             }
         }
 
@@ -156,14 +142,14 @@ namespace NodeEditor.Controls
             return new Rect(left, top, width, height);
         }
 
-        private void UpdateControl(Control control, Rect rect)
-        {
-            Canvas.SetLeft(control, rect.Left);
-            Canvas.SetTop(control, rect.Top);
-
-            control.Width = rect.Width;
-            control.Height = rect.Height;
-        }
+        // private void UpdateControl(Control control, Rect rect)
+        // {
+        //     Canvas.SetLeft(control, rect.Left);
+        //     Canvas.SetTop(control, rect.Top);
+        // 
+        //     control.Width = rect.Width;
+        //     control.Height = rect.Height;
+        // }
 
         private void UpdateThumbs(Rect rect)
         {
@@ -234,10 +220,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaTop(object? sender, VectorEventArgs e)
@@ -253,10 +236,7 @@ namespace NodeEditor.Controls
   
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaBottom(object? sender, VectorEventArgs e)
@@ -272,10 +252,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaLeft(object? sender, VectorEventArgs e)
@@ -291,10 +268,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaRight(object? sender, VectorEventArgs e)
@@ -309,11 +283,8 @@ namespace NodeEditor.Controls
             Canvas.SetLeft(_bottom, rect.Center.X);
 
             UpdateDrag(rect);
-
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
  
         private void OnDragDeltaTopLeft(object? sender, VectorEventArgs e)
@@ -336,10 +307,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaTopRight(object? sender, VectorEventArgs e)
@@ -362,10 +330,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaBottomLeft(object? sender, VectorEventArgs e)
@@ -388,10 +353,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         private void OnDragDeltaBottomRight(object? sender, VectorEventArgs e)
@@ -414,10 +376,7 @@ namespace NodeEditor.Controls
 
             UpdateDrag(rect);
 
-            if (Control is { })
-            {
-                UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-            }
+            // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
         }
 
         protected override Size MeasureOverride(Size availableSize)
