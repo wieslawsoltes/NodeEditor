@@ -11,5 +11,7 @@ namespace NodeEditor.Model
         double Height { get; set; }
         object? Content { get; set; }
         IList<IPin>? Pins { get; set; }
+        void Move(double deltaX, double deltaY);
+        void Resize(double deltaX, double deltaY, NodeResizeDirection direction);
     }
 }

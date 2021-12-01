@@ -66,6 +66,17 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _pins, value);
         }
 
+        public void Move(double deltaX, double deltaY)
+        {
+            X += deltaX;
+            Y += deltaY;
+        }
+
+        public void Resize(double deltaX, double deltaY, NodeResizeDirection direction)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IPin AddPin(double x, double y, double width, double height, PinAlignment alignment = PinAlignment.None)
         {
             var pin = new PinViewModel

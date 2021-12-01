@@ -279,8 +279,7 @@ namespace NodeEditor.Behaviors
 
             foreach (var node in drawingNode.SelectedNodes)
             {
-                node.X += deltaX;
-                node.Y += deltaY;
+                node.Move(deltaX, deltaY);
             }
 
             UpdateSelected(selectedRect);
