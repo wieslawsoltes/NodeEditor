@@ -7,6 +7,12 @@
     <RootNamespace>NodeEditorDemo</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>NodeEditorBase</PackageId>
+    <Description>A node editor control for Avalonia.</Description>
+    <PackageTags>node;editor;nodeeditor;graph;control;xaml;axaml;avalonia;avaloniaui</PackageTags>
+  </PropertyGroup>
+
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
