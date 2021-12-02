@@ -338,7 +338,9 @@ namespace NodeEditor.Behaviors
             {
                 [AdornerLayer.AdornedElementProperty] = control,
                 IsHitTestVisible = true,
-                Rect = rect
+                Rect = rect,
+                EnableResizing = true,
+                EnableDragging = false
             };
 
             ((ISetLogicalParent) _selectedAdorner).SetParent(control);

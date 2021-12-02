@@ -263,6 +263,10 @@
     </Setter>
   </Style>
 
+  <Style Selector="controls|SelectedAdorner[EnableDragging=False] /template/ Thumb#PART_Drag">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
+
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_Drag /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="Transparent" />
   </Style>
@@ -283,6 +287,10 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_Top">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
 
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_Top /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
@@ -310,6 +318,10 @@
     </Setter>
   </Style>
 
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_Bottom">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
+
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_Bottom /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
     <Setter Property="Stroke" Value="#179DE3" />
@@ -335,6 +347,10 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_Left">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
 
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_Left /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
@@ -362,6 +378,10 @@
     </Setter>
   </Style>
 
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_Right">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
+
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_Right /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
     <Setter Property="Stroke" Value="#179DE3" />
@@ -387,6 +407,10 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_TopLeft">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
 
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_TopLeft /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
@@ -414,6 +438,10 @@
     </Setter>
   </Style>
 
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_TopRight">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
+
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_TopRight /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
     <Setter Property="Stroke" Value="#179DE3" />
@@ -440,6 +468,10 @@
     </Setter>
   </Style>
 
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_BottomLeft">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
+
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_BottomLeft /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />
     <Setter Property="Stroke" Value="#179DE3" />
@@ -465,6 +497,10 @@
       </Setter.Value>
     </Setter>
   </Style>
+
+  <Style Selector="controls|SelectedAdorner[EnableResizing=False] /template/ Thumb#PART_BottomRight">
+    <Setter Property="IsVisible" Value="False" />
+  </Style>   
 
   <Style Selector="controls|SelectedAdorner /template/ Thumb#PART_BottomRight /template/ Rectangle#PART_Rectangle">
     <Setter Property="Fill" Value="White" />

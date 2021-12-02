@@ -11,6 +11,12 @@ namespace NodeEditor.Controls
         public static readonly StyledProperty<Rect> RectProperty =
             AvaloniaProperty.Register<SelectedAdorner, Rect>(nameof(Rect));
 
+        public static readonly StyledProperty<bool> EnableResizingProperty =
+            AvaloniaProperty.Register<SelectedAdorner, bool>(nameof(EnableResizing));
+
+        public static readonly StyledProperty<bool> EnableDraggingProperty =
+            AvaloniaProperty.Register<SelectedAdorner, bool>(nameof(EnableDragging));
+
         private Canvas? _canvas;
         private Thumb? _drag;
         private Thumb? _top;
@@ -28,6 +34,18 @@ namespace NodeEditor.Controls
         {
             get => GetValue(RectProperty);
             set => SetValue(RectProperty, value);
+        }
+
+        public bool EnableResizing
+        {
+            get => GetValue(EnableResizingProperty);
+            set => SetValue(EnableResizingProperty, value);
+        }
+
+        public bool EnableDragging
+        {
+            get => GetValue(EnableDraggingProperty);
+            set => SetValue(EnableDraggingProperty, value);
         }
 
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
