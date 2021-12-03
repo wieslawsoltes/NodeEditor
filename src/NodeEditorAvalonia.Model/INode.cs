@@ -4,6 +4,7 @@ namespace NodeEditor.Model
 {
     public interface INode
     {
+        string? Name { get; set; }
         INode? Parent { get; set; }
         double X { get; set; }
         double Y { get; set; }

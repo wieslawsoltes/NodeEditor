@@ -7,12 +7,20 @@ namespace NodeEditor.ViewModels
     [DataContract(IsReference = true)]
     public class PinViewModel : ReactiveObject, IPin
     {
+        private string? _name;
         private INode? _parent;
         private double _x;
         private double _y;
         private double _width;
         private double _height;
         private PinAlignment _alignment;
+
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        public string? Name
+        {
+            get => _name;
+            set => this.RaiseAndSetIfChanged(ref _name, value);
+        }
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]
         public INode? Parent

@@ -20,10 +20,10 @@ namespace NodeEditorDemo.ViewModels
                 Content = new RectangleViewModel { Label = label }
             };
 
-            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
-            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
-            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
-            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
 
             return node;
         }
@@ -40,10 +40,10 @@ namespace NodeEditorDemo.ViewModels
                 Content = new EllipseViewModel { Label = label }
             };
 
-            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
-            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
-            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
-            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
             
             return node;
         }
@@ -60,8 +60,8 @@ namespace NodeEditorDemo.ViewModels
                 Content = new SignalViewModel { Label = label, State = state }
             };
 
-            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
-            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "IN");
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "OUT");
   
             return node;
         }
@@ -78,10 +78,10 @@ namespace NodeEditorDemo.ViewModels
                 Content = new AndGateViewModel { Label = "&" }
             };
 
-            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
-            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
-            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
-            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
 
             return node;
         }
@@ -98,10 +98,10 @@ namespace NodeEditorDemo.ViewModels
                 Content = new OrGateViewModel { Label = "≥", Count = count}
             };
 
-            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left);
-            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right);
-            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top);
-            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom);
+            node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
+            node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
+            node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
+            node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
 
             return node;
         }

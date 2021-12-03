@@ -2,6 +2,7 @@ namespace NodeEditor.Model
 {
     public interface IPin
     {
+        string? Name { get; set; }
         INode? Parent { get; set; }
         double X { get; set; }
         double Y { get; set; }

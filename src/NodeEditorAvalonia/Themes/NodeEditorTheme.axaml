@@ -121,10 +121,18 @@
                    Height="{Binding Height}" />
       </ControlTemplate>
     </Setter>
+    <Setter Property="(ToolTip.Tip)">
+      <Template>
+        <TextBlock Text="{Binding Name}" 
+                   x:DataType="m:IPin" />
+      </Template>
+    </Setter>
     <Setter Property="ContextFlyout">
       <Setter.Value>
         <Flyout x:DataType="m:IPin">
           <DockPanel>
+            <Label Content="Name:" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding Name}" DockPanel.Dock="Top" />
             <Label Content="Alignment:" DockPanel.Dock="Top" />
             <RadioButton Content="None"
                          GroupName="Alignment"
