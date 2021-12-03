@@ -16,209 +16,208 @@ using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
 using ReactiveUI;
 
-namespace NodeEditorDemo.ViewModels
+namespace NodeEditorDemo.ViewModels;
+
+public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 {
-    public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
+    private readonly INodeSerializer _serializer;
+    private readonly NodeFactory _factory;
+    private IList<INodeTemplate>? _templates;
+    private IDrawingNode? _drawing;
+    private bool _isEditMode;
+
+    public MainWindowViewModel()
     {
-        private readonly INodeSerializer _serializer;
-        private readonly NodeFactory _factory;
-        private IList<INodeTemplate>? _templates;
-        private IDrawingNode? _drawing;
-        private bool _isEditMode;
+        _serializer = new NodeSerializer(typeof(ObservableCollection<>));
+        _factory = new();
 
-        public MainWindowViewModel()
+        _templates = _factory.CreateTemplates();
+
+        Drawing = _factory.CreateDemoDrawing();
+        Drawing.Serializer = _serializer;
+
+        _isEditMode = true;
+
+        ToggleEditModeCommand = ReactiveCommand.Create(() =>
         {
-            _serializer = new NodeSerializer(typeof(ObservableCollection<>));
-            _factory = new();
+            IsEditMode = !IsEditMode;
+        });
 
-            _templates = _factory.CreateTemplates();
+        NewCommand = ReactiveCommand.Create(New);
 
-            Drawing = _factory.CreateDemoDrawing();
-            Drawing.Serializer = _serializer;
+        OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
 
-            _isEditMode = true;
+        SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
 
-            ToggleEditModeCommand = ReactiveCommand.Create(() =>
+        ExportCommand = ReactiveCommand.CreateFromTask(async () => await Export());
+
+        ExitCommand = ReactiveCommand.Create(() =>
+        {
+            if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
             {
-                IsEditMode = !IsEditMode;
-            });
-
-            NewCommand = ReactiveCommand.Create(New);
-
-            OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
-
-            SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
-
-            ExportCommand = ReactiveCommand.CreateFromTask(async () => await Export());
-
-            ExitCommand = ReactiveCommand.Create(() =>
-            {
-                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-                {
-                    desktopLifetime.Shutdown();
-                }
-            });
-        }
-
-        public IList<INodeTemplate>? Templates
-        {
-            get => _templates;
-            set => this.RaiseAndSetIfChanged(ref _templates, value);
-        }
-
-        public IDrawingNode? Drawing
-        {
-            get => _drawing;
-            set => this.RaiseAndSetIfChanged(ref _drawing, value);
-        }
-
-        public bool IsEditMode
-        {
-            get => _isEditMode;
-            set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
-        }
-
-        public ICommand ToggleEditModeCommand { get; }
-
-        public ICommand NewCommand { get; }
-
-        public ICommand OpenCommand { get; }
-
-        public ICommand SaveCommand { get; }
-
-        public ICommand ExportCommand { get; }
-
-        public ICommand ExitCommand { get; }
-
-        private void New()
-        {
-            Drawing = _factory.CreateDrawing();
-            Drawing.Serializer = _serializer;
-        }
-
-        private async Task Open()
-        {
-            var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-            if (window is null)
-            {
-                return;
+                desktopLifetime.Shutdown();
             }
-            var dlg = new OpenFileDialog { AllowMultiple = false };
-            dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-            dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-            var result = await dlg.ShowAsync(window);
-            if (result is { Length: 1 })
+        });
+    }
+
+    public IList<INodeTemplate>? Templates
+    {
+        get => _templates;
+        set => this.RaiseAndSetIfChanged(ref _templates, value);
+    }
+
+    public IDrawingNode? Drawing
+    {
+        get => _drawing;
+        set => this.RaiseAndSetIfChanged(ref _drawing, value);
+    }
+
+    public bool IsEditMode
+    {
+        get => _isEditMode;
+        set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
+    }
+
+    public ICommand ToggleEditModeCommand { get; }
+
+    public ICommand NewCommand { get; }
+
+    public ICommand OpenCommand { get; }
+
+    public ICommand SaveCommand { get; }
+
+    public ICommand ExportCommand { get; }
+
+    public ICommand ExitCommand { get; }
+
+    private void New()
+    {
+        Drawing = _factory.CreateDrawing();
+        Drawing.Serializer = _serializer;
+    }
+
+    private async Task Open()
+    {
+        var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+        if (window is null)
+        {
+            return;
+        }
+        var dlg = new OpenFileDialog { AllowMultiple = false };
+        dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
+        dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
+        var result = await dlg.ShowAsync(window);
+        if (result is { Length: 1 })
+        {
+            try
             {
-                try
+                var json = await Task.Run(() => File.ReadAllText(result.First()));
+                var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
+                if (drawing is { })
                 {
-                    var json = await Task.Run(() => File.ReadAllText(result.First()));
-                    var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
-                    if (drawing is { })
-                    {
-                        Drawing = drawing;
-                        Drawing.Serializer = _serializer;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    Debug.WriteLine(ex.StackTrace);
+                    Drawing = drawing;
+                    Drawing.Serializer = _serializer;
                 }
             }
-        }
-
-        private async Task Save()
-        {
-            var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-            if (window is null)
+            catch (Exception ex)
             {
-                return;
-            }
-            var dlg = new SaveFileDialog();
-            dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-            dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-            dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
-            var result = await dlg.ShowAsync(window);
-            if (result is { })
-            {
-                try
-                {
-                    await Task.Run(() =>
-                    {
-                        var json = _serializer.Serialize(_drawing);
-                        File.WriteAllText(result, json);
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                    Debug.WriteLine(ex.StackTrace);
-                }
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
             }
         }
+    }
 
-        public async Task Export()
+    private async Task Save()
+    {
+        var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+        if (window is null)
         {
-            if (Drawing is null)
+            return;
+        }
+        var dlg = new SaveFileDialog();
+        dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
+        dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
+        dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
+        var result = await dlg.ShowAsync(window);
+        if (result is { })
+        {
+            try
             {
-                return;
+                await Task.Run(() =>
+                {
+                    var json = _serializer.Serialize(_drawing);
+                    File.WriteAllText(result, json);
+                });
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
+            }
+        }
+    }
+
+    public async Task Export()
+    {
+        if (Drawing is null)
+        {
+            return;
+        }
             
-            var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-            if (window is null)
+        var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+        if (window is null)
+        {
+            return;
+        }
+
+        var dlg = new SaveFileDialog() { Title = "Save" };
+        dlg.Filters.Add(new FileDialogFilter() { Name = "Png", Extensions = { "png" } });
+        dlg.Filters.Add(new FileDialogFilter() { Name = "Svg", Extensions = { "svg" } });
+        dlg.Filters.Add(new FileDialogFilter() { Name = "Pdf", Extensions = { "pdf" } });
+        dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
+        dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
+        dlg.DefaultExtension = "png";
+
+        var result = await dlg.ShowAsync(window);
+        if (result is { } path)
+        {
+            var control = new DrawingNode
             {
-                return;
+                DataContext = Drawing
+            };
+                
+            var preview = new Window()
+            {
+                Width = Drawing.Width,
+                Height = Drawing.Height,
+                Content = control,
+                ShowInTaskbar = false,
+                WindowState = WindowState.Minimized
+            };
+
+            preview.Show();
+
+            var size = new Size(Drawing.Width, Drawing.Height);
+
+            if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+            {
+                using var stream = File.Create(path);
+                PngRenderer.Render(preview, size, stream);
             }
 
-            var dlg = new SaveFileDialog() { Title = "Save" };
-            dlg.Filters.Add(new FileDialogFilter() { Name = "Png", Extensions = { "png" } });
-            dlg.Filters.Add(new FileDialogFilter() { Name = "Svg", Extensions = { "svg" } });
-            dlg.Filters.Add(new FileDialogFilter() { Name = "Pdf", Extensions = { "pdf" } });
-            dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
-            dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
-            dlg.DefaultExtension = "png";
-
-            var result = await dlg.ShowAsync(window);
-            if (result is { } path)
+            if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
             {
-                var control = new DrawingNode
-                {
-                    DataContext = Drawing
-                };
-                
-                var preview = new Window()
-                {
-                    Width = Drawing.Width,
-                    Height = Drawing.Height,
-                    Content = control,
-                    ShowInTaskbar = false,
-                    WindowState = WindowState.Minimized
-                };
-
-                preview.Show();
-
-                var size = new Size(Drawing.Width, Drawing.Height);
-
-                if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
-                {
-                    using var stream = File.Create(path);
-                    PngRenderer.Render(preview, size, stream);
-                }
-
-                if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
-                {
-                    using var stream = File.Create(path);
-                    SvgRenderer.Render(preview, size, stream);
-                }
-
-                if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-                {
-                    using var stream = File.Create(path);
-                    PdfRenderer.Render(preview, size, stream, 96);
-                }
-                
-                preview.Close();
+                using var stream = File.Create(path);
+                SvgRenderer.Render(preview, size, stream);
             }
+
+            if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+            {
+                using var stream = File.Create(path);
+                PdfRenderer.Render(preview, size, stream, 96);
+            }
+                
+            preview.Close();
         }
     }
 }

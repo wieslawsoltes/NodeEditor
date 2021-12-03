@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 
-namespace NodeEditor.Model
+namespace NodeEditor.Model;
+
+public interface INodeTemplatesHost
 {
-    public interface INodeTemplatesHost
-    {
-        IList<INodeTemplate>? Templates { get; set; }
-    }
+    IList<INodeTemplate>? Templates { get; set; }
 }

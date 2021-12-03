@@ -1,10 +1,9 @@
 using System;
 
-namespace NodeEditor.Model
+namespace NodeEditor.Model;
+
+public interface INodeTemplate
 {
-    public interface INodeTemplate
-    {
-        string? Title { get; set; }
-        Func<double, double, INode>? Build { get; set; }
-    }
+    string? Title { get; set; }
+    Func<double, double, INode>? Build { get; set; }
 }

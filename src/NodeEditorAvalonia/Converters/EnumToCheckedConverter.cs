@@ -3,25 +3,24 @@ using System.Globalization;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
 
-namespace NodeEditor.Converters
+namespace NodeEditor.Converters;
+
+internal class EnumToCheckedConverter : IValueConverter
 {
-    internal class EnumToCheckedConverter : IValueConverter
+    public static EnumToCheckedConverter Instance = new();
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        public static EnumToCheckedConverter Instance = new();
+        return Equals(value, parameter);
+    }
 
-        public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is bool isChecked && isChecked)
         {
-            return Equals(value, parameter);
+            return parameter;
         }
 
-        public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
-        {
-            if (value is bool isChecked && isChecked)
-            {
-                return parameter;
-            }
-
-            return BindingOperations.DoNothing;
-        }
+        return BindingOperations.DoNothing;
     }
 }

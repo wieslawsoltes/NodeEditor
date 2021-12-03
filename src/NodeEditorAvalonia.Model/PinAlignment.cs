@@ -1,11 +1,10 @@
-﻿namespace NodeEditor.Model
+﻿namespace NodeEditor.Model;
+
+public enum PinAlignment
 {
-    public enum PinAlignment
-    {
-        None,
-        Left,
-        Right,
-        Top,
-        Bottom
-    }
+    None,
+    Left,
+    Right,
+    Top,
+    Bottom
 }

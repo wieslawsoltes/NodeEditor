@@ -4,93 +4,92 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using NodeEditor.Model;
 
-namespace NodeEditor.Behaviors
+namespace NodeEditor.Behaviors;
+
+public class DrawingDropHandler : DefaultDropHandler
 {
-    public class DrawingDropHandler : DefaultDropHandler
+    public static readonly StyledProperty<IControl?> RelativeToProperty =
+        AvaloniaProperty.Register<DrawingDropHandler, IControl?>(nameof(RelativeTo));
+
+    public IControl? RelativeTo
     {
-        public static readonly StyledProperty<IControl?> RelativeToProperty =
-            AvaloniaProperty.Register<DrawingDropHandler, IControl?>(nameof(RelativeTo));
+        get => GetValue(RelativeToProperty) as Control;
+        set => SetValue(RelativeToProperty, value);
+    }
 
-        public IControl? RelativeTo
+    private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
+    {
+        var point = GetPosition(RelativeTo ?? sender, e);
+
+        if (e.Data.Contains(DataFormats.Text))
         {
-            get => GetValue(RelativeToProperty) as Control;
-            set => SetValue(RelativeToProperty, value);
-        }
+            var text = e.Data.GetText();
 
-        private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
-        {
-            var point = GetPosition(RelativeTo ?? sender, e);
-
-            if (e.Data.Contains(DataFormats.Text))
+            if (bExecute)
             {
-                var text = e.Data.GetText();
-
-                if (bExecute)
+                if (text is { })
                 {
-                    if (text is { })
-                    {
-                        // TODO: text
-                    }
+                    // TODO: text
                 }
-
-                return true;
             }
 
-            foreach (var format in e.Data.GetDataFormats())
-            {
-                var data = e.Data.Get(format);
+            return true;
+        }
 
-                switch (data)
+        foreach (var format in e.Data.GetDataFormats())
+        {
+            var data = e.Data.Get(format);
+
+            switch (data)
+            {
+                case INodeTemplate template:
                 {
-                    case INodeTemplate template:
+                    if (bExecute)
                     {
-                        if (bExecute)
+                        var node = template.Build?.Invoke(point.X, point.Y);
+                        if (node is { })
                         {
-                            var node = template.Build?.Invoke(point.X, point.Y);
-                            if (node is { })
-                            {
-                                node.Parent = drawing;
-                                drawing.Nodes?.Add(node);
-                            }
+                            node.Parent = drawing;
+                            drawing.Nodes?.Add(node);
                         }
-                        return true;
                     }
+                    return true;
                 }
             }
-
-            if (e.Data.Contains(DataFormats.FileNames))
-            {
-                // ReSharper disable once UnusedVariable
-                var files = e.Data.GetFileNames()?.ToArray();
-                if (bExecute)
-                {
-                    // TODO: files, point.X, point.Y
-                }
-
-                return true;
-            }
-
-            return false;
         }
 
-        public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
+        if (e.Data.Contains(DataFormats.FileNames))
         {
-            if (targetContext is IDrawingNode drawing)
+            // ReSharper disable once UnusedVariable
+            var files = e.Data.GetFileNames()?.ToArray();
+            if (bExecute)
             {
-                return Validate(drawing, sender, e, false);
+                // TODO: files, point.X, point.Y
             }
 
-            return false;
+            return true;
         }
 
-        public override bool Execute(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
+        return false;
+    }
+
+    public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
+    {
+        if (targetContext is IDrawingNode drawing)
         {
-            if (targetContext is IDrawingNode drawing)
-            {
-                return Validate(drawing, sender, e, true);
-            }
-
-            return false;
+            return Validate(drawing, sender, e, false);
         }
+
+        return false;
+    }
+
+    public override bool Execute(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
+    {
+        if (targetContext is IDrawingNode drawing)
+        {
+            return Validate(drawing, sender, e, true);
+        }
+
+        return false;
     }
 }

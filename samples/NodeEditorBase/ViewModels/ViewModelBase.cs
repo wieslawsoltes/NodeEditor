@@ -1,8 +1,7 @@
 ﻿using ReactiveUI;
 
-namespace NodeEditorDemo.ViewModels
+namespace NodeEditorDemo.ViewModels;
+
+public class ViewModelBase : ReactiveObject
 {
-    public class ViewModelBase : ReactiveObject
-    {
-    }
 }

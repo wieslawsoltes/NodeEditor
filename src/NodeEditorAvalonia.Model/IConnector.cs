@@ -1,12 +1,11 @@
-namespace NodeEditor.Model
+namespace NodeEditor.Model;
+
+public interface IConnector
 {
-    public interface IConnector
-    {
-        string? Name { get; set; }
-        IDrawingNode? Parent { get; set; }
-        ConnectorOrientation Orientation { get; set; }
-        IPin? Start { get; set; }
-        IPin? End { get; set; }
-        double Offset { get; set; }
-    }
+    string? Name { get; set; }
+    IDrawingNode? Parent { get; set; }
+    ConnectorOrientation Orientation { get; set; }
+    IPin? Start { get; set; }
+    IPin? End { get; set; }
+    double Offset { get; set; }
 }

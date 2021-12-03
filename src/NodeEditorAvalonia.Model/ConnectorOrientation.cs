@@ -1,9 +1,8 @@
-namespace NodeEditor.Model
+namespace NodeEditor.Model;
+
+public enum ConnectorOrientation
 {
-    public enum ConnectorOrientation
-    {
-        Auto,
-        Horizontal,
-        Vertical
-    }
+    Auto,
+    Horizontal,
+    Vertical
 }

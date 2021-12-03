@@ -1,8 +1,7 @@
-namespace NodeEditor.Model
+namespace NodeEditor.Model;
+
+public interface INodeSerializer
 {
-    public interface INodeSerializer
-    {
-        string Serialize<T>(T value);
-        T? Deserialize<T>(string text);
-    }
+    string Serialize<T>(T value);
+    T? Deserialize<T>(string text);
 }

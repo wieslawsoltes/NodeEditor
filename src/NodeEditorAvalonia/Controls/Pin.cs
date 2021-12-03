@@ -1,8 +1,7 @@
 ﻿using Avalonia.Controls.Primitives;
 
-namespace NodeEditor.Controls
+namespace NodeEditor.Controls;
+
+public class Pin : TemplatedControl
 {
-    public class Pin : TemplatedControl
-    {
-    }
 }

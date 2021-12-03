@@ -4,26 +4,25 @@ using Avalonia.Rendering;
 using Avalonia.Skia.Helpers;
 using SkiaSharp;
 
-namespace NodeEditor.Export
+namespace NodeEditor.Export;
+
+public class CanvasRenderTarget : IRenderTarget
 {
-    public class CanvasRenderTarget : IRenderTarget
+    private readonly SKCanvas _canvas;
+    private readonly double _dpi;
+
+    public CanvasRenderTarget(SKCanvas canvas, double dpi)
     {
-        private readonly SKCanvas _canvas;
-        private readonly double _dpi;
+        _canvas = canvas;
+        _dpi = dpi;
+    }
 
-        public CanvasRenderTarget(SKCanvas canvas, double dpi)
-        {
-            _canvas = canvas;
-            _dpi = dpi;
-        }
+    public IDrawingContextImpl CreateDrawingContext(IVisualBrushRenderer visualBrushRenderer)
+    {
+        return DrawingContextHelper.WrapSkiaCanvas(_canvas, new Vector(_dpi, _dpi), visualBrushRenderer);
+    }
 
-        public IDrawingContextImpl CreateDrawingContext(IVisualBrushRenderer visualBrushRenderer)
-        {
-            return DrawingContextHelper.WrapSkiaCanvas(_canvas, new Vector(_dpi, _dpi), visualBrushRenderer);
-        }
-
-        public void Dispose()
-        {
-        }
+    public void Dispose()
+    {
     }
 }

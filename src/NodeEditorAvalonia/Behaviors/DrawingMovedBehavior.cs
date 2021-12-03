@@ -4,40 +4,39 @@ using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Model;
 
-namespace NodeEditor.Behaviors
+namespace NodeEditor.Behaviors;
+
+public class DrawingMovedBehavior : Behavior<ItemsControl>
 {
-    public class DrawingMovedBehavior : Behavior<ItemsControl>
+    protected override void OnAttached()
     {
-        protected override void OnAttached()
-        {
-            base.OnAttached();
+        base.OnAttached();
 
-            if (AssociatedObject is { })
-            {
-                AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
-            }
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
+        }
+    }
+
+    protected override void OnDetaching()
+    {
+        base.OnDetaching();
+
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
+        }
+    }
+
+    private void Moved(object? sender, PointerEventArgs e)
+    {
+        if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
+        {
+            return;
         }
 
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
+        var (x, y) = e.GetPosition(AssociatedObject);
 
-            if (AssociatedObject is { })
-            {
-                AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
-            }
-        }
-
-        private void Moved(object? sender, PointerEventArgs e)
-        {
-            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
-            {
-                return;
-            }
-
-            var (x, y) = e.GetPosition(AssociatedObject);
-
-            drawingNode.ConnectorMove(x, y);
-        }
+        drawingNode.ConnectorMove(x, y);
     }
 }

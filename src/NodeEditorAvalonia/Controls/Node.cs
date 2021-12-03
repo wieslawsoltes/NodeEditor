@@ -1,10 +1,9 @@
 ﻿using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 
-namespace NodeEditor.Controls
+namespace NodeEditor.Controls;
+
+[PseudoClasses(":selected")]
+public class Node : TemplatedControl
 {
-    [PseudoClasses(":selected")]
-    public class Node : TemplatedControl
-    {
-    }
 }

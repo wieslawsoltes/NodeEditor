@@ -4,34 +4,33 @@ using Avalonia.Markup.Xaml;
 using NodeEditorDemo.ViewModels;
 using NodeEditorDemo.Views;
 
-namespace NodeEditorDemo
+namespace NodeEditorDemo;
+
+public class App : Application
 {
-    public class App : Application
+    public override void Initialize()
     {
-        public override void Initialize()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
+        AvaloniaXamlLoader.Load(this);
+    }
 
-        public override void OnFrameworkInitializationCompleted()
+    public override void OnFrameworkInitializationCompleted()
+    {
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+            desktop.MainWindow = new MainWindow
             {
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel()
-                };
-            }
+                DataContext = new MainWindowViewModel()
+            };
+        }
             
-            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
+        {
+            singleViewLifetime.MainView = new MainView
             {
-                singleViewLifetime.MainView = new MainView
-                {
-                    DataContext = new MainWindowViewModel()
-                };
-            }
-
-            base.OnFrameworkInitializationCompleted();
+                DataContext = new MainWindowViewModel()
+            };
         }
+
+        base.OnFrameworkInitializationCompleted();
     }
 }

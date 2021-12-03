@@ -7,74 +7,73 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NodeEditor.Model;
 
-namespace NodeEditor.Serializer
+namespace NodeEditor.Serializer;
+
+public class NodeSerializer : INodeSerializer
 {
-    public class NodeSerializer : INodeSerializer
+    private readonly JsonSerializerSettings _settings;
+
+    private class ListContractResolver : DefaultContractResolver
     {
-        private readonly JsonSerializerSettings _settings;
+        private readonly Type _listType;
 
-        private class ListContractResolver : DefaultContractResolver
+        public ListContractResolver(Type listType)
         {
-            private readonly Type _listType;
+            _listType = listType;
+        }
 
-            public ListContractResolver(Type listType)
+        public override JsonContract ResolveContract(Type type)
+        {
+            if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(IList<>))
             {
-                _listType = listType;
+                return base.ResolveContract(_listType.MakeGenericType(type.GenericTypeArguments[0]));
             }
-
-            public override JsonContract ResolveContract(Type type)
-            {
-                if (type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(IList<>))
-                {
-                    return base.ResolveContract(_listType.MakeGenericType(type.GenericTypeArguments[0]));
-                }
-                return base.ResolveContract(type);
-            }
-
-            protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
-            {
-                return base.CreateProperties(type, memberSerialization).Where(p => p.Writable).ToList();
-            }
+            return base.ResolveContract(type);
         }
 
-        public NodeSerializer(Type listType)
+        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
-            _settings = new JsonSerializerSettings
-            {
-                Formatting = Formatting.Indented,
-                TypeNameHandling = TypeNameHandling.Objects,
-                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
-                ContractResolver = new ListContractResolver(listType),
-                NullValueHandling = NullValueHandling.Ignore,
-            };
+            return base.CreateProperties(type, memberSerialization).Where(p => p.Writable).ToList();
         }
+    }
 
-        public string Serialize<T>(T value)
+    public NodeSerializer(Type listType)
+    {
+        _settings = new JsonSerializerSettings
         {
-            return JsonConvert.SerializeObject(value, _settings);
-        }
+            Formatting = Formatting.Indented,
+            TypeNameHandling = TypeNameHandling.Objects,
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+            ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+            ContractResolver = new ListContractResolver(listType),
+            NullValueHandling = NullValueHandling.Ignore,
+        };
+    }
 
-        public T? Deserialize<T>(string text)
-        {
-            return JsonConvert.DeserializeObject<T>(text, _settings);
-        }
+    public string Serialize<T>(T value)
+    {
+        return JsonConvert.SerializeObject(value, _settings);
+    }
 
-        public T? Load<T>(string path)
-        {
-            using var stream = System.IO.File.OpenRead(path);
-            using var streamReader = new System.IO.StreamReader(stream, Encoding.UTF8);
-            var text = streamReader.ReadToEnd();
-            return Deserialize<T>(text);
-        }
+    public T? Deserialize<T>(string text)
+    {
+        return JsonConvert.DeserializeObject<T>(text, _settings);
+    }
 
-        public void Save<T>(string path, T value)
-        {
-            var text = Serialize(value);
-            if (string.IsNullOrWhiteSpace(text)) return;
-            using var stream = System.IO.File.Create(path);
-            using var streamWriter = new System.IO.StreamWriter(stream, Encoding.UTF8);
-            streamWriter.Write(text);
-        }
+    public T? Load<T>(string path)
+    {
+        using var stream = System.IO.File.OpenRead(path);
+        using var streamReader = new System.IO.StreamReader(stream, Encoding.UTF8);
+        var text = streamReader.ReadToEnd();
+        return Deserialize<T>(text);
+    }
+
+    public void Save<T>(string path, T value)
+    {
+        var text = Serialize(value);
+        if (string.IsNullOrWhiteSpace(text)) return;
+        using var stream = System.IO.File.Create(path);
+        using var streamWriter = new System.IO.StreamWriter(stream, Encoding.UTF8);
+        streamWriter.Write(text);
     }
 }

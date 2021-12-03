@@ -4,47 +4,46 @@ using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Model;
 
-namespace NodeEditor.Behaviors
+namespace NodeEditor.Behaviors;
+
+public class DrawingPressedBehavior : Behavior<ItemsControl>
 {
-    public class DrawingPressedBehavior : Behavior<ItemsControl>
+    protected override void OnAttached()
     {
-        protected override void OnAttached()
-        {
-            base.OnAttached();
+        base.OnAttached();
 
-            if (AssociatedObject is { })
-            {
-                AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
-            }
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
+        }
+    }
+
+    protected override void OnDetaching()
+    {
+        base.OnDetaching();
+
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
+        }
+    }
+
+    private void Pressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
+        {
+            return;
         }
 
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
+        var (x, y) = e.GetPosition(AssociatedObject);
 
-            if (AssociatedObject is { })
-            {
-                AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
-            }
+        if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
+        {
+            drawingNode.DrawingLeftPressed(x, y);
         }
-
-        private void Pressed(object? sender, PointerPressedEventArgs e)
+        else if (e.GetCurrentPoint(AssociatedObject).Properties.IsRightButtonPressed)
         {
-            if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
-            {
-                return;
-            }
-
-            var (x, y) = e.GetPosition(AssociatedObject);
-
-            if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
-            {
-                drawingNode.DrawingLeftPressed(x, y);
-            }
-            else if (e.GetCurrentPoint(AssociatedObject).Properties.IsRightButtonPressed)
-            {
-                drawingNode.DrawingRightPressed(x, y);
-            }
+            drawingNode.DrawingRightPressed(x, y);
         }
     }
 }

@@ -5,54 +5,53 @@ using Avalonia.Xaml.Interactivity;
 using NodeEditor.Controls;
 using NodeEditor.Model;
 
-namespace NodeEditor.Behaviors
+namespace NodeEditor.Behaviors;
+
+public class PinPressedBehavior : Behavior<ContentPresenter>
 {
-    public class PinPressedBehavior : Behavior<ContentPresenter>
+    protected override void OnAttached()
     {
-        protected override void OnAttached()
-        {
-            base.OnAttached();
+        base.OnAttached();
 
-            if (AssociatedObject is { })
-            {
-                AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
-            }
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
+        }
+    }
+
+    protected override void OnDetaching()
+    {
+        base.OnDetaching();
+
+        if (AssociatedObject is { })
+        {
+            AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
+        }
+    }
+
+    private void Pressed(object? sender, PointerPressedEventArgs e)
+    {
+        if (AssociatedObject?.DataContext is not IPin pin)
+        {
+            return;
         }
 
-        protected override void OnDetaching()
+        if (!AssociatedObject.GetValue(DrawingNode.IsEditModeProperty))
         {
-            base.OnDetaching();
-
-            if (AssociatedObject is { })
-            {
-                AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
-            }
+            return;
         }
 
-        private void Pressed(object? sender, PointerPressedEventArgs e)
+        if (pin.Parent is not { } nodeViewModel)
         {
-            if (AssociatedObject?.DataContext is not IPin pin)
-            {
-                return;
-            }
+            return;
+        }
 
-            if (!AssociatedObject.GetValue(DrawingNode.IsEditModeProperty))
+        if (nodeViewModel.Parent is IDrawingNode drawingNode)
+        {
+            if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
-                return;
-            }
-
-            if (pin.Parent is not { } nodeViewModel)
-            {
-                return;
-            }
-
-            if (nodeViewModel.Parent is IDrawingNode drawingNode)
-            {
-                if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
-                {
-                    drawingNode.ConnectorLeftPressed(pin);
-                    e.Handled = true;
-                }
+                drawingNode.ConnectorLeftPressed(pin);
+                e.Handled = true;
             }
         }
     }
