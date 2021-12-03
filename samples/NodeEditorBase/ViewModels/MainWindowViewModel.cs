@@ -217,4 +217,20 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             preview.Close();
         }
     }
+
+    public void PrintNetList(IDrawingNode? drawing)
+    {
+        if (drawing?.Connectors is null || drawing?.Nodes is null)
+        {
+            return;
+        }
+
+        foreach (var connector in drawing.Connectors)
+        {
+            if (connector.Start is { } start && connector.End is { } end)
+            {
+                Debug.WriteLine($"{start.Parent?.Name}:{start.Name} -> {end.Parent?.Name}:{end.Name}");
+            }
+        }
+    }
 }
