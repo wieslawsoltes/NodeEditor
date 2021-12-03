@@ -8,6 +8,7 @@ namespace NodeEditor.ViewModels
     [DataContract(IsReference = true)]
     public class ConnectorViewModel : ReactiveObject, IConnector
     {
+        private string? _name;
         private IDrawingNode? _parent;
         private ConnectorOrientation _orientation;
         private IPin? _start;
@@ -61,6 +62,13 @@ namespace NodeEditor.ViewModels
                         end.WhenAnyValue(x => x.Alignment).Subscribe(_ => this.RaisePropertyChanged(nameof(End)));
                     }
                 });
+        }
+
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        public string? Name
+        {
+            get => _name;
+            set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
         [DataMember(IsRequired = true, EmitDefaultValue = true)]

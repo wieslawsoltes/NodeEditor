@@ -275,8 +275,7 @@ namespace NodeEditor.ViewModels
 
                 foreach (var node in clipboard.SelectedNodes)
                 {
-                    node.X += deltaX;
-                    node.Y += deltaY;
+                    node.Move(deltaX, deltaY);
                     node.Parent = this;
 
                     Nodes?.Add(node);

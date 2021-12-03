@@ -279,8 +279,7 @@ namespace NodeEditor.Behaviors
 
             foreach (var node in drawingNode.SelectedNodes)
             {
-                node.X += deltaX;
-                node.Y += deltaY;
+                node.Move(deltaX, deltaY);
             }
 
             UpdateSelected(selectedRect);
@@ -338,8 +337,10 @@ namespace NodeEditor.Behaviors
             _selectedAdorner = new SelectedAdorner
             {
                 [AdornerLayer.AdornedElementProperty] = control,
-                IsHitTestVisible = false,
-                Rect = rect
+                IsHitTestVisible = true,
+                Rect = rect,
+                EnableResizing = false,
+                EnableDragging = false
             };
 
             ((ISetLogicalParent) _selectedAdorner).SetParent(control);

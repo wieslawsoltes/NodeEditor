@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using NodeEditor.Model;
 using ReactiveUI;
@@ -9,6 +8,7 @@ namespace NodeEditor.ViewModels
     [DataContract(IsReference = true)]
     public class NodeViewModel : ReactiveObject, INode
     {
+        private string? _name;
         private INode? _parent;
         private double _x;
         private double _y;
@@ -16,6 +16,13 @@ namespace NodeEditor.ViewModels
         private double _height;
         private object? _content;
         private IList<IPin>? _pins;
+
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        public string? Name
+        {
+            get => _name;
+            set => this.RaiseAndSetIfChanged(ref _name, value);
+        }
 
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         public INode? Parent
@@ -66,22 +73,15 @@ namespace NodeEditor.ViewModels
             set => this.RaiseAndSetIfChanged(ref _pins, value);
         }
 
-        public IPin AddPin(double x, double y, double width, double height, PinAlignment alignment = PinAlignment.None)
+        public void Move(double deltaX, double deltaY)
         {
-            var pin = new PinViewModel
-            {
-                Parent = this,
-                X = x,
-                Y = y, 
-                Width = width, 
-                Height = height,
-                Alignment = alignment
-            };
+            X += deltaX;
+            Y += deltaY;
+        }
 
-            Pins ??= new ObservableCollection<IPin>();
-            Pins.Add(pin);
-
-            return pin;
+        public void Resize(double deltaX, double deltaY, NodeResizeDirection direction)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
