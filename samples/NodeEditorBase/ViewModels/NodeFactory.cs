@@ -216,27 +216,32 @@ public class NodeFactory
             new NodeTemplateViewModel
             {
                 Title = "Rectangle",
-                Build = (x, y) => CreateRectangle(x, y, 60, 60, "rect")
+                Build = (x, y) => CreateRectangle(x, y, 60, 60, "rect"),
+                Preview = CreateRectangle(0, 0, 60, 60, "rect")
             },
             new NodeTemplateViewModel
             {
                 Title = "Ellipse",
-                Build = (x, y) => CreateEllipse(x, y, 60, 60, "ellipse")
+                Build = (x, y) => CreateEllipse(x, y, 60, 60, "ellipse"),
+                Preview = CreateEllipse(0, 0, 60, 60, "ellipse")
             },
             new NodeTemplateViewModel
             {
                 Title = "Signal",
-                Build = (x, y) => CreateSignal(x, y, label: "signal", state: false)
+                Build = (x, y) => CreateSignal(x, y, label: "signal", state: false),
+                Preview = CreateSignal(0, 0, label: "signal", state: false)
             },
             new NodeTemplateViewModel
             {
                 Title = "AND Gate",
-                Build = (x, y) => CreateAndGate(x, y, 30, 30)
+                Build = (x, y) => CreateAndGate(x, y, 30, 30),
+                Preview = CreateAndGate(0, 0, 30, 30)
             },
             new NodeTemplateViewModel
             {
                 Title = "OR Gate",
-                Build = (x, y) => CreateOrGate(x, y, 30, 30)
+                Build = (x, y) => CreateOrGate(x, y, 30, 30),
+                Preview = CreateOrGate(0, 0, 30, 30)
             }
         };
     }
