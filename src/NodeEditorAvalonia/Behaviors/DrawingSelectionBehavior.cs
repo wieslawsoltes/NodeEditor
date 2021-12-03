@@ -339,7 +339,7 @@ namespace NodeEditor.Behaviors
                 [AdornerLayer.AdornedElementProperty] = control,
                 IsHitTestVisible = true,
                 Rect = rect,
-                EnableResizing = true,
+                EnableResizing = false,
                 EnableDragging = false
             };
 
