@@ -98,8 +98,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     private async Task Open()
     {
-        var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-        if (window is null)
+        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
         {
             return;
         }
@@ -129,8 +128,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     private async Task Save()
     {
-        var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-        if (window is null)
+        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
         {
             return;
         }
@@ -164,8 +162,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             return;
         }
             
-        var window = (Application.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
-        if (window is null)
+        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
         {
             return;
         }
