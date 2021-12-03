@@ -5,8 +5,7 @@ namespace NodeEditor.ViewModels
 {
     public static class NodeViewModelExtensions
     {
-        public static IPin AddPin(this NodeViewModel node, double x, double y, double width, double height,
-            PinAlignment alignment = PinAlignment.None, string? name = null)
+        public static IPin AddPin(this NodeViewModel node, double x, double y, double width, double height, PinAlignment alignment = PinAlignment.None, string? name = null)
         {
             var pin = new PinViewModel
             {
