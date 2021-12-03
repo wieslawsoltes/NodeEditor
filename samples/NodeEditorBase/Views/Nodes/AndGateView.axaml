@@ -21,4 +21,3 @@
             Content="{Binding Label}" />
   </Panel>
 </UserControl>
-
