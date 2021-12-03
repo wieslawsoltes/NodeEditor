@@ -15,7 +15,9 @@ public class ConnectorViewModel : ReactiveObject, IConnector
     private IPin? _end;
     private double _offset = 50;
 
-    public ConnectorViewModel()
+    public ConnectorViewModel() => ObservePins();
+
+    private void ObservePins()
     {
         this.WhenAnyValue(x => x.Start)
             .Subscribe(start =>
