@@ -11,8 +11,8 @@
     <StyleInclude Source="avares://NodeEditorBase/Styles/Nodes.axaml" />
   </Application.Styles>
   <Application.Resources>
-    <SolidColorBrush x:Key="MainBackground" Color="#E2E2E2"/>
-    <SolidColorBrush x:Key="PanelBackground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="MainBackground" Color="#F1F1F1"/>
+    <SolidColorBrush x:Key="PanelBackground" Color="#E2E2E2"/>
     <SolidColorBrush x:Key="EditorBackground" Color="#FFF5F5F5"/>
     <VisualBrush x:Key="EditorCheckerBoard" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
       <VisualBrush.Visual>
