@@ -48,10 +48,11 @@ public class NodeFactory
         return node;
     }
 
-    public INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 8)
+    public INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 8, string name = "SIGNAL")
     {
         var node = new NodeViewModel
         {
+            Name = name,
             X = x,
             Y = y,
             Width = width,
@@ -66,10 +67,11 @@ public class NodeFactory
         return node;
     }
 
-    public INode CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 8)
+    public INode CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 8, string name = "AND")
     {
         var node = new NodeViewModel
         {
+            Name = name,
             X = x,
             Y = y,
             Width = width,
@@ -86,10 +88,11 @@ public class NodeFactory
         return node;
     }
 
-    public INode CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 8)
+    public INode CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 8, string name = "OR")
     {
         var node = new NodeViewModel
         {
+            Name = name,
             X = x,
             Y = y,
             Width = width,
@@ -115,10 +118,11 @@ public class NodeFactory
         };
     }
 
-    public IDrawingNode CreateDrawing()
+    public IDrawingNode CreateDrawing(string? name = null)
     {
         var drawing = new DrawingNodeViewModel
         {
+            Name = name,
             X = 0,
             Y = 0,
             Width = 900,
@@ -180,14 +184,14 @@ public class NodeFactory
         var orGate0 = CreateOrGate(240, 360);
         orGate0.Parent = drawing;
         drawing.Nodes.Add(orGate0);
-            
+
         if (signal0.Pins?[1] is { } && orGate0.Pins?[2] is { })
         {
             var connector0 = CreateConnector(signal0.Pins[1], orGate0.Pins[2]);
             connector0.Parent = drawing;
             drawing.Connectors.Add(connector0);
         }
-    
+
         if (signal1.Pins?[1] is { } && orGate0.Pins?[0] is { })
         {
             var connector0 = CreateConnector(signal1.Pins[1], orGate0.Pins[0]);
