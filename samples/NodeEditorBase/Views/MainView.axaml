@@ -102,7 +102,7 @@
                       DataContext="{Binding Drawing}">
           <controls:NodeZoomBorder Name="ZoomBorder"
                                    Stretch="None"
-                                   ZoomSpeed="1.5"
+                                   ZoomSpeed="1.2"
                                    EnableConstrains="False"
                                    Background="Transparent" 
                                    ClipToBounds="True" 
