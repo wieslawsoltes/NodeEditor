@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <IsPackable>False</IsPackable>
     <Nullable>enable</Nullable>
     <RootNamespace>NodeEditor.Web</RootNamespace>
     <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
