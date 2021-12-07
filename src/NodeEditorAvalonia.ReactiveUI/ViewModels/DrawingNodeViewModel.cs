@@ -155,8 +155,11 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         }
         else
         {
-            _connector.End = pin;
-            _connector = null;
+            if (_connector.Start != pin)
+            {
+                _connector.End = pin;
+                _connector = null;
+            }
         }
     }
 
