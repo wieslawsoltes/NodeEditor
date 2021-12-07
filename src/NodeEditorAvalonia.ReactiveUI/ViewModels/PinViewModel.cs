@@ -63,4 +63,14 @@ public class PinViewModel : ReactiveObject, IPin
         get => _alignment;
         set => this.RaiseAndSetIfChanged(ref _alignment, value);
     }
+
+    public virtual bool CanConnect()
+    {
+        return true;
+    }
+
+    public virtual bool CanDisconnect()
+    {
+        return true;
+    }
 }

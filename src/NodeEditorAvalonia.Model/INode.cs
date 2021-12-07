@@ -12,6 +12,10 @@ public interface INode
     double Height { get; set; }
     object? Content { get; set; }
     IList<IPin>? Pins { get; set; }
+    bool CanSelect();
+    bool CanRemove();
+    bool CanMove();
+    bool CanResize();
     void Move(double deltaX, double deltaY);
     void Resize(double deltaX, double deltaY, NodeResizeDirection direction);
 }

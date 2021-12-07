@@ -9,4 +9,6 @@ public interface IPin
     double Width { get; set; }
     double Height { get; set; }
     PinAlignment Alignment { get; set; }
+    bool CanConnect();
+    bool CanDisconnect();
 }

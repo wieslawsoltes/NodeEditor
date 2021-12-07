@@ -107,4 +107,14 @@ public class ConnectorViewModel : ReactiveObject, IConnector
         get => _offset;
         set => this.RaiseAndSetIfChanged(ref _offset, value);
     }
+
+    public virtual bool CanSelect()
+    {
+        return true;
+    }
+
+    public virtual bool CanRemove()
+    {
+        return true;
+    }
 }

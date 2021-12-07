@@ -94,11 +94,36 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public ICommand DeleteCommand { get; }
 
-    public void DrawingLeftPressed(double x, double y)
+    public virtual bool CanSelectNodes()
+    {
+        if (_connector is { })
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual bool CanSelectConnectors()
+    {
+        if (_connector is { })
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public virtual bool CanConnectPin(IPin pin)
+    {
+        return true;
+    }
+
+    public virtual void DrawingLeftPressed(double x, double y)
     {
     }
 
-    public void DrawingRightPressed(double x, double y)
+    public virtual void DrawingRightPressed(double x, double y)
     {
         _pressedX = x;
         _pressedY = y;
@@ -114,9 +139,14 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         }
     }
 
-    public void ConnectorLeftPressed(IPin pin)
+    public virtual void ConnectorLeftPressed(IPin pin)
     {
         if (_connectors is null)
+        {
+            return;
+        }
+
+        if (!CanConnectPin(pin) || !pin.CanConnect())
         {
             return;
         }
@@ -163,7 +193,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         }
     }
 
-    public void ConnectorMove(double x, double y)
+    public virtual void ConnectorMove(double x, double y)
     {
         if (_connector is { End: { } })
         {
@@ -172,7 +202,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         }
     }
 
-    public void CutNodes()
+    public virtual void CutNodes()
     {
         if (Serializer is null)
         {
@@ -196,7 +226,10 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         {
             foreach (var node in clipboard.SelectedNodes)
             {
-                Nodes?.Remove(node);
+                if (node.CanRemove())
+                {
+                    Nodes?.Remove(node);
+                }
             }
         }
 
@@ -204,7 +237,10 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         {
             foreach (var connector in clipboard.SelectedConnectors)
             {
-                Connectors?.Remove(connector);
+                if (connector.CanRemove())
+                {
+                    Connectors?.Remove(connector);
+                }
             }
         }
 
@@ -212,7 +248,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         SelectedConnectors = null;
     }
 
-    public void CopyNodes()
+    public virtual void CopyNodes()
     {
         if (Serializer is null)
         {
@@ -233,7 +269,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         _clipboard = Serializer.Serialize(clipboard);
     }
 
-    public void PasteNodes()
+    public virtual void PasteNodes()
     {
         if (Serializer is null)
         {
@@ -278,11 +314,19 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
             foreach (var node in clipboard.SelectedNodes)
             {
-                node.Move(deltaX, deltaY);
+                if (node.CanMove())
+                {
+                    node.Move(deltaX, deltaY);
+                }
+
                 node.Parent = this;
 
                 Nodes?.Add(node);
-                selectedNodes.Add(node);
+
+                if (node.CanSelect())
+                {
+                    selectedNodes.Add(node);
+                }
             }
         }
 
@@ -293,18 +337,29 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
                 connector.Parent = this;
 
                 Connectors?.Add(connector);
-                selectedConnectors.Add(connector);
+
+                if (connector.CanSelect())
+                {
+                    selectedConnectors.Add(connector);
+                }
             }
         }
 
-        SelectedNodes = selectedNodes;
-        SelectedConnectors = selectedConnectors;
+        if (selectedNodes.Count > 0)
+        {
+            SelectedNodes = selectedNodes;
+        }
+
+        if (selectedConnectors.Count > 0)
+        {
+            SelectedConnectors = selectedConnectors;
+        }
 
         _pressedX = double.NaN;
         _pressedY = double.NaN;
     }
 
-    public void DuplicateNodes()
+    public virtual void DuplicateNodes()
     {
         _pressedX = double.NaN;
         _pressedY = double.NaN;
@@ -313,7 +368,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         PasteNodes();
     }
 
-    public void DeleteNodes()
+    public virtual void DeleteNodes()
     {
         if (SelectedNodes is { Count: > 0 })
         {
@@ -321,7 +376,10 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
             foreach (var node in selectedNodes)
             {
-                Nodes?.Remove(node);
+                if (node.CanRemove())
+                {
+                    Nodes?.Remove(node);
+                }
             }
 
             SelectedNodes = null;
@@ -333,14 +391,17 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
             foreach (var connector in selectedConnectors)
             {
-                Connectors?.Remove(connector);
+                if (connector.CanRemove())
+                {
+                    Connectors?.Remove(connector);
+                }
             }
 
             SelectedConnectors = null;
         }
     }
 
-    public void SelectAllNodes()
+    public virtual void SelectAllNodes()
     {
         if (Nodes is not null)
         {
@@ -351,10 +412,16 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
             foreach (var node in nodes)
             {
-                selectedNodes.Add(node);
+                if (node.CanSelect())
+                {
+                    selectedNodes.Add(node);
+                }
             }
 
-            SelectedNodes = selectedNodes;
+            if (selectedNodes.Count > 0)
+            {
+                SelectedNodes = selectedNodes;
+            }
         }
 
         if (Connectors is not null)
@@ -366,14 +433,20 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
             foreach (var connector in connectors)
             {
-                selectedConnectors.Add(connector);
+                if (connector.CanSelect())
+                {
+                    selectedConnectors.Add(connector);
+                }
             }
 
-            SelectedConnectors = selectedConnectors;
+            if (selectedConnectors.Count > 0)
+            {
+                SelectedConnectors = selectedConnectors;
+            }
         }
     }
 
-    public void DeselectAllNodes()
+    public virtual void DeselectAllNodes()
     {
         SelectedNodes = null;
         SelectedConnectors = null;

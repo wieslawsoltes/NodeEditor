@@ -8,4 +8,6 @@ public interface IConnector
     IPin? Start { get; set; }
     IPin? End { get; set; }
     double Offset { get; set; }
+    bool CanSelect();
+    bool CanRemove();
 }

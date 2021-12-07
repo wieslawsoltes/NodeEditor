@@ -73,13 +73,33 @@ public class NodeViewModel : ReactiveObject, INode
         set => this.RaiseAndSetIfChanged(ref _pins, value);
     }
 
-    public void Move(double deltaX, double deltaY)
+    public virtual bool CanSelect()
+    {
+        return true;
+    }
+
+    public virtual bool CanRemove()
+    {
+        return true;
+    }
+
+    public virtual bool CanMove()
+    {
+        return true;
+    }
+
+    public virtual bool CanResize()
+    {
+        return true;
+    }
+
+    public virtual void Move(double deltaX, double deltaY)
     {
         X += deltaX;
         Y += deltaY;
     }
 
-    public void Resize(double deltaX, double deltaY, NodeResizeDirection direction)
+    public virtual void Resize(double deltaX, double deltaY, NodeResizeDirection direction)
     {
         throw new System.NotImplementedException();
     }

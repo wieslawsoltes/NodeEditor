@@ -279,7 +279,10 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         foreach (var node in drawingNode.SelectedNodes)
         {
-            node.Move(deltaX, deltaY);
+            if (node.CanMove())
+            {
+                node.Move(deltaX, deltaY);
+            }
         }
 
         UpdateSelected(selectedRect);

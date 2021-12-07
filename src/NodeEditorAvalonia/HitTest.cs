@@ -178,40 +178,53 @@ internal static class HitTest
         drawingNode.SelectedConnectors = null;
 
         var selectedNodes = new HashSet<INode>();
+        var selectedConnectors = new HashSet<IConnector>();
 
-        foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+        if (drawingNode.CanSelectNodes())
         {
-            if (container.ContainerControl is not { DataContext: INode node } containerControl)
+            foreach (var container in itemsControl.ItemContainerGenerator.Containers)
             {
-                continue;
-            }
-
-            var bounds = containerControl.Bounds;
-
-            if (!rect.Intersects(bounds))
-            {
-                continue;
-            }
-
-            selectedNodes.Add(node);
-        }
-
-        if (drawingNode.Connectors is { Count: > 0 })
-        {
-            var selectedConnectors = new HashSet<IConnector>();
-
-            foreach (var connector in drawingNode.Connectors)
-            {
-                if (HitTestConnector(connector, rect))
+                if (container.ContainerControl is not { DataContext: INode node } containerControl)
                 {
-                    selectedConnectors.Add(connector);
+                    continue;
+                }
+
+                var bounds = containerControl.Bounds;
+
+                if (!rect.Intersects(bounds))
+                {
+                    continue;
+                }
+
+                if (node.CanSelect())
+                {
+                    selectedNodes.Add(node);
                 }
             }
+        }
 
-            if (selectedConnectors.Count > 0)
+        if (drawingNode.CanSelectConnectors())
+        {
+            if (drawingNode.Connectors is { Count: > 0 })
             {
-                drawingNode.SelectedConnectors = selectedConnectors;
+                foreach (var connector in drawingNode.Connectors)
+                {
+                    if (!HitTestConnector(connector, rect))
+                    {
+                        continue;
+                    }
+
+                    if (connector.CanSelect())
+                    {
+                        selectedConnectors.Add(connector);
+                    }
+                }
             }
+        }
+
+        if (selectedConnectors.Count > 0)
+        {
+            drawingNode.SelectedConnectors = selectedConnectors;
         }
 
         if (selectedNodes.Count > 0)
