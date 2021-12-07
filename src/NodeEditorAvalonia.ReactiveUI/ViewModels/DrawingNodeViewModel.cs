@@ -16,6 +16,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     private ISet<INode>? _selectedNodes;
     private ISet<IConnector>? _selectedConnectors;
     private INodeSerializer? _serializer;
+    private bool _enableMultiplePinConnections;
     private IConnector? _connector;
     private string? _clipboard;
     private double _pressedX = double.NaN;
@@ -80,6 +81,13 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         set => this.RaiseAndSetIfChanged(ref _serializer, value);
     }
 
+    [DataMember(IsRequired = false, EmitDefaultValue = false)]
+    public bool EnableMultiplePinConnections
+    {
+        get => _enableMultiplePinConnections;
+        set => this.RaiseAndSetIfChanged(ref _enableMultiplePinConnections, value);
+    }
+
     public ICommand CutCommand { get; }
 
     public ICommand CopyCommand { get; }
@@ -93,6 +101,22 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     public ICommand DeselectAllCommand { get; }
 
     public ICommand DeleteCommand { get; }
+
+    public bool IsPinConnected(IPin pin)
+    {
+        if (_connectors is { })
+        {
+            foreach (var connector in _connectors)
+            {
+                if (connector.Start == pin || connector.End == pin)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 
     public virtual bool CanSelectNodes()
     {
@@ -116,6 +140,14 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public virtual bool CanConnectPin(IPin pin)
     {
+        if (!EnableMultiplePinConnections)
+        {
+            if (IsPinConnected(pin))
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 

@@ -10,6 +10,8 @@ public interface IDrawingNode : INode
     ISet<INode>? SelectedNodes { get; set; }
     ISet<IConnector>? SelectedConnectors { get; set; }
     INodeSerializer? Serializer { get; set; }
+    bool EnableMultiplePinConnections { get; set; }
+    bool IsPinConnected(IPin pin);
     bool CanSelectNodes();
     bool CanSelectConnectors();
     bool CanConnectPin(IPin pin);

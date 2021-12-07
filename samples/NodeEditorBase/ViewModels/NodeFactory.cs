@@ -128,7 +128,8 @@ public class NodeFactory
             Width = 900,
             Height = 600,
             Nodes = new ObservableCollection<INode>(),
-            Connectors = new ObservableCollection<IConnector>()
+            Connectors = new ObservableCollection<IConnector>(),
+            EnableMultiplePinConnections = false
         };
 
         return drawing;
@@ -143,7 +144,8 @@ public class NodeFactory
             Width = 900,
             Height = 600,
             Nodes = new ObservableCollection<INode>(),
-            Connectors = new ObservableCollection<IConnector>()
+            Connectors = new ObservableCollection<IConnector>(),
+            EnableMultiplePinConnections = false
         };
 
         var rectangle0 = CreateRectangle(30, 30, 60, 60, "rect0");
