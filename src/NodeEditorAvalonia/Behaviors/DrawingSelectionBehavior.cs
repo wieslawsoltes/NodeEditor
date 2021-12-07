@@ -149,6 +149,11 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         var position = e.GetPosition(AssociatedObject);
 
+        if (!drawingNode.CanSelectNodes() && !drawingNode.CanSelectConnectors())
+        {
+            return;
+        }
+
         if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
         {
             _dragSelectedItems = false;
