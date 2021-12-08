@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <IsPackable>False</IsPackable>
     <Nullable>enable</Nullable>
-    <ApplicationIcon>..\NodeEditorBase\Assets\Icon.ico</ApplicationIcon>
+    <ApplicationIcon>..\NodeEditor.Base\Assets\Icon.ico</ApplicationIcon>
     <RootNamespace>NodeEditorDemo</RootNamespace>
   </PropertyGroup>
 
