@@ -53,8 +53,7 @@ Open up a terminal prompt and execute the commands:
 ```
 git clone https://github.com/wieslawsoltes/NodeEditor.git
 dotnet workload install wasm-tools
-cd ./samples/NodeEditor.Web
-dotnet run -c Release
+dotnet run --project ./samples/NodeEditor.Web/NodeEditor.Web.csproj -c Release
 ```
 
 ## NuGet
