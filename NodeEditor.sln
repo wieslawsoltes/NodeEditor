@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorDemo", "samples\NodeEditorDemo\NodeEditorDemo.csproj", "{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Destop", "samples\NodeEditor.Destop\NodeEditor.Destop.csproj", "{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02D6D6DC-21FA-435F-9526-E6F635127483}"
 EndProject
@@ -67,7 +67,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Serializ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.Export", "src\NodeEditorAvalonia.Export\NodeEditorAvalonia.Export.csproj", "{EE456454-F26E-4905-8889-5660272C4EC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorBase", "samples\NodeEditorBase\NodeEditorBase.csproj", "{1AC073FC-6F01-4F5B-AE78-17EE10F74D37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Base", "samples\NodeEditor.Base\NodeEditor.Base.csproj", "{1AC073FC-6F01-4F5B-AE78-17EE10F74D37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Web", "samples\NodeEditor.Web\NodeEditor.Web.csproj", "{FE2664AE-527E-4044-A53E-6D4523857F98}"
 EndProject

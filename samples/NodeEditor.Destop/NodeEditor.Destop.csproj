@@ -5,6 +5,7 @@
     <IsPackable>False</IsPackable>
     <Nullable>enable</Nullable>
     <ApplicationIcon>..\NodeEditorBase\Assets\Icon.ico</ApplicationIcon>
+    <RootNamespace>NodeEditorDemo</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +17,7 @@
   <Import Project="..\..\build\Avalonia.Desktop.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\NodeEditorBase\NodeEditorBase.csproj" />
+    <ProjectReference Include="..\NodeEditor.Base\NodeEditor.Base.csproj" />
   </ItemGroup>
 
 </Project>

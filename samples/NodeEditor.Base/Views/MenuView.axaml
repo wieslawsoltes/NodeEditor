@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:NodeEditorDemo.ViewModels"
-             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditorBase"
+             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="NodeEditorDemo.Views.MenuView"

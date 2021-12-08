@@ -8,6 +8,6 @@
         WindowState="Maximized" WindowStartupLocation="CenterScreen"
         Width="1200" Height="700"
         Icon="/Assets/Icon.ico"
-        Title="NodeEditorDemo">
+        Title="NodeEditor">
   <views:MainView />
 </Window>

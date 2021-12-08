@@ -50,7 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NodeEditorBase\NodeEditorBase.csproj" />
+    <ProjectReference Include="..\NodeEditor.Base\NodeEditor.Base.csproj" />
   </ItemGroup>
 
 </Project>
