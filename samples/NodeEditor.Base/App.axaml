@@ -8,7 +8,7 @@
   <Application.Styles>
     <FluentTheme Mode="Light" />
     <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml" />
-    <StyleInclude Source="avares://NodeEditorBase/Styles/Nodes.axaml" />
+    <StyleInclude Source="avares://NodeEditor.Base/Styles/Nodes.axaml" />
   </Application.Styles>
   <Application.Resources>
     <SolidColorBrush x:Key="MainBackground" Color="#F1F1F1"/>
