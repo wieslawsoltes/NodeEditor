@@ -48,6 +48,15 @@ Open up a terminal prompt and execute the commands:
 ./build.sh
 ```
 
+## Web
+
+```
+git clone https://github.com/wieslawsoltes/NodeEditor.git
+dotnet workload install wasm-tools
+cd ./samples/NodeEditor.Web
+dotnet run -c Release
+```
+
 ## NuGet
 
 NodeEditor is delivered as a NuGet package.
