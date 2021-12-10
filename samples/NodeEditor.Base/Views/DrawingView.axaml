@@ -1,0 +1,74 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:NodeEditorDemo.ViewModels"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
+             xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
+             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
+             xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="NodeEditorDemo.Views.DrawingView"
+             x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
+             ZoomControl="{Binding #ZoomBorder}">
+  <Panel>
+    <Panel Background="{DynamicResource EditorBackground}" />
+    <Panel Background="{DynamicResource EditorCheckerBoard}" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Auto"
+                  DataContext="{Binding Drawing}">
+      <controls:NodeZoomBorder Name="ZoomBorder"
+                               Stretch="None"
+                               ZoomSpeed="1.2"
+                               EnableConstrains="False"
+                               Background="Transparent" 
+                               ClipToBounds="True" 
+                               Focusable="True"
+                               VerticalAlignment="Stretch" 
+                               HorizontalAlignment="Stretch">
+        <i:Interaction.Behaviors>
+          <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
+            <idd:ContextDropBehavior.Handler>
+              <behaviors:DrawingDropHandler RelativeTo="{Binding #Drawing}" />
+            </idd:ContextDropBehavior.Handler>
+          </idd:ContextDropBehavior>
+        </i:Interaction.Behaviors>
+        <editor:DrawingNode Name="Drawing"
+                            Background="White">
+          <editor:DrawingNode.Transitions>
+            <Transitions>
+              <paz:TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+            </Transitions>
+          </editor:DrawingNode.Transitions>
+          <editor:DrawingNode.ContextFlyout>
+            <MenuFlyout>
+              <MenuItem Header="_Edit" 
+                        InputGesture="Ctrl+E"
+                        DataContext="{Binding $parent[UserControl].DataContext}"
+                        Command="{Binding ToggleEditModeCommand}" 
+                        x:DataType="vm:MainWindowViewModel">
+                <MenuItem.Icon>
+                  <CheckBox BorderThickness="0" 
+                            IsHitTestVisible="False" 
+                            IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
+                </MenuItem.Icon>
+              </MenuItem>
+              <MenuItem Header="-" />
+              <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
+              <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
+              <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
+              <MenuItem Header="D_uplicate" Command="{Binding DuplicateCommand}" InputGesture="Ctrl+D" />
+              <MenuItem Header="-" />
+              <MenuItem Header="Select _All" Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
+              <MenuItem Header="De_select All" Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+              <MenuItem Header="-" />
+              <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
+            </MenuFlyout>
+          </editor:DrawingNode.ContextFlyout>
+        </editor:DrawingNode>
+      </controls:NodeZoomBorder>
+    </ScrollViewer>
+  </Panel>
+</UserControl>

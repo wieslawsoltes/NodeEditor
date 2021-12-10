@@ -1,0 +1,112 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
+             xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+             x:Class="NodeEditorDemo.Views.ToolboxView">
+  <DockPanel Background="{DynamicResource MainBackground}">
+    <Separator Width="0.55" 
+               Opacity="0.3" 
+               VerticalAlignment="Stretch"
+               Background="{DynamicResource PanelBackground}"
+               DockPanel.Dock="Right" />
+    <DockPanel>
+      <Grid ColumnDefinitions="Auto,50*,Auto,50*" DockPanel.Dock="Bottom">
+        <Label Grid.Column="0" 
+               Content="W"
+               Margin="6,0,6,0"
+               VerticalAlignment="Center"
+               Opacity="0.6"/>
+        <TextBox Grid.Column="1" 
+                 BorderBrush="Transparent"
+                 Margin="4,4,2,4"
+                 Padding="6"
+                 TextAlignment="Center"
+                 Text="{Binding Drawing.Width, FallbackValue=''}" />
+        <Label Grid.Column="2" 
+              Content="H"
+               Margin="6,0,6,0"
+               VerticalAlignment="Center"
+               Opacity="0.6"/>
+        <TextBox Grid.Column="3" 
+                 BorderBrush="Transparent"
+                 Margin="2,4,4,4"
+                 Padding="6"
+                 TextAlignment="Center"
+                 Text="{Binding Drawing.Height, FallbackValue=''}" />
+      </Grid>
+      <Separator Height="0.55" 
+                 Opacity="0.3" 
+                 HorizontalAlignment="Stretch"
+                 Background="{DynamicResource PanelBackground}"
+                 DockPanel.Dock="Bottom"/>
+      <DockPanel DockPanel.Dock="Bottom">
+        <ToggleSwitch IsChecked="{Binding IsEditMode}"
+                      OnContent="Edit Mode On"
+                      OffContent="Edit Mode Off"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Margin="4,4,4,0"/>
+      </DockPanel>
+      <Separator Height="0.55" 
+                 Opacity="0.3" 
+                 HorizontalAlignment="Stretch"
+                 Background="{DynamicResource PanelBackground}"
+                 DockPanel.Dock="Bottom" />
+      <Panel Background="{DynamicResource MainBackground}"
+             DockPanel.Dock="Top">
+        <Label Content="Toolbox"
+               Margin="12,6,12,6"/>
+      </Panel>
+      <Separator Height="0.55" 
+                 Opacity="0.3" 
+                 HorizontalAlignment="Stretch"
+                 Background="{DynamicResource PanelBackground}"
+                 DockPanel.Dock="Top" />
+      <ListBox Items="{Binding Templates}"
+               Background="{DynamicResource MainBackground}">
+        <ListBox.Resources>
+          <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
+        </ListBox.Resources>
+        <i:Interaction.Behaviors>
+          <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
+        </i:Interaction.Behaviors>
+        <ListBox.Styles>
+          <Style Selector="ListBox > ListBoxItem">
+            <Setter Property="(i:Interaction.Behaviors)">
+              <i:BehaviorCollectionTemplate>
+                <i:BehaviorCollection>
+                  <idd:ContextDragBehavior />
+                </i:BehaviorCollection>
+              </i:BehaviorCollectionTemplate>
+            </Setter>
+          </Style>
+        </ListBox.Styles>
+        <ListBox.ItemTemplate>
+          <DataTemplate DataType="m:INodeTemplate">
+            <DockPanel>
+              <Viewbox DockPanel.Dock="Left" Width="32" Height="32">
+                <editor:Node DataContext="{Binding Preview}" IsHitTestVisible="False">
+                  <editor:Node.Styles>
+                    <Style Selector="editor|Node /template/ ItemsControl#PART_PinsItemsControl">
+                      <Setter Property="IsVisible" Value="False" />
+                    </Style>
+                  </editor:Node.Styles>
+                </editor:Node>
+              </Viewbox>
+              <Panel Margin="12,6,12,6">
+                <TextBlock Text="{Binding Title}" 
+                           VerticalAlignment="Center" />
+              </Panel>
+            </DockPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </DockPanel>
+  </DockPanel>
+</UserControl>
