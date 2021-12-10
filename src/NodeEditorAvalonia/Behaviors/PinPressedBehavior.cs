@@ -50,6 +50,7 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
         {
             if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
             {
+                e.Pointer.Capture(AssociatedObject);
                 drawingNode.ConnectorLeftPressed(pin);
                 e.Handled = true;
             }

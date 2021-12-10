@@ -156,6 +156,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
         {
+            e.Pointer.Capture(AssociatedObject);
+
             _dragSelectedItems = false;
 
             var pointerHitTestRect = new Rect(position.X - 1, position.Y - 1, 3, 3);

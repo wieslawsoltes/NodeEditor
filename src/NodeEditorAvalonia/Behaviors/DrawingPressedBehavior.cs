@@ -39,10 +39,12 @@ public class DrawingPressedBehavior : Behavior<ItemsControl>
 
         if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
         {
+            e.Pointer.Capture(AssociatedObject);
             drawingNode.DrawingLeftPressed(x, y);
         }
         else if (e.GetCurrentPoint(AssociatedObject).Properties.IsRightButtonPressed)
         {
+            e.Pointer.Capture(AssociatedObject);
             drawingNode.DrawingRightPressed(x, y);
         }
     }
