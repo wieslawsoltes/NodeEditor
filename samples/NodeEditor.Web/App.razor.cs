@@ -5,6 +5,11 @@ namespace NodeEditor.Web;
 
 public partial class App
 {
+    static App()
+    {
+        NodeEditorDemo.App.EnableInputOutput = false;
+    }
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();

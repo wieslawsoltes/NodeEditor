@@ -10,6 +10,11 @@ class Program
     public static void Main(string[] args) => BuildAvaloniaApp()
         .StartWithClassicDesktopLifetime(args);
 
+    static Program()
+    {
+        App.EnableInputOutput = true;
+    }
+
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
