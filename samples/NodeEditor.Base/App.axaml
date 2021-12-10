@@ -9,6 +9,10 @@
     <FluentTheme Mode="Light" />
     <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml" />
     <StyleInclude Source="avares://NodeEditor.Base/Styles/Nodes.axaml" />
+    <Style Selector="MenuItem /template/ ContentPresenter#PART_IconPresenter">
+      <Setter Property="Width" Value="20" />
+      <Setter Property="Height" Value="20" />
+    </Style>
   </Application.Styles>
   <Application.Resources>
     <SolidColorBrush x:Key="MainBackground" Color="#F1F1F1"/>

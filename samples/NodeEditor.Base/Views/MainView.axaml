@@ -33,12 +33,6 @@
     <KeyBinding Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" Gesture="Ctrl+A"  />
     <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
   </UserControl.KeyBindings>
-  <UserControl.Styles>
-    <Style Selector="MenuItem /template/ ContentPresenter#PART_IconPresenter">
-      <Setter Property="Width" Value="20" />
-      <Setter Property="Height" Value="20" />
-    </Style>
-  </UserControl.Styles>
   <DockPanel>
     <views:MenuView ZoomControl="{Binding #ZoomBorder}"
                     x:CompileBindings="False"
