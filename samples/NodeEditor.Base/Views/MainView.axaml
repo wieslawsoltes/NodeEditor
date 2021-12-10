@@ -37,8 +37,15 @@
                Background="{DynamicResource PanelBackground}"
                DockPanel.Dock="Top" />
     <Grid ColumnDefinitions="200,6,*">
-      <views:ToolboxView Name="ToolboxView" 
-                         Grid.Column="0" />
+      <DockPanel Background="{DynamicResource MainBackground}"
+                 Grid.Column="0" >
+        <Separator Width="0.55" 
+                   Opacity="0.3" 
+                   VerticalAlignment="Stretch"
+                   Background="{DynamicResource PanelBackground}"
+                   DockPanel.Dock="Right" />
+        <views:ToolboxView Name="ToolboxView" />
+      </DockPanel>
       <GridSplitter ResizeDirection="Columns" 
                     ResizeBehavior="PreviousAndNext" 
                     Width="6" 
