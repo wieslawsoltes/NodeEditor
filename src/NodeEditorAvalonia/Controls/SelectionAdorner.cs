@@ -44,11 +44,17 @@ public class SelectionAdorner : TemplatedControl
 
         if (change.Property == TopLeftProperty || change.Property == BottomRightProperty)
         {
-            var rect = GetRect();
-            Canvas.SetLeft(this, rect.X);
-            Canvas.SetTop(this, rect.Y);
-            Width = rect.Width;
-            Height = rect.Height;
+            // Invalidate();
         }
+    }
+
+    public void Invalidate()
+    {
+        var rect = GetRect();
+        Canvas.SetLeft(this, rect.X);
+        Canvas.SetTop(this, rect.Y);
+        Width = rect.Width;
+        Height = rect.Height;
+        InvalidateVisual();
     }
 }

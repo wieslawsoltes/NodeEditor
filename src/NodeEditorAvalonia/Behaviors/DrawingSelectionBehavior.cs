@@ -368,6 +368,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         ((ISetLogicalParent) _selectionAdorner).SetParent(control);
         layer.Children.Add(_selectionAdorner);
+        
+        _selectionAdorner.Invalidate();
     }
 
     private void RemoveSelection(Control control)
@@ -388,6 +390,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         if (_selectionAdorner is { } selection)
         {
             selection.BottomRight = new Point(x, y);
+            selection.Invalidate();
         }
     }
 
@@ -409,6 +412,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         ((ISetLogicalParent) _selectedAdorner).SetParent(control);
         layer.Children.Add(_selectedAdorner);
+
+        _selectedAdorner.Invalidate();
     }
 
     private void RemoveSelected(Control control)
@@ -429,6 +434,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         if (_selectedAdorner is { } selected)
         {
             selected.Rect = rect;
+            selected.Invalidate();
         }
     }
 }

@@ -56,12 +56,18 @@ public class SelectedAdorner : TemplatedControl
 
         if (change.Property == RectProperty)
         {
-            var rect = Rect;
-            Canvas.SetLeft(this, rect.X);
-            Canvas.SetTop(this, rect.Y);
-            Width = rect.Width;
-            Height = rect.Height;
+            // Invalidate();
         }
+    }
+
+    public void Invalidate()
+    {
+        var rect = Rect;
+        Canvas.SetLeft(this, rect.X);
+        Canvas.SetTop(this, rect.Y);
+        Width = rect.Width;
+        Height = rect.Height;
+        InvalidateVisual();
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
