@@ -9,9 +9,9 @@ namespace NodeEditor.Behaviors;
 
 public abstract class DefaultDropHandler : AvaloniaObject, IDropHandler
 {
-    public static Point GetPosition(object? sender, DragEventArgs e)
+    public static Point GetPosition(IControl? relativeTo, DragEventArgs e)
     {
-        var relativeTo = e.Source as IControl;
+        relativeTo ??= e.Source as IControl;
         var point = relativeTo is { } ? e.GetPosition(relativeTo) : new Point();
         return point;
     }

@@ -17,9 +17,9 @@ public class DrawingDropHandler : DefaultDropHandler
         set => SetValue(RelativeToProperty, value);
     }
 
-    private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
+    private bool Validate(IDrawingNode drawing, DragEventArgs e, bool bExecute)
     {
-        var point = GetPosition(RelativeTo ?? sender, e);
+        var point = GetPosition(RelativeTo, e);
 
         if (e.Data.Contains(DataFormats.Text))
         {
@@ -77,7 +77,7 @@ public class DrawingDropHandler : DefaultDropHandler
     {
         if (targetContext is IDrawingNode drawing)
         {
-            return Validate(drawing, sender, e, false);
+            return Validate(drawing, e, false);
         }
 
         return false;
@@ -87,7 +87,7 @@ public class DrawingDropHandler : DefaultDropHandler
     {
         if (targetContext is IDrawingNode drawing)
         {
-            return Validate(drawing, sender, e, true);
+            return Validate(drawing, e, true);
         }
 
         return false;
