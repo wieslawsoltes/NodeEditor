@@ -4,6 +4,7 @@
     <IsPackable>False</IsPackable>
     <Nullable>enable</Nullable>
     <RootNamespace>NodeEditor.Web</RootNamespace>
+    <EmccTotalMemory>1048576</<EmccTotalMemory>
     <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
     <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
   </PropertyGroup>
