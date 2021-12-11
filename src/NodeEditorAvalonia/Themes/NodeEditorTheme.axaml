@@ -557,13 +557,22 @@
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:IDrawingNode">
-        <Panel Background="{TemplateBinding Background}">
+        <Panel Name="PART_Panel" 
+               Background="{TemplateBinding Background}">
           <ItemsControl Name="PART_NodesItemsControl"
                         Items="{Binding Nodes}" 
                         Width="{Binding Width}" 
                         Height="{Binding Height}"
                         Background="Transparent"
                         ClipToBounds="False">
+            <i:Interaction.Behaviors>
+              <behaviors:NodesSelectedBehavior />
+              <behaviors:DrawingSelectionBehavior InputSource="{Binding $parent[controls:DrawingNode].InputSource}" 
+                                                  AdornerCanvas="{Binding $parent[controls:DrawingNode].AdornerCanvas}" 
+                                                  x:CompileBindings="False" />
+              <behaviors:DrawingPressedBehavior />
+              <behaviors:DrawingMovedBehavior />
+            </i:Interaction.Behaviors>
             <ItemsControl.Styles>
               <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
@@ -604,19 +613,6 @@
           </ItemsControl>
         </Panel>
       </ControlTemplate>
-    </Setter>
-  </Style>
-
-  <Style Selector="controls|DrawingNode /template/ ItemsControl#PART_NodesItemsControl">
-    <Setter Property="(i:Interaction.Behaviors)">
-      <i:BehaviorCollectionTemplate>
-        <i:BehaviorCollection>
-          <behaviors:NodesSelectedBehavior />
-          <behaviors:DrawingSelectionBehavior />
-          <behaviors:DrawingPressedBehavior />
-          <behaviors:DrawingMovedBehavior />
-        </i:BehaviorCollection>
-      </i:BehaviorCollectionTemplate>
     </Setter>
   </Style>
 

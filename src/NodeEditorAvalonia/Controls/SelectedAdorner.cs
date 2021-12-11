@@ -56,7 +56,11 @@ public class SelectedAdorner : TemplatedControl
 
         if (change.Property == RectProperty)
         {
-            InvalidateMeasure();
+            var rect = Rect;
+            Canvas.SetLeft(this, rect.X);
+            Canvas.SetTop(this, rect.Y);
+            Width = rect.Width;
+            Height = rect.Height;
         }
     }
 
@@ -395,35 +399,5 @@ public class SelectedAdorner : TemplatedControl
         UpdateDrag(rect);
 
         // UpdateControl(Control, rect.Inflate(new Thickness(-_leftOffset, -_topOffset, _leftOffset , _topOffset)));
-    }
-
-    protected override Size MeasureOverride(Size availableSize)
-    {
-        var rect = Rect;
-
-        foreach (var visualChild in VisualChildren)
-        {
-            if (visualChild is Control control)
-            {
-                control.Measure(rect.Size);
-            }
-        }
-
-        return rect.Size;
-    }
-
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-        var rect = Rect;
-
-        foreach (var visualChild in VisualChildren)
-        {
-            if (visualChild is Control control)
-            {
-                control.Arrange(rect);
-            }
-        }
-
-        return rect.Size;
     }
 }

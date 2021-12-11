@@ -44,37 +44,11 @@ public class SelectionAdorner : TemplatedControl
 
         if (change.Property == TopLeftProperty || change.Property == BottomRightProperty)
         {
-            InvalidateMeasure();
+            var rect = GetRect();
+            Canvas.SetLeft(this, rect.X);
+            Canvas.SetTop(this, rect.Y);
+            Width = rect.Width;
+            Height = rect.Height;
         }
-    }
-
-    protected override Size MeasureOverride(Size availableSize)
-    {
-        var rect = GetRect();
- 
-        foreach (var visualChild in VisualChildren)
-        {
-            if (visualChild is Control control)
-            {
-                control.Measure(rect.Size);
-            }
-        }
-
-        return rect.Size;
-    }
-
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-        var rect = GetRect();
-
-        foreach (var visualChild in VisualChildren)
-        {
-            if (visualChild is Control control)
-            {
-                control.Arrange(rect);
-            }
-        }
-
-        return rect.Size;
     }
 }

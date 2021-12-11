@@ -35,39 +35,48 @@
             </idd:ContextDropBehavior.Handler>
           </idd:ContextDropBehavior>
         </i:Interaction.Behaviors>
-        <editor:DrawingNode Name="Drawing"
-                            Background="White">
-          <editor:DrawingNode.Transitions>
-            <Transitions>
-              <paz:TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
-            </Transitions>
-          </editor:DrawingNode.Transitions>
-          <editor:DrawingNode.ContextFlyout>
-            <MenuFlyout>
-              <MenuItem Header="_Edit" 
-                        InputGesture="Ctrl+E"
-                        DataContext="{Binding $parent[UserControl].DataContext}"
-                        Command="{Binding ToggleEditModeCommand}" 
-                        x:DataType="vm:MainWindowViewModel">
-                <MenuItem.Icon>
-                  <CheckBox BorderThickness="0" 
-                            IsHitTestVisible="False" 
-                            IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
-                </MenuItem.Icon>
-              </MenuItem>
-              <MenuItem Header="-" />
-              <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
-              <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
-              <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
-              <MenuItem Header="D_uplicate" Command="{Binding DuplicateCommand}" InputGesture="Ctrl+D" />
-              <MenuItem Header="-" />
-              <MenuItem Header="Select _All" Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
-              <MenuItem Header="De_select All" Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
-              <MenuItem Header="-" />
-              <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
-            </MenuFlyout>
-          </editor:DrawingNode.ContextFlyout>
-        </editor:DrawingNode>
+        <Panel Background="Transparent">
+          <editor:DrawingNode Name="Drawing"
+                              Background="White"
+                              InputSource="{Binding #ZoomBorder}"
+                              AdornerCanvas="{Binding #AdornerCanvas}">
+            <editor:DrawingNode.Transitions>
+              <Transitions>
+                <paz:TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+              </Transitions>
+            </editor:DrawingNode.Transitions>
+            <editor:DrawingNode.ContextFlyout>
+              <MenuFlyout>
+                <MenuItem Header="_Edit" 
+                          InputGesture="Ctrl+E"
+                          DataContext="{Binding $parent[UserControl].DataContext}"
+                          Command="{Binding ToggleEditModeCommand}" 
+                          x:DataType="vm:MainWindowViewModel">
+                  <MenuItem.Icon>
+                    <CheckBox BorderThickness="0" 
+                              IsHitTestVisible="False" 
+                              IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="-" />
+                <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
+                <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
+                <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
+                <MenuItem Header="D_uplicate" Command="{Binding DuplicateCommand}" InputGesture="Ctrl+D" />
+                <MenuItem Header="-" />
+                <MenuItem Header="Select _All" Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
+                <MenuItem Header="De_select All" Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+                <MenuItem Header="-" />
+                <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
+              </MenuFlyout>
+            </editor:DrawingNode.ContextFlyout>
+          </editor:DrawingNode>
+          <Canvas Name="AdornerCanvas"
+                  Background="Transparent"
+                  Width="{Binding Width}"
+                  Height="{Binding Height}"
+                  IsHitTestVisible="False"/>
+        </Panel>
       </controls:NodeZoomBorder>
     </ScrollViewer>
   </Panel>
