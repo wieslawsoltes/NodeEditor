@@ -28,6 +28,9 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     private Point _start;
     private Rect _selectedRect;
     private Control? _inputSource;
+    private bool _enableSnap = false;
+    private double _snapX = 1.0;
+    private double _snapY = 1.0;
 
     public Control? InputSource
     {
@@ -152,6 +155,29 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         DeInitialize();
     }
 
+    private double Snap(double value, double snap)
+    {
+        if (snap == 0.0)
+        {
+            return value;
+        }
+        var c = value % snap;
+        var r = c >= snap / 2.0 ? value + snap - c : value - c;
+        return r;
+    }
+
+    private Point Snap(Point point)
+    {
+        if (_enableSnap)
+        {
+            var pointX = Snap(point.X, _snapX);
+            var pointY = Snap(point.Y, _snapY);
+            return new Point(pointX, pointY);
+        }
+
+        return point;
+    }
+
     private void DrawingNode_PropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (AssociatedObject?.DataContext is not IDrawingNode)
@@ -203,6 +229,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         }
 
         var position = e.GetPosition(AssociatedObject);
+
+        position = Snap(position);
 
         if (!drawingNode.CanSelectNodes() && !drawingNode.CanSelectConnectors())
         {
@@ -330,6 +358,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         {
             return;
         }
+
+        position = Snap(position);
 
         var deltaX = position.X - _start.X;
         var deltaY = position.Y - _start.Y;
