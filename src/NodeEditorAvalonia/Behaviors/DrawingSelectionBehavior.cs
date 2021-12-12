@@ -101,8 +101,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             {
                 if (x == false)
                 {
-                    RemoveSelection(AssociatedObject);
-                    RemoveSelected(AssociatedObject);
+                    RemoveSelection();
+                    RemoveSelected();
                 }
             });
 
@@ -120,8 +120,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                         }
                     }
 
-                    RemoveSelection(AssociatedObject);
-                    RemoveSelected(AssociatedObject);
+                    RemoveSelection();
+                    RemoveSelected();
 
                     _drawingNode = drawingNode;
 
@@ -133,8 +133,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 }
                 else
                 {
-                    RemoveSelection(AssociatedObject);
-                    RemoveSelected(AssociatedObject);
+                    RemoveSelection();
+                    RemoveSelected();
                 }
             });
     }
@@ -219,7 +219,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
                     if (_selectedAdorner is { })
                     {
-                        RemoveSelected(AssociatedObject);
+                        RemoveSelected();
                     }
 
                     if (!_selectedRect.IsEmpty && _selectedAdorner is null)
@@ -229,7 +229,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 }
                 else
                 {
-                    RemoveSelected(AssociatedObject);
+                    RemoveSelected();
                 }
             }
         }
@@ -291,7 +291,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                     {
                         drawingNode.SelectedNodes = null;
                         drawingNode.SelectedConnectors = null;
-                        RemoveSelected(AssociatedObject);
+                        RemoveSelected();
                     }
                 }
             }
@@ -311,7 +311,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             {
                 drawingNode.SelectedNodes = null;
                 drawingNode.SelectedConnectors = null;
-                RemoveSelected(AssociatedObject);
+                RemoveSelected();
 
                 if (e.Source is Control { DataContext: not IDrawingNode })
                 {
@@ -342,7 +342,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             HitTest.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
         }
 
-        RemoveSelection(AssociatedObject);
+        RemoveSelection();
     }
 
     private void Moved(object? sender, PointerEventArgs e)
@@ -425,7 +425,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         _selectionAdorner.Invalidate();
     }
 
-    private void RemoveSelection(Control control)
+    private void RemoveSelection()
     {
         var layer = AdornerCanvas;
         if (layer is null || _selectionAdorner is null)
@@ -469,7 +469,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         _selectedAdorner.Invalidate();
     }
 
-    private void RemoveSelected(Control control)
+    private void RemoveSelected()
     {
         var layer = AdornerCanvas;
         if (layer is null || _selectedAdorner is null)
