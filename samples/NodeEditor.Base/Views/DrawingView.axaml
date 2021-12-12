@@ -45,9 +45,9 @@
                               AdornerCanvas="{Binding #AdornerCanvas}">
             <editor:DrawingNode.Styles>
               <Style Selector="editor|DrawingNode">
-                <Setter Property="EnableSnap" Value="True" />
-                <Setter Property="SnapX" Value="1.0" />
-                <Setter Property="SnapY" Value="1.0" />
+                <Setter Property="EnableSnap" Value="False" />
+                <Setter Property="SnapX" Value="15.0" />
+                <Setter Property="SnapY" Value="15.0" />
                 </Style>
             </editor:DrawingNode.Styles>
             <editor:DrawingNode.Transitions>
