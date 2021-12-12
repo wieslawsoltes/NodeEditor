@@ -42,7 +42,8 @@
           <editor:DrawingNode Name="Drawing"
                               Background="White"
                               InputSource="{Binding #ZoomBorder}"
-                              AdornerCanvas="{Binding #AdornerCanvas}">
+                              AdornerCanvas="{Binding #AdornerCanvas}"
+                              ClipToBounds="False">
             <editor:DrawingNode.Styles>
               <Style Selector="editor|DrawingNode">
                 <Setter Property="EnableSnap" Value="False" />
