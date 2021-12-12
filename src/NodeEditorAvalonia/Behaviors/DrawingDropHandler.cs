@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
@@ -25,6 +26,11 @@ public class DrawingDropHandler : DefaultDropHandler
             return false;
         }
         var point = GetPosition(relativeTo, e);
+
+        if (relativeTo is DrawingNode drawingNode)
+        {
+            point = SnapHelper.Snap(point, drawingNode.SnapX, drawingNode.SnapY, drawingNode.EnableSnap);
+        }
 
         if (e.Data.Contains(DataFormats.Text))
         {
