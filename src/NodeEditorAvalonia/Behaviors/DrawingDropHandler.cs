@@ -19,7 +19,12 @@ public class DrawingDropHandler : DefaultDropHandler
 
     private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
     {
-        var point = GetPosition(RelativeTo ?? sender, e);
+        var relativeTo = RelativeTo ?? sender as IControl;
+        if (relativeTo is null)
+        {
+            return false;
+        }
+        var point = GetPosition(relativeTo, e);
 
         if (e.Data.Contains(DataFormats.Text))
         {

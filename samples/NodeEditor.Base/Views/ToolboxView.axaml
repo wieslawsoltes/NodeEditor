@@ -5,6 +5,7 @@
              xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
              xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
+             xmlns:views="clr-namespace:NodeEditorDemo.Views"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
@@ -52,6 +53,44 @@
                HorizontalAlignment="Stretch"
                Background="{DynamicResource PanelBackground}"
                DockPanel.Dock="Bottom" />
+    <DockPanel DockPanel.Dock="Bottom">
+      <ToggleSwitch IsChecked="{Binding $parent[views:ToolboxView].DrawingNode.EnableSnap, FallbackValue=False}"
+                    OnContent="Snap On"
+                    OffContent="Snap Off"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="4,4,4,0"
+                    DockPanel.Dock="Top"/>
+      <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+        <Label Grid.Column="0" 
+               Content="X"
+               Margin="6,0,6,0"
+               VerticalAlignment="Center"
+               Opacity="0.6"/>
+        <TextBox Grid.Column="1" 
+                 BorderBrush="Transparent"
+                 Margin="4,4,2,4"
+                 Padding="6"
+                 TextAlignment="Center"
+                 Text="{Binding $parent[views:ToolboxView].DrawingNode.SnapX, FallbackValue='1.0'}" />
+        <Label Grid.Column="2" 
+               Content="Y"
+               Margin="6,0,6,0"
+               VerticalAlignment="Center"
+               Opacity="0.6"/>
+        <TextBox Grid.Column="3" 
+                 BorderBrush="Transparent"
+                 Margin="2,4,4,4"
+                 Padding="6"
+                 TextAlignment="Center"
+                 Text="{Binding $parent[views:ToolboxView].DrawingNode.SnapY, FallbackValue='1.0'}" />
+      </Grid>
+    </DockPanel>
+    <Separator Height="0.55" 
+               Opacity="0.3" 
+               HorizontalAlignment="Stretch"
+               Background="{DynamicResource PanelBackground}"
+               DockPanel.Dock="Bottom"/>
     <Panel Background="{DynamicResource MainBackground}"
            DockPanel.Dock="Top">
       <Label Content="Toolbox"

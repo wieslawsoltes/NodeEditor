@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
@@ -13,6 +12,21 @@ namespace NodeEditor.Behaviors;
 
 public class DrawingSelectionBehavior : Behavior<ItemsControl>
 {
+    public static readonly StyledProperty<Control?> InputSourceProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, Control?>(nameof(InputSource));
+
+    public static readonly StyledProperty<Canvas?> AdornerCanvasProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, Canvas?>(nameof(AdornerCanvas));
+
+    public static readonly StyledProperty<bool> EnableSnapProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, bool>(nameof(EnableSnap));
+
+    public static readonly StyledProperty<double> SnapXProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, double>(nameof(SnapX), 1.0);
+
+    public static readonly StyledProperty<double> SnapYProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, double>(nameof(SnapY), 1.0);
+
     private IDisposable? _isEditModeDisposable;
     private IDisposable? _dataContextDisposable;
     private INotifyPropertyChanged? _drawingNodePropertyChanged;
@@ -22,58 +36,139 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     private bool _dragSelectedItems;
     private Point _start;
     private Rect _selectedRect;
+    private Control? _inputSource;
+
+    public Control? InputSource
+    {
+        get => GetValue(InputSourceProperty);
+        set => SetValue(InputSourceProperty, value);
+    }
+
+    public Canvas? AdornerCanvas
+    {
+        get => GetValue(AdornerCanvasProperty);
+        set => SetValue(AdornerCanvasProperty, value);
+    }
+
+    public bool EnableSnap
+    {
+        get => GetValue(EnableSnapProperty);
+        set => SetValue(EnableSnapProperty, value);
+    }
+
+    public double SnapX
+    {
+        get => GetValue(SnapXProperty);
+        set => SetValue(SnapXProperty, value);
+    }
+
+    public double SnapY
+    {
+        get => GetValue(SnapYProperty);
+        set => SetValue(SnapYProperty, value);
+    }
+
+    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == InputSourceProperty)
+        {
+            DeInitialize();
+
+            if (AssociatedObject is { } && InputSource is { })
+            {
+                Initialize();
+            }
+        }
+    }
+
+    private void Initialize()
+    {
+        if (AssociatedObject is null || InputSource is null)
+        {
+            return;
+        }
+
+        _inputSource = InputSource;
+
+        _inputSource.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
+        _inputSource.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
+        _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
+
+        _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
+            .Subscribe(x =>
+            {
+                if (x == false)
+                {
+                    RemoveSelection(AssociatedObject);
+                    RemoveSelected(AssociatedObject);
+                }
+            });
+
+        _dataContextDisposable = AssociatedObject
+            .GetObservable(StyledElement.DataContextProperty)
+            .Subscribe(x =>
+            {
+                if (x is IDrawingNode drawingNode)
+                {
+                    if (_drawingNode == drawingNode)
+                    {
+                        if (_drawingNodePropertyChanged != null)
+                        {
+                            _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
+                        }
+                    }
+
+                    RemoveSelection(AssociatedObject);
+                    RemoveSelected(AssociatedObject);
+
+                    _drawingNode = drawingNode;
+
+                    if (_drawingNode is INotifyPropertyChanged notifyPropertyChanged)
+                    {
+                        _drawingNodePropertyChanged = notifyPropertyChanged;
+                        _drawingNodePropertyChanged.PropertyChanged += DrawingNode_PropertyChanged;
+                    }
+                }
+                else
+                {
+                    RemoveSelection(AssociatedObject);
+                    RemoveSelected(AssociatedObject);
+                }
+            });
+    }
+
+    private void DeInitialize()
+    {
+        if (_inputSource is { })
+        {
+            _inputSource.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
+            _inputSource.RemoveHandler(InputElement.PointerReleasedEvent, Released);
+            _inputSource.RemoveHandler(InputElement.PointerMovedEvent, Moved);
+            _inputSource = null;
+        }
+
+        if (_drawingNodePropertyChanged is { })
+        {
+            _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
+            _drawingNodePropertyChanged = null;
+        }
+
+        _isEditModeDisposable?.Dispose();
+        _isEditModeDisposable = null;
+
+        _dataContextDisposable?.Dispose();
+        _dataContextDisposable = null;
+    }
 
     protected override void OnAttached()
     {
         base.OnAttached();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is { } && InputSource is { })
         {
-            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
-            AssociatedObject.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
-            AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
-                
-            _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
-                .Subscribe(x =>
-                {
-                    if (x == false)
-                    {
-                        RemoveSelection(AssociatedObject);
-                        RemoveSelected(AssociatedObject);
-                    }
-                });
-
-            _dataContextDisposable = AssociatedObject
-                .GetObservable(StyledElement.DataContextProperty)
-                .Subscribe(x =>
-                {
-                    if (x is IDrawingNode drawingNode)
-                    {
-                        if (_drawingNode == drawingNode)
-                        {
-                            if (_drawingNodePropertyChanged != null)
-                            {
-                                _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
-                            }
-                        }
-
-                        RemoveSelection(AssociatedObject);
-                        RemoveSelected(AssociatedObject);
-
-                        _drawingNode = drawingNode;
-
-                        if (_drawingNode is INotifyPropertyChanged notifyPropertyChanged)
-                        {
-                            _drawingNodePropertyChanged = notifyPropertyChanged;
-                            _drawingNodePropertyChanged.PropertyChanged += DrawingNode_PropertyChanged;
-                        }
-                    }
-                    else
-                    {
-                        RemoveSelection(AssociatedObject);
-                        RemoveSelected(AssociatedObject);
-                    }
-                });
+            Initialize();
         }
     }
 
@@ -81,20 +176,30 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     {
         base.OnDetaching();
 
-        if (AssociatedObject is { })
+        DeInitialize();
+    }
+
+    private double Snap(double value, double snap)
+    {
+        if (snap == 0.0)
         {
-            AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
-            AssociatedObject.RemoveHandler(InputElement.PointerReleasedEvent, Released);
-            AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
-
-            if (_drawingNodePropertyChanged is { })
-            {
-                _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
-            }
-
-            _isEditModeDisposable?.Dispose();
-            _dataContextDisposable?.Dispose();
+            return value;
         }
+        var c = value % snap;
+        var r = c >= snap / 2.0 ? value + snap - c : value - c;
+        return r;
+    }
+
+    private Point Snap(Point point)
+    {
+        if (EnableSnap)
+        {
+            var pointX = Snap(point.X, SnapX);
+            var pointY = Snap(point.Y, SnapY);
+            return new Point(pointX, pointY);
+        }
+
+        return point;
     }
 
     private void DrawingNode_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -149,14 +254,16 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         var position = e.GetPosition(AssociatedObject);
 
+        position = Snap(position);
+
         if (!drawingNode.CanSelectNodes() && !drawingNode.CanSelectConnectors())
         {
             return;
         }
 
-        if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
+        if (e.GetCurrentPoint(_inputSource).Properties.IsLeftButtonPressed)
         {
-            e.Pointer.Capture(AssociatedObject);
+            e.Pointer.Capture(_inputSource);
 
             _dragSelectedItems = false;
 
@@ -276,6 +383,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             return;
         }
 
+        position = Snap(position);
+
         var deltaX = position.X - _start.X;
         var deltaY = position.Y - _start.Y;
         _start = position;
@@ -297,7 +406,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void AddSelection(Control control, double x, double y)
     {
-        var layer = AdornerLayer.GetAdornerLayer(control);
+        var layer = AdornerCanvas;
         if (layer is null)
         {
             return;
@@ -305,7 +414,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         _selectionAdorner = new SelectionAdorner
         {
-            [AdornerLayer.AdornedElementProperty] = control,
             IsHitTestVisible = false,
             TopLeft = new Point(x, y),
             BottomRight = new Point(x, y)
@@ -313,11 +421,13 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         ((ISetLogicalParent) _selectionAdorner).SetParent(control);
         layer.Children.Add(_selectionAdorner);
+        
+        _selectionAdorner.Invalidate();
     }
 
     private void RemoveSelection(Control control)
     {
-        var layer = AdornerLayer.GetAdornerLayer(control);
+        var layer = AdornerCanvas;
         if (layer is null || _selectionAdorner is null)
         {
             return;
@@ -333,12 +443,13 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         if (_selectionAdorner is { } selection)
         {
             selection.BottomRight = new Point(x, y);
+            selection.Invalidate();
         }
     }
 
     private void AddSelected(Control control, Rect rect)
     {
-        var layer = AdornerLayer.GetAdornerLayer(control);
+        var layer = AdornerCanvas;
         if (layer is null)
         {
             return;
@@ -346,7 +457,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         _selectedAdorner = new SelectedAdorner
         {
-            [AdornerLayer.AdornedElementProperty] = control,
             IsHitTestVisible = true,
             Rect = rect,
             EnableResizing = false,
@@ -355,11 +465,13 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         ((ISetLogicalParent) _selectedAdorner).SetParent(control);
         layer.Children.Add(_selectedAdorner);
+
+        _selectedAdorner.Invalidate();
     }
 
     private void RemoveSelected(Control control)
     {
-        var layer = AdornerLayer.GetAdornerLayer(control);
+        var layer = AdornerCanvas;
         if (layer is null || _selectedAdorner is null)
         {
             return;
@@ -375,6 +487,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         if (_selectedAdorner is { } selected)
         {
             selected.Rect = rect;
+            selected.Invalidate();
         }
     }
 }
