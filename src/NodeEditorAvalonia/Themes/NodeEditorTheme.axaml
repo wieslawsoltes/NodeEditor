@@ -562,6 +562,9 @@
       <ControlTemplate x:DataType="m:IDrawingNode">
         <Panel Name="PART_Panel" 
                Background="{TemplateBinding Background}">
+          <controls:GridDecorator EnableGrid="{TemplateBinding EnableSnap}"
+                                  CellWidth="{TemplateBinding SnapX}"
+                                  CellHeight="{TemplateBinding SnapY}" />
           <ItemsControl Name="PART_NodesItemsControl"
                         Items="{Binding Nodes}" 
                         Width="{Binding Width}" 
