@@ -152,7 +152,7 @@ public class NodeFactory
         rectangle0.Parent = drawing;
         drawing.Nodes.Add(rectangle0);
 
-        var rectangle1 = CreateRectangle(220, 30, 60, 60, "rect1");
+        var rectangle1 = CreateRectangle(240, 30, 60, 60, "rect1");
         rectangle1.Parent = drawing;
         drawing.Nodes.Add(rectangle1);
 
@@ -167,7 +167,7 @@ public class NodeFactory
         rectangle2.Parent = drawing;
         drawing.Nodes.Add(rectangle2);
 
-        var ellipse0 = CreateEllipse(220, 130, 60, 60, "ellipse0");
+        var ellipse0 = CreateEllipse(240, 130, 60, 60, "ellipse0");
         ellipse0.Parent = drawing;
         drawing.Nodes.Add(ellipse0);
 
