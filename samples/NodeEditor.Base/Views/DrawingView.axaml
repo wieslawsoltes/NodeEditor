@@ -12,7 +12,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="NodeEditorDemo.Views.DrawingView"
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
-             ZoomControl="{Binding #ZoomBorder}">
+             ZoomControl="{Binding #ZoomBorder}"
+             DrawingNode="{Binding #Drawing}">
   <Panel>
     <Panel Background="{DynamicResource EditorBackground}" />
     <Panel Background="{DynamicResource EditorCheckerBoard}" />
@@ -40,6 +41,13 @@
                               Background="White"
                               InputSource="{Binding #ZoomBorder}"
                               AdornerCanvas="{Binding #AdornerCanvas}">
+            <editor:DrawingNode.Styles>
+              <Style Selector="editor|DrawingNode">
+                <Setter Property="EnableSnap" Value="True" />
+                <Setter Property="SnapX" Value="1.0" />
+                <Setter Property="SnapY" Value="1.0" />
+                </Style>
+            </editor:DrawingNode.Styles>
             <editor:DrawingNode.Transitions>
               <Transitions>
                 <paz:TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />

@@ -18,6 +18,15 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     public static readonly StyledProperty<Canvas?> AdornerCanvasProperty = 
         AvaloniaProperty.Register<DrawingSelectionBehavior, Canvas?>(nameof(AdornerCanvas));
 
+    public static readonly StyledProperty<bool> EnableSnapProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, bool>(nameof(EnableSnap));
+
+    public static readonly StyledProperty<double> SnapXProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, double>(nameof(SnapX), 1.0);
+
+    public static readonly StyledProperty<double> SnapYProperty = 
+        AvaloniaProperty.Register<DrawingSelectionBehavior, double>(nameof(SnapY), 1.0);
+
     private IDisposable? _isEditModeDisposable;
     private IDisposable? _dataContextDisposable;
     private INotifyPropertyChanged? _drawingNodePropertyChanged;
@@ -28,9 +37,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     private Point _start;
     private Rect _selectedRect;
     private Control? _inputSource;
-    private bool _enableSnap = false;
-    private double _snapX = 1.0;
-    private double _snapY = 1.0;
 
     public Control? InputSource
     {
@@ -42,6 +48,24 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     {
         get => GetValue(AdornerCanvasProperty);
         set => SetValue(AdornerCanvasProperty, value);
+    }
+
+    public bool EnableSnap
+    {
+        get => GetValue(EnableSnapProperty);
+        set => SetValue(EnableSnapProperty, value);
+    }
+
+    public double SnapX
+    {
+        get => GetValue(SnapXProperty);
+        set => SetValue(SnapXProperty, value);
+    }
+
+    public double SnapY
+    {
+        get => GetValue(SnapYProperty);
+        set => SetValue(SnapYProperty, value);
     }
 
     protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
@@ -168,10 +192,10 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private Point Snap(Point point)
     {
-        if (_enableSnap)
+        if (EnableSnap)
         {
-            var pointX = Snap(point.X, _snapX);
-            var pointY = Snap(point.Y, _snapY);
+            var pointX = Snap(point.X, SnapX);
+            var pointY = Snap(point.Y, SnapY);
             return new Point(pointX, pointY);
         }
 

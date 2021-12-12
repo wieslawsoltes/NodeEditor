@@ -15,6 +15,15 @@ public class DrawingNode : TemplatedControl
     public static readonly StyledProperty<Canvas?> AdornerCanvasProperty = 
         AvaloniaProperty.Register<DrawingNode, Canvas?>(nameof(AdornerCanvas));
 
+    public static readonly StyledProperty<bool> EnableSnapProperty = 
+        AvaloniaProperty.Register<DrawingNode, bool>(nameof(EnableSnap));
+
+    public static readonly StyledProperty<double> SnapXProperty = 
+        AvaloniaProperty.Register<DrawingNode, double>(nameof(SnapX), 1.0);
+
+    public static readonly StyledProperty<double> SnapYProperty = 
+        AvaloniaProperty.Register<DrawingNode, double>(nameof(SnapY), 1.0);
+
     public Control? InputSource
     {
         get => GetValue(InputSourceProperty);
@@ -25,6 +34,24 @@ public class DrawingNode : TemplatedControl
     {
         get => GetValue(AdornerCanvasProperty);
         set => SetValue(AdornerCanvasProperty, value);
+    }
+
+    public bool EnableSnap
+    {
+        get => GetValue(EnableSnapProperty);
+        set => SetValue(EnableSnapProperty, value);
+    }
+
+    public double SnapX
+    {
+        get => GetValue(SnapXProperty);
+        set => SetValue(SnapXProperty, value);
+    }
+
+    public double SnapY
+    {
+        get => GetValue(SnapYProperty);
+        set => SetValue(SnapYProperty, value);
     }
 
     public static bool GetIsEditMode(IAvaloniaObject obj)
