@@ -7,7 +7,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor;
 
-internal static class HitTest
+internal static class HitTestHelper
 {
     public static double Length(Point pt0, Point pt1)
     {

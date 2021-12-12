@@ -215,7 +215,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             {
                 if (_drawingNode.SelectedNodes is { Count: > 0 } || _drawingNode.SelectedConnectors is { Count: > 0 })
                 {
-                    _selectedRect = HitTest.CalculateSelectedRect(AssociatedObject);
+                    _selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
 
                     if (_selectedAdorner is { })
                     {
@@ -279,7 +279,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 }
                 else
                 {
-                    HitTest.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
+                    HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
 
                     if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                     {
@@ -297,7 +297,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             }
             else
             {
-                HitTest.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
+                HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
 
                 if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                 {
@@ -339,7 +339,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         if (_selectionAdorner is { })
         {
-            HitTest.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
+            HitTestHelper.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
         }
 
         RemoveSelection();
@@ -389,7 +389,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         var deltaY = position.Y - _start.Y;
         _start = position;
 
-        var selectedRect = HitTest.CalculateSelectedRect(AssociatedObject);
+        var selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
 
         _selectedRect = selectedRect;
 
