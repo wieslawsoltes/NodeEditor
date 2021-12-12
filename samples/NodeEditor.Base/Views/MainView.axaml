@@ -3,6 +3,7 @@
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
@@ -26,6 +27,24 @@
     <KeyBinding Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" Gesture="Delete"  />
     <KeyBinding Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" Gesture="Ctrl+A"  />
     <KeyBinding Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" Gesture="Escape"  />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" Gesture="Ctrl+D0" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" Gesture="Ctrl+NumPad0" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" Gesture="Z" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}" Gesture="Ctrl+D1" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}" Gesture="Ctrl+NumPad1" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}" Gesture="X" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}" Gesture="Ctrl+D2" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}" Gesture="Ctrl+NumPad2" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}" Gesture="Ctrl+D3" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}" Gesture="Ctrl+NumPad3" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" Gesture="Add" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" Gesture="OemPlus" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" Gesture="Ctrl+Add" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" Gesture="Ctrl+OemPlus" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="Subtract" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="OemMinus" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+Subtract" x:CompileBindings="False" />
+    <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+OemMinus" x:CompileBindings="False" />
   </UserControl.KeyBindings>
   <DockPanel>
     <views:MenuView ZoomControl="{Binding #DrawingView.ZoomControl}"
