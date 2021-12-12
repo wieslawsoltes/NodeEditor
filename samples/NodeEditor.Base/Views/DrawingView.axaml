@@ -36,7 +36,9 @@
             </idd:ContextDropBehavior.Handler>
           </idd:ContextDropBehavior>
         </i:Interaction.Behaviors>
-        <Panel Background="Transparent">
+        <Panel Background="Transparent"
+               Width="{Binding Width}"
+               Height="{Binding Height}">
           <editor:DrawingNode Name="Drawing"
                               Background="White"
                               InputSource="{Binding #ZoomBorder}"
