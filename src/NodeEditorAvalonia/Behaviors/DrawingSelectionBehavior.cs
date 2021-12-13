@@ -364,10 +364,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         var deltaY = position.Y - _start.Y;
         _start = position;
 
-        var selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
-
-        _selectedRect = selectedRect;
-
         foreach (var node in drawingNode.SelectedNodes)
         {
             if (node.CanMove())
@@ -375,6 +371,10 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 node.Move(deltaX, deltaY);
             }
         }
+
+        var selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
+
+        _selectedRect = selectedRect;
 
         UpdateSelected(selectedRect);
     }
