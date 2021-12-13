@@ -19,7 +19,7 @@ jobs:
     - name: Publish .NET Project
       run: dotnet publish samples/NodeEditor.Web/NodeEditor.Web.csproj -c Release -o release --nologo
 
-    - name: Change base-tag in index.html from / to WebDemos
+    - name: Change base-tag in index.html from / to NodeEditor
       run: sed -i 's/<base href="\/" \/>/<base href="\/NodeEditor\/" \/>/g' release/wwwroot/index.html
 
     - name: copy index.html to 404.html
