@@ -231,8 +231,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         var position = e.GetPosition(AssociatedObject);
 
-        position = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
-
         if (!drawingNode.CanSelectNodes() && !drawingNode.CanSelectConnectors())
         {
             return;
@@ -251,7 +249,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 if (_selectedRect.Contains(position))
                 {
                     _dragSelectedItems = true;
-                    _start = position;
+                    _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
                     e.Handled = true;
                 }
                 else
@@ -261,7 +259,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                     if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                     {
                         _dragSelectedItems = true;
-                        _start = position;
+                        _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
                         e.Handled = true;
                     }
                     else
@@ -279,7 +277,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                 {
                     _dragSelectedItems = true;
-                    _start = position;
+                    _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
                     e.Handled = true;
                 } 
             }
