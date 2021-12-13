@@ -201,7 +201,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
                     if (!_selectedRect.IsEmpty && _selectedAdorner is null)
                     {
-                        AddSelected(AssociatedObject, _selectedRect);
+                        AddSelected(_selectedRect);
                     }
                 }
                 else
@@ -293,7 +293,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                     return;
                 }
 
-                AddSelection(AssociatedObject, position.X, position.Y);
+                AddSelection(position.X, position.Y);
             }
         }
     }
@@ -379,7 +379,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         UpdateSelected(selectedRect);
     }
 
-    private void AddSelection(Control control, double x, double y)
+    private void AddSelection(double x, double y)
     {
         var layer = AdornerCanvas;
         if (layer is null)
@@ -394,10 +394,9 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             BottomRight = new Point(x, y)
         };
 
-        ((ISetLogicalParent) _selectionAdorner).SetParent(control);
         layer.Children.Add(_selectionAdorner);
-        
-        _selectionAdorner.Invalidate();
+
+        InputSource?.InvalidateVisual();
     }
 
     private void RemoveSelection()
@@ -409,20 +408,27 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         }
 
         layer.Children.Remove(_selectionAdorner);
-        ((ISetLogicalParent) _selectionAdorner).SetParent(null);
         _selectionAdorner = null;
     }
 
     private void UpdateSelection(double x, double y)
     {
+        var layer = AdornerCanvas;
+        if (layer is null)
+        {
+            return;
+        }
+
         if (_selectionAdorner is { } selection)
         {
             selection.BottomRight = new Point(x, y);
-            selection.Invalidate();
         }
+
+        layer.InvalidateVisual();
+        InputSource?.InvalidateVisual();
     }
 
-    private void AddSelected(Control control, Rect rect)
+    private void AddSelected(Rect rect)
     {
         var layer = AdornerCanvas;
         if (layer is null)
@@ -433,15 +439,13 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         _selectedAdorner = new SelectedAdorner
         {
             IsHitTestVisible = true,
-            Rect = rect,
-            EnableResizing = false,
-            EnableDragging = false
+            Rect = rect
         };
 
-        ((ISetLogicalParent) _selectedAdorner).SetParent(control);
         layer.Children.Add(_selectedAdorner);
 
-        _selectedAdorner.Invalidate();
+        layer.InvalidateVisual();
+        InputSource?.InvalidateVisual();
     }
 
     private void RemoveSelected()
@@ -453,16 +457,23 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         }
 
         layer.Children.Remove(_selectedAdorner);
-        ((ISetLogicalParent) _selectedAdorner).SetParent(null);
         _selectedAdorner = null;
     }
 
     private void UpdateSelected(Rect rect)
     {
+        var layer = AdornerCanvas;
+        if (layer is null)
+        {
+            return;
+        }
+
         if (_selectedAdorner is { } selected)
         {
             selected.Rect = rect;
-            selected.Invalidate();
         }
+
+        layer.InvalidateVisual();
+        InputSource?.InvalidateVisual();
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
+using Avalonia.Media;
+using Avalonia.Media.Immutable;
 
 namespace NodeEditor.Controls;
 
-public class SelectionAdorner : TemplatedControl
+public class SelectionAdorner : Control
 {
     public static readonly StyledProperty<Point> TopLeftProperty =
         AvaloniaProperty.Register<SelectionAdorner, Point>(nameof(TopLeft));
@@ -44,17 +45,21 @@ public class SelectionAdorner : TemplatedControl
 
         if (change.Property == TopLeftProperty || change.Property == BottomRightProperty)
         {
-            // Invalidate();
+            InvalidateVisual();
         }
     }
 
-    public void Invalidate()
+    public override void Render(DrawingContext context)
     {
-        var rect = GetRect();
-        Canvas.SetLeft(this, rect.X);
-        Canvas.SetTop(this, rect.Y);
-        Width = rect.Width;
-        Height = rect.Height;
-        InvalidateVisual();
+        base.Render(context);
+
+        var brush = new ImmutableSolidColorBrush(new Color(0xFF, 0x00, 0x00, 0xFF), 0.3);
+        var thickness = 2.0;
+        var pen = new ImmutablePen(
+            new ImmutableSolidColorBrush(new Color(0xFF, 0x00, 0x00, 0xFF)),
+            thickness);
+        var bounds = GetRect();
+        var rect = bounds.Deflate(thickness * 0.5);
+        context.DrawRectangle(brush, pen, rect);
     }
 }
