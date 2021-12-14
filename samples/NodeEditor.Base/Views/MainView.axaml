@@ -107,7 +107,7 @@
           <Setter Property="DisplayMode" Value="Inline" />
         </Style>
       </SplitView.Styles>
-   
+
       <i:Interaction.Behaviors>
         <ir:AdaptiveBehavior>
           <ir:AdaptiveClassSetter MinWidth="0" MaxWidth="500" ClassName="small" />
