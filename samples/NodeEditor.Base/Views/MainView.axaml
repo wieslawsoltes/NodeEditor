@@ -50,27 +50,15 @@
     <views:MenuView ZoomControl="{Binding #DrawingView.ZoomControl}"
                     x:CompileBindings="False"
                     DockPanel.Dock="Top" />
-    <Separator Height="0.55" 
-               Opacity="0.3" 
-               HorizontalAlignment="Stretch"
-               Background="{DynamicResource PanelBackground}"
-               DockPanel.Dock="Top" />
+    <Separator Classes="horizontal" DockPanel.Dock="Top" />
     <Grid ColumnDefinitions="200,6,*">
       <DockPanel Background="{DynamicResource MainBackground}"
                  Grid.Column="0" >
-        <Separator Width="0.55" 
-                   Opacity="0.3" 
-                   VerticalAlignment="Stretch"
-                   Background="{DynamicResource PanelBackground}"
-                   DockPanel.Dock="Right" />
+        <Separator  Classes="vertical" DockPanel.Dock="Right" />
         <views:SettingsView Name="SettingsView"
                             DrawingNode="{Binding #DrawingView.DrawingNode}"
                             DockPanel.Dock="Bottom"/>
-        <Separator Height="0.55" 
-                   Opacity="0.3" 
-                   HorizontalAlignment="Stretch"
-                   Background="{DynamicResource PanelBackground}"
-                   DockPanel.Dock="Bottom"/>
+        <Separator Classes="horizontal" DockPanel.Dock="Bottom"/>
         <views:ToolboxView Name="ToolboxView" />
       </DockPanel>
       <GridSplitter ResizeDirection="Columns" 
