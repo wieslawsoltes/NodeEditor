@@ -119,16 +119,6 @@
       <SplitView.Pane>
 
         <DockPanel Background="{DynamicResource MainBackground}">
-          <DockPanel.Styles>
-            <Style Selector="DockPanel">
-              <Setter Property="IsVisible">
-                <MultiBinding Converter="{x:Static BoolConverters.Or}">
-                  <Binding Path="IsToolboxViewVisible" />
-                  <Binding Path="IsSettingsViewVisible" />
-                </MultiBinding>
-              </Setter>
-            </Style>
-          </DockPanel.Styles>
           <Separator Classes="vertical" DockPanel.Dock="Right" />
           <views:SettingsView Name="SettingsView"
                               DrawingNode="{Binding #DrawingView.DrawingNode}"
