@@ -102,6 +102,18 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public ICommand DeleteCommand { get; }
 
+    public T? Clone<T>(T source)
+    {
+        if (Serializer is null)
+        {
+            return default;
+        }
+
+        var text = Serializer.Serialize(source);
+
+        return Serializer.Deserialize<T>(text);
+    }
+
     public bool IsPinConnected(IPin pin)
     {
         if (_connectors is { })

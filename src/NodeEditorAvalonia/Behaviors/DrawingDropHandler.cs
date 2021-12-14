@@ -57,10 +57,11 @@ public class DrawingDropHandler : DefaultDropHandler
                 {
                     if (bExecute)
                     {
-                        var node = template.Build?.Invoke(point.X, point.Y);
+                        var node = drawing.Clone(template.Template);
                         if (node is { })
                         {
                             node.Parent = drawing;
+                            node.Move(point.X, point.Y);
                             drawing.Nodes?.Add(node);
                         }
                     }
