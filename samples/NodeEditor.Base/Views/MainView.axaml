@@ -10,6 +10,9 @@
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
              ClipToBounds="False"
              Background="{DynamicResource MainBackground}"
+             IsMenuViewVisible="{Binding IsMenuViewVisible}"
+             IsToolboxViewVisible="{Binding IsToolboxViewVisible}"
+             IsSettingsViewVisible="{Binding IsSettingsViewVisible}"
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}">
  <Design.DataContext>
     <vm:MainWindowViewModel />
