@@ -20,11 +20,7 @@
              Margin="12,6,12,6"/>
     </Panel>
 
-    <Separator Height="0.55" 
-               Opacity="0.3" 
-               HorizontalAlignment="Stretch"
-               Background="{DynamicResource PanelBackground}"
-               DockPanel.Dock="Top" />
+    <Separator Classes="horizontal" DockPanel.Dock="Top" />
 
     <!-- Templates -->
     
