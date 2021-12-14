@@ -35,11 +35,7 @@
                Text="{Binding Drawing.Height, FallbackValue=''}" />
     </Grid>
 
-    <Separator Height="0.55" 
-               Opacity="0.3" 
-               HorizontalAlignment="Stretch"
-               Background="{DynamicResource PanelBackground}"
-               DockPanel.Dock="Bottom"/>
+    <Separator Classes="horizontal" DockPanel.Dock="Bottom"/>
 
     <!-- Edit Mode -->
     
@@ -52,11 +48,7 @@
                     Margin="4,4,4,0"/>
     </DockPanel>
 
-    <Separator Height="0.55" 
-               Opacity="0.3" 
-               HorizontalAlignment="Stretch"
-               Background="{DynamicResource PanelBackground}"
-               DockPanel.Dock="Bottom" />
+    <Separator Classes="horizontal" DockPanel.Dock="Bottom" />
 
     <!-- Snap -->
 
@@ -94,11 +86,7 @@
       </Grid>
     </DockPanel>
 
-    <Separator Height="0.55" 
-               Opacity="0.3" 
-               HorizontalAlignment="Stretch"
-               Background="{DynamicResource PanelBackground}"
-               DockPanel.Dock="Bottom"/>
+    <Separator Classes="horizontal" DockPanel.Dock="Bottom"/>
 
     <!-- Grid -->
 
