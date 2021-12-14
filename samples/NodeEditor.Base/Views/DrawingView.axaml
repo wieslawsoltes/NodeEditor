@@ -39,6 +39,11 @@
         <Panel Background="Transparent"
                Width="{Binding Width}"
                Height="{Binding Height}">
+          <Panel.Transitions>
+            <Transitions>
+              <paz:TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+            </Transitions>
+          </Panel.Transitions>
           <editor:DrawingNode Name="Drawing"
                               Background="White"
                               InputSource="{Binding #ZoomBorder}"
@@ -51,11 +56,6 @@
                 <Setter Property="SnapY" Value="15.0" />
                 </Style>
             </editor:DrawingNode.Styles>
-            <editor:DrawingNode.Transitions>
-              <Transitions>
-                <paz:TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
-              </Transitions>
-            </editor:DrawingNode.Transitions>
             <editor:DrawingNode.ContextFlyout>
               <MenuFlyout>
                 <MenuItem Header="_Edit" 
