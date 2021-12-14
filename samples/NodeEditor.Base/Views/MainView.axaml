@@ -3,7 +3,6 @@
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
