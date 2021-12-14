@@ -63,8 +63,15 @@
                    VerticalAlignment="Stretch"
                    Background="{DynamicResource PanelBackground}"
                    DockPanel.Dock="Right" />
-        <views:ToolboxView Name="ToolboxView"
-                           DrawingNode="{Binding #DrawingView.DrawingNode}"/>
+        <views:SettingsView Name="SettingsView"
+                            DrawingNode="{Binding #DrawingView.DrawingNode}"
+                            DockPanel.Dock="Bottom"/>
+        <Separator Height="0.55" 
+                   Opacity="0.3" 
+                   HorizontalAlignment="Stretch"
+                   Background="{DynamicResource PanelBackground}"
+                   DockPanel.Dock="Bottom"/>
+        <views:ToolboxView Name="ToolboxView" />
       </DockPanel>
       <GridSplitter ResizeDirection="Columns" 
                     ResizeBehavior="PreviousAndNext" 
