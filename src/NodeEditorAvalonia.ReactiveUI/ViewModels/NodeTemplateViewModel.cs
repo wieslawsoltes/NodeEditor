@@ -7,7 +7,7 @@ namespace NodeEditor.ViewModels;
 public class NodeTemplateViewModel : ReactiveObject, INodeTemplate
 {
     private string? _title;
-    private Func<double, double, INode>? _build;
+    private INode? _template;
     private INode? _preview;
 
     public string? Title
@@ -16,10 +16,10 @@ public class NodeTemplateViewModel : ReactiveObject, INodeTemplate
         set => this.RaiseAndSetIfChanged(ref _title, value);
     }
 
-    public Func<double, double, INode>? Build
+    public INode? Template
     {
-        get => _build;
-        set => this.RaiseAndSetIfChanged(ref _build, value);
+        get => _template;
+        set => this.RaiseAndSetIfChanged(ref _template, value);
     }
 
     public INode? Preview
