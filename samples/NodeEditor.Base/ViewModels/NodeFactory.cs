@@ -163,11 +163,11 @@ public class NodeFactory
             drawing.Connectors.Add(connector0);
         }
 
-        var rectangle2 = CreateRectangle(30, 130, 60, 60, "rect2");
+        var rectangle2 = CreateRectangle(30, 150, 60, 60, "rect2");
         rectangle2.Parent = drawing;
         drawing.Nodes.Add(rectangle2);
 
-        var ellipse0 = CreateEllipse(240, 130, 60, 60, "ellipse0");
+        var ellipse0 = CreateEllipse(240, 150, 60, 60, "ellipse0");
         ellipse0.Parent = drawing;
         drawing.Nodes.Add(ellipse0);
 
