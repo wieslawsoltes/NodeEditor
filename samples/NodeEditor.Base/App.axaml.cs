@@ -21,7 +21,13 @@ public class App : Application
         {
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel()
+                DataContext = new MainWindowViewModel
+                {
+                    IsEditMode = true,
+                    IsMenuViewVisible = true,
+                    IsToolboxViewVisible = true,
+                    IsSettingsViewVisible = true
+                }
             };
         }
             
@@ -29,7 +35,13 @@ public class App : Application
         {
             singleViewLifetime.MainView = new MainView
             {
-                DataContext = new MainWindowViewModel()
+                DataContext = new MainWindowViewModel
+                {
+                    IsEditMode = true,
+                    IsMenuViewVisible = true,
+                    IsToolboxViewVisible = true,
+                    IsSettingsViewVisible = true
+                }
             };
         }
 
