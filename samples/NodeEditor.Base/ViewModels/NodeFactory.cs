@@ -210,7 +210,7 @@ public class NodeFactory
 
         return drawing;
     }
-        
+
     public IList<INodeTemplate> CreateTemplates()
     {
         return new ObservableCollection<INodeTemplate>
