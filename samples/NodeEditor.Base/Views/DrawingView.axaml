@@ -54,6 +54,9 @@
                 <Setter Property="EnableSnap" Value="False" />
                 <Setter Property="SnapX" Value="15.0" />
                 <Setter Property="SnapY" Value="15.0" />
+                <Setter Property="EnableGrid" Value="False" />
+                <Setter Property="GridCellWidth" Value="15.0" />
+                <Setter Property="GridCellHeight" Value="15.0" />
                 </Style>
             </editor:DrawingNode.Styles>
             <editor:DrawingNode.ContextFlyout>

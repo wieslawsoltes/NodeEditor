@@ -178,13 +178,16 @@
     <Setter Property="EnableSnap" Value="False" />
     <Setter Property="SnapX" Value="1.0" />
     <Setter Property="SnapY" Value="1.0" />
+    <Setter Property="EnableGrid" Value="False" />
+    <Setter Property="GridCellWidth" Value="15.0" />
+    <Setter Property="GridCellHeight" Value="15.0" />
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:IDrawingNode">
         <Panel Name="PART_Panel" 
                Background="{TemplateBinding Background}">
-          <controls:GridDecorator EnableGrid="{TemplateBinding EnableSnap}"
-                                  CellWidth="{TemplateBinding SnapX}"
-                                  CellHeight="{TemplateBinding SnapY}" />
+          <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
+                                  GridCellWidth="{TemplateBinding GridCellWidth}"
+                                  GridCellHeight="{TemplateBinding GridCellHeight}" />
           <ItemsControl Name="PART_NodesItemsControl"
                         Items="{Binding Nodes}" 
                         Width="{Binding Width}" 

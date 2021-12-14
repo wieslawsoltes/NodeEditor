@@ -10,7 +10,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
              x:Class="NodeEditorDemo.Views.ToolboxView">
+
   <DockPanel>
+
+    <!-- Width/Height -->
+
     <Grid ColumnDefinitions="Auto,50*,Auto,50*" DockPanel.Dock="Bottom">
       <Label Grid.Column="0" 
              Content="W"
@@ -35,11 +39,15 @@
                TextAlignment="Center"
                Text="{Binding Drawing.Height, FallbackValue=''}" />
     </Grid>
+
     <Separator Height="0.55" 
                Opacity="0.3" 
                HorizontalAlignment="Stretch"
                Background="{DynamicResource PanelBackground}"
                DockPanel.Dock="Bottom"/>
+
+    <!-- Edit Mode -->
+    
     <DockPanel DockPanel.Dock="Bottom">
       <ToggleSwitch IsChecked="{Binding IsEditMode}"
                     OnContent="Edit Mode On"
@@ -48,11 +56,15 @@
                     VerticalAlignment="Center"
                     Margin="4,4,4,0"/>
     </DockPanel>
+
     <Separator Height="0.55" 
                Opacity="0.3" 
                HorizontalAlignment="Stretch"
                Background="{DynamicResource PanelBackground}"
                DockPanel.Dock="Bottom" />
+
+    <!-- Snap -->
+
     <DockPanel DockPanel.Dock="Bottom">
       <ToggleSwitch IsChecked="{Binding $parent[views:ToolboxView].DrawingNode.EnableSnap, FallbackValue=False}"
                     OnContent="Snap On"
@@ -86,21 +98,71 @@
                  Text="{Binding $parent[views:ToolboxView].DrawingNode.SnapY, FallbackValue='1.0'}" />
       </Grid>
     </DockPanel>
+
     <Separator Height="0.55" 
                Opacity="0.3" 
                HorizontalAlignment="Stretch"
                Background="{DynamicResource PanelBackground}"
                DockPanel.Dock="Bottom"/>
+
+    <!-- Grid -->
+
+    <DockPanel DockPanel.Dock="Bottom">
+      <ToggleSwitch IsChecked="{Binding $parent[views:ToolboxView].DrawingNode.EnableGrid, FallbackValue=False}"
+                    OnContent="Grid On"
+                    OffContent="Grid Off"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="4,4,4,0"
+                    DockPanel.Dock="Top"/>
+      <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+        <Label Grid.Column="0" 
+               Content="W"
+               Margin="6,0,6,0"
+               VerticalAlignment="Center"
+               Opacity="0.6"/>
+        <TextBox Grid.Column="1" 
+                 BorderBrush="Transparent"
+                 Margin="4,4,2,4"
+                 Padding="6"
+                 TextAlignment="Center"
+                 Text="{Binding $parent[views:ToolboxView].DrawingNode.GridCellWidth, FallbackValue='1.0'}" />
+        <Label Grid.Column="2" 
+               Content="H"
+               Margin="6,0,6,0"
+               VerticalAlignment="Center"
+               Opacity="0.6"/>
+        <TextBox Grid.Column="3" 
+                 BorderBrush="Transparent"
+                 Margin="2,4,4,4"
+                 Padding="6"
+                 TextAlignment="Center"
+                 Text="{Binding $parent[views:ToolboxView].DrawingNode.GridCellHeight, FallbackValue='1.0'}" />
+      </Grid>
+    </DockPanel>
+
+    <Separator Height="0.55" 
+               Opacity="0.3" 
+               HorizontalAlignment="Stretch"
+               Background="{DynamicResource PanelBackground}"
+               DockPanel.Dock="Bottom"/>
+
+    <!-- Toolbox -->
+
     <Panel Background="{DynamicResource MainBackground}"
            DockPanel.Dock="Top">
       <Label Content="Toolbox"
              Margin="12,6,12,6"/>
     </Panel>
+
     <Separator Height="0.55" 
                Opacity="0.3" 
                HorizontalAlignment="Stretch"
                Background="{DynamicResource PanelBackground}"
                DockPanel.Dock="Top" />
+
+    <!-- Templates -->
+    
     <ListBox Items="{Binding Templates}"
              Background="{DynamicResource MainBackground}">
       <ListBox.Resources>
@@ -140,5 +202,7 @@
         </DataTemplate>
       </ListBox.ItemTemplate>
     </ListBox>
+
   </DockPanel>
+
 </UserControl>

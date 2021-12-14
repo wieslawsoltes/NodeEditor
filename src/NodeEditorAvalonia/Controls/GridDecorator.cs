@@ -10,11 +10,11 @@ public class GridDecorator : Decorator
     public static readonly StyledProperty<bool> EnableGridProperty = 
         AvaloniaProperty.Register<GridDecorator, bool>(nameof(EnableGrid));
 
-    public static readonly StyledProperty<double> CellWidthProperty = 
-        AvaloniaProperty.Register<GridDecorator, double>(nameof(CellWidth));
+    public static readonly StyledProperty<double> GridCellWidthProperty = 
+        AvaloniaProperty.Register<GridDecorator, double>(nameof(GridCellWidth));
 
-    public static readonly StyledProperty<double> CellHeightProperty = 
-        AvaloniaProperty.Register<GridDecorator, double>(nameof(CellHeight));
+    public static readonly StyledProperty<double> GridCellHeightProperty = 
+        AvaloniaProperty.Register<GridDecorator, double>(nameof(GridCellHeight));
 
     public bool EnableGrid
     {
@@ -22,16 +22,16 @@ public class GridDecorator : Decorator
         set => SetValue(EnableGridProperty, value);
     }
 
-    public double CellWidth
+    public double GridCellWidth
     {
-        get => GetValue(CellWidthProperty);
-        set => SetValue(CellWidthProperty, value);
+        get => GetValue(GridCellWidthProperty);
+        set => SetValue(GridCellWidthProperty, value);
     }
 
-    public double CellHeight
+    public double GridCellHeight
     {
-        get => GetValue(CellHeightProperty);
-        set => SetValue(CellHeightProperty, value);
+        get => GetValue(GridCellHeightProperty);
+        set => SetValue(GridCellHeightProperty, value);
     }
 
     protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
@@ -39,8 +39,8 @@ public class GridDecorator : Decorator
         base.OnPropertyChanged(change);
 
         if (change.Property == EnableGridProperty
-            || change.Property == CellWidthProperty
-            || change.Property == CellHeightProperty)
+            || change.Property == GridCellWidthProperty
+            || change.Property == GridCellHeightProperty)
         {
             InvalidateVisual();
         }
@@ -55,8 +55,8 @@ public class GridDecorator : Decorator
             return;
         }
 
-        var cw = CellWidth;
-        var ch = CellHeight;
+        var cw = GridCellWidth;
+        var ch = GridCellHeight;
         if (cw <= 0 || ch <= 0.0)
         {
             return;
