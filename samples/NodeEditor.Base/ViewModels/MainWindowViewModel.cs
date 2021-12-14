@@ -25,6 +25,9 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     private IList<INodeTemplate>? _templates;
     private IDrawingNode? _drawing;
     private bool _isEditMode;
+    private bool _isMenuViewVisible;
+    private bool _isToolboxViewVisible;
+    private bool _isSettingsViewVisible;
 
     public MainWindowViewModel()
     {
@@ -37,10 +40,28 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         Drawing.Serializer = _serializer;
 
         _isEditMode = true;
+        _isMenuViewVisible = true;
+        _isToolboxViewVisible = true;
+        _isSettingsViewVisible = true;
 
         ToggleEditModeCommand = ReactiveCommand.Create(() =>
         {
             IsEditMode = !IsEditMode;
+        });
+
+        ToggleIsMenuViewVisibleCommand = ReactiveCommand.Create(() =>
+        {
+            IsMenuViewVisible = !IsMenuViewVisible;
+        });
+
+        ToggleIsToolboxViewVisibleCommand = ReactiveCommand.Create(() =>
+        {
+            IsToolboxViewVisible = !IsToolboxViewVisible;
+        });
+
+        ToggleIsSettingsViewVisibleCommand = ReactiveCommand.Create(() =>
+        {
+            IsSettingsViewVisible = !IsSettingsViewVisible;
         });
 
         NewCommand = ReactiveCommand.Create(New);
@@ -78,7 +99,31 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
     }
 
+    public bool IsMenuViewVisible
+    {
+        get => _isMenuViewVisible;
+        set => this.RaiseAndSetIfChanged(ref _isMenuViewVisible, value);
+    }
+
+    public bool IsToolboxViewVisible
+    {
+        get => _isToolboxViewVisible;
+        set => this.RaiseAndSetIfChanged(ref _isToolboxViewVisible, value);
+    }
+
+    public bool IsSettingsViewVisible
+    {
+        get => _isSettingsViewVisible;
+        set => this.RaiseAndSetIfChanged(ref _isSettingsViewVisible, value);
+    }
+
     public ICommand ToggleEditModeCommand { get; }
+
+    public ICommand ToggleIsMenuViewVisibleCommand { get; }
+
+    public ICommand ToggleIsToolboxViewVisibleCommand { get; }
+
+    public ICommand ToggleIsSettingsViewVisibleCommand { get; }
 
     public ICommand NewCommand { get; }
 
