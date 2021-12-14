@@ -28,6 +28,10 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     private bool _isMenuViewVisible;
     private bool _isToolboxViewVisible;
     private bool _isSettingsViewVisible;
+    private bool _showHideUI;
+    private bool _showHideMenu;
+    private bool _showHideToolbox;
+    private bool _showHideSettings;
 
     public MainWindowViewModel()
     {
@@ -62,6 +66,27 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         ToggleIsSettingsViewVisibleCommand = ReactiveCommand.Create(() =>
         {
             IsSettingsViewVisible = !IsSettingsViewVisible;
+        });
+
+        ShowHideUICommand = ReactiveCommand.Create(() =>
+        {
+            _showHideUI = !_showHideUI;
+
+            if (_showHideUI)
+            {
+                _showHideMenu = IsMenuViewVisible;
+                _showHideToolbox = IsToolboxViewVisible;
+                _showHideSettings = IsSettingsViewVisible;
+                IsMenuViewVisible = false;
+                IsToolboxViewVisible = false;
+                IsSettingsViewVisible = false;
+            }
+            else
+            {
+                IsMenuViewVisible = _showHideMenu;
+                IsToolboxViewVisible = _showHideToolbox;
+                IsSettingsViewVisible = _showHideSettings;
+            }
         });
 
         NewCommand = ReactiveCommand.Create(New);
@@ -124,6 +149,8 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     public ICommand ToggleIsToolboxViewVisibleCommand { get; }
 
     public ICommand ToggleIsSettingsViewVisibleCommand { get; }
+
+    public ICommand ShowHideUICommand { get; }
 
     public ICommand NewCommand { get; }
 

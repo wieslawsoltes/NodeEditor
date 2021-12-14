@@ -23,12 +23,14 @@
 
   <UserControl.KeyBindings>
     <KeyBinding Command="{Binding ToggleEditModeCommand}" Gesture="Ctrl+E"  />
-    <KeyBinding Command="{Binding ToggleIsMenuViewVisibleCommand}" Gesture="Alt+D0"  />
-    <KeyBinding Command="{Binding ToggleIsMenuViewVisibleCommand}" Gesture="Alt+NumPad0"  />
-    <KeyBinding Command="{Binding ToggleIsToolboxViewVisibleCommand}" Gesture="Alt+D1"  />
-    <KeyBinding Command="{Binding ToggleIsToolboxViewVisibleCommand}" Gesture="Alt+NumPad1"  />
-    <KeyBinding Command="{Binding ToggleIsSettingsViewVisibleCommand}" Gesture="Alt+D2"  />
-    <KeyBinding Command="{Binding ToggleIsSettingsViewVisibleCommand}" Gesture="Alt+NumPad2"  />
+    <KeyBinding Command="{Binding ToggleIsMenuViewVisibleCommand}" Gesture="Alt+D1"  />
+    <KeyBinding Command="{Binding ToggleIsMenuViewVisibleCommand}" Gesture="Alt+NumPad1"  />
+    <KeyBinding Command="{Binding ToggleIsToolboxViewVisibleCommand}" Gesture="Alt+D2"  />
+    <KeyBinding Command="{Binding ToggleIsToolboxViewVisibleCommand}" Gesture="Alt+NumPad2"  />
+    <KeyBinding Command="{Binding ToggleIsSettingsViewVisibleCommand}" Gesture="Alt+D3"  />
+    <KeyBinding Command="{Binding ToggleIsSettingsViewVisibleCommand}" Gesture="Alt+NumPad3"  />
+    <KeyBinding Command="{Binding ShowHideUICommand}" Gesture="Alt+D0"  />
+    <KeyBinding Command="{Binding ShowHideUICommand}" Gesture="Alt+NumPad0"  />
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
     <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"  />
     <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"  />
