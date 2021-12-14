@@ -47,12 +47,16 @@
           <editor:DrawingNode Name="Drawing"
                               Background="White"
                               InputSource="{Binding #ZoomBorder}"
-                              AdornerCanvas="{Binding #AdornerCanvas}">
+                              AdornerCanvas="{Binding #AdornerCanvas}"
+                              ClipToBounds="False">
             <editor:DrawingNode.Styles>
               <Style Selector="editor|DrawingNode">
                 <Setter Property="EnableSnap" Value="False" />
                 <Setter Property="SnapX" Value="15.0" />
                 <Setter Property="SnapY" Value="15.0" />
+                <Setter Property="EnableGrid" Value="False" />
+                <Setter Property="GridCellWidth" Value="15.0" />
+                <Setter Property="GridCellHeight" Value="15.0" />
                 </Style>
             </editor:DrawingNode.Styles>
             <editor:DrawingNode.ContextFlyout>

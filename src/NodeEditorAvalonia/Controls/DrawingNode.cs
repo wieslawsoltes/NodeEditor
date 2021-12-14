@@ -24,6 +24,15 @@ public class DrawingNode : TemplatedControl
     public static readonly StyledProperty<double> SnapYProperty = 
         AvaloniaProperty.Register<DrawingNode, double>(nameof(SnapY), 1.0);
 
+    public static readonly StyledProperty<bool> EnableGridProperty = 
+        AvaloniaProperty.Register<DrawingNode, bool>(nameof(EnableGrid));
+
+    public static readonly StyledProperty<double> GridCellWidthProperty = 
+        AvaloniaProperty.Register<DrawingNode, double>(nameof(GridCellWidth));
+
+    public static readonly StyledProperty<double> GridCellHeightProperty = 
+        AvaloniaProperty.Register<DrawingNode, double>(nameof(GridCellHeight));
+
     public Control? InputSource
     {
         get => GetValue(InputSourceProperty);
@@ -52,6 +61,24 @@ public class DrawingNode : TemplatedControl
     {
         get => GetValue(SnapYProperty);
         set => SetValue(SnapYProperty, value);
+    }
+
+    public bool EnableGrid
+    {
+        get => GetValue(EnableGridProperty);
+        set => SetValue(EnableGridProperty, value);
+    }
+
+    public double GridCellWidth
+    {
+        get => GetValue(GridCellWidthProperty);
+        set => SetValue(GridCellWidthProperty, value);
+    }
+
+    public double GridCellHeight
+    {
+        get => GetValue(GridCellHeightProperty);
+        set => SetValue(GridCellHeightProperty, value);
     }
 
     public static bool GetIsEditMode(IAvaloniaObject obj)
