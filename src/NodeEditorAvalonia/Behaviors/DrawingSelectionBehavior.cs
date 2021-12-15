@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -94,6 +95,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         _inputSource.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
         _inputSource.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
+        _inputSource.AddHandler(InputElement.PointerCaptureLostEvent, CaptureLost, RoutingStrategies.Tunnel);
         _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
 
         _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
@@ -145,6 +147,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         {
             _inputSource.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
             _inputSource.RemoveHandler(InputElement.PointerReleasedEvent, Released);
+            _inputSource.RemoveHandler(InputElement.PointerCaptureLostEvent, CaptureLost);
             _inputSource.RemoveHandler(InputElement.PointerMovedEvent, Moved);
             _inputSource = null;
         }
@@ -214,6 +217,10 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void Pressed(object? sender, PointerPressedEventArgs e)
     {
+        Debug.WriteLine($"Pressed");
+
+        var info = e.GetCurrentPoint(_inputSource);
+
         if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
         {
             return;
@@ -236,39 +243,21 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             return;
         }
 
-        if (e.GetCurrentPoint(_inputSource).Properties.IsLeftButtonPressed)
+        if (!info.Properties.IsLeftButtonPressed)
         {
-            e.Pointer.Capture(_inputSource);
+            return;
+        }
 
-            _dragSelectedItems = false;
+        _dragSelectedItems = false;
 
-            var pointerHitTestRect = new Rect(position.X - 1, position.Y - 1, 3, 3);
+        var pointerHitTestRect = new Rect(position.X - 1, position.Y - 1, 3, 3);
 
-            if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
+        if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
+        {
+            if (_selectedRect.Contains(position))
             {
-                if (_selectedRect.Contains(position))
-                {
-                    _dragSelectedItems = true;
-                    _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
-                    e.Handled = true;
-                }
-                else
-                {
-                    HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
-
-                    if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
-                    {
-                        _dragSelectedItems = true;
-                        _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
-                        e.Handled = true;
-                    }
-                    else
-                    {
-                        drawingNode.SelectedNodes = null;
-                        drawingNode.SelectedConnectors = null;
-                        RemoveSelected();
-                    }
-                }
+                _dragSelectedItems = true;
+                _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
             }
             else
             {
@@ -278,105 +267,124 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 {
                     _dragSelectedItems = true;
                     _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
-                    e.Handled = true;
-                } 
-            }
-
-            if (!_dragSelectedItems)
-            {
-                drawingNode.SelectedNodes = null;
-                drawingNode.SelectedConnectors = null;
-                RemoveSelected();
-
-                if (e.Source is Control { DataContext: not IDrawingNode })
-                {
-                    return;
                 }
+                else
+                {
+                    drawingNode.SelectedNodes = null;
+                    drawingNode.SelectedConnectors = null;
+                    RemoveSelected();
+                }
+            }
+        }
+        else
+        {
+            HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
 
+            if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
+            {
+                _dragSelectedItems = true;
+                _start = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
+            } 
+        }
+
+        if (!_dragSelectedItems)
+        {
+            drawingNode.SelectedNodes = null;
+            drawingNode.SelectedConnectors = null;
+            RemoveSelected();
+
+            if (e.Source is not Control { DataContext: not IDrawingNode })
+            {
                 AddSelection(position.X, position.Y);
             }
         }
+
+        e.Pointer.Capture(_inputSource);
+        e.Handled = true;
     }
 
     private void Released(object? sender, PointerReleasedEventArgs e)
     {
-        if (AssociatedObject?.DataContext is not IDrawingNode)
-        {
-            return;
-        }
+        Debug.WriteLine($"Released");
 
-        _dragSelectedItems = false;
-
-        if (e.Source is Control { DataContext: not IDrawingNode })
+        if (Equals(e.Pointer.Captured, _inputSource))
         {
-            return;
-        }
+            if (e.InitialPressMouseButton == MouseButton.Left && AssociatedObject?.DataContext is IDrawingNode)
+            {
+                _dragSelectedItems = false;
 
-        if (_selectionAdorner is { })
-        {
-            HitTestHelper.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
+                if (e.Source is not Control { DataContext: not IDrawingNode })
+                {
+                    if (_selectionAdorner is { })
+                    {
+                        HitTestHelper.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
+                    }
+
+                    RemoveSelection();
+                }
+            }
+
+            e.Pointer.Capture(null);
         }
+    }
+
+    private void CaptureLost(object? sender, PointerCaptureLostEventArgs e)
+    {
+        Debug.WriteLine($"CaptureLost");
 
         RemoveSelection();
     }
 
     private void Moved(object? sender, PointerEventArgs e)
     {
-        if (AssociatedObject?.DataContext is not IDrawingNode)
-        {
-            return;
-        }
+        Debug.WriteLine($"Moved");
 
-        var position = e.GetPosition(AssociatedObject);
+        var info = e.GetCurrentPoint(_inputSource);
 
-        if (_dragSelectedItems)
+        if (Equals(e.Pointer.Captured, _inputSource) && info.Properties.IsLeftButtonPressed && AssociatedObject?.DataContext is IDrawingNode)
         {
-            Move(position);
+            var position = e.GetPosition(AssociatedObject);
 
-            e.Handled = true;
-        }
-        else
-        {
-            if (e.Source is Control { DataContext: not IDrawingNode })
+            if (_dragSelectedItems)
             {
-                return;
+                if (AssociatedObject?.DataContext is IDrawingNode drawingNode)
+                {
+                    if (drawingNode.SelectedNodes is { Count: > 0 } && drawingNode.Nodes is { Count: > 0 })
+                    {
+                        position = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
+
+                        var deltaX = position.X - _start.X;
+                        var deltaY = position.Y - _start.Y;
+                        _start = position;
+
+                        foreach (var node in drawingNode.SelectedNodes)
+                        {
+                            if (node.CanMove())
+                            {
+                                node.Move(deltaX, deltaY);
+                            }
+                        }
+
+                        var selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
+
+                        _selectedRect = selectedRect;
+
+                        UpdateSelected(selectedRect);
+
+                        e.Handled = true;
+                    }
+                }
             }
-
-            UpdateSelection(position.X, position.Y);
-        }
-    }
-
-    private void Move(Point position)
-    {
-        if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
-        {
-            return;
-        }
-
-        if (drawingNode.SelectedNodes is not { Count: > 0 } || drawingNode.Nodes is not { Count: > 0 })
-        {
-            return;
-        }
-
-        position = SnapHelper.Snap(position, SnapX, SnapY, EnableSnap);
-
-        var deltaX = position.X - _start.X;
-        var deltaY = position.Y - _start.Y;
-        _start = position;
-
-        foreach (var node in drawingNode.SelectedNodes)
-        {
-            if (node.CanMove())
+            else
             {
-                node.Move(deltaX, deltaY);
+                if (e.Source is not Control { DataContext: not IDrawingNode })
+                {
+                    UpdateSelection(position.X, position.Y);
+
+                    e.Handled = true;
+                }
             }
         }
-
-        var selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
-
-        _selectedRect = selectedRect;
-
-        UpdateSelected(selectedRect);
     }
 
     private void AddSelection(double x, double y)
