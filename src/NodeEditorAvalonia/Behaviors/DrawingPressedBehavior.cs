@@ -35,13 +35,19 @@ public class DrawingPressedBehavior : Behavior<ItemsControl>
             return;
         }
 
+        if (e.Source is Control { DataContext: IPin })
+        {
+            return;
+        }
+
+        var info = e.GetCurrentPoint(AssociatedObject);
         var (x, y) = e.GetPosition(AssociatedObject);
 
-        if (e.GetCurrentPoint(AssociatedObject).Properties.IsLeftButtonPressed)
+        if (info.Properties.IsLeftButtonPressed)
         {
             drawingNode.DrawingLeftPressed(x, y);
         }
-        else if (e.GetCurrentPoint(AssociatedObject).Properties.IsRightButtonPressed)
+        else if (info.Properties.IsRightButtonPressed)
         {
             drawingNode.DrawingRightPressed(x, y);
         }

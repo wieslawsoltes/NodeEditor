@@ -37,6 +37,11 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
 
         var (x, y) = e.GetPosition(AssociatedObject);
 
-        drawingNode.ConnectorMove(x, y);
+        var info = e.GetCurrentPoint(AssociatedObject);
+
+        if (info.Pointer.Type == PointerType.Mouse)
+        {
+            drawingNode.ConnectorMove(x, y);
+        }
     }
 }

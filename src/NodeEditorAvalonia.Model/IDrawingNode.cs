@@ -13,12 +13,14 @@ public interface IDrawingNode : INode
     public T? Clone<T>(T source);
     bool EnableMultiplePinConnections { get; set; }
     bool IsPinConnected(IPin pin);
+    bool IsConnectorMoving();
+    void CancelConnector();
     bool CanSelectNodes();
     bool CanSelectConnectors();
     bool CanConnectPin(IPin pin);
     void DrawingLeftPressed(double x, double y);
     void DrawingRightPressed(double x, double y);
-    void ConnectorLeftPressed(IPin pin);
+    void ConnectorLeftPressed(IPin pin, bool showWhenMoving);
     void ConnectorMove(double x, double y);
     void CutNodes();
     void CopyNodes();

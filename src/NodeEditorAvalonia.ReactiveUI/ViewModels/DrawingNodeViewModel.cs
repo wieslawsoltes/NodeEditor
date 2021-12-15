@@ -130,6 +130,29 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         return false;
     }
 
+    public bool IsConnectorMoving()
+    {
+        if (_connector is { })
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void CancelConnector()
+    {
+        if (_connector is { })
+        {
+            if (Connectors is { })
+            {
+                Connectors.Remove(_connector);
+            }
+
+            _connector = null;
+        }
+    }
+
     public virtual bool CanSelectNodes()
     {
         if (_connector is { })
@@ -165,6 +188,10 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public virtual void DrawingLeftPressed(double x, double y)
     {
+        if (IsConnectorMoving())
+        {
+            CancelConnector();
+        }
     }
 
     public virtual void DrawingRightPressed(double x, double y)
@@ -172,18 +199,13 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         _pressedX = x;
         _pressedY = y;
 
-        if (_connector is { })
+        if (IsConnectorMoving())
         {
-            if (Connectors is { })
-            {
-                Connectors.Remove(_connector);
-            }
-
-            _connector = null;
+            CancelConnector();
         }
     }
 
-    public virtual void ConnectorLeftPressed(IPin pin)
+    public virtual void ConnectorLeftPressed(IPin pin, bool showWhenMoving)
     {
         if (_connectors is null)
         {
@@ -222,8 +244,11 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
                 End = end
             };
 
-            Connectors ??= new ObservableCollection<IConnector>();
-            Connectors.Add(connector);
+            if (showWhenMoving)
+            {
+                Connectors ??= new ObservableCollection<IConnector>();
+                Connectors.Add(connector);            
+            }
 
             _connector = connector;
         }
@@ -232,6 +257,13 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
             if (_connector.Start != pin)
             {
                 _connector.End = pin;
+
+                if (!showWhenMoving)
+                {
+                    Connectors ??= new ObservableCollection<IConnector>();
+                    Connectors.Add(_connector);            
+                }
+
                 _connector = null;
             }
         }
@@ -494,5 +526,10 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     {
         SelectedNodes = null;
         SelectedConnectors = null;
+
+        if (IsConnectorMoving())
+        {
+            CancelConnector();
+        }
     }
 }
