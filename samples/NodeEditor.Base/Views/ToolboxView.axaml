@@ -43,6 +43,7 @@
             <i:BehaviorCollectionTemplate>
               <i:BehaviorCollection>
                 <idd:ContextDragBehavior />
+                <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding Drawing}" />
               </i:BehaviorCollection>
             </i:BehaviorCollectionTemplate>
           </Setter>
