@@ -14,7 +14,6 @@
              Background="{DynamicResource MainBackground}"
              IsMenuViewVisible="{Binding IsMenuViewVisible}"
              IsToolboxViewVisible="{Binding IsToolboxViewVisible}"
-             IsSettingsViewVisible="{Binding IsSettingsViewVisible}"
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}">
 
   <Design.DataContext>
@@ -27,8 +26,6 @@
     <KeyBinding Command="{Binding ToggleIsMenuViewVisibleCommand}" Gesture="Alt+NumPad1"  />
     <KeyBinding Command="{Binding ToggleIsToolboxViewVisibleCommand}" Gesture="Alt+D2"  />
     <KeyBinding Command="{Binding ToggleIsToolboxViewVisibleCommand}" Gesture="Alt+NumPad2"  />
-    <KeyBinding Command="{Binding ToggleIsSettingsViewVisibleCommand}" Gesture="Alt+D3"  />
-    <KeyBinding Command="{Binding ToggleIsSettingsViewVisibleCommand}" Gesture="Alt+NumPad3"  />
     <KeyBinding Command="{Binding ShowHideUICommand}" Gesture="Alt+D0"  />
     <KeyBinding Command="{Binding ShowHideUICommand}" Gesture="Alt+NumPad0"  />
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"  />
@@ -64,6 +61,7 @@
   <DockPanel>
 
     <views:MenuView ZoomControl="{Binding #DrawingView.ZoomControl}"
+                    DrawingNode="{Binding #DrawingView.DrawingNode}"
                     IsVisible="{Binding IsMenuViewVisible}"
                     x:CompileBindings="False"
                     DockPanel.Dock="Top" />
@@ -78,34 +76,16 @@
           <Setter Property="CompactPaneLength" Value="100" />
           <Setter Property="OpenPaneLength" Value="200" />
           <Setter Property="PaneBackground" Value="Transparent" />
-          <Setter Property="IsPaneOpen" Value="False" />
+          <Setter Property="IsPaneOpen" Value="{Binding IsToolboxViewVisible}" />
           <Setter Property="DisplayMode" Value="Inline" />
         </Style>
         <Style Selector="SplitView.small">
-          <Setter Property="IsPaneOpen">
-            <MultiBinding Converter="{x:Static BoolConverters.Or}">
-              <Binding Path="IsToolboxViewVisible" />
-              <Binding Path="IsSettingsViewVisible" />
-            </MultiBinding>
-          </Setter>
           <Setter Property="DisplayMode" Value="Overlay" />
         </Style>
         <Style Selector="SplitView.medium">
-          <Setter Property="IsPaneOpen">
-            <MultiBinding Converter="{x:Static BoolConverters.Or}">
-              <Binding Path="IsToolboxViewVisible" />
-              <Binding Path="IsSettingsViewVisible" />
-            </MultiBinding>
-          </Setter>
           <Setter Property="DisplayMode" Value="Overlay" />
         </Style>
         <Style Selector="SplitView.wide">
-          <Setter Property="IsPaneOpen">
-            <MultiBinding Converter="{x:Static BoolConverters.Or}">
-              <Binding Path="IsToolboxViewVisible" />
-              <Binding Path="IsSettingsViewVisible" />
-            </MultiBinding>
-          </Setter>
           <Setter Property="DisplayMode" Value="Inline" />
         </Style>
       </SplitView.Styles>
@@ -121,14 +101,8 @@
       <SplitView.Pane>
 
         <DockPanel Background="{DynamicResource MainBackground}">
-          <Separator Classes="vertical" DockPanel.Dock="Right" />
-          <views:SettingsView Name="SettingsView"
-                              DrawingNode="{Binding #DrawingView.DrawingNode}"
-                              IsVisible="{Binding IsSettingsViewVisible}"
-                              DockPanel.Dock="Bottom"/>
           <Separator Classes="horizontal" DockPanel.Dock="Bottom"/>
-          <views:ToolboxView Name="ToolboxView"
-                             IsVisible="{Binding IsToolboxViewVisible}" />
+          <views:ToolboxView Name="ToolboxView" />
         </DockPanel>
 
       </SplitView.Pane>

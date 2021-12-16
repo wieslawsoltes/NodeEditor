@@ -25,8 +25,7 @@ public class App : Application
                 {
                     IsEditMode = true,
                     IsMenuViewVisible = true,
-                    IsToolboxViewVisible = true,
-                    IsSettingsViewVisible = true
+                    IsToolboxViewVisible = true
                 }
             };
         }
@@ -39,8 +38,7 @@ public class App : Application
                 {
                     IsEditMode = true,
                     IsMenuViewVisible = true,
-                    IsToolboxViewVisible = true,
-                    IsSettingsViewVisible = true
+                    IsToolboxViewVisible = true
                 }
             };
         }

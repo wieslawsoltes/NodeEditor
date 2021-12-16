@@ -6,21 +6,54 @@
              xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              xmlns:nodeEditorDemo="clr-namespace:NodeEditorDemo"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
              x:Class="NodeEditorDemo.Views.MenuView"
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel">
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+  <DockPanel VerticalAlignment="Top">
+    <Button Margin="0" 
+            Padding="6,7,6,7" 
+            Background="Transparent"
+            ToolTip.Tip="Settings"
+            DockPanel.Dock="Right">
+      <Button.Flyout>
+        <Flyout ShowMode="TransientWithDismissOnPointerMoveAway" Placement="BottomEdgeAlignedRight">
+          <views:SettingsView DrawingNode="{Binding $parent[views:MenuView].DrawingNode}"/>
+        </Flyout>
+      </Button.Flyout>
+      <PathIcon Width="16" Height="16"
+                Margin="6,0,6,0"
+                Data="{DynamicResource SettingsIcon}" />
+    </Button>
     <Menu>
+      <Menu.Resources>
+        <PathIcon x:Key="NewIconPath" Width="16" Height="16" Data="{DynamicResource NewIcon}" />
+        <PathIcon x:Key="OpenIconPath" Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
+        <PathIcon x:Key="SaveIconPath" Width="16" Height="16" Data="{DynamicResource SaveIcon}" />
+        <PathIcon x:Key="CutIconPath" Width="16" Height="16" Data="{DynamicResource CutIcon}" />
+        <PathIcon x:Key="CopyIconPath" Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
+        <PathIcon x:Key="PasteIconPath" Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
+        <PathIcon x:Key="DeleteIconPath" Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
+        <PathIcon x:Key="ZoomInIconPath" Width="16" Height="16" Data="{DynamicResource ZoomInIcon}" />
+        <PathIcon x:Key="ZoomOutIconPath" Width="16" Height="16" Data="{DynamicResource ZoomOutIcon}" />
+      </Menu.Resources>
+      <!-- File -->
       <MenuItem Header="_File">
         <MenuItem Header="_New" 
+                  Icon="{DynamicResource NewIconPath}"
                   Command="{Binding NewCommand}" 
                   InputGesture="Ctrl+N" />
         <Separator IsVisible="{x:Static nodeEditorDemo:App.EnableInputOutput}"/>
         <MenuItem Header="_Open..."
+                  Icon="{DynamicResource OpenIconPath}"
                   Command="{Binding OpenCommand}" 
                   InputGesture="Ctrl+O" 
                   IsVisible="{x:Static nodeEditorDemo:App.EnableInputOutput}" />
         <Separator IsVisible="{x:Static nodeEditorDemo:App.EnableInputOutput}" />
         <MenuItem Header="_Save..." 
+                  Icon="{DynamicResource SaveIconPath}"
                   Command="{Binding SaveCommand}" 
                   InputGesture="Ctrl+S"
                   IsVisible="{x:Static nodeEditorDemo:App.EnableInputOutput}" />
@@ -33,14 +66,18 @@
                   Command="{Binding ExitCommand}" 
                   IsVisible="{x:Static nodeEditorDemo:App.EnableInputOutput}"/>
       </MenuItem>
+      <!-- Edit -->
       <MenuItem Header="_Edit">
         <MenuItem Header="Cu_t" 
+                  Icon="{DynamicResource CutIconPath}"
                   Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+X" />
         <MenuItem Header="_Copy" 
+                  Icon="{DynamicResource CopyIconPath}"
                   Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+C" />
         <MenuItem Header="_Paste" 
+                  Icon="{DynamicResource PasteIconPath}"
                   Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}"
                   InputGesture="Ctrl+V" />
         <MenuItem Header="D_uplicate" 
@@ -55,9 +92,11 @@
                   InputGesture="Escape" />
         <Separator />
         <MenuItem Header="_Delete" 
+                  Icon="{DynamicResource DeleteIconPath}"
                   Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" 
                   InputGesture="Delete" />
       </MenuItem>
+      <!-- View -->
       <MenuItem Header="_View">
         <MenuItem Header="_Menu" 
                   InputGesture="Alt+D1"
@@ -81,22 +120,12 @@
                       IsChecked="{Binding IsToolboxViewVisible, Mode=TwoWay}"/>
           </MenuItem.Icon>
         </MenuItem>
-        <MenuItem Header="_Settings" 
-                  InputGesture="Alt+D3"
-                  DataContext="{Binding $parent[UserControl].DataContext}"
-                  Command="{Binding ToggleIsSettingsViewVisibleCommand}" 
-                  x:DataType="vm:MainWindowViewModel">
-          <MenuItem.Icon>
-            <CheckBox BorderThickness="0" 
-                      IsHitTestVisible="False" 
-                      IsChecked="{Binding IsSettingsViewVisible, Mode=TwoWay}"/>
-          </MenuItem.Icon>
-        </MenuItem>
         <Separator />
         <MenuItem Header="Show/Hide _UI" 
                   InputGesture="Alt+D0"
                   Command="{Binding ShowHideUICommand, FallbackValue={x:Null}}"/>
       </MenuItem>
+      <!-- Zoom -->
       <MenuItem Header="_Zoom" 
                 DataContext="{Binding $parent[views:MenuView].ZoomControl}"
                 x:DataType="controls:NodeZoomBorder" 
@@ -112,9 +141,11 @@
                   CommandParameter="2" />
         <Separator />
         <MenuItem Header="Zoom _In" 
+                  Icon="{DynamicResource ZoomInIconPath}"
                   Command="{Binding ZoomInCommand, FallbackValue={x:Null}}"
                   InputGesture="Add"/>
         <MenuItem Header="Zoom _Out" 
+                  Icon="{DynamicResource ZoomOutIconPath}"
                   Command="{Binding ZoomOutCommand, FallbackValue={x:Null}}"
                   InputGesture="Subtract" />
         <Separator />
@@ -129,5 +160,6 @@
                   InputGesture="Ctrl+D3" />
       </MenuItem>
     </Menu>
+  </DockPanel>
 </UserControl>
 

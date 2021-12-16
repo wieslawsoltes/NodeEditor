@@ -12,9 +12,6 @@ public class MainView : UserControl
     public static readonly StyledProperty<bool> IsToolboxViewVisibleProperty = 
         AvaloniaProperty.Register<MainView, bool>(nameof(IsToolboxViewVisible));
 
-    public static readonly StyledProperty<bool> IsSettingsViewVisibleProperty = 
-        AvaloniaProperty.Register<MainView, bool>(nameof(IsSettingsViewVisible));
-
     public MainView()
     {
         InitializeComponent();
@@ -30,12 +27,6 @@ public class MainView : UserControl
     {
         get => GetValue(IsToolboxViewVisibleProperty);
         set => SetValue(IsToolboxViewVisibleProperty, value);
-    }
-
-    public bool IsSettingsViewVisible
-    {
-        get => GetValue(IsSettingsViewVisibleProperty);
-        set => SetValue(IsSettingsViewVisibleProperty, value);
     }
 
     private void InitializeComponent()

@@ -6,14 +6,22 @@
              xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions"
              xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
              xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
-             xmlns:paz="clr-namespace:Avalonia.Controls.PanAndZoom;assembly=Avalonia.Controls.PanAndZoom"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
              x:Class="NodeEditorDemo.Views.DrawingView"
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
              ZoomControl="{Binding #ZoomBorder}"
              DrawingNode="{Binding #Drawing}">
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+  <UserControl.Resources>
+    <PathIcon x:Key="CutIconPath" Width="16" Height="16" Data="{DynamicResource CutIcon}" />
+    <PathIcon x:Key="CopyIconPath" Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
+    <PathIcon x:Key="PasteIconPath" Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
+    <PathIcon x:Key="DeleteIconPath" Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
+  </UserControl.Resources>
   <Panel>
     <Panel Background="{DynamicResource EditorBackground}" />
     <Panel Background="{DynamicResource EditorCheckerBoard}" />
@@ -73,15 +81,33 @@
                   </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="-" />
-                <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGesture="Ctrl+X" />
-                <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGesture="Ctrl+C" />
-                <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGesture="Ctrl+V" />
-                <MenuItem Header="D_uplicate" Command="{Binding DuplicateCommand}" InputGesture="Ctrl+D" />
+                <MenuItem Header="Cu_t" 
+                          Icon="{DynamicResource CutIconPath}"
+                          Command="{Binding CutCommand}" 
+                          InputGesture="Ctrl+X" />
+                <MenuItem Header="_Copy" 
+                          Icon="{DynamicResource CopyIconPath}"
+                          Command="{Binding CopyCommand}" 
+                          InputGesture="Ctrl+C" />
+                <MenuItem Header="_Paste" 
+                          Icon="{DynamicResource PasteIconPath}"
+                          Command="{Binding PasteCommand}" 
+                          InputGesture="Ctrl+V" />
+                <MenuItem Header="D_uplicate" 
+                          Command="{Binding DuplicateCommand}" 
+                          InputGesture="Ctrl+D" />
                 <MenuItem Header="-" />
-                <MenuItem Header="Select _All" Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" InputGesture="Ctrl+A" />
-                <MenuItem Header="De_select All" Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+                <MenuItem Header="Select _All" 
+                          Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" 
+                          InputGesture="Ctrl+A" />
+                <MenuItem Header="De_select All" 
+                          Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" 
+                          InputGesture="Escape" />
                 <MenuItem Header="-" />
-                <MenuItem Header="_Delete" Command="{Binding DeleteCommand}" InputGesture="Delete" />
+                <MenuItem Header="_Delete" 
+                          Icon="{DynamicResource DeleteIconPath}"
+                          Command="{Binding DeleteCommand}" 
+                          InputGesture="Delete" />
               </MenuFlyout>
             </editor:DrawingNode.ContextFlyout>
           </editor:DrawingNode>
