@@ -25,11 +25,6 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     private IList<INodeTemplate>? _templates;
     private IDrawingNode? _drawing;
     private bool _isEditMode;
-    private bool _isMenuViewVisible;
-    private bool _isToolboxViewVisible;
-    private bool _showHideUI;
-    private bool _showHideMenu;
-    private bool _showHideToolbox;
 
     public MainWindowViewModel()
     {
@@ -42,40 +37,10 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         Drawing.Serializer = _serializer;
 
         _isEditMode = true;
-        _isMenuViewVisible = true;
-        _isToolboxViewVisible = true;
 
         ToggleEditModeCommand = ReactiveCommand.Create(() =>
         {
             IsEditMode = !IsEditMode;
-        });
-
-        ToggleIsMenuViewVisibleCommand = ReactiveCommand.Create(() =>
-        {
-            IsMenuViewVisible = !IsMenuViewVisible;
-        });
-
-        ToggleIsToolboxViewVisibleCommand = ReactiveCommand.Create(() =>
-        {
-            IsToolboxViewVisible = !IsToolboxViewVisible;
-        });
-
-        ShowHideUICommand = ReactiveCommand.Create(() =>
-        {
-            _showHideUI = !_showHideUI;
-
-            if (_showHideUI)
-            {
-                _showHideMenu = IsMenuViewVisible;
-                _showHideToolbox = IsToolboxViewVisible;
-                IsMenuViewVisible = false;
-                IsToolboxViewVisible = false;
-            }
-            else
-            {
-                IsMenuViewVisible = _showHideMenu;
-                IsToolboxViewVisible = _showHideToolbox;
-            }
         });
 
         NewCommand = ReactiveCommand.Create(New);
@@ -113,25 +78,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
     }
 
-    public bool IsMenuViewVisible
-    {
-        get => _isMenuViewVisible;
-        set => this.RaiseAndSetIfChanged(ref _isMenuViewVisible, value);
-    }
-
-    public bool IsToolboxViewVisible
-    {
-        get => _isToolboxViewVisible;
-        set => this.RaiseAndSetIfChanged(ref _isToolboxViewVisible, value);
-    }
-
     public ICommand ToggleEditModeCommand { get; }
-
-    public ICommand ToggleIsMenuViewVisibleCommand { get; }
-
-    public ICommand ToggleIsToolboxViewVisibleCommand { get; }
-
-    public ICommand ShowHideUICommand { get; }
 
     public ICommand NewCommand { get; }
 
@@ -273,7 +220,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     public void PrintNetList(IDrawingNode? drawing)
     {
-        if (drawing?.Connectors is null || drawing?.Nodes is null)
+        if (drawing?.Connectors is null || drawing.Nodes is null)
         {
             return;
         }

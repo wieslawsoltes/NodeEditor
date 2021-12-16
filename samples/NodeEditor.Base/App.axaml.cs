@@ -23,9 +23,7 @@ public class App : Application
             {
                 DataContext = new MainWindowViewModel
                 {
-                    IsEditMode = true,
-                    IsMenuViewVisible = true,
-                    IsToolboxViewVisible = true
+                    IsEditMode = true
                 }
             };
         }
@@ -36,9 +34,7 @@ public class App : Application
             {
                 DataContext = new MainWindowViewModel
                 {
-                    IsEditMode = true,
-                    IsMenuViewVisible = true,
-                    IsToolboxViewVisible = true
+                    IsEditMode = true
                 }
             };
         }

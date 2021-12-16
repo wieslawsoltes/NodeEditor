@@ -96,35 +96,6 @@
                   Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" 
                   InputGesture="Delete" />
       </MenuItem>
-      <!-- View -->
-      <MenuItem Header="_View">
-        <MenuItem Header="_Menu" 
-                  InputGesture="Alt+D1"
-                  DataContext="{Binding $parent[UserControl].DataContext}"
-                  Command="{Binding ToggleIsMenuViewVisibleCommand}" 
-                  x:DataType="vm:MainWindowViewModel">
-          <MenuItem.Icon>
-            <CheckBox BorderThickness="0" 
-                      IsHitTestVisible="False" 
-                      IsChecked="{Binding IsMenuViewVisible, Mode=TwoWay}"/>
-          </MenuItem.Icon>
-        </MenuItem>
-        <MenuItem Header="_Toolbox" 
-                  InputGesture="Alt+D2"
-                  DataContext="{Binding $parent[UserControl].DataContext}"
-                  Command="{Binding ToggleIsToolboxViewVisibleCommand}" 
-                  x:DataType="vm:MainWindowViewModel">
-          <MenuItem.Icon>
-            <CheckBox BorderThickness="0" 
-                      IsHitTestVisible="False" 
-                      IsChecked="{Binding IsToolboxViewVisible, Mode=TwoWay}"/>
-          </MenuItem.Icon>
-        </MenuItem>
-        <Separator />
-        <MenuItem Header="Show/Hide _UI" 
-                  InputGesture="Alt+D0"
-                  Command="{Binding ShowHideUICommand, FallbackValue={x:Null}}"/>
-      </MenuItem>
       <!-- Zoom -->
       <MenuItem Header="_Zoom" 
                 DataContext="{Binding $parent[views:MenuView].ZoomControl}"

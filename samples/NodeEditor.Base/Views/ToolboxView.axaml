@@ -15,61 +15,45 @@
     <vm:MainWindowViewModel />
   </Design.DataContext>
 
-  <DockPanel>
-
-    <!-- Toolbox -->
-
-    <Panel Background="{DynamicResource MainBackground}"
-           DockPanel.Dock="Top">
-      <Label Content="Toolbox"
-             Margin="12,6,12,6"/>
-    </Panel>
-
-    <Separator Classes="horizontal" DockPanel.Dock="Top" />
-
-    <!-- Templates -->
-    
-    <ListBox Items="{Binding Templates}"
-             Background="{DynamicResource MainBackground}">
-      <ListBox.Resources>
-        <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
-      </ListBox.Resources>
-      <i:Interaction.Behaviors>
-        <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
-      </i:Interaction.Behaviors>
-      <ListBox.Styles>
-        <Style Selector="ListBox > ListBoxItem">
-          <Setter Property="(i:Interaction.Behaviors)">
-            <i:BehaviorCollectionTemplate>
-              <i:BehaviorCollection>
-                <idd:ContextDragBehavior />
-                <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding Drawing}" />
-              </i:BehaviorCollection>
-            </i:BehaviorCollectionTemplate>
-          </Setter>
-        </Style>
-      </ListBox.Styles>
-      <ListBox.ItemTemplate>
-        <DataTemplate DataType="m:INodeTemplate">
-          <DockPanel>
-            <Viewbox DockPanel.Dock="Left" Width="32" Height="32">
-              <editor:Node DataContext="{Binding Preview}" IsHitTestVisible="False">
-                <editor:Node.Styles>
-                  <Style Selector="editor|Node /template/ ItemsControl#PART_PinsItemsControl">
-                    <Setter Property="IsVisible" Value="False" />
-                  </Style>
-                </editor:Node.Styles>
-              </editor:Node>
-            </Viewbox>
-            <Panel Margin="12,6,12,6">
-              <TextBlock Text="{Binding Title}" 
-                         VerticalAlignment="Center" />
-            </Panel>
-          </DockPanel>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
-
-  </DockPanel>
+  <ListBox Items="{Binding Templates}"
+           Background="{DynamicResource MainBackground}">
+    <ListBox.Resources>
+      <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
+    </ListBox.Resources>
+    <i:Interaction.Behaviors>
+      <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
+    </i:Interaction.Behaviors>
+    <ListBox.Styles>
+      <Style Selector="ListBox > ListBoxItem">
+        <Setter Property="(i:Interaction.Behaviors)">
+          <i:BehaviorCollectionTemplate>
+            <i:BehaviorCollection>
+              <idd:ContextDragBehavior />
+              <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding Drawing}" />
+            </i:BehaviorCollection>
+          </i:BehaviorCollectionTemplate>
+        </Setter>
+      </Style>
+    </ListBox.Styles>
+    <ListBox.ItemTemplate>
+      <DataTemplate DataType="m:INodeTemplate">
+        <DockPanel>
+          <Viewbox DockPanel.Dock="Left" Width="32" Height="32">
+            <editor:Node DataContext="{Binding Preview}" IsHitTestVisible="False">
+              <editor:Node.Styles>
+                <Style Selector="editor|Node /template/ ItemsControl#PART_PinsItemsControl">
+                  <Setter Property="IsVisible" Value="False" />
+                </Style>
+              </editor:Node.Styles>
+            </editor:Node>
+          </Viewbox>
+          <Panel Margin="12,6,12,6">
+            <TextBlock Text="{Binding Title}" 
+                       VerticalAlignment="Center" />
+          </Panel>
+        </DockPanel>
+      </DataTemplate>
+    </ListBox.ItemTemplate>
+  </ListBox>
 
 </UserControl>
