@@ -42,6 +42,13 @@
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <BlazorLinkerDescriptor Include="LinkerConfig.xml" />
+    <TrimmableAssembly Include="Microsoft.CodeAnalysis" />
+    <TrimmableAssembly Include="Microsoft.CodeAnalysis.CSharp" />
+    <TrimmableAssembly Include="Microsoft.CodeAnalysis.CSharp.Scripting" />
+    <TrimmableAssembly Include="Microsoft.CodeAnalysis.Scripting" />
+    <TrimmableAssembly Include="Avalonia.Controls.DataGrid" />
+    <TrimmableAssembly Include="Avalonia.Themes.Default" />
+    <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
   </ItemGroup>
 
   <PropertyGroup>
