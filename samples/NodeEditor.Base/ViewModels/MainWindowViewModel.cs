@@ -25,6 +25,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     private IList<INodeTemplate>? _templates;
     private IDrawingNode? _drawing;
     private bool _isEditMode;
+    private bool _isToolboxVisible;
 
     public MainWindowViewModel()
     {
@@ -37,10 +38,16 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         Drawing.Serializer = _serializer;
 
         _isEditMode = true;
+        _isToolboxVisible = true;
 
         ToggleEditModeCommand = ReactiveCommand.Create(() =>
         {
             IsEditMode = !IsEditMode;
+        });
+
+        ToggleToolboxVisibleCommand = ReactiveCommand.Create(() =>
+        {
+            IsToolboxVisible = !IsToolboxVisible;
         });
 
         NewCommand = ReactiveCommand.Create(New);
@@ -78,7 +85,15 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
     }
 
+    public bool IsToolboxVisible
+    {
+        get => _isToolboxVisible;
+        set => this.RaiseAndSetIfChanged(ref _isToolboxVisible, value);
+    }
+
     public ICommand ToggleEditModeCommand { get; }
+
+    public ICommand ToggleToolboxVisibleCommand { get; }
 
     public ICommand NewCommand { get; }
 
