@@ -90,33 +90,33 @@
                   IsVisible="{x:Static nodeEditorDemo:App.EnableInputOutput}"/>
       </MenuItem>
       <!-- Edit -->
-      <MenuItem Header="_Edit">
+      <MenuItem Header="_Edit" DataContext="{Binding Drawing}">
         <MenuItem Header="Cu_t" 
                   Icon="{DynamicResource CutIconPath}"
-                  Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" 
+                  Command="{Binding CutCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+X" />
         <MenuItem Header="_Copy" 
                   Icon="{DynamicResource CopyIconPath}"
-                  Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" 
+                  Command="{Binding CopyCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+C" />
         <MenuItem Header="_Paste" 
                   Icon="{DynamicResource PasteIconPath}"
-                  Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}"
+                  Command="{Binding PasteCommand, FallbackValue={x:Null}}"
                   InputGesture="Ctrl+V" />
         <MenuItem Header="D_uplicate" 
-                  Command="{Binding Drawing.DuplicateCommand, FallbackValue={x:Null}}" 
+                  Command="{Binding DuplicateCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+D" />
         <Separator />
         <MenuItem Header="Select _All" 
-                  Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" 
+                  Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+A" />
         <MenuItem Header="De_select All" 
-                  Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" 
+                  Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" 
                   InputGesture="Escape" />
         <Separator />
         <MenuItem Header="_Delete" 
                   Icon="{DynamicResource DeleteIconPath}"
-                  Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" 
+                  Command="{Binding DeleteCommand, FallbackValue={x:Null}}" 
                   InputGesture="Delete" />
       </MenuItem>
       <!-- Zoom -->
