@@ -193,43 +193,51 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         var result = await dlg.ShowAsync(window);
         if (result is { } path)
         {
-            var control = new DrawingNode
+            try
             {
-                DataContext = Drawing
-            };
-                
-            var preview = new Window()
-            {
-                Width = Drawing.Width,
-                Height = Drawing.Height,
-                Content = control,
-                ShowInTaskbar = false,
-                WindowState = WindowState.Minimized
-            };
+                var control = new DrawingNode
+                {
+                    DataContext = Drawing
+                };
 
-            preview.Show();
+                var preview = new Window()
+                {
+                    Width = Drawing.Width,
+                    Height = Drawing.Height,
+                    Content = control,
+                    ShowInTaskbar = false,
+                    WindowState = WindowState.Minimized
+                };
 
-            var size = new Size(Drawing.Width, Drawing.Height);
+                preview.Show();
 
-            if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
-            {
-                using var stream = File.Create(path);
-                PngRenderer.Render(preview, size, stream);
+                var size = new Size(Drawing.Width, Drawing.Height);
+
+                if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var stream = File.Create(path);
+                    PngRenderer.Render(preview, size, stream);
+                }
+
+                if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var stream = File.Create(path);
+                    SvgRenderer.Render(preview, size, stream);
+                }
+
+                if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var stream = File.Create(path);
+                    PdfRenderer.Render(preview, size, stream, 96);
+                }
+
+                preview.Close();
             }
-
-            if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+            catch (Exception ex)
             {
-                using var stream = File.Create(path);
-                SvgRenderer.Render(preview, size, stream);
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
             }
-
-            if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                using var stream = File.Create(path);
-                PdfRenderer.Render(preview, size, stream, 96);
-            }
-                
-            preview.Close();
         }
     }
 
