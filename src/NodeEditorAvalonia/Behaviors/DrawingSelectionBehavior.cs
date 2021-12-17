@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -217,8 +216,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void Pressed(object? sender, PointerPressedEventArgs e)
     {
-        Debug.WriteLine($"Pressed");
-
         var info = e.GetCurrentPoint(_inputSource);
 
         if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
@@ -305,8 +302,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void Released(object? sender, PointerReleasedEventArgs e)
     {
-        Debug.WriteLine($"Released");
-
         if (Equals(e.Pointer.Captured, _inputSource))
         {
             if (e.InitialPressMouseButton == MouseButton.Left && AssociatedObject?.DataContext is IDrawingNode)
@@ -330,15 +325,11 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void CaptureLost(object? sender, PointerCaptureLostEventArgs e)
     {
-        Debug.WriteLine($"CaptureLost");
-
         RemoveSelection();
     }
 
     private void Moved(object? sender, PointerEventArgs e)
     {
-        Debug.WriteLine($"Moved");
-
         var info = e.GetCurrentPoint(_inputSource);
 
         if (Equals(e.Pointer.Captured, _inputSource) && info.Properties.IsLeftButtonPressed && AssociatedObject?.DataContext is IDrawingNode)
