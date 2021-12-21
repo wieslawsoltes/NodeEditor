@@ -10,7 +10,7 @@ public class PinToPointConverter : IValueConverter
 {
     public static PinToPointConverter Instance = new();
 
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is IPin pin)
         {
@@ -29,7 +29,7 @@ public class PinToPointConverter : IValueConverter
         return new Point();
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }

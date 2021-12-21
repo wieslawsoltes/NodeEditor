@@ -60,7 +60,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
         ExitCommand = ReactiveCommand.Create(() =>
         {
-            if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
             {
                 desktopLifetime.Shutdown();
             }
@@ -113,7 +113,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     private async Task Open()
     {
-        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
         {
             return;
         }
@@ -143,7 +143,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     private async Task Save()
     {
-        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
         {
             return;
         }
@@ -177,7 +177,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             return;
         }
             
-        if (Application.Current.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
         {
             return;
         }
