@@ -3,7 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 
-namespace NodeEditor.Export;
+namespace NodeEditor.Export.Renderers;
 
 public static class PngRenderer
 {

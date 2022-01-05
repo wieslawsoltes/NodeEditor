@@ -11,6 +11,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using NodeEditor.Controls;
 using NodeEditor.Export;
+using NodeEditor.Export.Renderers;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
@@ -186,6 +187,8 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         dlg.Filters.Add(new FileDialogFilter() { Name = "Png", Extensions = { "png" } });
         dlg.Filters.Add(new FileDialogFilter() { Name = "Svg", Extensions = { "svg" } });
         dlg.Filters.Add(new FileDialogFilter() { Name = "Pdf", Extensions = { "pdf" } });
+        dlg.Filters.Add(new FileDialogFilter() { Name = "Xps", Extensions = { "xps" } });
+        dlg.Filters.Add(new FileDialogFilter() { Name = "Skp", Extensions = { "skp" } });
         dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
         dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
         dlg.DefaultExtension = "png";
@@ -229,6 +232,18 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
                 {
                     using var stream = File.Create(path);
                     PdfRenderer.Render(preview, size, stream, 96);
+                }
+
+                if (path.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var stream = File.Create(path);
+                    XpsRenderer.Render(control, size, stream, 96);
+                }
+
+                if (path.EndsWith("skp", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var stream = File.Create(path);
+                    SkpRenderer.Render(control, size, stream);
                 }
 
                 preview.Close();
