@@ -21,6 +21,10 @@ public abstract class DefaultDropHandler : AvaloniaObject, IDropHandler
         var relativeTo = e.Source as IControl;
         var point = relativeTo is { } ? e.GetPosition(relativeTo) : new Point();
         var visual = relativeTo as IVisual;
+        if (visual is null)
+        {
+            return new Point();
+        }
         var screenPoint = visual.PointToScreen(point).ToPoint(1.0);
         return screenPoint;
     }
