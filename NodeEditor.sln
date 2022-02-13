@@ -56,6 +56,7 @@ ProjectSection(SolutionItems) = preProject
 	build\Avalonia.Controls.PanAndZoom.props = build\Avalonia.Controls.PanAndZoom.props
 	build\ReactiveUI.props = build\ReactiveUI.props
 	build\Avalonia.Skia.props = build\Avalonia.Skia.props
+	build\Avalonia.Android.props = build\Avalonia.Android.props
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "build\build\_build.csproj", "{0737F4A8-E674-4518-A362-0A78D03F8165}"
@@ -71,6 +72,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Base", "samples\NodeEditor.Base\NodeEditor.Base.csproj", "{1AC073FC-6F01-4F5B-AE78-17EE10F74D37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Web", "samples\NodeEditor.Web\NodeEditor.Web.csproj", "{FE2664AE-527E-4044-A53E-6D4523857F98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Android", "samples\NodeEditor.Android\NodeEditor.Android.csproj", "{6C48DAEB-611A-4A58-89C1-5A8737E218EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +121,10 @@ Global
 		{FE2664AE-527E-4044-A53E-6D4523857F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE2664AE-527E-4044-A53E-6D4523857F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE2664AE-527E-4044-A53E-6D4523857F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C48DAEB-611A-4A58-89C1-5A8737E218EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C48DAEB-611A-4A58-89C1-5A8737E218EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C48DAEB-611A-4A58-89C1-5A8737E218EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C48DAEB-611A-4A58-89C1-5A8737E218EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{861D1DD2-FDE9-492E-AEF6-E00F92F61EBD} = {02D6D6DC-21FA-435F-9526-E6F635127483}
@@ -133,5 +140,6 @@ Global
 		{EE456454-F26E-4905-8889-5660272C4EC4} = {02D6D6DC-21FA-435F-9526-E6F635127483}
 		{1AC073FC-6F01-4F5B-AE78-17EE10F74D37} = {EA2546EB-E043-4411-92D2-96AF60E6EC70}
 		{FE2664AE-527E-4044-A53E-6D4523857F98} = {EA2546EB-E043-4411-92D2-96AF60E6EC70}
+		{6C48DAEB-611A-4A58-89C1-5A8737E218EE} = {EA2546EB-E043-4411-92D2-96AF60E6EC70}
 	EndGlobalSection
 EndGlobal
