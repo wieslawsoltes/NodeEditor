@@ -23,6 +23,8 @@ jobs:
       uses: actions/setup-dotnet@v1
     - name: Workload Android
       run: dotnet workload install android
+    - name: Workload Android AOT
+      run: dotnet workload install android-aot
     - name: Build Release
       run: dotnet build --configuration Release
     - name: Test Release
