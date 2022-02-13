@@ -9,7 +9,7 @@ using NodeEditorDemo.Views;
 
 namespace NodeEditor.Android
 {
-    [Activity(Label = "Main",
+    [Activity(Label = "NodeEditor",
         MainLauncher = true,
         Icon = "@drawable/icon",
         LaunchMode = LaunchMode.SingleInstance/*,
