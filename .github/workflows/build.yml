@@ -21,10 +21,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
-    - name: Workload Android
-      run: dotnet workload install android wasm-tools --from-rollback-file https://aka.ms/dotnet/maui/main.json --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json
-    - name: Workload Android AOT
-      run: dotnet workload install android-aot
+    - name: Install Workloads
+      run: dotnet workload install android android-aot wasm-tools --from-rollback-file "https://aka.ms/dotnet/maui/main.json" --source "https://aka.ms/dotnet6/nuget/index.json" --source "https://api.nuget.org/v3/index.json"
     - name: Build Release
       run: dotnet build --configuration Release
     - name: Test Release
