@@ -22,7 +22,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
     - name: Workload Android
-      run: dotnet workload install android
+      run: dotnet workload install android --skip-manifest-update --source "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json"
     - name: Workload Android AOT
       run: dotnet workload install android-aot
     - name: Build Release
