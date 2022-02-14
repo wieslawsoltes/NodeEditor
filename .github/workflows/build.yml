@@ -22,7 +22,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
     - name: Install Workloads
-      run: dotnet workload install android android-aot wasm-tools --source "https://aka.ms/dotnet6/nuget/index.json" --source "https://api.nuget.org/v3/index.json"
+      run: dotnet workload install android android-aot wasm-tools --no-cache --disable-parallel --skip-manifest-update --source "https://aka.ms/dotnet6/nuget/index.json" --source "https://api.nuget.org/v3/index.json" --source "https://pkgs.dev.azure.com/azure-public/vside/_packaging/xamarin-impl/nuget/v3/index.json"
     - name: Build Release
       run: dotnet build --configuration Release
     - name: Test Release
