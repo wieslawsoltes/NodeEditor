@@ -12,8 +12,8 @@ namespace NodeEditor.Android
     [Activity(Label = "NodeEditor",
         MainLauncher = true,
         Icon = "@drawable/icon",
-        LaunchMode = LaunchMode.SingleInstance/*,
-        ScreenOrientation = ScreenOrientation.Landscape*/)]
+        LaunchMode = LaunchMode.SingleInstance,
+        ScreenOrientation = ScreenOrientation.Landscape)]
     public class MainBaseActivity : AvaloniaActivity
     {
         static MainBaseActivity()
