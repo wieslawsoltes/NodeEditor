@@ -16,7 +16,7 @@
   </Design.DataContext>
 
   <ListBox Items="{Binding Templates}"
-           Background="{DynamicResource MainBackground}">
+           Background="Transparent">
     <ListBox.Resources>
       <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
     </ListBox.Resources>
