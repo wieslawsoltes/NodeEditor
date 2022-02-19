@@ -49,7 +49,7 @@
     <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+OemMinus" x:CompileBindings="False" />
   </UserControl.KeyBindings>
 
-  <DockPanel>
+  <DockPanel Margin="0,36,0,0">
 
     <views:MenuView ZoomControl="{Binding #DrawingView.ZoomControl}"
                     DrawingNode="{Binding #DrawingView.DrawingNode}"
