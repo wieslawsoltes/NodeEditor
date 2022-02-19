@@ -9,7 +9,6 @@
              x:Class="NodeEditorDemo.Views.MainView"
              x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
              ClipToBounds="False"
-             Background="{DynamicResource MainBackground}"
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}"
              ZoomControl="{Binding #DrawingView.ZoomControl}">
 
@@ -81,7 +80,16 @@
 
       <SplitView.Pane>
 
-        <DockPanel Background="{DynamicResource MainBackground}">
+        <DockPanel>
+          <ExperimentalAcrylicBorder DockPanel.Dock="Left" IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+              <ExperimentalAcrylicMaterial BackgroundSource="Digger"
+                                           TintColor="{DynamicResource SystemAltLowColor}"
+                                           TintOpacity="1"
+                                           FallbackColor="{DynamicResource SystemAltLowColor}"
+                                           MaterialOpacity="0.6" />
+            </ExperimentalAcrylicBorder.Material>
+          </ExperimentalAcrylicBorder>
           <views:ToolboxView Name="ToolboxView" />
         </DockPanel>
 
