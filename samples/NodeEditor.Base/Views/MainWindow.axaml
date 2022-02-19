@@ -9,6 +9,8 @@
         x:Name="MainWindow"
         WindowState="Normal" 
         WindowStartupLocation="CenterScreen"
+        Background="{x:Null}"
+        TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="PreferSystemChrome"
         Width="1200" Height="700"
