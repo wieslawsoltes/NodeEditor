@@ -8,6 +8,7 @@ public partial class App
     static App()
     {
         NodeEditorDemo.App.EnableInputOutput = false;
+        NodeEditorDemo.App.EnableMainMenu = true;
     }
 
     protected override void OnParametersSet()
