@@ -10,6 +10,8 @@ public class App : Application
 {
     public static bool EnableInputOutput { get; set; } = true;
 
+    public static bool EnableMainMenu { get; set; } = true;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
