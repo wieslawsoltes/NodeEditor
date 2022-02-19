@@ -50,7 +50,7 @@
 
     <!-- Menu -->
  
-    <Menu>
+    <Menu IsVisible="{x:Static app:App.EnableMainMenu}">
       <Menu.Resources>
         <PathIcon x:Key="NewIconPath" Width="16" Height="16" Data="{DynamicResource NewIcon}" />
         <PathIcon x:Key="OpenIconPath" Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
