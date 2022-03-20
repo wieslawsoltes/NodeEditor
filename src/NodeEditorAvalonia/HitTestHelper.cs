@@ -235,6 +235,77 @@ internal static class HitTestHelper
             drawingNode.SelectedNodes = selectedNodes;
         }
     }
+    
+    public static void FindSelectedNodesAndAddToSelection(ItemsControl? itemsControl, Rect rect)
+    {
+        if (itemsControl?.DataContext is not IDrawingNode drawingNode)
+        {
+            return;
+        }
+
+        var selectedNodes = new HashSet<INode>();
+        var selectedConnectors = new HashSet<IConnector>();
+
+        if (drawingNode.CanSelectNodes())
+        {
+            foreach (var container in itemsControl.ItemContainerGenerator.Containers.Reverse())
+            {
+                if (container.ContainerControl is not { DataContext: INode node } containerControl)
+                {
+                    continue;
+                }
+
+                var bounds = containerControl.Bounds;
+
+                if (!rect.Intersects(bounds))
+                {
+                    continue;
+                }
+
+                if (node.CanSelect())
+                {
+                    selectedNodes.Add(node);
+                    break;
+                }
+            }
+        }
+
+        if (drawingNode.CanSelectConnectors())
+        {
+            if (drawingNode.Connectors is { Count: > 0 })
+            {
+                foreach (var connector in drawingNode.Connectors.Reverse())
+                {
+                    if (!HitTestConnector(connector, rect))
+                    {
+                        continue;
+                    }
+
+                    if (connector.CanSelect())
+                    {
+                        selectedConnectors.Add(connector);
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (selectedConnectors.Count > 0)
+        {
+            foreach (var selectedConnector in selectedConnectors)
+            {
+                drawingNode.SelectedConnectors?.Add(selectedConnector);
+            }
+        }
+
+        if (selectedNodes.Count > 0)
+        {
+            foreach (var selectedNode in selectedNodes)
+            {
+                drawingNode.SelectedNodes?.Add(selectedNode);
+            }
+        }
+    }
 
     public static Rect CalculateSelectedRect(ItemsControl? itemsControl)
     {

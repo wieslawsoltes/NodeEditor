@@ -258,7 +258,22 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             }
             else
             {
-                HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
+                // Add another node to the existing selection
+                if (e.KeyModifiers == KeyModifiers.Shift)
+                {
+                    HitTestHelper.FindSelectedNodesAndAddToSelection(AssociatedObject, pointerHitTestRect);
+                    
+                    var selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
+
+                    _selectedRect = selectedRect;
+
+                    UpdateSelected(selectedRect);
+                }
+                // Clear the selection and select another
+                else
+                {
+                    HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
+                }
 
                 if (drawingNode.SelectedNodes is { Count: > 0 } || drawingNode.SelectedConnectors is { Count: > 0 })
                 {
