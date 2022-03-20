@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
@@ -182,7 +183,7 @@ internal static class HitTestHelper
 
         if (drawingNode.CanSelectNodes())
         {
-            foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+            foreach (var container in itemsControl.ItemContainerGenerator.Containers.Reverse())
             {
                 if (container.ContainerControl is not { DataContext: INode node } containerControl)
                 {
@@ -199,6 +200,7 @@ internal static class HitTestHelper
                 if (node.CanSelect())
                 {
                     selectedNodes.Add(node);
+                    break;
                 }
             }
         }
@@ -207,7 +209,7 @@ internal static class HitTestHelper
         {
             if (drawingNode.Connectors is { Count: > 0 })
             {
-                foreach (var connector in drawingNode.Connectors)
+                foreach (var connector in drawingNode.Connectors.Reverse())
                 {
                     if (!HitTestConnector(connector, rect))
                     {
@@ -217,6 +219,7 @@ internal static class HitTestHelper
                     if (connector.CanSelect())
                     {
                         selectedConnectors.Add(connector);
+                        break;
                     }
                 }
             }
