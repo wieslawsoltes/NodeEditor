@@ -80,16 +80,7 @@
 
       <SplitView.Pane>
 
-        <DockPanel>
-          <ExperimentalAcrylicBorder DockPanel.Dock="Left" IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-              <ExperimentalAcrylicMaterial BackgroundSource="Digger"
-                                           TintColor="{DynamicResource SystemAltLowColor}"
-                                           TintOpacity="1"
-                                           FallbackColor="{DynamicResource SystemAltLowColor}"
-                                           MaterialOpacity="0.6" />
-            </ExperimentalAcrylicBorder.Material>
-          </ExperimentalAcrylicBorder>
+        <DockPanel Background="{DynamicResource MainBackground}">
           <views:ToolboxView Name="ToolboxView" />
         </DockPanel>
 
