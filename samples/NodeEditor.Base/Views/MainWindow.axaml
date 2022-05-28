@@ -7,12 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
         x:Class="NodeEditorDemo.Views.MainWindow"
         x:Name="MainWindow"
-        WindowState="Normal" 
-        WindowStartupLocation="CenterScreen"
-        Background="{x:Null}"
-        TransparencyLevelHint="AcrylicBlur"
-        ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="PreferSystemChrome"
+        WindowState="Normal" WindowStartupLocation="CenterScreen"
         Width="1200" Height="700"
         Icon="/Assets/Icon.ico"
         Title="NodeEditor">
@@ -128,8 +123,6 @@
     </NativeMenu>
   </NativeMenu.Menu>
 
-  <Panel Margin="{Binding #MainWindow.OffScreenMargin}">
-    <views:MainView Name="MainView" />
-  </Panel>
+  <views:MainView Name="MainView" />
 
 </Window>
