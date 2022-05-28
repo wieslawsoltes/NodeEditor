@@ -6,7 +6,8 @@
         xmlns:views="clr-namespace:NodeEditorDemo.Views"
         mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
         x:Class="NodeEditorDemo.Views.MainWindow"
-        WindowState="Maximized" WindowStartupLocation="CenterScreen"
+        x:Name="MainWindow"
+        WindowState="Normal" WindowStartupLocation="CenterScreen"
         Width="1200" Height="700"
         Icon="/Assets/Icon.ico"
         Title="NodeEditor">
@@ -15,6 +16,113 @@
     <vm:MainWindowViewModel />
   </Design.DataContext>
 
-  <views:MainView />
+  <Window.Resources>
+    <PathIcon x:Key="NewIconPath" Width="16" Height="16" Data="{DynamicResource NewIcon}" />
+    <PathIcon x:Key="OpenIconPath" Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
+    <PathIcon x:Key="SaveIconPath" Width="16" Height="16" Data="{DynamicResource SaveIcon}" />
+    <PathIcon x:Key="CutIconPath" Width="16" Height="16" Data="{DynamicResource CutIcon}" />
+    <PathIcon x:Key="CopyIconPath" Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
+    <PathIcon x:Key="PasteIconPath" Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
+    <PathIcon x:Key="DeleteIconPath" Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
+    <PathIcon x:Key="ZoomInIconPath" Width="16" Height="16" Data="{DynamicResource ZoomInIcon}" />
+    <PathIcon x:Key="ZoomOutIconPath" Width="16" Height="16" Data="{DynamicResource ZoomOutIcon}" />
+  </Window.Resources>
+
+  <NativeMenu.Menu>
+    <NativeMenu>
+      <!-- File -->
+      <NativeMenuItem Header="File">
+        <NativeMenu>
+          <NativeMenuItem Header="New" 
+                          Icon="{DynamicResource NewIconPath}"
+                          Command="{Binding NewCommand}" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Open..."
+                          Icon="{DynamicResource OpenIconPath}"
+                          Command="{Binding OpenCommand}" 
+                          Gesture="Ctrl+O"  />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Save..." 
+                          Icon="{DynamicResource SaveIconPath}"
+                          Command="{Binding SaveCommand}" 
+                          Gesture="Ctrl+S" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Export..." 
+                          Command="{Binding ExportCommand}" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Quit" 
+                          Command="{Binding ExitCommand}"
+                          Gesture="CMD+Q"/>
+        </NativeMenu>
+      </NativeMenuItem>
+      <!-- Edit -->
+      <NativeMenuItem Header="Edit">
+        <NativeMenu>
+          <NativeMenuItem Header="Cut" 
+                          Icon="{DynamicResource CutIconPath}"
+                          Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" 
+                          Gesture="Ctrl+X" />
+          <NativeMenuItem Header="Copy" 
+                          Icon="{DynamicResource CopyIconPath}"
+                          Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" 
+                          Gesture="Ctrl+C" />
+          <NativeMenuItem Header="Paste" 
+                          Icon="{DynamicResource PasteIconPath}"
+                          Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}"
+                          Gesture="Ctrl+V" />
+          <NativeMenuItem Header="Duplicate" 
+                          Command="{Binding Drawing.DuplicateCommand, FallbackValue={x:Null}}" 
+                          Gesture="Ctrl+D" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Select All" 
+                          Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" 
+                          Gesture="Ctrl+A" />
+          <NativeMenuItem Header="Deselect All" 
+                          Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" 
+                          Gesture="Escape" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Delete" 
+                          Icon="{DynamicResource DeleteIconPath}"
+                          Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" 
+                          Gesture="Delete" />
+        </NativeMenu>
+      </NativeMenuItem>
+      <!-- Zoom -->
+      <NativeMenuItem Header="Zoom">
+        <NativeMenu>
+          <NativeMenuItem Header="50%" 
+                          Command="{Binding #MainView.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
+                          CommandParameter="0.5" />
+          <NativeMenuItem Header="100%" 
+                          Command="{Binding #MainView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
+                          Gesture="Ctrl+D0" />
+          <NativeMenuItem Header="200%" 
+                          Command="{Binding #MainView.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
+                          CommandParameter="2" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Zoom In" 
+                          Icon="{DynamicResource ZoomInIconPath}"
+                          Command="{Binding #MainView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
+                          Gesture="Add"/>
+          <NativeMenuItem Header="Zoom Out" 
+                          Icon="{DynamicResource ZoomOutIconPath}"
+                          Command="{Binding #MainView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
+                          Gesture="Subtract" />
+          <NativeMenuItemSeparator />
+          <NativeMenuItem Header="Fit Canvas" 
+                          Command="{Binding #MainView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
+                          Gesture="Ctrl+D1" />
+          <NativeMenuItem Header="Fit to Fill" 
+                          Command="{Binding #MainView.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
+                          Gesture="Ctrl+D2" />
+          <NativeMenuItem Header="Fill Canvas" 
+                          Command="{Binding #MainView.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
+                          Gesture="Ctrl+D3" />
+        </NativeMenu>
+      </NativeMenuItem>
+    </NativeMenu>
+  </NativeMenu.Menu>
+
+  <views:MainView Name="MainView" />
 
 </Window>

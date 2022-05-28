@@ -10,35 +10,49 @@ public class App : Application
 {
     public static bool EnableInputOutput { get; set; } = true;
 
+    public static bool EnableMainMenu { get; set; } = true;
+
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
     }
 
+    public App()
+    {
+        Name = "NodeEditor";
+    }
+    
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            var vm = new MainWindowViewModel
+            {
+                IsEditMode = true,
+                IsToolboxVisible = true
+            };
+
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel
-                {
-                    IsEditMode = true,
-                    IsToolboxVisible = true
-                }
+                DataContext = vm
             };
+
+            DataContext = vm;
         }
             
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
         {
+            var vm = new MainWindowViewModel
+            {
+                IsEditMode = true,
+                IsToolboxVisible = false
+            };
             singleViewLifetime.MainView = new MainView
             {
-                DataContext = new MainWindowViewModel
-                {
-                    IsEditMode = true,
-                    IsToolboxVisible = false
-                }
+                DataContext = vm
             };
+
+            DataContext = vm;
         }
 
         base.OnFrameworkInitializationCompleted();

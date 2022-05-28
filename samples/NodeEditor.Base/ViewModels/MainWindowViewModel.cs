@@ -10,7 +10,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using NodeEditor.Controls;
-using NodeEditor.Export;
 using NodeEditor.Export.Renderers;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
@@ -66,6 +65,11 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
                 desktopLifetime.Shutdown();
             }
         });
+
+        AboutCommand = ReactiveCommand.Create(() =>
+        {
+            // TODO: Show about dialog window.
+        });
     }
 
     public IList<INodeTemplate>? Templates
@@ -105,6 +109,8 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     public ICommand ExportCommand { get; }
 
     public ICommand ExitCommand { get; }
+
+    public ICommand AboutCommand { get; }
 
     private void New()
     {
