@@ -56,6 +56,8 @@
                     x:CompileBindings="False"
                     DockPanel.Dock="Top" />
 
+    <Separator Classes="horizontal" DockPanel.Dock="Top" />
+
     <SplitView Name="SplitView"
                Classes.compactInline="{Binding !IsToolboxVisible}"
                Classes.inline="{Binding IsToolboxVisible}">
@@ -82,6 +84,7 @@
       <SplitView.Pane>
 
         <DockPanel Background="{DynamicResource MainBackground}">
+          <Separator Classes="vertical" DockPanel.Dock="Right" />
           <views:ToolboxView Name="ToolboxView" />
         </DockPanel>
 
