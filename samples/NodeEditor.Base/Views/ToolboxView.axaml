@@ -38,8 +38,8 @@
     <ListBox.ItemTemplate>
       <DataTemplate DataType="m:INodeTemplate">
         <DockPanel>
-          <Viewbox DockPanel.Dock="Left" Width="32" Height="32">
-            <editor:Node DataContext="{Binding Preview}" IsHitTestVisible="False">
+          <Viewbox DockPanel.Dock="Left" Width="32" Height="32" DataContext="{Binding Preview}">
+            <editor:Node IsHitTestVisible="False">
               <editor:Node.Styles>
                 <Style Selector="editor|Node /template/ ItemsControl#PART_PinsItemsControl">
                   <Setter Property="IsVisible" Value="False" />
