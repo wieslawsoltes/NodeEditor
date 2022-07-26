@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+                    xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    x:CompileBindings="True">
+
+  <ControlTheme x:Key="{x:Type controls:Node}" TargetType="controls:Node">
+
+    <Setter Property="Width" Value="{Binding Width}" x:DataType="m:INode" />
+    <Setter Property="Height" Value="{Binding Height}" x:DataType="m:INode" />
+    <Setter Property="ClipToBounds" Value="False" />
+
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="m:INode">
+        <Panel Width="{Binding Width}" 
+               Height="{Binding Height}">
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{Binding Content}"/>
+          <ItemsControl Name="PART_PinsItemsControl"
+                        Items="{Binding Pins}"
+                        Width="{Binding Width}"
+                        Height="{Binding Height}"
+                        ClipToBounds="False">
+            <ItemsControl.Styles>
+              <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:IPin">
+                <Setter Property="Canvas.Left" Value="{Binding X}" />
+                <Setter Property="Canvas.Top" Value="{Binding Y}" />
+              </Style>
+            </ItemsControl.Styles>
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <Canvas />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate DataType="m:IPin">
+                <controls:Pin Name="PART_Pin" />
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^/template/ ItemsControl#PART_PinsItemsControl > :is(ContentPresenter)">
+      <Setter Property="(i:Interaction.Behaviors)">
+        <i:BehaviorCollectionTemplate>
+          <i:BehaviorCollection>
+            <behaviors:PinPressedBehavior />
+          </i:BehaviorCollection>
+        </i:BehaviorCollectionTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="^/template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="IsHitTestVisible" Value="{Binding $self.(controls:DrawingNode.IsEditMode), Mode=OneWay, Converter={x:Static BoolConverters.Not}}" 
+              x:DataType="controls:Node"
+              x:CompileBindings="False"/>
+    </Style>
+
+    <!--
+    <Style Selector="^/template/ ItemsControl#PART_PinsItemsControl">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    -->
+
+  </ControlTheme>
+
+</ResourceDictionary>
