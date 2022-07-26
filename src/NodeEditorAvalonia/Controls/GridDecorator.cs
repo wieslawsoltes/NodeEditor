@@ -75,15 +75,15 @@ public class GridDecorator : Decorator
         var ey = rect.Y + rect.Height;
         for (var x = ox + cw; x < ex; x += cw)
         {
-            var p0 = new Point(x, oy);
-            var p1 = new Point(x, ey);
+            var p0 = new Point(x + 0.5, oy + 0.5);
+            var p1 = new Point(x + 0.5, ey + 0.5);
             context.DrawLine(pen, p0, p1);
         }
 
         for (var y = oy + ch; y < ey; y += ch)
         {
-            var p0 = new Point(ox, y);
-            var p1 = new Point(ex, y);
+            var p0 = new Point(ox + 0.5, y + 0.5);
+            var p1 = new Point(ex + 0.5, y + 0.5);
             context.DrawLine(pen, p0, p1);
         }
 
