@@ -123,36 +123,36 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     {
         return new List<FilePickerFileType>
         {
-            Storage.Json,
-            Storage.All
+            StorageService.Json,
+            StorageService.All
         };
     }
 
-    public static List<FilePickerFileType> GetSaveFileTypes()
+    private static List<FilePickerFileType> GetSaveFileTypes()
     {
         return new List<FilePickerFileType>
         {
-            Storage.Json,
-            Storage.All
+            StorageService.Json,
+            StorageService.All
         };
     }
 
-    public static List<FilePickerFileType> GetExportFileTypes()
+    private static List<FilePickerFileType> GetExportFileTypes()
     {
         return new List<FilePickerFileType>
         {
-            Storage.ImagePng,
-            Storage.ImageSvg,
-            Storage.Pdf,
-            Storage.Xps,
-            Storage.ImageSkp,
-            Storage.All
+            StorageService.ImagePng,
+            StorageService.ImageSvg,
+            StorageService.Pdf,
+            StorageService.Xps,
+            StorageService.ImageSkp,
+            StorageService.All
         };
     }
 
     private async Task Open()
     {
-        var storageProvider = Storage.GetStorageProvider();
+        var storageProvider = StorageService.GetStorageProvider();
         if (storageProvider is null)
         {
             return;
@@ -191,7 +191,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     private async Task Save()
     {
-        var storageProvider = Storage.GetStorageProvider();
+        var storageProvider = StorageService.GetStorageProvider();
         if (storageProvider is null)
         {
             return;
@@ -230,7 +230,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             return;
         }
 
-        var storageProvider = Storage.GetStorageProvider();
+        var storageProvider = StorageService.GetStorageProvider();
         if (storageProvider is null)
         {
             return;

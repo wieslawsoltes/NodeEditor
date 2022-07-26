@@ -7,7 +7,7 @@ using Avalonia.VisualTree;
 
 namespace NodeEditorDemo.ViewModels;
 
-internal static class Storage
+internal static class StorageService
 {
     public static FilePickerFileType All { get; } = new("All")
     {
