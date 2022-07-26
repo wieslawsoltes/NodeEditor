@@ -8,7 +8,7 @@ namespace NodeEditor.Web;
 
 public class Program
 {
-    public static async Task  Main(string[] args)
+    public static async Task Main(string[] args)
     {
         await CreateHostBuilder(args).Build().RunAsync();
     }
