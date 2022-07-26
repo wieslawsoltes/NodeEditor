@@ -28,6 +28,15 @@
                 <Setter Property="Canvas.Left" Value="{Binding X}" />
                 <Setter Property="Canvas.Top" Value="{Binding Y}" />
               </Style>
+              <Style Selector="ItemsControl > :is(ContentPresenter)">
+                <Setter Property="(i:Interaction.Behaviors)">
+                  <i:BehaviorCollectionTemplate>
+                    <i:BehaviorCollection>
+                      <behaviors:PinPressedBehavior />
+                    </i:BehaviorCollection>
+                  </i:BehaviorCollectionTemplate>
+                </Setter>
+              </Style>
             </ItemsControl.Styles>
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>
@@ -43,16 +52,6 @@
         </Panel>
       </ControlTemplate>
     </Setter>
-
-    <Style Selector="^/template/ ItemsControl#PART_PinsItemsControl > :is(ContentPresenter)">
-      <Setter Property="(i:Interaction.Behaviors)">
-        <i:BehaviorCollectionTemplate>
-          <i:BehaviorCollection>
-            <behaviors:PinPressedBehavior />
-          </i:BehaviorCollection>
-        </i:BehaviorCollectionTemplate>
-      </Setter>
-    </Style>
 
     <Style Selector="^/template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="IsHitTestVisible" Value="{Binding $self.(controls:DrawingNode.IsEditMode), Mode=OneWay, Converter={x:Static BoolConverters.Not}}" 
