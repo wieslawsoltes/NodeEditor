@@ -68,7 +68,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         set => SetValue(SnapYProperty, value);
     }
 
-    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 

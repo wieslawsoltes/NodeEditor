@@ -83,7 +83,7 @@ public class DrawingNode : TemplatedControl
 
     public static bool GetIsEditMode(IAvaloniaObject obj)
     {
-        return obj.GetValue(IsEditModeProperty);
+        return (bool)(obj.GetValue(IsEditModeProperty) ?? false);
     }
 
     public static void SetIsEditMode(IAvaloniaObject obj, bool value)

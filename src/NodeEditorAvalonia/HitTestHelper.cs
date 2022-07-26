@@ -253,7 +253,7 @@ internal static class HitTestHelper
             {
                 var index = drawingNode.Nodes.IndexOf(node);
                 var selectedControl = itemsControl.ItemContainerGenerator.ContainerFromIndex(index);
-                var bounds = selectedControl.Bounds;
+                var bounds = selectedControl?.Bounds ?? Rect.Empty;
                 selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
             }
         }

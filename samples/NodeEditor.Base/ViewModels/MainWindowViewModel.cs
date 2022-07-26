@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Platform.Storage;
 using NodeEditor.Controls;
 using NodeEditor.Export.Renderers;
 using NodeEditor.Model;
@@ -118,21 +119,61 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         Drawing.Serializer = _serializer;
     }
 
+    private List<FilePickerFileType> GetOpenFileTypes()
+    {
+        return new List<FilePickerFileType>
+        {
+            Storage.Json,
+            Storage.All
+        };
+    }
+
+    public static List<FilePickerFileType> GetSaveFileTypes()
+    {
+        return new List<FilePickerFileType>
+        {
+            Storage.Json,
+            Storage.All
+        };
+    }
+
+    public static List<FilePickerFileType> GetExportFileTypes()
+    {
+        return new List<FilePickerFileType>
+        {
+            Storage.ImagePng,
+            Storage.ImageSvg,
+            Storage.Pdf,
+            Storage.Xps,
+            Storage.ImageSkp,
+            Storage.All
+        };
+    }
+
     private async Task Open()
     {
-        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+        var storageProvider = Storage.GetStorageProvider();
+        if (storageProvider is null)
         {
             return;
         }
-        var dlg = new OpenFileDialog { AllowMultiple = false };
-        dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-        dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-        var result = await dlg.ShowAsync(window);
-        if (result is { Length: 1 })
+
+        var result = await storageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Open drawing",
+            FileTypeFilter = GetOpenFileTypes(),
+            AllowMultiple = false
+        });
+
+        var file = result.FirstOrDefault();
+
+        if (file is not null && file.CanOpenRead)
         {
             try
             {
-                var json = await Task.Run(() => File.ReadAllText(result.First()));
+                await using var stream = await file.OpenRead();
+                using var reader = new StreamReader(stream);
+                var json = await reader.ReadToEndAsync();
                 var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
                 if (drawing is { })
                 {
@@ -150,24 +191,29 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
     private async Task Save()
     {
-        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+        var storageProvider = Storage.GetStorageProvider();
+        if (storageProvider is null)
         {
             return;
         }
-        var dlg = new SaveFileDialog();
-        dlg.Filters.Add(new FileDialogFilter { Name = "Json Files (*.json)", Extensions = new List<string> { "json" } });
-        dlg.Filters.Add(new FileDialogFilter { Name = "All Files (*.*)", Extensions = new List<string> { "*" } });
-        dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
-        var result = await dlg.ShowAsync(window);
-        if (result is { })
+
+        var file = await storageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Save drawing",
+            FileTypeChoices = GetSaveFileTypes(),
+            SuggestedFileName = Path.GetFileNameWithoutExtension("drawing"),
+            DefaultExtension = "json",
+            ShowOverwritePrompt = true
+        });
+
+        if (file is not null && file.CanOpenWrite)
         {
             try
             {
-                await Task.Run(() =>
-                {
-                    var json = _serializer.Serialize(_drawing);
-                    File.WriteAllText(result, json);
-                });
+                var json = _serializer.Serialize(_drawing);
+                await using var stream = await file.OpenWrite();
+                await using var writer = new StreamWriter(stream);
+                await writer.WriteAsync(json);
             }
             catch (Exception ex)
             {
@@ -183,24 +229,23 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         {
             return;
         }
-            
-        if (Application.Current?.ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+
+        var storageProvider = Storage.GetStorageProvider();
+        if (storageProvider is null)
         {
             return;
         }
 
-        var dlg = new SaveFileDialog() { Title = "Save" };
-        dlg.Filters.Add(new FileDialogFilter() { Name = "Png", Extensions = { "png" } });
-        dlg.Filters.Add(new FileDialogFilter() { Name = "Svg", Extensions = { "svg" } });
-        dlg.Filters.Add(new FileDialogFilter() { Name = "Pdf", Extensions = { "pdf" } });
-        dlg.Filters.Add(new FileDialogFilter() { Name = "Xps", Extensions = { "xps" } });
-        dlg.Filters.Add(new FileDialogFilter() { Name = "Skp", Extensions = { "skp" } });
-        dlg.Filters.Add(new FileDialogFilter() { Name = "All", Extensions = { "*" } });
-        dlg.InitialFileName = Path.GetFileNameWithoutExtension("drawing");
-        dlg.DefaultExtension = "png";
+        var file = await storageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export drawing",
+            FileTypeChoices = GetExportFileTypes(),
+            SuggestedFileName = Path.GetFileNameWithoutExtension("drawing"),
+            DefaultExtension = "png",
+            ShowOverwritePrompt = true
+        });
 
-        var result = await dlg.ShowAsync(window);
-        if (result is { } path)
+        if (file is not null && file.CanOpenWrite)
         {
             try
             {
@@ -209,7 +254,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
                     DataContext = Drawing
                 };
 
-                var preview = new Window()
+                var preview = new Window
                 {
                     Width = Drawing.Width,
                     Height = Drawing.Height,
@@ -222,33 +267,33 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
                 var size = new Size(Drawing.Width, Drawing.Height);
 
-                if (path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+                if (file.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
-                    using var stream = File.Create(path);
+                    await using var stream = await file.OpenWrite();
                     PngRenderer.Render(preview, size, stream);
                 }
 
-                if (path.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
+                if (file.Name.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
-                    using var stream = File.Create(path);
+                    await using var stream = await file.OpenWrite();
                     SvgRenderer.Render(preview, size, stream);
                 }
 
-                if (path.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                 {
-                    using var stream = File.Create(path);
+                    await using var stream = await file.OpenWrite();
                     PdfRenderer.Render(preview, size, stream, 96);
                 }
 
-                if (path.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
+                if (file.Name.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
                 {
-                    using var stream = File.Create(path);
+                    await using var stream = await file.OpenWrite();
                     XpsRenderer.Render(control, size, stream, 96);
                 }
 
-                if (path.EndsWith("skp", StringComparison.OrdinalIgnoreCase))
+                if (file.Name.EndsWith("skp", StringComparison.OrdinalIgnoreCase))
                 {
-                    using var stream = File.Create(path);
+                    await using var stream = await file.OpenWrite();
                     SkpRenderer.Render(control, size, stream);
                 }
 

@@ -7,7 +7,7 @@ public partial class App
 {
     static App()
     {
-        NodeEditorDemo.App.EnableInputOutput = false;
+        NodeEditorDemo.App.EnableInputOutput = true;
         NodeEditorDemo.App.EnableMainMenu = true;
     }
 

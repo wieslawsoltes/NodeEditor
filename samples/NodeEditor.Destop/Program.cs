@@ -40,17 +40,17 @@ class Program
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .With(new Win32PlatformOptions()
+            .With(new Win32PlatformOptions
             {
-                UseDeferredRendering = true
+                UseCompositor = true
             })
-            .With(new X11PlatformOptions()
+            .With(new X11PlatformOptions
             {
-                UseDeferredRendering = true
+                UseCompositor = true
             })
-            .With(new AvaloniaNativePlatformOptions()
+            .With(new AvaloniaNativePlatformOptions
             {
-                UseDeferredRendering = true
+                UseCompositor = true
             })
             .LogToTrace()
             .UseReactiveUI()
