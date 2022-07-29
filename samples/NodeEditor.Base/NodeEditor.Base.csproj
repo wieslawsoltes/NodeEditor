@@ -21,6 +21,7 @@
   <Import Project="..\..\build\ReferenceAssemblies.props" />
   <Import Project="..\..\build\Avalonia.props" />
   <Import Project="..\..\build\Avalonia.Diagnostics.props" Condition="'$(Configuration)' == 'Debug'" />
+  <Import Project="..\..\build\Avalonia.Themes.Fluent.props" />
   <Import Project="..\..\build\Avalonia.ReactiveUI.props" />
   <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
   <Import Project="..\..\build\Avalonia.Controls.PanAndZoom.props" />

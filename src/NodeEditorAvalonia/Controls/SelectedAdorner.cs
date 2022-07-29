@@ -16,7 +16,7 @@ public class SelectedAdorner : Control
         set => SetValue(RectProperty, value);
     }
 
-    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
 #pragma warning disable 8631
         base.OnPropertyChanged(change);
