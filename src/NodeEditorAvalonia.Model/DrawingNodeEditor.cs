@@ -6,7 +6,7 @@ namespace NodeEditor.Model;
 public sealed class DrawingNodeEditor
 {
     private readonly IDrawingNode _node;
-    private readonly DrawingNodeFactory _factory;
+    private readonly IDrawingNodeFactory _factory;
     private IConnector? _connector;
     private string? _clipboard;
     private double _pressedX = double.NaN;
@@ -18,7 +18,7 @@ public sealed class DrawingNodeEditor
         public ISet<IConnector>? SelectedConnectors { get; set; }
     }
 
-    public DrawingNodeEditor(IDrawingNode node, DrawingNodeFactory factory)
+    public DrawingNodeEditor(IDrawingNode node, IDrawingNodeFactory factory)
     {
         _node = node;
         _factory = factory;
@@ -164,7 +164,7 @@ public sealed class DrawingNodeEditor
 
             if (showWhenMoving)
             {
-                _node.Connectors ??= _factory.CreateConnectorList();
+                _node.Connectors ??= _factory.CreateList<IConnector>();
                 _node.Connectors.Add(connector);            
             }
 
@@ -178,7 +178,7 @@ public sealed class DrawingNodeEditor
 
                 if (!showWhenMoving)
                 {
-                    _node.Connectors ??= _factory.CreateConnectorList();
+                    _node.Connectors ??= _factory.CreateList<IConnector>();
                     _node.Connectors.Add(_connector);            
                 }
 

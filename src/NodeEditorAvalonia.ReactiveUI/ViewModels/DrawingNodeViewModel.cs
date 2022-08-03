@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using System.Windows.Input;
 using NodeEditor.Model;
@@ -20,14 +19,7 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public DrawingNodeViewModel()
     {
-        _editor = new DrawingNodeEditor(
-            this, 
-            new DrawingNodeFactory
-            {
-                CreatePin = static () => new PinViewModel(),
-                CreateConnector = static () => new ConnectorViewModel(),
-                CreateConnectorList = static () => new ObservableCollection<IConnector>()
-            });
+        _editor = new DrawingNodeEditor(this, DrawingNodeFactory.Instance);
 
         CutCommand = ReactiveCommand.Create(CutNodes);
 
