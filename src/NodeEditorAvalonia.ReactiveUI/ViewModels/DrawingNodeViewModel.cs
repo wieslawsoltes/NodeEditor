@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
@@ -17,19 +16,19 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     private ISet<IConnector>? _selectedConnectors;
     private INodeSerializer? _serializer;
     private bool _enableMultiplePinConnections;
-    private IConnector? _connector;
-    private string? _clipboard;
-    private double _pressedX = double.NaN;
-    private double _pressedY = double.NaN;
-
-    private class Clipboard
-    {
-        public ISet<INode>? SelectedNodes { get; set; }
-        public ISet<IConnector>? SelectedConnectors { get; set; }
-    }
+    private readonly DrawingNodeEditor _editor;
 
     public DrawingNodeViewModel()
     {
+        _editor = new DrawingNodeEditor(
+            this, 
+            new DrawingNodeFactory
+            {
+                CreatePin = static () => new PinViewModel(),
+                CreateConnector = static () => new ConnectorViewModel(),
+                CreateConnectorList = static () => new ObservableCollection<IConnector>()
+            });
+
         CutCommand = ReactiveCommand.Create(CutNodes);
 
         CopyCommand = ReactiveCommand.Create(CopyNodes);
@@ -102,434 +101,39 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public ICommand DeleteCommand { get; }
 
-    public T? Clone<T>(T source)
-    {
-        if (Serializer is null)
-        {
-            return default;
-        }
-
-        var text = Serializer.Serialize(source);
-
-        return Serializer.Deserialize<T>(text);
-    }
-
-    public bool IsPinConnected(IPin pin)
-    {
-        if (_connectors is { })
-        {
-            foreach (var connector in _connectors)
-            {
-                if (connector.Start == pin || connector.End == pin)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public bool IsConnectorMoving()
-    {
-        if (_connector is { })
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public void CancelConnector()
-    {
-        if (_connector is { })
-        {
-            if (Connectors is { })
-            {
-                Connectors.Remove(_connector);
-            }
-
-            _connector = null;
-        }
-    }
-
-    public virtual bool CanSelectNodes()
-    {
-        if (_connector is { })
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public virtual bool CanSelectConnectors()
-    {
-        if (_connector is { })
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public virtual bool CanConnectPin(IPin pin)
-    {
-        if (!EnableMultiplePinConnections)
-        {
-            if (IsPinConnected(pin))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public virtual void DrawingLeftPressed(double x, double y)
-    {
-        if (IsConnectorMoving())
-        {
-            CancelConnector();
-        }
-    }
-
-    public virtual void DrawingRightPressed(double x, double y)
-    {
-        _pressedX = x;
-        _pressedY = y;
-
-        if (IsConnectorMoving())
-        {
-            CancelConnector();
-        }
-    }
-
-    public virtual void ConnectorLeftPressed(IPin pin, bool showWhenMoving)
-    {
-        if (_connectors is null)
-        {
-            return;
-        }
-
-        if (!CanConnectPin(pin) || !pin.CanConnect())
-        {
-            return;
-        }
-
-        if (_connector is null)
-        {
-            var x = pin.X;
-            var y = pin.Y;
-
-            if (pin.Parent is { })
-            {
-                x += pin.Parent.X;
-                y += pin.Parent.Y;
-            }
-
-            var end = new PinViewModel
-            {
-                Parent = null,
-                X = x,
-                Y = y, 
-                Width = pin.Width, 
-                Height = pin.Height
-            };
-
-            var connector = new ConnectorViewModel
-            {
-                Parent = this,
-                Start = pin,
-                End = end
-            };
-
-            if (showWhenMoving)
-            {
-                Connectors ??= new ObservableCollection<IConnector>();
-                Connectors.Add(connector);            
-            }
-
-            _connector = connector;
-        }
-        else
-        {
-            if (_connector.Start != pin)
-            {
-                _connector.End = pin;
-
-                if (!showWhenMoving)
-                {
-                    Connectors ??= new ObservableCollection<IConnector>();
-                    Connectors.Add(_connector);            
-                }
-
-                _connector = null;
-            }
-        }
-    }
-
-    public virtual void ConnectorMove(double x, double y)
-    {
-        if (_connector is { End: { } })
-        {
-            _connector.End.X = x;
-            _connector.End.Y = y;
-        }
-    }
-
-    public virtual void CutNodes()
-    {
-        if (Serializer is null)
-        {
-            return;
-        }
-
-        if (SelectedNodes is not { Count: > 0 } && SelectedConnectors is not { Count: > 0 })
-        {
-            return;
-        }
-
-        var clipboard = new Clipboard
-        {
-            SelectedNodes = SelectedNodes,
-            SelectedConnectors = SelectedConnectors
-        };
-
-        _clipboard = Serializer.Serialize(clipboard);
-
-        if (clipboard.SelectedNodes is { })
-        {
-            foreach (var node in clipboard.SelectedNodes)
-            {
-                if (node.CanRemove())
-                {
-                    Nodes?.Remove(node);
-                }
-            }
-        }
-
-        if (clipboard.SelectedConnectors is { })
-        {
-            foreach (var connector in clipboard.SelectedConnectors)
-            {
-                if (connector.CanRemove())
-                {
-                    Connectors?.Remove(connector);
-                }
-            }
-        }
-
-        SelectedNodes = null;
-        SelectedConnectors = null;
-    }
-
-    public virtual void CopyNodes()
-    {
-        if (Serializer is null)
-        {
-            return;
-        }
-
-        if (SelectedNodes is not { Count: > 0 } && SelectedConnectors is not { Count: > 0 })
-        {
-            return;
-        }
-
-        var clipboard = new Clipboard
-        {
-            SelectedNodes = SelectedNodes,
-            SelectedConnectors = SelectedConnectors
-        };
-
-        _clipboard = Serializer.Serialize(clipboard);
-    }
-
-    public virtual void PasteNodes()
-    {
-        if (Serializer is null)
-        {
-            return;
-        }
-
-        if (_clipboard is null)
-        {
-            return;
-        }
-
-        var pressedX = _pressedX;
-        var pressedY = _pressedY;
-
-        var clipboard = Serializer.Deserialize<Clipboard?>(_clipboard);
-        if (clipboard is null)
-        {
-            return;
-        }
-
-        SelectedNodes = null;
-        SelectedConnectors = null;
-
-        var selectedNodes = new HashSet<INode>();
-        var selectedConnectors = new HashSet<IConnector>();
-
-        if (clipboard.SelectedNodes is { Count: > 0 })
-        {
-            var minX = 0.0;
-            var minY = 0.0;
-            var i = 0;
-
-            foreach (var node in clipboard.SelectedNodes)
-            {
-                minX = i == 0 ? node.X : Math.Min(minX, node.X);
-                minY = i == 0 ? node.Y : Math.Min(minY, node.Y);
-                i++;
-            }
-
-            var deltaX = double.IsNaN(pressedX) ? 0.0 : pressedX - minX;
-            var deltaY = double.IsNaN(pressedY) ? 0.0 : pressedY - minY;
-
-            foreach (var node in clipboard.SelectedNodes)
-            {
-                if (node.CanMove())
-                {
-                    node.Move(deltaX, deltaY);
-                }
-
-                node.Parent = this;
-
-                Nodes?.Add(node);
-
-                if (node.CanSelect())
-                {
-                    selectedNodes.Add(node);
-                }
-            }
-        }
-
-        if (clipboard.SelectedConnectors is { Count: > 0 })
-        {
-            foreach (var connector in clipboard.SelectedConnectors)
-            {
-                connector.Parent = this;
-
-                Connectors?.Add(connector);
-
-                if (connector.CanSelect())
-                {
-                    selectedConnectors.Add(connector);
-                }
-            }
-        }
-
-        if (selectedNodes.Count > 0)
-        {
-            SelectedNodes = selectedNodes;
-        }
-
-        if (selectedConnectors.Count > 0)
-        {
-            SelectedConnectors = selectedConnectors;
-        }
-
-        _pressedX = double.NaN;
-        _pressedY = double.NaN;
-    }
-
-    public virtual void DuplicateNodes()
-    {
-        _pressedX = double.NaN;
-        _pressedY = double.NaN;
-
-        CopyNodes();
-        PasteNodes();
-    }
-
-    public virtual void DeleteNodes()
-    {
-        if (SelectedNodes is { Count: > 0 })
-        {
-            var selectedNodes = SelectedNodes;
-
-            foreach (var node in selectedNodes)
-            {
-                if (node.CanRemove())
-                {
-                    Nodes?.Remove(node);
-                }
-            }
-
-            SelectedNodes = null;
-        }
-
-        if (SelectedConnectors is { Count: > 0 })
-        {
-            var selectedConnectors = SelectedConnectors;
-
-            foreach (var connector in selectedConnectors)
-            {
-                if (connector.CanRemove())
-                {
-                    Connectors?.Remove(connector);
-                }
-            }
-
-            SelectedConnectors = null;
-        }
-    }
-
-    public virtual void SelectAllNodes()
-    {
-        if (Nodes is not null)
-        {
-            SelectedNodes = null;
-
-            var selectedNodes = new HashSet<INode>();
-            var nodes = Nodes;
-
-            foreach (var node in nodes)
-            {
-                if (node.CanSelect())
-                {
-                    selectedNodes.Add(node);
-                }
-            }
-
-            if (selectedNodes.Count > 0)
-            {
-                SelectedNodes = selectedNodes;
-            }
-        }
-
-        if (Connectors is not null)
-        {
-            SelectedConnectors = null;
-
-            var selectedConnectors = new HashSet<IConnector>();
-            var connectors = Connectors;
-
-            foreach (var connector in connectors)
-            {
-                if (connector.CanSelect())
-                {
-                    selectedConnectors.Add(connector);
-                }
-            }
-
-            if (selectedConnectors.Count > 0)
-            {
-                SelectedConnectors = selectedConnectors;
-            }
-        }
-    }
-
-    public virtual void DeselectAllNodes()
-    {
-        SelectedNodes = null;
-        SelectedConnectors = null;
-
-        if (IsConnectorMoving())
-        {
-            CancelConnector();
-        }
-    }
+    public T? Clone<T>(T source) => _editor.Clone(source);
+
+    public bool IsPinConnected(IPin pin) => _editor.IsPinConnected(pin);
+
+    public bool IsConnectorMoving() => _editor.IsConnectorMoving();
+
+    public void CancelConnector() => _editor.CancelConnector();
+
+    public virtual bool CanSelectNodes() => _editor.CanSelectNodes();
+
+    public virtual bool CanSelectConnectors() => _editor.CanSelectConnectors();
+
+    public virtual bool CanConnectPin(IPin pin) => _editor.CanConnectPin(pin);
+
+    public virtual void DrawingLeftPressed(double x, double y) => _editor.DrawingLeftPressed(x, y);
+
+    public virtual void DrawingRightPressed(double x, double y) => _editor.DrawingRightPressed(x, y);
+
+    public virtual void ConnectorLeftPressed(IPin pin, bool showWhenMoving) => _editor.ConnectorLeftPressed(pin, showWhenMoving);
+
+    public virtual void ConnectorMove(double x, double y) => _editor.ConnectorMove(x, y);
+
+    public virtual void CutNodes() => _editor.CutNodes();
+
+    public virtual void CopyNodes() => _editor.CopyNodes();
+
+    public virtual void PasteNodes() => _editor.PasteNodes();
+
+    public virtual void DuplicateNodes() => _editor.DuplicateNodes();
+
+    public virtual void DeleteNodes() => _editor.DeleteNodes();
+
+    public virtual void SelectAllNodes() => _editor.SelectAllNodes();
+
+    public virtual void DeselectAllNodes() => _editor.DeselectAllNodes();
 }
