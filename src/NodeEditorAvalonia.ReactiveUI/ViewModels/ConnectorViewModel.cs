@@ -17,6 +17,48 @@ public class ConnectorViewModel : ReactiveObject, IConnector
 
     public ConnectorViewModel() => ObservePins();
 
+    [DataMember(IsRequired = false, EmitDefaultValue = false)]
+    public string? Name
+    {
+        get => _name;
+        set => this.RaiseAndSetIfChanged(ref _name, value);
+    }
+
+    [DataMember(IsRequired = true, EmitDefaultValue = true)]
+    public IDrawingNode? Parent
+    {
+        get => _parent;
+        set => this.RaiseAndSetIfChanged(ref _parent, value);
+    }
+
+    [DataMember(IsRequired = false, EmitDefaultValue = false)]
+    public ConnectorOrientation Orientation
+    {
+        get => _orientation;
+        set => this.RaiseAndSetIfChanged(ref _orientation, value);
+    }
+
+    [DataMember(IsRequired = true, EmitDefaultValue = true)]
+    public IPin? Start
+    {
+        get => _start;
+        set => this.RaiseAndSetIfChanged(ref _start, value);
+    }
+
+    [DataMember(IsRequired = true, EmitDefaultValue = true)]
+    public IPin? End
+    {
+        get => _end;
+        set => this.RaiseAndSetIfChanged(ref _end, value);
+    }
+
+    [DataMember(IsRequired = false, EmitDefaultValue = false)]
+    public double Offset
+    {
+        get => _offset;
+        set => this.RaiseAndSetIfChanged(ref _offset, value);
+    }
+
     private void ObservePins()
     {
         this.WhenAnyValue(x => x.Start)
@@ -64,48 +106,6 @@ public class ConnectorViewModel : ReactiveObject, IConnector
                     end.WhenAnyValue(x => x.Alignment).Subscribe(_ => this.RaisePropertyChanged(nameof(End)));
                 }
             });
-    }
-
-    [DataMember(IsRequired = false, EmitDefaultValue = false)]
-    public string? Name
-    {
-        get => _name;
-        set => this.RaiseAndSetIfChanged(ref _name, value);
-    }
-
-    [DataMember(IsRequired = true, EmitDefaultValue = true)]
-    public IDrawingNode? Parent
-    {
-        get => _parent;
-        set => this.RaiseAndSetIfChanged(ref _parent, value);
-    }
-
-    [DataMember(IsRequired = false, EmitDefaultValue = false)]
-    public ConnectorOrientation Orientation
-    {
-        get => _orientation;
-        set => this.RaiseAndSetIfChanged(ref _orientation, value);
-    }
-
-    [DataMember(IsRequired = true, EmitDefaultValue = true)]
-    public IPin? Start
-    {
-        get => _start;
-        set => this.RaiseAndSetIfChanged(ref _start, value);
-    }
-
-    [DataMember(IsRequired = true, EmitDefaultValue = true)]
-    public IPin? End
-    {
-        get => _end;
-        set => this.RaiseAndSetIfChanged(ref _end, value);
-    }
-
-    [DataMember(IsRequired = false, EmitDefaultValue = false)]
-    public double Offset
-    {
-        get => _offset;
-        set => this.RaiseAndSetIfChanged(ref _offset, value);
     }
 
     public virtual bool CanSelect()
