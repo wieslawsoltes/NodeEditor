@@ -174,8 +174,9 @@ internal static class HitTestHelper
             return;
         }
 
-        drawingNode.SelectedNodes = null;
-        drawingNode.SelectedConnectors = null;
+        drawingNode.SetSelectedNodes(null);
+        drawingNode.SetSelectedConnectors(null);
+        drawingNode.NotifySelectionChanged();
 
         var selectedNodes = new HashSet<INode>();
         var selectedConnectors = new HashSet<IConnector>();
@@ -222,14 +223,23 @@ internal static class HitTestHelper
             }
         }
 
+        var notify = false;
+
         if (selectedConnectors.Count > 0)
         {
-            drawingNode.SelectedConnectors = selectedConnectors;
+            drawingNode.SetSelectedConnectors(selectedConnectors);
+            notify = true;
         }
 
         if (selectedNodes.Count > 0)
         {
-            drawingNode.SelectedNodes = selectedNodes;
+            drawingNode.SetSelectedNodes(selectedNodes);
+            notify = true;
+        }
+
+        if (notify)
+        {
+            drawingNode.NotifySelectionChanged();
         }
     }
 
@@ -247,9 +257,12 @@ internal static class HitTestHelper
             topLevel.LayoutManager.ExecuteLayoutPass();
         }
 
-        if (drawingNode.SelectedNodes is { Count: > 0 } && drawingNode.Nodes is { Count: > 0 })
+        var selectedNodes = drawingNode.GetSelectedNodes();
+        var selectedConnectors = drawingNode.GetSelectedConnectors();
+
+        if (selectedNodes is { Count: > 0 } && drawingNode.Nodes is { Count: > 0 })
         {
-            foreach (var node in drawingNode.SelectedNodes)
+            foreach (var node in selectedNodes)
             {
                 var index = drawingNode.Nodes.IndexOf(node);
                 var selectedControl = itemsControl.ItemContainerGenerator.ContainerFromIndex(index);
@@ -258,9 +271,9 @@ internal static class HitTestHelper
             }
         }
 
-        if (drawingNode.SelectedConnectors is { Count: > 0 } && drawingNode.Connectors is { Count: > 0 })
+        if (selectedConnectors is { Count: > 0 } && drawingNode.Connectors is { Count: > 0 })
         {
-            foreach (var connector in drawingNode.SelectedConnectors)
+            foreach (var connector in selectedConnectors)
             {
                 var bounds = GetConnectorBounds(connector);
                 selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);

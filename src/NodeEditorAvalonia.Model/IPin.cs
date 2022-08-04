@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace NodeEditor.Model;
 
 public interface IPin

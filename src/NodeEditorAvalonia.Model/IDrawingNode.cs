@@ -1,17 +1,32 @@
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace NodeEditor.Model;
 
+public delegate void SelectionChangedEventHandler(object? sender, EventArgs e);
+
 public interface IDrawingNode : INode
 {
+    public event SelectionChangedEventHandler? SelectionChanged;
     IList<INode>? Nodes { get; set; }
     IList<IConnector>? Connectors { get; set; }
-    ISet<INode>? SelectedNodes { get; set; }
-    ISet<IConnector>? SelectedConnectors { get; set; }
-    INodeSerializer? Serializer { get; set; }
-    public T? Clone<T>(T source);
+    ISet<INode>? GetSelectedNodes();
     bool EnableMultiplePinConnections { get; set; }
+    ICommand CutCommand { get; }
+    ICommand CopyCommand { get; }
+    ICommand PasteCommand { get; }
+    ICommand DuplicateCommand { get; }
+    ICommand SelectAllCommand { get; }
+    ICommand DeselectAllCommand { get; }
+    ICommand DeleteCommand { get; }
+    void NotifySelectionChanged();
+    void  SetSelectedNodes(ISet<INode>? nodes);
+    ISet<IConnector>? GetSelectedConnectors();
+    void  SetSelectedConnectors(ISet<IConnector>? connectors);
+    INodeSerializer? GetSerializer();
+    void SetSerializer(INodeSerializer? serializer);
+    public T? Clone<T>(T source);
     bool IsPinConnected(IPin pin);
     bool IsConnectorMoving();
     void CancelConnector();
@@ -29,11 +44,4 @@ public interface IDrawingNode : INode
     void DeleteNodes();
     void SelectAllNodes();
     void DeselectAllNodes();
-    ICommand CutCommand { get; }
-    ICommand CopyCommand { get; }
-    ICommand PasteCommand { get; }
-    ICommand DuplicateCommand { get; }
-    ICommand SelectAllCommand { get; }
-    ICommand DeselectAllCommand { get; }
-    ICommand DeleteCommand { get; }
 }

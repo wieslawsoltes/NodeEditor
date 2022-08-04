@@ -36,7 +36,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         _templates = _factory.CreateTemplates();
 
         Drawing = _factory.CreateDemoDrawing();
-        Drawing.Serializer = _serializer;
+        Drawing.SetSerializer(_serializer);
 
         _isEditMode = true;
         _isToolboxVisible = true;
@@ -116,7 +116,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     private void New()
     {
         Drawing = _factory.CreateDrawing();
-        Drawing.Serializer = _serializer;
+        Drawing.SetSerializer(_serializer);
     }
 
     private List<FilePickerFileType> GetOpenFileTypes()
@@ -171,14 +171,14 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         {
             try
             {
-                await using var stream = await file.OpenRead();
+                await using var stream = await file.OpenReadAsync();
                 using var reader = new StreamReader(stream);
                 var json = await reader.ReadToEndAsync();
                 var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
                 if (drawing is { })
                 {
                     Drawing = drawing;
-                    Drawing.Serializer = _serializer;
+                    Drawing.SetSerializer(_serializer);
                 }
             }
             catch (Exception ex)
@@ -211,7 +211,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             try
             {
                 var json = _serializer.Serialize(_drawing);
-                await using var stream = await file.OpenWrite();
+                await using var stream = await file.OpenWriteAsync();
                 await using var writer = new StreamWriter(stream);
                 await writer.WriteAsync(json);
             }
@@ -269,31 +269,31 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
                 if (file.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = await file.OpenWrite();
+                    await using var stream = await file.OpenWriteAsync();
                     PngRenderer.Render(preview, size, stream);
                 }
 
                 if (file.Name.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = await file.OpenWrite();
+                    await using var stream = await file.OpenWriteAsync();
                     SvgRenderer.Render(preview, size, stream);
                 }
 
                 if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = await file.OpenWrite();
+                    await using var stream = await file.OpenWriteAsync();
                     PdfRenderer.Render(preview, size, stream, 96);
                 }
 
                 if (file.Name.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = await file.OpenWrite();
+                    await using var stream = await file.OpenWriteAsync();
                     XpsRenderer.Render(control, size, stream, 96);
                 }
 
                 if (file.Name.EndsWith("skp", StringComparison.OrdinalIgnoreCase))
                 {
-                    await using var stream = await file.OpenWrite();
+                    await using var stream = await file.OpenWriteAsync();
                     SkpRenderer.Render(control, size, stream);
                 }
 

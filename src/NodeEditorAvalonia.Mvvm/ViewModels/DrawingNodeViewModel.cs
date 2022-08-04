@@ -2,63 +2,43 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Model;
-using ReactiveUI;
 
 namespace NodeEditor.ViewModels;
 
 [DataContract(IsReference = true)]
-public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
+public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 {
-    private IList<INode>? _nodes;
-    private IList<IConnector>? _connectors;
+    private readonly DrawingNodeEditor _editor;
     private ISet<INode>? _selectedNodes;
     private ISet<IConnector>? _selectedConnectors;
     private INodeSerializer? _serializer;
-    private bool _enableMultiplePinConnections;
-    private readonly DrawingNodeEditor _editor;
+    [ObservableProperty] private IList<INode>? _nodes;
+    [ObservableProperty] private IList<IConnector>? _connectors;
+    [ObservableProperty] private bool _enableMultiplePinConnections;
 
     public DrawingNodeViewModel()
     {
         _editor = new DrawingNodeEditor(this, DrawingNodeFactory.Instance);
 
-        CutCommand = ReactiveCommand.Create(CutNodes);
+        CutCommand = new RelayCommand(CutNodes);
 
-        CopyCommand = ReactiveCommand.Create(CopyNodes);
+        CopyCommand = new RelayCommand(CopyNodes);
 
-        PasteCommand = ReactiveCommand.Create(PasteNodes);
+        PasteCommand = new RelayCommand(PasteNodes);
 
-        DuplicateCommand = ReactiveCommand.Create(DuplicateNodes);
+        DuplicateCommand = new RelayCommand(DuplicateNodes);
 
-        SelectAllCommand = ReactiveCommand.Create(SelectAllNodes);
+        SelectAllCommand = new RelayCommand(SelectAllNodes);
 
-        DeselectAllCommand = ReactiveCommand.Create(DeselectAllNodes);
+        DeselectAllCommand = new RelayCommand(DeselectAllNodes);
 
-        DeleteCommand = ReactiveCommand.Create(DeleteNodes);
+        DeleteCommand = new RelayCommand(DeleteNodes);
 
     }
-
-    [DataMember(IsRequired = true, EmitDefaultValue = true)]
-    public IList<INode>? Nodes
-    {
-        get => _nodes;
-        set => this.RaiseAndSetIfChanged(ref _nodes, value);
-    }
-
-    [DataMember(IsRequired = true, EmitDefaultValue = true)]
-    public IList<IConnector>? Connectors
-    {
-        get => _connectors;
-        set => this.RaiseAndSetIfChanged(ref _connectors, value);
-    }
-
-    [DataMember(IsRequired = false, EmitDefaultValue = false)]
-    public bool EnableMultiplePinConnections
-    {
-        get => _enableMultiplePinConnections;
-        set => this.RaiseAndSetIfChanged(ref _enableMultiplePinConnections, value);
-    }
-
+ 
     public event SelectionChangedEventHandler? SelectionChanged;
 
     public ICommand CutCommand { get; }

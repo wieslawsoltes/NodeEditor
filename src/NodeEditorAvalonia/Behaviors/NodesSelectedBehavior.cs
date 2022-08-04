@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
@@ -13,7 +12,6 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 {
     private IDisposable? _isEditModeDisposable;
     private IDisposable? _dataContextDisposable;
-    private INotifyPropertyChanged? _drawingNodePropertyChanged;
     private IDrawingNode? _drawingNode;
 
     protected override void OnAttached()
@@ -39,21 +37,13 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
                     {
                         if (_drawingNode == drawingNode)
                         {
-                            if (_drawingNodePropertyChanged != null)
-                            {
-                                _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
-                            }
+                            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
                         }
 
                         RemoveSelectedPseudoClasses(AssociatedObject);
 
                         _drawingNode = drawingNode;
-
-                        if (_drawingNode is INotifyPropertyChanged notifyPropertyChanged)
-                        {
-                            _drawingNodePropertyChanged = notifyPropertyChanged;
-                            _drawingNodePropertyChanged.PropertyChanged += DrawingNode_PropertyChanged;
-                        }
+                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
                     }
                     else
                     {
@@ -69,9 +59,9 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
         if (AssociatedObject is { })
         {
-            if (_drawingNodePropertyChanged is { })
+            if (_drawingNode is { })
             {
-                _drawingNodePropertyChanged.PropertyChanged -= DrawingNode_PropertyChanged;
+                _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
             }
 
             _isEditModeDisposable?.Dispose();
@@ -79,25 +69,26 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
         }
     }
 
-    private void DrawingNode_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+
+    private void DrawingNode_SelectionChanged(object? sender, EventArgs e)
     {
         if (AssociatedObject?.DataContext is not IDrawingNode)
         {
             return;
         }
 
-        if (e.PropertyName == nameof(IDrawingNode.SelectedNodes) || e.PropertyName == nameof(IDrawingNode.SelectedConnectors))
+        if (_drawingNode is { })
         {
-            if (_drawingNode is { })
+            var selectedNodes = _drawingNode.GetSelectedNodes();
+            var selectedConnectors = _drawingNode.GetSelectedConnectors();
+
+            if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
             {
-                if (_drawingNode.SelectedNodes is { Count: > 0 } || _drawingNode.SelectedConnectors is { Count: > 0 })
-                {
-                    AddSelectedPseudoClasses(AssociatedObject);
-                }
-                else
-                {
-                    RemoveSelectedPseudoClasses(AssociatedObject);
-                }
+                AddSelectedPseudoClasses(AssociatedObject);
+            }
+            else
+            {
+                RemoveSelectedPseudoClasses(AssociatedObject);
             }
         }
     }
@@ -111,7 +102,9 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
                 continue;
             }
 
-            if (_drawingNode is { } && _drawingNode.SelectedNodes is { } && _drawingNode.SelectedNodes.Contains(node))
+            var selectedNodes = _drawingNode?.GetSelectedNodes();
+
+            if (_drawingNode is { } && selectedNodes is { } && selectedNodes.Contains(node))
             {
                 if (containerControl is ContentPresenter { Child: { } child })
                 {
