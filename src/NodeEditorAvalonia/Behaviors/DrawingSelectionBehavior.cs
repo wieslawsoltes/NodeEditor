@@ -254,6 +254,9 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             {
                 HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
 
+                selectedNodes = drawingNode.GetSelectedNodes();
+                selectedConnectors = drawingNode.GetSelectedConnectors();
+
                 if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
                 {
                     _dragSelectedItems = true;
@@ -264,6 +267,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                     drawingNode.SetSelectedNodes(null);
                     drawingNode.SetSelectedConnectors(null);
                     drawingNode.NotifySelectionChanged();
+
                     RemoveSelected();
                 }
             }
@@ -271,6 +275,9 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         else
         {
             HitTestHelper.FindSelectedNodes(AssociatedObject, pointerHitTestRect);
+
+            selectedNodes = drawingNode.GetSelectedNodes();
+            selectedConnectors = drawingNode.GetSelectedConnectors();
 
             if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
             {
@@ -284,6 +291,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             drawingNode.SetSelectedNodes(null);
             drawingNode.SetSelectedConnectors(null);
             drawingNode.NotifySelectionChanged();
+
             RemoveSelected();
 
             if (e.Source is not Control { DataContext: not IDrawingNode })
