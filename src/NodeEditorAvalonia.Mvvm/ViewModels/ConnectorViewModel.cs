@@ -1,11 +1,9 @@
 using System;
-using System.Runtime.Serialization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
 
 namespace NodeEditor.ViewModels;
 
-[DataContract(IsReference = true)]
 [ObservableObject]
 public partial class ConnectorViewModel : IConnector
 {

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,7 +7,6 @@ using NodeEditor.Model;
 
 namespace NodeEditor.ViewModels;
 
-[DataContract(IsReference = true)]
 public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 {
     private readonly DrawingNodeEditor _editor;
