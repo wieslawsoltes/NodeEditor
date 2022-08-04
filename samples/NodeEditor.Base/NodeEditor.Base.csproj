@@ -22,13 +22,12 @@
   <Import Project="..\..\build\Avalonia.props" />
   <Import Project="..\..\build\Avalonia.Diagnostics.props" Condition="'$(Configuration)' == 'Debug'" />
   <Import Project="..\..\build\Avalonia.Themes.Fluent.props" />
-  <Import Project="..\..\build\Avalonia.ReactiveUI.props" />
   <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
   <Import Project="..\..\build\Avalonia.Controls.PanAndZoom.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NodeEditorAvalonia.Export\NodeEditorAvalonia.Export.csproj" />
-    <ProjectReference Include="..\..\src\NodeEditorAvalonia.ReactiveUI\NodeEditorAvalonia.ReactiveUI.csproj" />
+    <ProjectReference Include="..\..\src\NodeEditorAvalonia.Mvvm\NodeEditorAvalonia.Mvvm.csproj" />
     <ProjectReference Include="..\..\src\NodeEditorAvalonia.Serializer\NodeEditorAvalonia.Serializer.csproj" />
     <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
   </ItemGroup>

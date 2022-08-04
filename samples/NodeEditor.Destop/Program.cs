@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Avalonia;
-using Avalonia.ReactiveUI;
 
 namespace NodeEditorDemo;
 
@@ -56,6 +55,5 @@ class Program
                 UseDeferredRendering = true
             })
             .LogToTrace()
-            .UseReactiveUI()
             .UseSkia();
 }
