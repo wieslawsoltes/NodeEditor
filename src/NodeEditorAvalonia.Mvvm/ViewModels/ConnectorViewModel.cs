@@ -1,6 +1,7 @@
 using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
+using ReactiveMarbles.PropertyChanged;
 
 namespace NodeEditor.ViewModels;
 

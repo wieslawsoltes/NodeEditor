@@ -14,11 +14,11 @@
   </PropertyGroup>
 
   <Import Project="..\..\build\Base.props" />
-  <Import Project="..\..\build\SignAssembly.props" />
+  <!--<Import Project="..\..\build\SignAssembly.props" />-->
   <Import Project="..\..\build\SourceLink.props" />
   <Import Project="..\..\build\ReferenceAssemblies.props" />
   <Import Project="..\..\build\CommunityToolkit.Mvvm.props" />
-  <Import Project="..\..\build\ReactiveMarbles.PropertyChanged.SourceGenerator.props" />
+  <Import Project="..\..\build\ReactiveMarbles.PropertyChanged.props" />
   <Import Project="..\..\build\System.Reactive.props" />
 
   <ItemGroup>

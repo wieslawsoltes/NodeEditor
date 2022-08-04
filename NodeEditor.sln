@@ -58,8 +58,8 @@ ProjectSection(SolutionItems) = preProject
 	build\Avalonia.Skia.props = build\Avalonia.Skia.props
 	build\Avalonia.Themes.Fluent.props = build\Avalonia.Themes.Fluent.props
 	build\CommunityToolkit.Mvvm.props = build\CommunityToolkit.Mvvm.props
-	build\ReactiveMarbles.PropertyChanged.SourceGenerator.props = build\ReactiveMarbles.PropertyChanged.SourceGenerator.props
 	build\System.Reactive.props = build\System.Reactive.props
+	build\ReactiveMarbles.PropertyChanged.props = build\ReactiveMarbles.PropertyChanged.props
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "build\build\_build.csproj", "{0737F4A8-E674-4518-A362-0A78D03F8165}"
