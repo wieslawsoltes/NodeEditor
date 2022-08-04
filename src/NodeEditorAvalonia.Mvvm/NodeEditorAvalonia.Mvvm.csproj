@@ -8,20 +8,24 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>NodeEditorAvalonia</PackageId>
+    <PackageId>NodeEditorAvalonia.Mvvm</PackageId>
     <Description>A node editor control for Avalonia.</Description>
     <PackageTags>node;editor;nodeeditor;graph;control;xaml;axaml;avalonia;avaloniaui</PackageTags>
   </PropertyGroup>
 
   <Import Project="..\..\build\Base.props" />
-  <Import Project="..\..\build\SignAssembly.props" />
+  <!--<Import Project="..\..\build\SignAssembly.props" />-->
   <Import Project="..\..\build\SourceLink.props" />
   <Import Project="..\..\build\ReferenceAssemblies.props" />
-  <Import Project="..\..\build\Avalonia.props" />
-  <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
+  <Import Project="..\..\build\CommunityToolkit.Mvvm.props" />
+  <Import Project="..\..\build\ReactiveMarbles.PropertyChanged.props" />
+  <Import Project="..\..\build\System.Reactive.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\NodeEditorAvalonia.Model\NodeEditorAvalonia.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
   </ItemGroup>
 
 </Project>

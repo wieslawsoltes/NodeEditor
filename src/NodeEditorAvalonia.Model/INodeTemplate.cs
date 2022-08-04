@@ -1,5 +1,3 @@
-using System;
-
 namespace NodeEditor.Model;
 
 public interface INodeTemplate

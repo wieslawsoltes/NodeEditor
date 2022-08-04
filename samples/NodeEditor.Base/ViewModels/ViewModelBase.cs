@@ -1,7 +1,8 @@
-﻿using ReactiveUI;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace NodeEditorDemo.ViewModels;
 
-public class ViewModelBase : ReactiveObject
+[ObservableObject]
+public partial class ViewModelBase
 {
 }

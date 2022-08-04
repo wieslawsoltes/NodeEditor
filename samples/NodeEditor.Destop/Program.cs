@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Avalonia;
-using Avalonia.ReactiveUI;
 
 namespace NodeEditorDemo;
 
@@ -42,17 +41,19 @@ class Program
             .UsePlatformDetect()
             .With(new Win32PlatformOptions
             {
-                UseCompositor = true
+                UseCompositor = false,
+                UseDeferredRendering = true
             })
             .With(new X11PlatformOptions
             {
-                UseCompositor = true
+                UseCompositor = false,
+                UseDeferredRendering = true
             })
             .With(new AvaloniaNativePlatformOptions
             {
-                UseCompositor = true
+                UseCompositor = false,
+                UseDeferredRendering = true
             })
             .LogToTrace()
-            .UseReactiveUI()
             .UseSkia();
 }

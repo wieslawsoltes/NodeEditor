@@ -10,23 +10,24 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform.Storage;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
 using NodeEditor.Export.Renderers;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
-using ReactiveUI;
 
 namespace NodeEditorDemo.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
+public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 {
     private readonly INodeSerializer _serializer;
     private readonly NodeFactory _factory;
-    private IList<INodeTemplate>? _templates;
-    private IDrawingNode? _drawing;
-    private bool _isEditMode;
-    private bool _isToolboxVisible;
+    [ObservableProperty] private IList<INodeTemplate>? _templates;
+    [ObservableProperty] private IDrawingNode? _drawing;
+    [ObservableProperty] private bool _isEditMode;
+    [ObservableProperty] private bool _isToolboxVisible;
 
     public MainWindowViewModel()
     {
@@ -36,30 +37,30 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         _templates = _factory.CreateTemplates();
 
         Drawing = _factory.CreateDemoDrawing();
-        Drawing.Serializer = _serializer;
+        Drawing.SetSerializer(_serializer);
 
         _isEditMode = true;
         _isToolboxVisible = true;
 
-        ToggleEditModeCommand = ReactiveCommand.Create(() =>
+        ToggleEditModeCommand = new RelayCommand(() =>
         {
             IsEditMode = !IsEditMode;
         });
 
-        ToggleToolboxVisibleCommand = ReactiveCommand.Create(() =>
+        ToggleToolboxVisibleCommand =new RelayCommand(() =>
         {
             IsToolboxVisible = !IsToolboxVisible;
         });
 
-        NewCommand = ReactiveCommand.Create(New);
+        NewCommand = new RelayCommand(New);
 
-        OpenCommand = ReactiveCommand.CreateFromTask(async () => await Open());
+        OpenCommand = new AsyncRelayCommand(async () => await Open());
 
-        SaveCommand = ReactiveCommand.CreateFromTask(async () => await Save());
+        SaveCommand = new AsyncRelayCommand(async () => await Save());
 
-        ExportCommand = ReactiveCommand.CreateFromTask(async () => await Export());
+        ExportCommand = new AsyncRelayCommand(async () => await Export());
 
-        ExitCommand = ReactiveCommand.Create(() =>
+        ExitCommand = new RelayCommand(() =>
         {
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
             {
@@ -67,34 +68,10 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             }
         });
 
-        AboutCommand = ReactiveCommand.Create(() =>
+        AboutCommand = new RelayCommand(() =>
         {
             // TODO: Show about dialog window.
         });
-    }
-
-    public IList<INodeTemplate>? Templates
-    {
-        get => _templates;
-        set => this.RaiseAndSetIfChanged(ref _templates, value);
-    }
-
-    public IDrawingNode? Drawing
-    {
-        get => _drawing;
-        set => this.RaiseAndSetIfChanged(ref _drawing, value);
-    }
-
-    public bool IsEditMode
-    {
-        get => _isEditMode;
-        set => this.RaiseAndSetIfChanged(ref _isEditMode, value);
-    }
-
-    public bool IsToolboxVisible
-    {
-        get => _isToolboxVisible;
-        set => this.RaiseAndSetIfChanged(ref _isToolboxVisible, value);
     }
 
     public ICommand ToggleEditModeCommand { get; }
@@ -116,7 +93,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     private void New()
     {
         Drawing = _factory.CreateDrawing();
-        Drawing.Serializer = _serializer;
+        Drawing.SetSerializer(_serializer);
     }
 
     private List<FilePickerFileType> GetOpenFileTypes()
@@ -178,7 +155,7 @@ public class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
                 if (drawing is { })
                 {
                     Drawing = drawing;
-                    Drawing.Serializer = _serializer;
+                    Drawing.SetSerializer(_serializer);
                 }
             }
             catch (Exception ex)
