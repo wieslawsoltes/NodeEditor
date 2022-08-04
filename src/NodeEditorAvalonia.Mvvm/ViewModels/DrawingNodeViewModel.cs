@@ -34,7 +34,6 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
         DeselectAllCommand = new RelayCommand(DeselectAllNodes);
 
         DeleteCommand = new RelayCommand(DeleteNodes);
-
     }
  
     public event SelectionChangedEventHandler? SelectionChanged;
