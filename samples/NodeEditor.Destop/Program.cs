@@ -42,15 +42,18 @@ class Program
             .UsePlatformDetect()
             .With(new Win32PlatformOptions
             {
-                UseCompositor = true
+                UseCompositor = false,
+                UseDeferredRendering = true
             })
             .With(new X11PlatformOptions
             {
-                UseCompositor = true
+                UseCompositor = false,
+                UseDeferredRendering = true
             })
             .With(new AvaloniaNativePlatformOptions
             {
-                UseCompositor = true
+                UseCompositor = false,
+                UseDeferredRendering = true
             })
             .LogToTrace()
             .UseReactiveUI()
