@@ -41,50 +41,21 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
         _isEditMode = true;
         _isToolboxVisible = true;
-
-        ToggleEditModeCommand = new RelayCommand(ToggleEditMode);
-
-        ToggleToolboxVisibleCommand = new RelayCommand(ToggleToolboxVisible);
-
-        NewCommand = new RelayCommand(New);
-
-        OpenCommand = new AsyncRelayCommand(async () => await Open());
-
-        SaveCommand = new AsyncRelayCommand(async () => await Save());
-
-        ExportCommand = new AsyncRelayCommand(async () => await Export());
-
-        ExitCommand = new RelayCommand(Exit);
-
-        AboutCommand = new RelayCommand(About);
     }
 
-    public ICommand ToggleEditModeCommand { get; }
-
-    public ICommand ToggleToolboxVisibleCommand { get; }
-
-    public ICommand NewCommand { get; }
-
-    public ICommand OpenCommand { get; }
-
-    public ICommand SaveCommand { get; }
-
-    public ICommand ExportCommand { get; }
-
-    public ICommand ExitCommand { get; }
-
-    public ICommand AboutCommand { get; }
-
+    [RelayCommand]
     private void ToggleToolboxVisible()
     {
         IsToolboxVisible = !IsToolboxVisible;
     }
 
+    [RelayCommand]
     private void ToggleEditMode()
     {
         IsEditMode = !IsEditMode;
     }
 
+    [RelayCommand]
     private void Exit()
     {
         if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
@@ -93,11 +64,13 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         }
     }
 
+    [RelayCommand]
     private void About()
     {
         throw new NotImplementedException();
     }
 
+    [RelayCommand]
     private void New()
     {
         Drawing = _factory.CreateDrawing();
@@ -135,6 +108,7 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         };
     }
 
+    [RelayCommand]
     private async Task Open()
     {
         var storageProvider = StorageService.GetStorageProvider();
@@ -174,6 +148,7 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         }
     }
 
+    [RelayCommand]
     private async Task Save()
     {
         var storageProvider = StorageService.GetStorageProvider();
@@ -208,6 +183,7 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         }
     }
 
+    [RelayCommand]
     public async Task Export()
     {
         if (Drawing is null)
