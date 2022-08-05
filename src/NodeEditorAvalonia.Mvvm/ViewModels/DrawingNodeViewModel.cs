@@ -21,36 +21,36 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     {
         _editor = new DrawingNodeEditor(this, DrawingNodeFactory.Instance);
 
-        CutCommand = new RelayCommand(CutNodes);
+        CutNodesCommand = new RelayCommand(CutNodes);
 
-        CopyCommand = new RelayCommand(CopyNodes);
+        CopyNodesCommand = new RelayCommand(CopyNodes);
 
-        PasteCommand = new RelayCommand(PasteNodes);
+        PasteNodesCommand = new RelayCommand(PasteNodes);
 
-        DuplicateCommand = new RelayCommand(DuplicateNodes);
+        DuplicateNodesCommand = new RelayCommand(DuplicateNodes);
 
-        SelectAllCommand = new RelayCommand(SelectAllNodes);
+        SelectAllNodesCommand = new RelayCommand(SelectAllNodes);
 
-        DeselectAllCommand = new RelayCommand(DeselectAllNodes);
+        DeselectAllNodesCommand = new RelayCommand(DeselectAllNodes);
 
-        DeleteCommand = new RelayCommand(DeleteNodes);
+        DeleteNodesCommand = new RelayCommand(DeleteNodes);
     }
  
     public event SelectionChangedEventHandler? SelectionChanged;
 
-    public ICommand CutCommand { get; }
+    public ICommand CutNodesCommand { get; }
 
-    public ICommand CopyCommand { get; }
+    public ICommand CopyNodesCommand { get; }
 
-    public ICommand PasteCommand { get; }
+    public ICommand PasteNodesCommand { get; }
 
-    public ICommand DuplicateCommand { get; }
+    public ICommand DuplicateNodesCommand { get; }
 
-    public ICommand SelectAllCommand { get; }
+    public ICommand SelectAllNodesCommand { get; }
 
-    public ICommand DeselectAllCommand { get; }
+    public ICommand DeselectAllNodesCommand { get; }
 
-    public ICommand DeleteCommand { get; }
+    public ICommand DeleteNodesCommand { get; }
 
     public void NotifySelectionChanged() => SelectionChanged?.Invoke(this, EventArgs.Empty);
 

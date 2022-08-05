@@ -83,30 +83,30 @@
                 <MenuItem Header="-" />
                 <MenuItem Header="Cu_t" 
                           Icon="{DynamicResource CutIconPath}"
-                          Command="{Binding CutCommand}" 
+                          Command="{Binding CutNodesCommand}" 
                           InputGesture="Ctrl+X" />
                 <MenuItem Header="_Copy" 
                           Icon="{DynamicResource CopyIconPath}"
-                          Command="{Binding CopyCommand}" 
+                          Command="{Binding CopyNodesCommand}" 
                           InputGesture="Ctrl+C" />
                 <MenuItem Header="_Paste" 
                           Icon="{DynamicResource PasteIconPath}"
-                          Command="{Binding PasteCommand}" 
+                          Command="{Binding PasteNodesCommand}" 
                           InputGesture="Ctrl+V" />
                 <MenuItem Header="D_uplicate" 
-                          Command="{Binding DuplicateCommand}" 
+                          Command="{Binding DuplicateNodesCommand}" 
                           InputGesture="Ctrl+D" />
                 <MenuItem Header="-" />
                 <MenuItem Header="Select _All" 
-                          Command="{Binding SelectAllCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
                           InputGesture="Ctrl+A" />
                 <MenuItem Header="De_select All" 
-                          Command="{Binding DeselectAllCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                           InputGesture="Escape" />
                 <MenuItem Header="-" />
                 <MenuItem Header="_Delete" 
                           Icon="{DynamicResource DeleteIconPath}"
-                          Command="{Binding DeleteCommand}" 
+                          Command="{Binding DeleteNodesCommand}" 
                           InputGesture="Delete" />
               </MenuFlyout>
             </editor:DrawingNode.ContextFlyout>

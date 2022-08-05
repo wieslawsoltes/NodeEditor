@@ -22,19 +22,19 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     {
         _editor = new DrawingNodeEditor(this, DrawingNodeFactory.Instance);
 
-        CutCommand = ReactiveCommand.Create(CutNodes);
+        CutNodesCommand = ReactiveCommand.Create(CutNodes);
 
-        CopyCommand = ReactiveCommand.Create(CopyNodes);
+        CopyNodesCommand = ReactiveCommand.Create(CopyNodes);
 
-        PasteCommand = ReactiveCommand.Create(PasteNodes);
+        PasteNodesCommand = ReactiveCommand.Create(PasteNodes);
 
-        DuplicateCommand = ReactiveCommand.Create(DuplicateNodes);
+        DuplicateNodesCommand = ReactiveCommand.Create(DuplicateNodes);
 
-        SelectAllCommand = ReactiveCommand.Create(SelectAllNodes);
+        SelectAllNodesCommand = ReactiveCommand.Create(SelectAllNodes);
 
-        DeselectAllCommand = ReactiveCommand.Create(DeselectAllNodes);
+        DeselectAllNodesCommand = ReactiveCommand.Create(DeselectAllNodes);
 
-        DeleteCommand = ReactiveCommand.Create(DeleteNodes);
+        DeleteNodesCommand = ReactiveCommand.Create(DeleteNodes);
 
     }
 
@@ -61,19 +61,19 @@ public class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public event SelectionChangedEventHandler? SelectionChanged;
 
-    public ICommand CutCommand { get; }
+    public ICommand CutNodesCommand { get; }
 
-    public ICommand CopyCommand { get; }
+    public ICommand CopyNodesCommand { get; }
 
-    public ICommand PasteCommand { get; }
+    public ICommand PasteNodesCommand { get; }
 
-    public ICommand DuplicateCommand { get; }
+    public ICommand DuplicateNodesCommand { get; }
 
-    public ICommand SelectAllCommand { get; }
+    public ICommand SelectAllNodesCommand { get; }
 
-    public ICommand DeselectAllCommand { get; }
+    public ICommand DeselectAllNodesCommand { get; }
 
-    public ICommand DeleteCommand { get; }
+    public ICommand DeleteNodesCommand { get; }
 
     public void NotifySelectionChanged() => SelectionChanged?.Invoke(this, EventArgs.Empty);
 

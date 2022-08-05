@@ -13,13 +13,13 @@ public interface IDrawingNode : INode
     IList<IConnector>? Connectors { get; set; }
     ISet<INode>? GetSelectedNodes();
     bool EnableMultiplePinConnections { get; set; }
-    ICommand CutCommand { get; }
-    ICommand CopyCommand { get; }
-    ICommand PasteCommand { get; }
-    ICommand DuplicateCommand { get; }
-    ICommand SelectAllCommand { get; }
-    ICommand DeselectAllCommand { get; }
-    ICommand DeleteCommand { get; }
+    ICommand CutNodesCommand { get; }
+    ICommand CopyNodesCommand { get; }
+    ICommand PasteNodesCommand { get; }
+    ICommand DuplicateNodesCommand { get; }
+    ICommand SelectAllNodesCommand { get; }
+    ICommand DeselectAllNodesCommand { get; }
+    ICommand DeleteNodesCommand { get; }
     void NotifySelectionChanged();
     void  SetSelectedNodes(ISet<INode>? nodes);
     ISet<IConnector>? GetSelectedConnectors();

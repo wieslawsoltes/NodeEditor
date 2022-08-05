@@ -60,30 +60,30 @@
         <NativeMenu>
           <NativeMenuItem Header="Cut" 
                           Icon="{DynamicResource CutIconPath}"
-                          Command="{Binding Drawing.CutCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+X" />
           <NativeMenuItem Header="Copy" 
                           Icon="{DynamicResource CopyIconPath}"
-                          Command="{Binding Drawing.CopyCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+C" />
           <NativeMenuItem Header="Paste" 
                           Icon="{DynamicResource PasteIconPath}"
-                          Command="{Binding Drawing.PasteCommand, FallbackValue={x:Null}}"
+                          Command="{Binding Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
                           Gesture="Ctrl+V" />
           <NativeMenuItem Header="Duplicate" 
-                          Command="{Binding Drawing.DuplicateCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+D" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Select All" 
-                          Command="{Binding Drawing.SelectAllCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+A" />
           <NativeMenuItem Header="Deselect All" 
-                          Command="{Binding Drawing.DeselectAllCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Escape" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Delete" 
                           Icon="{DynamicResource DeleteIconPath}"
-                          Command="{Binding Drawing.DeleteCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Delete" />
         </NativeMenu>
       </NativeMenuItem>
