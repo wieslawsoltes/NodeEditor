@@ -42,15 +42,9 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
         _isEditMode = true;
         _isToolboxVisible = true;
 
-        ToggleEditModeCommand = new RelayCommand(() =>
-        {
-            IsEditMode = !IsEditMode;
-        });
+        ToggleEditModeCommand = new RelayCommand(ToggleEditMode);
 
-        ToggleToolboxVisibleCommand =new RelayCommand(() =>
-        {
-            IsToolboxVisible = !IsToolboxVisible;
-        });
+        ToggleToolboxVisibleCommand = new RelayCommand(ToggleToolboxVisible);
 
         NewCommand = new RelayCommand(New);
 
@@ -60,18 +54,9 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
 
         ExportCommand = new AsyncRelayCommand(async () => await Export());
 
-        ExitCommand = new RelayCommand(() =>
-        {
-            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
-            {
-                desktopLifetime.Shutdown();
-            }
-        });
+        ExitCommand = new RelayCommand(Exit);
 
-        AboutCommand = new RelayCommand(() =>
-        {
-            // TODO: Show about dialog window.
-        });
+        AboutCommand = new RelayCommand(About);
     }
 
     public ICommand ToggleEditModeCommand { get; }
@@ -89,6 +74,29 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     public ICommand ExitCommand { get; }
 
     public ICommand AboutCommand { get; }
+
+    private void ToggleToolboxVisible()
+    {
+        IsToolboxVisible = !IsToolboxVisible;
+    }
+
+    private void ToggleEditMode()
+    {
+        IsEditMode = !IsEditMode;
+    }
+
+    private void Exit()
+    {
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
+        {
+            desktopLifetime.Shutdown();
+        }
+    }
+
+    private void About()
+    {
+        throw new NotImplementedException();
+    }
 
     private void New()
     {
