@@ -1,0 +1,34 @@
+<linker>
+
+  <!-- App -->
+
+  <assembly fullname="NodeEditor" preserve="All" />
+  <assembly fullname="NodeEditor.Web" preserve="All" />
+
+  <!-- Avalonia Themes -->
+
+  <assembly fullname="Avalonia.Themes.Fluent" preserve="All" />
+
+  <!-- Avalonia Core -->
+
+  <assembly fullname="Avalonia" preserve="All" />
+  <assembly fullname="Avalonia.Base" preserve="All" />
+  <assembly fullname="Avalonia.Controls" preserve="All" />
+  <assembly fullname="Avalonia.Dialogs" preserve="All" />
+  <assembly fullname="Avalonia.Markup" preserve="All" />
+  <assembly fullname="Avalonia.Markup.Xaml" preserve="All" />
+  <assembly fullname="Avalonia.Markup.Xaml.Loader" preserve="All" />
+  <assembly fullname="Avalonia.MicroCom" preserve="All" />
+
+  <!-- Avalonia Web -->
+
+  <assembly fullname="Avalonia.OpenGL" preserve="All" />
+  <assembly fullname="Avalonia.Skia" preserve="All" />
+  <assembly fullname="Avalonia.Web" preserve="All" />
+
+  <!-- Avalonia Behaviors -->
+
+  <assembly fullname="Avalonia.Xaml.Interactions" preserve="All" />
+  <assembly fullname="Avalonia.Xaml.Interactivity" preserve="All" />
+
+</linker>

@@ -1,26 +1,18 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using Avalonia;
+using Avalonia.Web;
+using NodeEditorDemo;
 
-namespace NodeEditor.Web;
-
-public class Program
+internal partial class Program
 {
-    public static async Task Main(string[] args)
+    static Program()
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        App.EnableInputOutput = true;
+        App.EnableMainMenu = true;
     }
 
-    public static WebAssemblyHostBuilder CreateHostBuilder(string[] args)
-    {
-        var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            
-        builder.RootComponents.Add<App>("#app");
+    private static void Main(string[] args)
+        => BuildAvaloniaApp().SetupBrowserApp("out");
 
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-        return builder;
-    }
+    public static AppBuilder BuildAvaloniaApp()
+           => AppBuilder.Configure<App>();
 }
