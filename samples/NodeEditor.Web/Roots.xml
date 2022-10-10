@@ -2,7 +2,8 @@
 
   <!-- App -->
 
-  <assembly fullname="NodeEditor" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia" preserve="All" />
+  <assembly fullname="NodeEditor.Base" preserve="All" />
   <assembly fullname="NodeEditor.Web" preserve="All" />
 
   <!-- Avalonia Themes -->
@@ -30,5 +31,9 @@
 
   <assembly fullname="Avalonia.Xaml.Interactions" preserve="All" />
   <assembly fullname="Avalonia.Xaml.Interactivity" preserve="All" />
+
+  <!-- PanAndZoom -->
+
+  <assembly fullname="Avalonia.Controls.PanAndZoom" preserve="All" />
 
 </linker>
