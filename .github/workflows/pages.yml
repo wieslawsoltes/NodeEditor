@@ -14,7 +14,7 @@ jobs:
       uses: actions/setup-dotnet@v1.9.0
 
     - name: Install wasm-tools
-      run: dotnet workload install wasm-tools
+      run: dotnet workload install wasm-tools wasm-experimental
 
     - name: Publish .NET Project
       run: dotnet publish samples/NodeEditor.Web/NodeEditor.Web.csproj -c Release -o release --nologo
