@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Destop", "samples\NodeEditor.Destop\NodeEditor.Destop.csproj", "{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditor.Desktop", "samples\NodeEditor.Desktop\NodeEditor.Desktop.csproj", "{4CE33B2E-C2AB-4BE5-A8A8-29F1CB8DDDC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02D6D6DC-21FA-435F-9526-E6F635127483}"
 EndProject
