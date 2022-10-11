@@ -40,4 +40,8 @@
 
   <assembly fullname="Avalonia.Controls.PanAndZoom" preserve="All" />
 
+  <!-- Newtonsoft.Json -->
+
+  <assembly fullname="Newtonsoft.Json" preserve="All" />
+
 </linker>
