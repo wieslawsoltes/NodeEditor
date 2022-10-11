@@ -3,6 +3,10 @@
   <!-- App -->
 
   <assembly fullname="NodeEditorAvalonia" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Export" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Model" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Mvvm" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Serializer" preserve="All" />
   <assembly fullname="NodeEditor.Base" preserve="All" />
   <assembly fullname="NodeEditor.Web" preserve="All" />
 
