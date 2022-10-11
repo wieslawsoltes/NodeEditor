@@ -11,7 +11,8 @@
              Background="{DynamicResource MainBackground}"
              ClipToBounds="False"
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}"
-             ZoomControl="{Binding #DrawingView.ZoomControl}">
+             ZoomControl="{Binding #DrawingView.ZoomControl}"
+             FontFamily="avares://Avalonia.Themes.Fluent/Assets#Inter">
 
   <Design.DataContext>
     <vm:MainWindowViewModel />
