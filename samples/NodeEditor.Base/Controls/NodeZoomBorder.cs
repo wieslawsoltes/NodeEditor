@@ -10,16 +10,16 @@ public class NodeZoomBorder : ZoomBorder
         ResetMatrix();
     }
 
-    public void ZoomToCommand(string value)
+    public void ZoomToCommand(object? value)
     {
-        if (Child == null)
+        if (Child == null || value is not string s)
         {
             return;
         }
 
         ResetMatrix();
 
-        var ratio = double.Parse(value, CultureInfo.InvariantCulture);
+        var ratio = double.Parse(s, CultureInfo.InvariantCulture);
         var x = Child.Bounds.Width / 2.0;
         var y = Child.Bounds.Height / 2.0;
 
