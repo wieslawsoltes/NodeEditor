@@ -1,6 +1,9 @@
+using System.Runtime.Versioning;
 using Avalonia;
 using Avalonia.Web;
 using NodeEditorDemo;
+
+[assembly:SupportedOSPlatform("browser")]
 
 internal partial class Program
 {
