@@ -7,19 +7,7 @@
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MSBuildEnableWorkloadResolver>true</MSBuildEnableWorkloadResolver>
-    <WasmBuildNative>true</WasmBuildNative>
-    <EmccFlags>-sVERBOSE -sERROR_ON_UNDEFINED_SYMBOLS=0</EmccFlags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <RunAOTCompilation>true</RunAOTCompilation>
-    <PublishTrimmed>true</PublishTrimmed>
-    <TrimMode>full</TrimMode>
-    <WasmBuildNative>true</WasmBuildNative>
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <WasmEnableSIMD>true</WasmEnableSIMD>
-    <EmccCompileOptimizationFlag>-O3</EmccCompileOptimizationFlag>
-    <EmccLinkOptimizationFlag>-O3</EmccLinkOptimizationFlag>
+    <IsPackable>False</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,8 +20,11 @@
     <WasmExtraFilesToDeploy Include="AppBundle\index.html" />
     <WasmExtraFilesToDeploy Include="AppBundle\Logo.svg" />
     <WasmExtraFilesToDeploy Include="AppBundle\main.js" />
+    <WasmExtraFilesToDeploy Include="AppBundle\staticwebapp.config.json" />
   </ItemGroup>
 
+  <Import Project="..\..\build\Base.props" />
+  <Import Project="..\..\build\Avalonia.props" />
   <Import Project="..\..\build\Avalonia.Web.props" />
 
   <ItemGroup>
