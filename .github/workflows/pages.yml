@@ -5,7 +5,7 @@ env:
     OUTPUT_PATH: samples/NodeEditor.Web/bin/Release/net7.0/browser-wasm/AppBundle
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   deploy-to-github-pages:
