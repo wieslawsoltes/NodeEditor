@@ -1,0 +1,30 @@
+<linker>
+
+  <!-- App -->
+
+  <assembly fullname="NodeEditorAvalonia" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Export" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Model" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Mvvm" preserve="All" />
+  <assembly fullname="NodeEditorAvalonia.Serializer" preserve="All" />
+  <assembly fullname="NodeEditor.Base" preserve="All" />
+  <assembly fullname="NodeEditor.Desktop" preserve="All" />
+
+  <!-- Avalonia Themes -->
+
+  <assembly fullname="Avalonia.Themes.Fluent" preserve="All" />
+
+  <!-- Avalonia Behaviors -->
+
+  <assembly fullname="Avalonia.Xaml.Interactions" preserve="All" />
+  <assembly fullname="Avalonia.Xaml.Interactivity" preserve="All" />
+
+  <!-- PanAndZoom -->
+
+  <assembly fullname="Avalonia.Controls.PanAndZoom" preserve="All" />
+
+  <!-- Newtonsoft.Json -->
+
+  <assembly fullname="Newtonsoft.Json" preserve="All" />
+
+</linker>
