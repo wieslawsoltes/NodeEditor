@@ -13,4 +13,4 @@ await registerAvaloniaModule(dotnetRuntime);
 
 const config = dotnetRuntime.getConfig();
 
-await dotnetRuntime.runMainAndExit(config.mainAssemblyName, ["dotnet", "is", "great!"]);
+await dotnetRuntime.runMainAndExit(config.mainAssemblyName, [window.location.search]);

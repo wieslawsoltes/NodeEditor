@@ -161,10 +161,6 @@
     },
     {
       "behavior": "assembly",
-      "name": "System.Diagnostics.DiagnosticSource.dll"
-    },
-    {
-      "behavior": "assembly",
       "name": "System.Diagnostics.Process.dll"
     },
     {
