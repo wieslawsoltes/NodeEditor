@@ -19,7 +19,6 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <PublishAot>true</PublishAot>
     <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <StripSymbols>true</StripSymbols>
   </PropertyGroup>
 
