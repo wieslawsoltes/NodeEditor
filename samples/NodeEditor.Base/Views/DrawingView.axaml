@@ -44,79 +44,85 @@
             </idd:ContextDropBehavior.Handler>
           </idd:ContextDropBehavior>
         </i:Interaction.Behaviors>
-        <Panel Background="Transparent"
-               Width="{Binding Width}"
-               Height="{Binding Height}">
-          <Panel.Transitions>
-            <Transitions>
-              <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
-            </Transitions>
-          </Panel.Transitions>
-          <editor:DrawingNode Name="Drawing"
-                              Background="White"
-                              InputSource="{Binding #ZoomBorder}"
-                              AdornerCanvas="{Binding #AdornerCanvas}"
-                              ClipToBounds="False">
-            <editor:DrawingNode.Styles>
-              <Style Selector="editor|DrawingNode">
-                <Setter Property="EnableSnap" Value="False" />
-                <Setter Property="SnapX" Value="15.0" />
-                <Setter Property="SnapY" Value="15.0" />
-                <Setter Property="EnableGrid" Value="False" />
-                <Setter Property="GridCellWidth" Value="15.0" />
-                <Setter Property="GridCellHeight" Value="15.0" />
-                </Style>
-            </editor:DrawingNode.Styles>
-            <editor:DrawingNode.ContextFlyout>
-              <MenuFlyout>
-                <MenuItem Header="_Edit" 
-                          InputGesture="Ctrl+E"
-                          DataContext="{Binding $parent[UserControl].DataContext}"
-                          Command="{Binding ToggleEditModeCommand}" 
-                          x:DataType="vm:MainWindowViewModel">
-                  <MenuItem.Icon>
-                    <CheckBox BorderThickness="0" 
-                              IsHitTestVisible="False" 
-                              IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
-                  </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="-" />
-                <MenuItem Header="Cu_t" 
-                          Icon="{DynamicResource CutIconPath}"
-                          Command="{Binding CutNodesCommand}" 
-                          InputGesture="Ctrl+X" />
-                <MenuItem Header="_Copy" 
-                          Icon="{DynamicResource CopyIconPath}"
-                          Command="{Binding CopyNodesCommand}" 
-                          InputGesture="Ctrl+C" />
-                <MenuItem Header="_Paste" 
-                          Icon="{DynamicResource PasteIconPath}"
-                          Command="{Binding PasteNodesCommand}" 
-                          InputGesture="Ctrl+V" />
-                <MenuItem Header="D_uplicate" 
-                          Command="{Binding DuplicateNodesCommand}" 
-                          InputGesture="Ctrl+D" />
-                <MenuItem Header="-" />
-                <MenuItem Header="Select _All" 
-                          Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
-                          InputGesture="Ctrl+A" />
-                <MenuItem Header="De_select All" 
-                          Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
-                          InputGesture="Escape" />
-                <MenuItem Header="-" />
-                <MenuItem Header="_Delete" 
-                          Icon="{DynamicResource DeleteIconPath}"
-                          Command="{Binding DeleteNodesCommand}" 
-                          InputGesture="Delete" />
-              </MenuFlyout>
-            </editor:DrawingNode.ContextFlyout>
-          </editor:DrawingNode>
-          <Canvas Name="AdornerCanvas"
-                  Background="Transparent"
-                  Width="{Binding Width}"
-                  Height="{Binding Height}"
-                  IsHitTestVisible="False"/>
-        </Panel>
+        <Border Background="Transparent"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                BoxShadow="4 11 30 1 #3F000000"
+                ZIndex="-1">
+          <Panel Background="Transparent"
+                 Width="{Binding Width}"
+                 Height="{Binding Height}">
+            <Panel.Transitions>
+              <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+              </Transitions>
+            </Panel.Transitions>
+            <editor:DrawingNode Name="Drawing"
+                                Background="White"
+                                InputSource="{Binding #ZoomBorder}"
+                                AdornerCanvas="{Binding #AdornerCanvas}"
+                                ClipToBounds="False">
+              <editor:DrawingNode.Styles>
+                <Style Selector="editor|DrawingNode">
+                  <Setter Property="EnableSnap" Value="True" />
+                  <Setter Property="SnapX" Value="15.0" />
+                  <Setter Property="SnapY" Value="15.0" />
+                  <Setter Property="EnableGrid" Value="True" />
+                  <Setter Property="GridCellWidth" Value="15.0" />
+                  <Setter Property="GridCellHeight" Value="15.0" />
+                  </Style>
+              </editor:DrawingNode.Styles>
+              <editor:DrawingNode.ContextFlyout>
+                <MenuFlyout>
+                  <MenuItem Header="_Edit" 
+                            InputGesture="Ctrl+E"
+                            DataContext="{Binding $parent[UserControl].DataContext}"
+                            Command="{Binding ToggleEditModeCommand}" 
+                            x:DataType="vm:MainWindowViewModel">
+                    <MenuItem.Icon>
+                      <CheckBox BorderThickness="0" 
+                                IsHitTestVisible="False" 
+                                IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
+                    </MenuItem.Icon>
+                  </MenuItem>
+                  <MenuItem Header="-" />
+                  <MenuItem Header="Cu_t" 
+                            Icon="{DynamicResource CutIconPath}"
+                            Command="{Binding CutNodesCommand}" 
+                            InputGesture="Ctrl+X" />
+                  <MenuItem Header="_Copy" 
+                            Icon="{DynamicResource CopyIconPath}"
+                            Command="{Binding CopyNodesCommand}" 
+                            InputGesture="Ctrl+C" />
+                  <MenuItem Header="_Paste" 
+                            Icon="{DynamicResource PasteIconPath}"
+                            Command="{Binding PasteNodesCommand}" 
+                            InputGesture="Ctrl+V" />
+                  <MenuItem Header="D_uplicate" 
+                            Command="{Binding DuplicateNodesCommand}" 
+                            InputGesture="Ctrl+D" />
+                  <MenuItem Header="-" />
+                  <MenuItem Header="Select _All" 
+                            Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
+                            InputGesture="Ctrl+A" />
+                  <MenuItem Header="De_select All" 
+                            Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
+                            InputGesture="Escape" />
+                  <MenuItem Header="-" />
+                  <MenuItem Header="_Delete" 
+                            Icon="{DynamicResource DeleteIconPath}"
+                            Command="{Binding DeleteNodesCommand}" 
+                            InputGesture="Delete" />
+                </MenuFlyout>
+              </editor:DrawingNode.ContextFlyout>
+            </editor:DrawingNode>
+            <Canvas Name="AdornerCanvas"
+                    Background="Transparent"
+                    Width="{Binding Width}"
+                    Height="{Binding Height}"
+                    IsHitTestVisible="False"/>
+          </Panel>
+        </Border>
       </controls:NodeZoomBorder>
     </ScrollViewer>
   </Panel>
