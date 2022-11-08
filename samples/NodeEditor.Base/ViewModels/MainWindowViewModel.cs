@@ -67,7 +67,7 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     [RelayCommand]
     private void About()
     {
-        throw new NotImplementedException();
+        // TODO: About dialog.
     }
 
     [RelayCommand]
