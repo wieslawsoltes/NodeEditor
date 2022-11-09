@@ -54,6 +54,30 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 
     public void NotifySelectionChanged() => SelectionChanged?.Invoke(this, EventArgs.Empty);
 
+    public void NotifyDeselectedNodes()
+    {
+        var selectedNodes = GetSelectedNodes();
+        if (selectedNodes is { })
+        {
+            foreach (var selectedNode in selectedNodes)
+            {
+                selectedNode.OnDeselected();
+            }
+        }
+    }
+
+    public void NotifyDeselectedConnectors()
+    {
+        var selectedConnectors = GetSelectedConnectors();
+        if (selectedConnectors is { })
+        {
+            foreach (var selectedConnector in selectedConnectors)
+            {
+                selectedConnector.OnDeselected();
+            }
+        }
+    }
+
     public ISet<INode>? GetSelectedNodes() => _selectedNodes;
 
     public void SetSelectedNodes(ISet<INode>? nodes) => _selectedNodes = nodes;

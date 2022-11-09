@@ -63,6 +63,7 @@ public class DrawingDropHandler : DefaultDropHandler
                             node.Parent = drawing;
                             node.Move(point.X, point.Y);
                             drawing.Nodes?.Add(node);
+                            node.OnCreated();
                         }
                     }
                     return true;

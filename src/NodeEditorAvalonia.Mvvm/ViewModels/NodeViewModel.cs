@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
@@ -15,6 +16,18 @@ public partial class NodeViewModel : INode
     [ObservableProperty] private double _height;
     [ObservableProperty] private object? _content;
     [ObservableProperty] private IList<IPin>? _pins;
+
+    public event EventHandler<NodeCreatedEventArgs>? Created;
+
+    public event EventHandler<NodeRemovedEventArgs>? Removed;
+
+    public event EventHandler<NodeMovedEventArgs>? Moved;
+
+    public event EventHandler<NodeSelectedEventArgs>? Selected;
+
+    public event EventHandler<NodeDeselectedEventArgs>? Deselected;
+
+    public event EventHandler<NodeResizedEventArgs>? Resized;
 
     public virtual bool CanSelect()
     {
@@ -44,6 +57,36 @@ public partial class NodeViewModel : INode
 
     public virtual void Resize(double deltaX, double deltaY, NodeResizeDirection direction)
     {
-        throw new System.NotImplementedException();
+        // TODO: Resize
+    }
+
+    public virtual void OnCreated()
+    {
+        Created?.Invoke(this, new NodeCreatedEventArgs(this));
+    }
+
+    public virtual void OnRemoved()
+    {
+        Removed?.Invoke(this, new NodeRemovedEventArgs(this));
+    }
+
+    public virtual void OnMoved()
+    {
+        Moved?.Invoke(this, new NodeMovedEventArgs(this, _x, _y));
+    }
+
+    public virtual void OnSelected()
+    {
+        Selected?.Invoke(this, new NodeSelectedEventArgs(this));
+    }
+
+    public virtual void OnDeselected()
+    {
+        Deselected?.Invoke(this, new NodeDeselectedEventArgs(this));
+    }
+
+    public virtual void OnResized()
+    {
+        Resized?.Invoke(this, new NodeResizedEventArgs(this, _x, _y, _width, _height));
     }
 }

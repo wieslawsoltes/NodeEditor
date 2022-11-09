@@ -264,6 +264,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 }
                 else
                 {
+                    drawingNode.NotifyDeselectedNodes();
+                    drawingNode.NotifyDeselectedConnectors();
                     drawingNode.SetSelectedNodes(null);
                     drawingNode.SetSelectedConnectors(null);
                     drawingNode.NotifySelectionChanged();
@@ -359,6 +361,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                             if (node.CanMove())
                             {
                                 node.Move(deltaX, deltaY);
+                                node.OnMoved();
                             }
                         }
 

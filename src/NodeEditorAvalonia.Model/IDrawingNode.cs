@@ -21,6 +21,8 @@ public interface IDrawingNode : INode
     ICommand DeselectAllNodesCommand { get; }
     ICommand DeleteNodesCommand { get; }
     void NotifySelectionChanged();
+    void NotifyDeselectedNodes();
+    void NotifyDeselectedConnectors();
     void  SetSelectedNodes(ISet<INode>? nodes);
     ISet<IConnector>? GetSelectedConnectors();
     void  SetSelectedConnectors(ISet<IConnector>? connectors);

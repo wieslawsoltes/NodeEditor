@@ -109,6 +109,17 @@ public sealed class DrawingNodeEditor
         return true;
     }
 
+    private void NotifyPinsRemoved(INode node)
+    {
+        if (node.Pins is { })
+        {
+            foreach (var pin in node.Pins)
+            {
+                pin.OnRemoved();
+            }
+        }
+    }
+
     public void DrawingLeftPressed(double x, double y)
     {
         if (IsConnectorMoving())
@@ -157,16 +168,20 @@ public sealed class DrawingNodeEditor
             end.Y = y;
             end.Width = pin.Width;
             end.Height = pin.Height;
+            end.OnCreated();
 
             var connector = _factory.CreateConnector();
             connector.Parent = _node;
             connector.Start = pin;
             connector.End = end;
+            pin.OnConnected();
+            end.OnConnected();
+            connector.OnCreated();
 
             if (showWhenMoving)
             {
                 _node.Connectors ??= _factory.CreateList<IConnector>();
-                _node.Connectors.Add(connector);            
+                _node.Connectors.Add(connector);
             }
 
             _connector = connector;
@@ -175,7 +190,10 @@ public sealed class DrawingNodeEditor
         {
             if (_connector.Start != pin)
             {
+                var end = _connector.End;
                 _connector.End = pin;
+                end?.OnDisconnected();
+                pin.OnConnected();
 
                 if (!showWhenMoving)
                 {
@@ -194,6 +212,7 @@ public sealed class DrawingNodeEditor
         {
             _connector.End.X = x;
             _connector.End.Y = y;
+            _connector.End.OnMoved();
         }
     }
 
@@ -228,6 +247,8 @@ public sealed class DrawingNodeEditor
                 if (node.CanRemove())
                 {
                     _node.Nodes?.Remove(node);
+                    node.OnRemoved();
+                    NotifyPinsRemoved(node);
                 }
             }
         }
@@ -239,10 +260,14 @@ public sealed class DrawingNodeEditor
                 if (connector.CanRemove())
                 {
                     _node.Connectors?.Remove(connector);
+                    connector.OnRemoved();
                 }
             }
         }
-        
+
+        _node.NotifyDeselectedNodes();
+        _node.NotifyDeselectedConnectors();
+
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
         _node.NotifySelectionChanged();
@@ -295,6 +320,9 @@ public sealed class DrawingNodeEditor
             return;
         }
 
+        _node.NotifyDeselectedNodes();
+        _node.NotifyDeselectedConnectors();
+
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
 
@@ -327,10 +355,12 @@ public sealed class DrawingNodeEditor
                 node.Parent = _node;
 
                 _node.Nodes?.Add(node);
+                node.OnCreated();
 
                 if (node.CanSelect())
                 {
                     selectedNodes.Add(node);
+                    node.OnSelected();
                 }
             }
         }
@@ -342,13 +372,17 @@ public sealed class DrawingNodeEditor
                 connector.Parent = _node;
 
                 _node.Connectors?.Add(connector);
+                connector.OnCreated();
 
                 if (connector.CanSelect())
                 {
                     selectedConnectors.Add(connector);
+                    connector.OnSelected();
                 }
             }
         }
+
+        _node.NotifyDeselectedNodes();
 
         if (selectedNodes.Count > 0)
         {
@@ -358,6 +392,8 @@ public sealed class DrawingNodeEditor
         {
             _node.SetSelectedNodes(null);
         }
+
+        _node.NotifyDeselectedConnectors();
 
         if (selectedConnectors.Count > 0)
         {
@@ -396,8 +432,12 @@ public sealed class DrawingNodeEditor
                 if (node.CanRemove())
                 {
                     _node.Nodes?.Remove(node);
+                    node.OnRemoved();
+                    NotifyPinsRemoved(node);
                 }
             }
+
+            _node.NotifyDeselectedNodes();
 
             _node.SetSelectedNodes(null);
             notify = true;
@@ -410,8 +450,11 @@ public sealed class DrawingNodeEditor
                 if (connector.CanRemove())
                 {
                     _node.Connectors?.Remove(connector);
+                    connector.OnRemoved();
                 }
             }
+
+            _node.NotifyDeselectedConnectors();
 
             _node.SetSelectedConnectors(null);
             notify = true;
@@ -429,6 +472,8 @@ public sealed class DrawingNodeEditor
 
         if (_node.Nodes is not null)
         {
+            _node.NotifyDeselectedNodes();
+
             _node.SetSelectedNodes(null);
 
             var selectedNodes = new HashSet<INode>();
@@ -439,6 +484,7 @@ public sealed class DrawingNodeEditor
                 if (node.CanSelect())
                 {
                     selectedNodes.Add(node);
+                    node.OnSelected();
                 }
             }
 
@@ -451,6 +497,8 @@ public sealed class DrawingNodeEditor
 
         if (_node.Connectors is not null)
         {
+            _node.NotifyDeselectedConnectors();
+
             _node.SetSelectedConnectors(null);
 
             var selectedConnectors = new HashSet<IConnector>();
@@ -461,6 +509,7 @@ public sealed class DrawingNodeEditor
                 if (connector.CanSelect())
                 {
                     selectedConnectors.Add(connector);
+                    connector.OnSelected();
                 }
             }
 
@@ -479,6 +528,9 @@ public sealed class DrawingNodeEditor
 
     public void DeselectAllNodes()
     {
+        _node.NotifyDeselectedNodes();
+        _node.NotifyDeselectedConnectors();
+
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
         _node.NotifySelectionChanged();

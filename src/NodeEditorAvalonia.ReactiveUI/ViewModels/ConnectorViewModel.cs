@@ -15,6 +15,18 @@ public class ConnectorViewModel : ReactiveObject, IConnector
     private IPin? _end;
     private double _offset = 50;
 
+    public event EventHandler<ConnectorCreatedEventArgs>? Created;
+
+    public event EventHandler<ConnectorRemovedEventArgs>? Removed;
+
+    public event EventHandler<ConnectorSelectedEventArgs>? Selected;
+
+    public event EventHandler<ConnectorDeselectedEventArgs>? Deselected;
+
+    public event EventHandler<ConnectorStartChangedEventArgs>? StartChanged;
+
+    public event EventHandler<ConnectorEndChangedEventArgs>? EndChanged;
+
     public ConnectorViewModel() => ObservePins();
 
     [DataMember(IsRequired = false, EmitDefaultValue = false)]
@@ -116,5 +128,35 @@ public class ConnectorViewModel : ReactiveObject, IConnector
     public virtual bool CanRemove()
     {
         return true;
+    }
+
+    public void OnCreated()
+    {
+        Created?.Invoke(this, new ConnectorCreatedEventArgs(this));
+    }
+
+    public void OnRemoved()
+    {
+        Removed?.Invoke(this, new ConnectorRemovedEventArgs(this));
+    }
+
+    public void OnSelected()
+    {
+        Selected?.Invoke(this, new ConnectorSelectedEventArgs(this));
+    }
+
+    public void OnDeselected()
+    {
+        Deselected?.Invoke(this, new ConnectorDeselectedEventArgs(this));
+    }
+
+    public void OnStartChanged()
+    {
+        StartChanged?.Invoke(this, new ConnectorStartChangedEventArgs(this));
+    }
+
+    public void OnEndChanged()
+    {
+        EndChanged?.Invoke(this, new ConnectorEndChangedEventArgs(this));
     }
 }

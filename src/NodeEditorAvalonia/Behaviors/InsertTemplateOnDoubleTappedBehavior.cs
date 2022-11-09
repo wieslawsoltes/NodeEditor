@@ -45,6 +45,7 @@ public class InsertTemplateOnDoubleTappedBehavior : Behavior<ListBoxItem>
                 node.Parent = drawing;
                 node.Move(0.0, 0.0);
                 drawing.Nodes?.Add(node);
+                node.OnCreated();
             }
         }
     }
