@@ -2,6 +2,66 @@ using System;
 
 namespace NodeEditor.Model;
 
+public sealed class ConnectorCreatedEventArgs : EventArgs
+{
+    public IConnector? Connector { get; }
+
+    public ConnectorCreatedEventArgs(IConnector? connector)
+    {
+        Connector = connector;
+    }
+}
+
+public sealed class ConnectorRemovedEventArgs : EventArgs
+{
+    public IConnector? Connector { get; }
+
+    public ConnectorRemovedEventArgs(IConnector? connector)
+    {
+        Connector = connector;
+    }
+}
+
+public sealed class ConnectorSelectedEventArgs : EventArgs
+{
+    public IConnector? Connector { get; }
+
+    public ConnectorSelectedEventArgs(IConnector? connector)
+    {
+        Connector = connector;
+    }
+}
+
+public sealed class ConnectorDeselectedEventArgs : EventArgs
+{
+    public IConnector? Connector { get; }
+
+    public ConnectorDeselectedEventArgs(IConnector? connector)
+    {
+        Connector = connector;
+    }
+}
+
+public sealed class ConnectorStartChangedEventArgs : EventArgs
+{
+    public IConnector? Connector { get; }
+
+    public ConnectorStartChangedEventArgs(IConnector? connector)
+    {
+        Connector = connector;
+    }
+}
+
+public sealed class ConnectorEndChangedEventArgs : EventArgs
+{
+    public IConnector? Connector { get; }
+
+    public ConnectorEndChangedEventArgs(IConnector? connector)
+    {
+        Connector = connector;
+    }
+}
+
 public interface IConnector
 {
     string? Name { get; set; }
@@ -14,18 +74,14 @@ public interface IConnector
     bool CanRemove();
     event EventHandler<ConnectorCreatedEventArgs>? Created;
     event EventHandler<ConnectorRemovedEventArgs>? Removed;
-    event EventHandler<ConnectorMovedEventArgs>? Moved;
     event EventHandler<ConnectorSelectedEventArgs>? Selected;
     event EventHandler<ConnectorDeselectedEventArgs>? Deselected;
-    event EventHandler<ConnectorResizedEventArgs>? Resized;
     event EventHandler<ConnectorStartChangedEventArgs>? Connected;
     event EventHandler<ConnectorEndChangedEventArgs>? Disconnected;
     void OnCreated();
     void OnRemoved();
-    void OnMoved();
     void OnSelected();
     void OnDeselected();
-    void OnResized();
     void OnStartChanged();
     void OnEndChanged();
 }
