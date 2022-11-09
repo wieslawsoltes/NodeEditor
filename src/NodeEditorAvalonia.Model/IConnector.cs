@@ -76,8 +76,8 @@ public interface IConnector
     event EventHandler<ConnectorRemovedEventArgs>? Removed;
     event EventHandler<ConnectorSelectedEventArgs>? Selected;
     event EventHandler<ConnectorDeselectedEventArgs>? Deselected;
-    event EventHandler<ConnectorStartChangedEventArgs>? Connected;
-    event EventHandler<ConnectorEndChangedEventArgs>? Disconnected;
+    event EventHandler<ConnectorStartChangedEventArgs>? StartChanged;
+    event EventHandler<ConnectorEndChangedEventArgs>? EndChanged;
     void OnCreated();
     void OnRemoved();
     void OnSelected();
