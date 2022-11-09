@@ -44,6 +44,6 @@ public partial class NodeViewModel : INode
 
     public virtual void Resize(double deltaX, double deltaY, NodeResizeDirection direction)
     {
-        throw new System.NotImplementedException();
+        // TODO: Resize
     }
 }
