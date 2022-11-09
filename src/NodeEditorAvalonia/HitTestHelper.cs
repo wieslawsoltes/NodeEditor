@@ -174,6 +174,8 @@ internal static class HitTestHelper
             return;
         }
 
+        drawingNode.NotifyDeselectedNodes();
+        drawingNode.NotifyDeselectedConnectors();
         drawingNode.SetSelectedNodes(null);
         drawingNode.SetSelectedConnectors(null);
         drawingNode.NotifySelectionChanged();
