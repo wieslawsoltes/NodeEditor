@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace NodeEditor.Model;
 
@@ -18,4 +19,16 @@ public interface INode
     bool CanResize();
     void Move(double deltaX, double deltaY);
     void Resize(double deltaX, double deltaY, NodeResizeDirection direction);
+    event EventHandler<NodeCreatedEventArgs>? Created;
+    event EventHandler<NodeRemovedEventArgs>? Removed;
+    event EventHandler<NodeMovedEventArgs>? Moved;
+    event EventHandler<NodeSelectedEventArgs>? Selected;
+    event EventHandler<NodeDeselectedEventArgs>? Deselected;
+    event EventHandler<NodeResizedEventArgs>? Resized;
+    void OnCreated();
+    void OnRemoved();
+    void OnMoved();
+    void OnSelected();
+    void OnDeselected();
+    void OnResized();
 }
