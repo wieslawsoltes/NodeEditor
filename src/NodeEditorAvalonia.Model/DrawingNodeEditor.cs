@@ -157,11 +157,15 @@ public sealed class DrawingNodeEditor
             end.Y = y;
             end.Width = pin.Width;
             end.Height = pin.Height;
+            end.OnCreated();
 
             var connector = _factory.CreateConnector();
             connector.Parent = _node;
             connector.Start = pin;
             connector.End = end;
+            pin.OnConnected();
+            end.OnConnected();
+            connector.OnCreated();
 
             if (showWhenMoving)
             {
@@ -176,6 +180,7 @@ public sealed class DrawingNodeEditor
             if (_connector.Start != pin)
             {
                 _connector.End = pin;
+                pin.OnConnected();
 
                 if (!showWhenMoving)
                 {
@@ -228,6 +233,15 @@ public sealed class DrawingNodeEditor
                 if (node.CanRemove())
                 {
                     _node.Nodes?.Remove(node);
+                    node.OnRemoved();
+
+                    if (node.Pins is { })
+                    {
+                        foreach (var pin in node.Pins)
+                        {
+                            pin.OnRemoved();
+                        }
+                    }
                 }
             }
         }
@@ -239,6 +253,7 @@ public sealed class DrawingNodeEditor
                 if (connector.CanRemove())
                 {
                     _node.Connectors?.Remove(connector);
+                    connector.OnRemoved();
                 }
             }
         }
@@ -327,10 +342,12 @@ public sealed class DrawingNodeEditor
                 node.Parent = _node;
 
                 _node.Nodes?.Add(node);
+                node.OnCreated();
 
                 if (node.CanSelect())
                 {
                     selectedNodes.Add(node);
+                    node.OnSelected();
                 }
             }
         }
@@ -342,10 +359,12 @@ public sealed class DrawingNodeEditor
                 connector.Parent = _node;
 
                 _node.Connectors?.Add(connector);
+                connector.OnCreated();
 
                 if (connector.CanSelect())
                 {
                     selectedConnectors.Add(connector);
+                    connector.OnSelected();
                 }
             }
         }
@@ -396,6 +415,15 @@ public sealed class DrawingNodeEditor
                 if (node.CanRemove())
                 {
                     _node.Nodes?.Remove(node);
+                    node.OnRemoved();
+                    
+                    if (node.Pins is { })
+                    {
+                        foreach (var pin in node.Pins)
+                        {
+                            pin.OnRemoved();
+                        }
+                    }
                 }
             }
 
@@ -410,6 +438,7 @@ public sealed class DrawingNodeEditor
                 if (connector.CanRemove())
                 {
                     _node.Connectors?.Remove(connector);
+                    connector.OnRemoved();
                 }
             }
 
@@ -439,6 +468,7 @@ public sealed class DrawingNodeEditor
                 if (node.CanSelect())
                 {
                     selectedNodes.Add(node);
+                    node.OnSelected();
                 }
             }
 
@@ -461,6 +491,7 @@ public sealed class DrawingNodeEditor
                 if (connector.CanSelect())
                 {
                     selectedConnectors.Add(connector);
+                    connector.OnSelected();
                 }
             }
 
@@ -479,6 +510,24 @@ public sealed class DrawingNodeEditor
 
     public void DeselectAllNodes()
     {
+        var selectedNodes = _node.GetSelectedNodes();
+        if (selectedNodes is { })
+        {
+            foreach (var selectedNode in selectedNodes)
+            {
+                selectedNode.OnDeselected();
+            }
+        }
+
+        var selectedConnectors = _node.GetSelectedConnectors();
+        if (selectedConnectors is { })
+        {
+            foreach (var selectedConnector in selectedConnectors)
+            {
+                selectedConnector.OnDeselected();
+            }
+        }
+
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
         _node.NotifySelectionChanged();
