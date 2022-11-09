@@ -190,7 +190,9 @@ public sealed class DrawingNodeEditor
         {
             if (_connector.Start != pin)
             {
+                var end = _connector.End;
                 _connector.End = pin;
+                end?.OnDisconnected();
                 pin.OnConnected();
 
                 if (!showWhenMoving)
@@ -210,6 +212,7 @@ public sealed class DrawingNodeEditor
         {
             _connector.End.X = x;
             _connector.End.Y = y;
+            _connector.End.OnMoved();
         }
     }
 
@@ -261,7 +264,10 @@ public sealed class DrawingNodeEditor
                 }
             }
         }
-        
+
+        _node.NotifyDeselectedNodes();
+        _node.NotifyDeselectedConnectors();
+
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
         _node.NotifySelectionChanged();
@@ -313,6 +319,9 @@ public sealed class DrawingNodeEditor
         {
             return;
         }
+
+        _node.NotifyDeselectedNodes();
+        _node.NotifyDeselectedConnectors();
 
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
@@ -373,6 +382,8 @@ public sealed class DrawingNodeEditor
             }
         }
 
+        _node.NotifyDeselectedNodes();
+
         if (selectedNodes.Count > 0)
         {
             _node.SetSelectedNodes(selectedNodes);
@@ -381,6 +392,8 @@ public sealed class DrawingNodeEditor
         {
             _node.SetSelectedNodes(null);
         }
+
+        _node.NotifyDeselectedConnectors();
 
         if (selectedConnectors.Count > 0)
         {
@@ -424,6 +437,8 @@ public sealed class DrawingNodeEditor
                 }
             }
 
+            _node.NotifyDeselectedNodes();
+
             _node.SetSelectedNodes(null);
             notify = true;
         }
@@ -438,6 +453,8 @@ public sealed class DrawingNodeEditor
                     connector.OnRemoved();
                 }
             }
+
+            _node.NotifyDeselectedConnectors();
 
             _node.SetSelectedConnectors(null);
             notify = true;
@@ -455,6 +472,8 @@ public sealed class DrawingNodeEditor
 
         if (_node.Nodes is not null)
         {
+            _node.NotifyDeselectedNodes();
+
             _node.SetSelectedNodes(null);
 
             var selectedNodes = new HashSet<INode>();
@@ -478,6 +497,8 @@ public sealed class DrawingNodeEditor
 
         if (_node.Connectors is not null)
         {
+            _node.NotifyDeselectedConnectors();
+
             _node.SetSelectedConnectors(null);
 
             var selectedConnectors = new HashSet<IConnector>();
@@ -507,23 +528,8 @@ public sealed class DrawingNodeEditor
 
     public void DeselectAllNodes()
     {
-        var selectedNodes = _node.GetSelectedNodes();
-        if (selectedNodes is { })
-        {
-            foreach (var selectedNode in selectedNodes)
-            {
-                selectedNode.OnDeselected();
-            }
-        }
-
-        var selectedConnectors = _node.GetSelectedConnectors();
-        if (selectedConnectors is { })
-        {
-            foreach (var selectedConnector in selectedConnectors)
-            {
-                selectedConnector.OnDeselected();
-            }
-        }
+        _node.NotifyDeselectedNodes();
+        _node.NotifyDeselectedConnectors();
 
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
