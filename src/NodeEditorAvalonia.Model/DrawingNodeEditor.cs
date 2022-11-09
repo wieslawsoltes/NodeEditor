@@ -427,14 +427,7 @@ public sealed class DrawingNodeEditor
                 {
                     _node.Nodes?.Remove(node);
                     node.OnRemoved();
-                    
-                    if (node.Pins is { })
-                    {
-                        foreach (var pin in node.Pins)
-                        {
-                            pin.OnRemoved();
-                        }
-                    }
+                    NotifyPinsRemoved(node);
                 }
             }
 
