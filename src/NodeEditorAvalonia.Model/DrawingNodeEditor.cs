@@ -109,6 +109,17 @@ public sealed class DrawingNodeEditor
         return true;
     }
 
+    private void NotifyPinsRemoved(INode node)
+    {
+        if (node.Pins is { })
+        {
+            foreach (var pin in node.Pins)
+            {
+                pin.OnRemoved();
+            }
+        }
+    }
+
     public void DrawingLeftPressed(double x, double y)
     {
         if (IsConnectorMoving())
@@ -170,7 +181,7 @@ public sealed class DrawingNodeEditor
             if (showWhenMoving)
             {
                 _node.Connectors ??= _factory.CreateList<IConnector>();
-                _node.Connectors.Add(connector);            
+                _node.Connectors.Add(connector);
             }
 
             _connector = connector;
