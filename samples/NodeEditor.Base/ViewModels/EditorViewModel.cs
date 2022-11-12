@@ -5,15 +5,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform.Storage;
-using Avalonia.VisualTree;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
+using NodeEditor.Export.Controls;
 using NodeEditor.Export.Renderers;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
@@ -225,44 +223,61 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 };
 
                 root.ApplyTemplate();
+                root.InvalidateMeasure();
+                root.InvalidateArrange();
                 root.LayoutManager.ExecuteLayoutPass();
 
                 var size = new Size(Drawing.Width, Drawing.Height);
 
                 if (file.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
+                    using var ms = new MemoryStream();
+                    PngRenderer.Render(root, size, ms);
                     await using var stream = await file.OpenWriteAsync();
-                    PngRenderer.Render(root, size, stream);
+                    ms.Position = 0;
+                    await stream.WriteAsync(ms.ToArray());
                 }
 
                 if (file.Name.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
+                    using var ms = new MemoryStream();
+                    SvgRenderer.Render(root, size, ms);
                     await using var stream = await file.OpenWriteAsync();
-                    SvgRenderer.Render(root, size, stream);
+                    ms.Position = 0;
+                    await stream.WriteAsync(ms.ToArray());
                 }
 
                 if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                 {
+                    using var ms = new MemoryStream();
+                    PdfRenderer.Render(root, size, ms, 96);
                     await using var stream = await file.OpenWriteAsync();
-                    PdfRenderer.Render(root, size, stream, 96);
+                    ms.Position = 0;
+                    await stream.WriteAsync(ms.ToArray());
                 }
 
                 if (file.Name.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
                 {
+                    using var ms = new MemoryStream();
+                    XpsRenderer.Render(control, size, ms, 96);
                     await using var stream = await file.OpenWriteAsync();
-                    XpsRenderer.Render(control, size, stream, 96);
+                    ms.Position = 0;
+                    await stream.WriteAsync(ms.ToArray());
                 }
 
                 if (file.Name.EndsWith("skp", StringComparison.OrdinalIgnoreCase))
                 {
+                    using var ms = new MemoryStream();
+                    SkpRenderer.Render(control, size, ms);
                     await using var stream = await file.OpenWriteAsync();
-                    SkpRenderer.Render(control, size, stream);
+                    ms.Position = 0;
+                    await stream.WriteAsync(ms.ToArray());
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
-                Debug.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
         }
     }

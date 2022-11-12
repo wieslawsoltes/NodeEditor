@@ -8,7 +8,7 @@ using Avalonia.Platform;
 using Avalonia.Rendering;
 using Avalonia.Styling;
 
-namespace NodeEditorDemo.Controls;
+namespace NodeEditor.Export.Controls;
 
 public class ExportRoot : Decorator, IFocusScope, ILayoutRoot, IInputRoot, IRenderRoot, IStyleHost, ILogicalRoot
 {

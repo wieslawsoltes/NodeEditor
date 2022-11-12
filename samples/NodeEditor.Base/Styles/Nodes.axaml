@@ -16,12 +16,14 @@
   <Style Selector="Label.node">
     <Setter Property="HorizontalAlignment" Value="Center" />
     <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="(TextElement.FontFamily)" Value="avares://Avalonia.Themes.Fluent/Assets#Inter" />
   </Style>
 
   <Style Selector="CheckBox.node">
     <Setter Property="HorizontalAlignment" Value="Left" />
     <Setter Property="VerticalAlignment" Value="Center" />
     <Setter Property="Margin" Value="6,0,0,0" />
+    <Setter Property="(TextElement.FontFamily)" Value="avares://Avalonia.Themes.Fluent/Assets#Inter" />
   </Style>
 
 </Styles>

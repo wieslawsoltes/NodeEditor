@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:NodeEditorDemo"
              xmlns:vm="using:NodeEditorDemo.ViewModels"
+             xmlns:export="clr-namespace:NodeEditor.Export.Controls;assembly=NodeEditorAvalonia.Export"
              x:CompileBindings="True" x:DataType="vm:EditorViewModel"
              x:Class="NodeEditorDemo.App">
 
@@ -53,6 +54,10 @@
       <Setter Property="Background" Value="{DynamicResource SeparatorBackground}" />
     </Style>
 
+    <Style Selector="export|ExportRoot">
+      <Setter Property="(TextElement.FontFamily)" Value="avares://Avalonia.Themes.Fluent/Assets#Inter" />
+    </Style>
+    
   </Application.Styles>
 
   <NativeMenu.Menu>

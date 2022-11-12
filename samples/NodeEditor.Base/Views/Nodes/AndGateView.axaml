@@ -20,7 +20,7 @@
       </Flyout>
     </Panel.ContextFlyout>
     <Rectangle Classes="node" />
-    <Label  Classes="node"
-            Content="{Binding Label}" />
+    <Label Classes="node"
+           Content="{Binding Label}" />
   </Panel>
 </UserControl>
