@@ -45,7 +45,7 @@ public class App : Application
             var vm = new EditorViewModel
             {
                 IsEditMode = true,
-                IsToolboxVisible = false
+                IsToolboxVisible = true
             };
             singleViewLifetime.MainView = new MainView
             {
