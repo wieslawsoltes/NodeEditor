@@ -11,11 +11,13 @@
   </Application.DataTemplates>
 
   <Application.Resources>
-
-    <SolidColorBrush x:Key="MainBackground" Color="#F1F1F1"/>
-    <SolidColorBrush x:Key="PanelBackground" Color="#E2E2E2"/>
+    
+    <SolidColorBrush x:Key="ToolbarBackground" Color="#2c2c2c"/>
+    <SolidColorBrush x:Key="ToolbarForeground" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="MainBackground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="PanelBackground" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="EditorBackground" Color="#FFF5F5F5"/>
-    <SolidColorBrush x:Key="SeparatorBackground" Color="{DynamicResource SystemChromeAltLowColor}" />
+    <SolidColorBrush x:Key="SeparatorBackground" Color="#2c2c2c" />
 
     <VisualBrush x:Key="EditorCheckerBoard" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
       <VisualBrush.Visual>
@@ -40,7 +42,7 @@
 
     <Style Selector="Separator.horizontal">
       <Setter Property="Margin" Value="0" />
-      <Setter Property="Height" Value="0.55" />
+      <Setter Property="Height" Value="1" />
       <Setter Property="Opacity" Value="0.3" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="Background" Value="{DynamicResource SeparatorBackground}" />
@@ -48,8 +50,10 @@
 
     <Style Selector="Separator.vertical">
       <Setter Property="Margin" Value="0" />
-      <Setter Property="Width" Value="0.55" />
+      <Setter Property="Width" Value="1" />
+      <Setter Property="Height" Value="NaN" />
       <Setter Property="Opacity" Value="0.3" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="VerticalAlignment" Value="Stretch" />
       <Setter Property="Background" Value="{DynamicResource SeparatorBackground}" />
     </Style>

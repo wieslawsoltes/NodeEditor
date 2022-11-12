@@ -24,7 +24,7 @@
   </UserControl.Resources>
   <Panel>
     <Panel Background="{DynamicResource EditorBackground}" />
-    <Panel Background="{DynamicResource EditorCheckerBoard}" />
+    <!--<Panel Background="{DynamicResource EditorCheckerBoard}" />-->
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Auto"
                   DataContext="{Binding Drawing}">

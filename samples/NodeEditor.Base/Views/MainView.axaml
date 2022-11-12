@@ -4,6 +4,7 @@
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:NodeEditorDemo.Converters"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
              x:Class="NodeEditorDemo.Views.MainView"
@@ -13,11 +14,9 @@
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}"
              ZoomControl="{Binding #DrawingView.ZoomControl}"
              FontFamily="avares://Avalonia.Themes.Fluent/Assets#Inter">
-
   <Design.DataContext>
     <vm:EditorViewModel />
   </Design.DataContext>
-
   <UserControl.KeyBindings>
     <KeyBinding Command="{Binding ToggleEditModeCommand}" Gesture="Ctrl+E" />
     <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N" />
@@ -49,52 +48,31 @@
     <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+Subtract" x:CompileBindings="False" />
     <KeyBinding Command="{Binding #DrawingView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" Gesture="Ctrl+OemMinus" x:CompileBindings="False" />
   </UserControl.KeyBindings>
-
   <DockPanel>
-
     <views:MenuView ZoomControl="{Binding #DrawingView.ZoomControl}"
                     DrawingNode="{Binding #DrawingView.DrawingNode}"
+                    Background="{DynamicResource ToolbarBackground}"
+                    TextElement.Foreground="{DynamicResource ToolbarForeground}"
                     x:CompileBindings="False"
                     DockPanel.Dock="Top" />
-
     <Separator Classes="horizontal" DockPanel.Dock="Top" />
-
-    <SplitView Name="SplitView"
-               Classes.compactInline="{Binding !IsToolboxVisible}"
-               Classes.inline="{Binding IsToolboxVisible}">
-
-      <SplitView.Styles>
-        <Style Selector="SplitView">
-          <Setter Property="PanePlacement" Value="Left" />
-          <Setter Property="CompactPaneLength" Value="56" />
-          <Setter Property="OpenPaneLength" Value="200" />
-          <Setter Property="PaneBackground" Value="Transparent" />
-          <Setter Property="IsPaneOpen" Value="True" />
-          <Setter Property="DisplayMode" Value="Inline" />
-        </Style>
-        <Style Selector="SplitView.compactInline">
-          <Setter Property="IsPaneOpen" Value="True" />
-          <Setter Property="DisplayMode" Value="CompactInline" />
-        </Style>
-        <Style Selector="SplitView.inline">
-          <Setter Property="IsPaneOpen" Value="True" />
-          <Setter Property="DisplayMode" Value="Inline" />
-        </Style>
-      </SplitView.Styles>
-
-      <SplitView.Pane>
-
-        <DockPanel Background="{DynamicResource MainBackground}">
-          <Separator Classes="vertical" DockPanel.Dock="Right" />
-          <views:ToolboxView Name="ToolboxView" />
-        </DockPanel>
-
-      </SplitView.Pane>
-    
-      <views:EditorView Name="DrawingView" />
-
-    </SplitView>
-
+    <Grid>
+      <Grid.Resources>
+        <x:Double x:Key="ToolboxWidth">200</x:Double>
+      </Grid.Resources>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="{Binding IsToolboxVisible, Converter={x:Static converters:ColumnWidthConverter.Instance}, ConverterParameter={StaticResource ToolboxWidth}}" />
+        <ColumnDefinition Width="8" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <DockPanel Grid.Column="0"
+                 IsVisible="{Binding IsToolboxVisible}"
+                 Background="{DynamicResource MainBackground}">
+        <Separator Classes="vertical" DockPanel.Dock="Right" />
+        <views:ToolboxView Name="ToolboxView" />
+      </DockPanel>
+      <views:EditorView Grid.Column="1" Grid.ColumnSpan="2" Name="DrawingView" />
+      <GridSplitter Grid.Column="1" Background="Transparent" />
+    </Grid>
   </DockPanel>
-
 </UserControl>
