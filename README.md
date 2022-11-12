@@ -12,7 +12,7 @@ A node editor control for Avalonia.
 
 The node editor is an Avalonia control for editing and rendering nodes and connectors. Node contents can be defined from xaml. Node controls, connectors and pins can be retemplated from xaml or used with the provided default theme. The contents of the nodes are rendered based on provided view models. The default implementation of the view models is done using ReactiveUI, users can create their own view models based on core model interfaces. The node contents are resolved using the provided object type by view locator.
 
-![image](https://user-images.githubusercontent.com/2297442/144682205-a9fde3eb-c36a-4925-bd03-b43f059fabdf.png)
+![image](https://user-images.githubusercontent.com/2297442/201498448-cd76b29f-ea87-4f0b-9dd5-071c9e49b7c2.png)
 
 ## Building NodeEditor
 
