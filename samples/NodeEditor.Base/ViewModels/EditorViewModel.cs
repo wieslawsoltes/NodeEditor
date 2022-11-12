@@ -11,12 +11,10 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
-using NodeEditor.Export.Controls;
-using NodeEditor.Export.Renderers;
+using NodeEditor.Export;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
-using NodeEditorDemo.Controls;
 
 namespace NodeEditorDemo.ViewModels;
 
@@ -232,7 +230,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 if (file.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
                     using var ms = new MemoryStream();
-                    PngRenderer.Render(root, size, ms);
+                    ExportRenderer.RenderPng(root, size, ms);
                     await using var stream = await file.OpenWriteAsync();
                     ms.Position = 0;
                     await stream.WriteAsync(ms.ToArray());
@@ -241,7 +239,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 if (file.Name.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
                     using var ms = new MemoryStream();
-                    SvgRenderer.Render(root, size, ms);
+                    ExportRenderer.RenderSvg(root, size, ms);
                     await using var stream = await file.OpenWriteAsync();
                     ms.Position = 0;
                     await stream.WriteAsync(ms.ToArray());
@@ -250,7 +248,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                 {
                     using var ms = new MemoryStream();
-                    PdfRenderer.Render(root, size, ms, 96);
+                    ExportRenderer.RenderPdf(root, size, ms, 96);
                     await using var stream = await file.OpenWriteAsync();
                     ms.Position = 0;
                     await stream.WriteAsync(ms.ToArray());
@@ -259,7 +257,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 if (file.Name.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
                 {
                     using var ms = new MemoryStream();
-                    XpsRenderer.Render(control, size, ms, 96);
+                    ExportRenderer.RenderXps(control, size, ms, 96);
                     await using var stream = await file.OpenWriteAsync();
                     ms.Position = 0;
                     await stream.WriteAsync(ms.ToArray());
@@ -268,7 +266,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 if (file.Name.EndsWith("skp", StringComparison.OrdinalIgnoreCase))
                 {
                     using var ms = new MemoryStream();
-                    SkpRenderer.Render(control, size, ms);
+                    ExportRenderer.RenderSkp(control, size, ms);
                     await using var stream = await file.OpenWriteAsync();
                     ms.Position = 0;
                     await stream.WriteAsync(ms.ToArray());
