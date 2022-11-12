@@ -7,6 +7,9 @@
              x:Class="NodeEditorDemo.Views.Nodes.OrGateView"
              x:CompileBindings="True" x:DataType="vm:OrGateViewModel"
              ClipToBounds="False">
+  <Design.DataContext>
+    <vm:OrGateViewModel Label="≥" Count="1" />
+  </Design.DataContext>
   <Panel>
     <Panel.ContextFlyout>
       <Flyout>
