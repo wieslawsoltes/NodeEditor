@@ -7,6 +7,9 @@
              x:Class="NodeEditorDemo.Views.Nodes.AndGateView"
              x:CompileBindings="True" x:DataType="vm:AndGateViewModel"
              ClipToBounds="False">
+  <Design.DataContext>
+    <vm:AndGateViewModel Label="&amp;≥" />
+  </Design.DataContext>
   <Panel>
     <Panel.ContextFlyout>
       <Flyout>
