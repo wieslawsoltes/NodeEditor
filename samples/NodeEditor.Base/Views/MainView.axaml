@@ -7,7 +7,7 @@
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
              x:Class="NodeEditorDemo.Views.MainView"
-             x:CompileBindings="True" x:DataType="vm:MainWindowViewModel"
+             x:CompileBindings="True" x:DataType="vm:EditorViewModel"
              Background="{DynamicResource MainBackground}"
              ClipToBounds="False"
              editor:DrawingNode.IsEditMode="{Binding IsEditMode}"
@@ -15,7 +15,7 @@
              FontFamily="avares://Avalonia.Themes.Fluent/Assets#Inter">
 
   <Design.DataContext>
-    <vm:MainWindowViewModel />
+    <vm:EditorViewModel />
   </Design.DataContext>
 
   <UserControl.KeyBindings>
@@ -91,7 +91,7 @@
 
       </SplitView.Pane>
     
-      <views:DrawingView Name="DrawingView" />
+      <views:EditorView Name="DrawingView" />
 
     </SplitView>
 

@@ -12,7 +12,7 @@
              x:Class="NodeEditorDemo.Views.ToolboxView">
 
   <Design.DataContext>
-    <vm:MainWindowViewModel />
+    <vm:EditorViewModel />
   </Design.DataContext>
 
   <ListBox Items="{Binding Templates}"

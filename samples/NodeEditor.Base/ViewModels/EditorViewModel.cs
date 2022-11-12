@@ -10,6 +10,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform.Storage;
+using Avalonia.VisualTree;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
@@ -17,10 +18,11 @@ using NodeEditor.Export.Renderers;
 using NodeEditor.Model;
 using NodeEditor.Serializer;
 using NodeEditor.ViewModels;
+using NodeEditorDemo.Controls;
 
 namespace NodeEditorDemo.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
+public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
 {
     private readonly INodeSerializer _serializer;
     private readonly NodeFactory _factory;
@@ -29,7 +31,7 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
     [ObservableProperty] private bool _isEditMode;
     [ObservableProperty] private bool _isToolboxVisible;
 
-    public MainWindowViewModel()
+    public EditorViewModel()
     {
         _serializer = new NodeSerializer(typeof(ObservableCollection<>));
         _factory = new();
@@ -212,38 +214,37 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
             {
                 var control = new DrawingNode
                 {
-                    DataContext = Drawing
+                    DataContext = Drawing,
+                    [DrawingNode.IsEditModeProperty] = false
                 };
 
-                var preview = new Window
+                var root = new ExportRoot(true, control)
                 {
                     Width = Drawing.Width,
-                    Height = Drawing.Height,
-                    Content = control,
-                    ShowInTaskbar = false,
-                    WindowState = WindowState.Minimized
+                    Height = Drawing.Height
                 };
 
-                preview.Show();
+                root.ApplyTemplate();
+                root.LayoutManager.ExecuteLayoutPass();
 
                 var size = new Size(Drawing.Width, Drawing.Height);
 
                 if (file.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
                     await using var stream = await file.OpenWriteAsync();
-                    PngRenderer.Render(preview, size, stream);
+                    PngRenderer.Render(root, size, stream);
                 }
 
                 if (file.Name.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
                 {
                     await using var stream = await file.OpenWriteAsync();
-                    SvgRenderer.Render(preview, size, stream);
+                    SvgRenderer.Render(root, size, stream);
                 }
 
                 if (file.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
                 {
                     await using var stream = await file.OpenWriteAsync();
-                    PdfRenderer.Render(preview, size, stream, 96);
+                    PdfRenderer.Render(root, size, stream, 96);
                 }
 
                 if (file.Name.EndsWith("xps", StringComparison.OrdinalIgnoreCase))
@@ -257,8 +258,6 @@ public partial class MainWindowViewModel : ViewModelBase, INodeTemplatesHost
                     await using var stream = await file.OpenWriteAsync();
                     SkpRenderer.Render(control, size, stream);
                 }
-
-                preview.Close();
             }
             catch (Exception ex)
             {

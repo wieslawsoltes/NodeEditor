@@ -26,7 +26,7 @@ public class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var vm = new MainWindowViewModel
+            var vm = new EditorViewModel
             {
                 IsEditMode = true,
                 IsToolboxVisible = true
@@ -42,7 +42,7 @@ public class App : Application
             
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
         {
-            var vm = new MainWindowViewModel
+            var vm = new EditorViewModel
             {
                 IsEditMode = true,
                 IsToolboxVisible = false

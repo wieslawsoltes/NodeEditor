@@ -6,15 +6,15 @@ using NodeEditorDemo.Controls;
 
 namespace NodeEditorDemo.Views;
 
-public class DrawingView : UserControl
+public class EditorView : UserControl
 {
     public static readonly StyledProperty<NodeZoomBorder?> ZoomControlProperty = 
-        AvaloniaProperty.Register<DrawingView, NodeZoomBorder?>(nameof(ZoomControl));
+        AvaloniaProperty.Register<EditorView, NodeZoomBorder?>(nameof(ZoomControl));
 
     public static readonly StyledProperty<DrawingNode?> DrawingNodeProperty = 
-        AvaloniaProperty.Register<DrawingView, DrawingNode?>(nameof(DrawingNode));
+        AvaloniaProperty.Register<EditorView, DrawingNode?>(nameof(DrawingNode));
 
-    public DrawingView()
+    public EditorView()
     {
         InitializeComponent();
     }
