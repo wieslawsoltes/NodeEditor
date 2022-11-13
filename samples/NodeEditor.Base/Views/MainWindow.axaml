@@ -4,11 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:NodeEditorDemo.ViewModels"
         xmlns:views="clr-namespace:NodeEditorDemo.Views"
-        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="700"
+        mc:Ignorable="d" d:DesignWidth="1230" d:DesignHeight="740"
         x:Class="NodeEditorDemo.Views.MainWindow"
         x:Name="MainWindow"
         WindowState="Normal" WindowStartupLocation="CenterScreen"
-        Width="1200" Height="700"
+        Width="1230" Height="740"
         Icon="/Assets/Icon.ico"
         Title="NodeEditor">
 
