@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="clr-namespace:NodeEditorDemo.Converters"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
-             mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="650"
+             mc:Ignorable="d" d:DesignWidth="1030" d:DesignHeight="740"
              x:Class="NodeEditorDemo.Views.MainView"
              x:CompileBindings="True" x:DataType="vm:EditorViewModel"
              Background="{DynamicResource MainBackground}"
