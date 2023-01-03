@@ -20,13 +20,13 @@ public class ExportRoot : Decorator, IFocusScope, ILayoutRoot, IInputRoot, IRend
         KeyboardNavigation.SetTabNavigation(this, KeyboardNavigationMode.Cycle);
     }
 
-    public ExportRoot(IControl child)
+    public ExportRoot(Control child)
         : this(false, child)
     {
         Child = child;
     }
 
-    public ExportRoot(bool useGlobalStyles, IControl child)
+    public ExportRoot(bool useGlobalStyles, Control child)
         : this()
     {
         if (useGlobalStyles)
