@@ -27,6 +27,8 @@ public static class ExportRenderer
             return DrawingContextHelper.WrapSkiaCanvas(_canvas, new Vector(_dpi, _dpi), visualBrushRenderer);
         }
 
+        public bool IsCorrupted { get; }
+
         public void Dispose()
         {
         }

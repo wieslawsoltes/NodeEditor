@@ -2,25 +2,24 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactions.DragAndDrop;
 
 namespace NodeEditor.Behaviors;
 
 public abstract class DefaultDropHandler : AvaloniaObject, IDropHandler
 {
-    public static Point GetPosition(IControl? relativeTo, DragEventArgs e)
+    public static Point GetPosition(Control? relativeTo, DragEventArgs e)
     {
-        relativeTo ??= e.Source as IControl;
+        relativeTo ??= e.Source as Control;
         var point = relativeTo is { } ? e.GetPosition(relativeTo) : new Point();
         return point;
     }
 
     public static Point GetPositionScreen(object? sender, DragEventArgs e)
     {
-        var relativeTo = e.Source as IControl;
+        var relativeTo = e.Source as Control;
         var point = relativeTo is { } ? e.GetPosition(relativeTo) : new Point();
-        var visual = relativeTo as IVisual;
+        var visual = relativeTo as Visual;
         if (visual is null)
         {
             return new Point();
