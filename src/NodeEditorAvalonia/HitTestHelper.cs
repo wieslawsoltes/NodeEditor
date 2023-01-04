@@ -99,7 +99,7 @@ internal static class HitTestHelper
         var end = connector.End;
         if (start is null || end is null)
         {
-            return Rect.Empty;
+            return default;
         }
 
         var p0X = start.X;
@@ -249,7 +249,7 @@ internal static class HitTestHelper
     {
         if (itemsControl?.DataContext is not IDrawingNode drawingNode)
         {
-            return Rect.Empty;
+            return default;
         }
 
         var selectedRect = new Rect();
@@ -268,8 +268,8 @@ internal static class HitTestHelper
             {
                 var index = drawingNode.Nodes.IndexOf(node);
                 var selectedControl = itemsControl.ItemContainerGenerator.ContainerFromIndex(index);
-                var bounds = selectedControl?.Bounds ?? Rect.Empty;
-                selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
+                var bounds = selectedControl?.Bounds ?? default;
+                selectedRect = selectedRect.IsDefault ? bounds : selectedRect.Union(bounds);
             }
         }
 
@@ -278,7 +278,7 @@ internal static class HitTestHelper
             foreach (var connector in selectedConnectors)
             {
                 var bounds = GetConnectorBounds(connector);
-                selectedRect = selectedRect.IsEmpty ? bounds : selectedRect.Union(bounds);
+                selectedRect = selectedRect.IsDefault ? bounds : selectedRect.Union(bounds);
             }
         }
 

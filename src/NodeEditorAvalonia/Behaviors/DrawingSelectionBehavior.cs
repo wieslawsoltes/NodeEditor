@@ -194,7 +194,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                     RemoveSelected();
                 }
 
-                if (!_selectedRect.IsEmpty && _selectedAdorner is null)
+                if (!_selectedRect.IsDefault && _selectedAdorner is null)
                 {
                     AddSelected(_selectedRect);
                 }
