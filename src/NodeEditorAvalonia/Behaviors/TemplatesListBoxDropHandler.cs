@@ -13,7 +13,7 @@ public class TemplatesListBoxDropHandler : DropHandlerBase
         if (sourceContext is not T sourceItem
             || targetContext is not INodeTemplatesHost nodeTemplatesHost
             || nodeTemplatesHost.Templates is null
-            || listBox.GetVisualAt(e.GetPosition(listBox)) is not IControl targetControl
+            || listBox.GetVisualAt(e.GetPosition(listBox)) is not Control targetControl
             || targetControl.DataContext is not T targetItem)
         {
             return false;
@@ -55,7 +55,7 @@ public class TemplatesListBoxDropHandler : DropHandlerBase
         
     public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
-        if (e.Source is IControl && sender is ListBox listBox)
+        if (e.Source is Control && sender is ListBox listBox)
         {
             return Validate<INodeTemplate>(listBox, e, sourceContext, targetContext, false);
         }
@@ -64,7 +64,7 @@ public class TemplatesListBoxDropHandler : DropHandlerBase
 
     public override bool Execute(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
-        if (e.Source is IControl && sender is ListBox listBox)
+        if (e.Source is Control && sender is ListBox listBox)
         {
             return Validate<INodeTemplate>(listBox, e, sourceContext, targetContext, true);
         }

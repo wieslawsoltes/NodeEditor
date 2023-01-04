@@ -9,10 +9,10 @@ namespace NodeEditor.Behaviors;
 
 public class DrawingDropHandler : DefaultDropHandler
 {
-    public static readonly StyledProperty<IControl?> RelativeToProperty =
-        AvaloniaProperty.Register<DrawingDropHandler, IControl?>(nameof(RelativeTo));
+    public static readonly StyledProperty<Control?> RelativeToProperty =
+        AvaloniaProperty.Register<DrawingDropHandler, Control?>(nameof(RelativeTo));
 
-    public IControl? RelativeTo
+    public Control? RelativeTo
     {
         get => GetValue(RelativeToProperty) as Control;
         set => SetValue(RelativeToProperty, value);
@@ -20,7 +20,7 @@ public class DrawingDropHandler : DefaultDropHandler
 
     private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
     {
-        var relativeTo = RelativeTo ?? sender as IControl;
+        var relativeTo = RelativeTo ?? sender as Control;
         if (relativeTo is null)
         {
             return false;
