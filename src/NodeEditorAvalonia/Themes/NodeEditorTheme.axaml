@@ -7,10 +7,12 @@
         <ResourceDictionary x:Key='Default'>
           <SolidColorBrush x:Key='PinBackgroundBrush'>Black</SolidColorBrush>
           <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorBackgroundBrush'>Red</SolidColorBrush>
         </ResourceDictionary>
         <ResourceDictionary x:Key='Dark'>
           <SolidColorBrush x:Key='PinBackgroundBrush'>White</SolidColorBrush>
           <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorBackgroundBrush'>Red</SolidColorBrush>
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
       <ResourceDictionary.MergedDictionaries>
