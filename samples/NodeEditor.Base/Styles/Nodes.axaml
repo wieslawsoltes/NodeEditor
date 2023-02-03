@@ -2,14 +2,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Style Selector="Rectangle.node">
-    <Setter Property="Fill" Value="White" />
-    <Setter Property="Stroke" Value="Black" />
+    <Setter Property="Fill" Value="{DynamicResource BackgroundBrush}" />
+    <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
     <Setter Property="StrokeThickness" Value="2" />
   </Style>
 
   <Style Selector="Ellipse.node">
-    <Setter Property="Fill" Value="White" />
-    <Setter Property="Stroke" Value="Black" />
+    <Setter Property="Fill" Value="{DynamicResource BackgroundBrush}" />
+    <Setter Property="Stroke" Value="{DynamicResource ForegroundBrush}" />
     <Setter Property="StrokeThickness" Value="2" />
   </Style>
 
