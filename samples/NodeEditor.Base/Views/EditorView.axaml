@@ -58,7 +58,7 @@
               </Transitions>
             </Panel.Transitions>
             <editor:DrawingNode Name="Drawing"
-                                Background="White"
+                                Background="{DynamicResource DrawingBackground}"
                                 InputSource="{Binding #ZoomBorder}"
                                 AdornerCanvas="{Binding #AdornerCanvas}"
                                 ClipToBounds="False">
