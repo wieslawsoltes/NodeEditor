@@ -10,7 +10,11 @@
         WindowState="Normal" WindowStartupLocation="CenterScreen"
         Width="1230" Height="740"
         Icon="/Assets/Icon.ico"
-        Title="NodeEditor">
+        Title="NodeEditor"
+        Background="{x:Null}"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="PreferSystemChrome">
 
   <Design.DataContext>
     <vm:EditorViewModel />
@@ -123,6 +127,21 @@
     </NativeMenu>
   </NativeMenu.Menu>
 
-  <views:MainView Name="MainView" />
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial BackgroundSource="Digger"
+                                     TintColor="Black"
+                                     TintOpacity="1"
+                                     FallbackColor="{DynamicResource AcrylicFallbackColor}"
+                                     MaterialOpacity="1" />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Panel Margin="{Binding #MainWindow.OffScreenMargin}">
+      <Panel Margin="{Binding #MainWindow.WindowDecorationMargin}">
+        <views:MainView Name="MainView" />
+      </Panel>
+    </Panel>
+  </Panel>
 
 </Window>
