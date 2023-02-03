@@ -61,6 +61,10 @@
     },
     {
       "behavior": "assembly",
+      "name": "Avalonia.Xaml.Interactions.DragAndDrop.dll"
+    },
+    {
+      "behavior": "assembly",
       "name": "Avalonia.Xaml.Interactivity.dll"
     },
     {
@@ -202,10 +206,6 @@
     {
       "behavior": "assembly",
       "name": "System.Private.CoreLib.dll"
-    },
-    {
-      "behavior": "assembly",
-      "name": "System.Private.DataContractSerialization.dll"
     },
     {
       "behavior": "assembly",
