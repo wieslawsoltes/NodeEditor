@@ -26,8 +26,8 @@
           <Path Data="M 0,0 L 0,10 L 10,10 L 10,0 Z M 10,10 L 10,20 L 20,20 L 20,10 Z" Fill="#FFF0F0F0" />
         </VisualBrush.Visual>
       </VisualBrush>
-      </ResourceDictionary>
+    </ResourceDictionary>
 
-    </ResourceDictionary.ThemeDictionaries>
+  </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
 
