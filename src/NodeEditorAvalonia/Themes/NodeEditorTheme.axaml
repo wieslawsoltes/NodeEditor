@@ -3,6 +3,16 @@
         x:CompileBindings="True">
   <Styles.Resources>
     <ResourceDictionary>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key='Default'>
+          <SolidColorBrush x:Key='PinBackgroundBrush'>Black</SolidColorBrush>
+          <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Red</SolidColorBrush>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key='Dark'>
+          <SolidColorBrush x:Key='PinBackgroundBrush'>White</SolidColorBrush>
+          <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Red</SolidColorBrush>
+        </ResourceDictionary>
+      </ResourceDictionary.ThemeDictionaries>
       <ResourceDictionary.MergedDictionaries>
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Node.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connector.axaml" />
