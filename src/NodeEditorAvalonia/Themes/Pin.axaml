@@ -60,11 +60,11 @@
     </Setter>
 
     <Style Selector="^/template/ Rectangle#PART_Pin">
-      <Setter Property="Fill" Value="Black" />
+      <Setter Property="Fill" Value="{DynamicResource PinBackgroundBrush}" />
     </Style>
 
     <Style Selector="^:pointerover /template/ Rectangle#PART_Pin">
-      <Setter Property="Fill" Value="Red" />
+      <Setter Property="Fill" Value="{DynamicResource PinPointerOverBackgroundBrush}" />
     </Style>
 
   </ControlTheme>
