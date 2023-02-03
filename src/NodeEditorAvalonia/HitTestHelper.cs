@@ -185,9 +185,9 @@ internal static class HitTestHelper
 
         if (drawingNode.CanSelectNodes())
         {
-            foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+            foreach (var control in itemsControl.GetRealizedContainers())
             {
-                if (container.ContainerControl is not { DataContext: INode node } containerControl)
+                if (control is not { DataContext: INode node } containerControl)
                 {
                     continue;
                 }

@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Reactive;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Controls;
 using NodeEditor.Model;
@@ -96,41 +97,43 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
 
         _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
-            .Subscribe(x =>
-            {
-                if (x == false)
+            .Subscribe(new AnonymousObserver<bool>(
+                x =>
                 {
-                    RemoveSelection();
-                    RemoveSelected();
-                }
-            });
+                    if (x == false)
+                    {
+                        RemoveSelection();
+                        RemoveSelected();
+                    }
+                }));
 
         _dataContextDisposable = AssociatedObject
             .GetObservable(StyledElement.DataContextProperty)
-            .Subscribe(x =>
-            {
-                if (x is IDrawingNode drawingNode)
+            .Subscribe(new AnonymousObserver<object?>(
+                x =>
                 {
-                    if (_drawingNode == drawingNode)
+                    if (x is IDrawingNode drawingNode)
                     {
                         if (_drawingNode == drawingNode)
                         {
-                            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+                            if (_drawingNode == drawingNode)
+                            {
+                                _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+                            }
                         }
+
+                        RemoveSelection();
+                        RemoveSelected();
+
+                        _drawingNode = drawingNode;
+                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
                     }
-
-                    RemoveSelection();
-                    RemoveSelected();
-
-                    _drawingNode = drawingNode;
-                    _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
-                }
-                else
-                {
-                    RemoveSelection();
-                    RemoveSelected();
-                }
-            });
+                    else
+                    {
+                        RemoveSelection();
+                        RemoveSelected();
+                    }
+                }));
     }
 
     private void DeInitialize()

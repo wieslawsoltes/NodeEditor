@@ -39,21 +39,6 @@ class Program
     public static AppBuilder BuildAvaloniaApp()
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .With(new Win32PlatformOptions
-            {
-                UseCompositor = false,
-                UseDeferredRendering = true
-            })
-            .With(new X11PlatformOptions
-            {
-                UseCompositor = false,
-                UseDeferredRendering = true
-            })
-            .With(new AvaloniaNativePlatformOptions
-            {
-                UseCompositor = false,
-                UseDeferredRendering = true
-            })
             .LogToTrace()
             .UseSkia();
 }

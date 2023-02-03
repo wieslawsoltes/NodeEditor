@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
+using Avalonia.Reactive;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Controls;
 using NodeEditor.Model;
@@ -21,13 +22,14 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
         if (AssociatedObject is { })
         {
             _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
-                .Subscribe(x =>
-                {
-                    if (x == false)
+                .Subscribe(new AnonymousObserver<bool>(
+                    x =>
                     {
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-                    }
-                });
+                        if (x == false)
+                        {
+                            RemoveSelectedPseudoClasses(AssociatedObject);
+                        }
+                    }));
 
             _dataContextDisposable = AssociatedObject
                 .GetObservable(StyledElement.DataContextProperty)
@@ -95,9 +97,9 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
     private void AddSelectedPseudoClasses(ItemsControl itemsControl)
     {
-        foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+        foreach (var control in itemsControl.GetRealizedContainers())
         {
-            if (container.ContainerControl is not { DataContext: INode node } containerControl)
+            if (control is not { DataContext: INode node } containerControl)
             {
                 continue;
             }
@@ -129,9 +131,9 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
     private static void RemoveSelectedPseudoClasses(ItemsControl itemsControl)
     {
-        foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+        foreach (var control in itemsControl.GetRealizedContainers())
         {
-            if (container.ContainerControl is not { DataContext: INode } containerControl)
+            if (control is not { DataContext: INode } containerControl)
             {
                 continue;
             }

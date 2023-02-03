@@ -2,6 +2,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
+using Avalonia.Reactive;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Controls;
 using NodeEditor.Model;
@@ -21,36 +22,38 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
         if (AssociatedObject is { })
         {
             _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
-                .Subscribe(x =>
-                {
-                    if (x == false)
+                .Subscribe(new AnonymousObserver<bool>(
+                    x =>
                     {
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-                    }
-                });
+                        if (x == false)
+                        {
+                            RemoveSelectedPseudoClasses(AssociatedObject);
+                        }
+                    }));
 
             _dataContextDisposable = AssociatedObject
                 .GetObservable(StyledElement.DataContextProperty)
-                .Subscribe(x =>
-                {
-                    if (x is IDrawingNode drawingNode)
+                .Subscribe(new AnonymousObserver<object?>(
+                    x =>
                     {
-                        if (_drawingNode == drawingNode)
+                        if (x is IDrawingNode drawingNode)
                         {
-                            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+                            if (_drawingNode == drawingNode)
+                            {
+                                _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+                            }
+
+                            RemoveSelectedPseudoClasses(AssociatedObject);
+
+                            _drawingNode = drawingNode;
+
+                            _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
                         }
-
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-
-                        _drawingNode = drawingNode;
-
-                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
-                    }
-                    else
-                    {
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-                    }
-                });
+                        else
+                        {
+                            RemoveSelectedPseudoClasses(AssociatedObject);
+                        }
+                    }));
         }
     }
 
@@ -95,9 +98,9 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
 
     private void AddSelectedPseudoClasses(ItemsControl itemsControl)
     {
-        foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+        foreach (var control in itemsControl.GetRealizedContainers())
         {
-            if (container.ContainerControl is not { DataContext: IConnector connector } containerControl)
+            if (control is not { DataContext: IConnector connector } containerControl)
             {
                 continue;
             }
@@ -129,9 +132,9 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
 
     private static void RemoveSelectedPseudoClasses(ItemsControl itemsControl)
     {
-        foreach (var container in itemsControl.ItemContainerGenerator.Containers)
+        foreach (var control in itemsControl.GetRealizedContainers())
         {
-            if (container.ContainerControl is not { DataContext: IConnector } containerControl)
+            if (control is not { DataContext: IConnector } containerControl)
             {
                 continue;
             }
