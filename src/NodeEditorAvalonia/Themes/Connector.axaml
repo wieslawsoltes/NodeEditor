@@ -7,7 +7,7 @@
 
   <ControlTheme x:Key="{x:Type controls:Connector}" TargetType="controls:Connector">
 
-    <Setter Property="Stroke" Value="Red" />
+    <Setter Property="Stroke" Value="{DynamicResource ConnectorBackgroundBrush}" />
     <Setter Property="StrokeThickness" Value="2" />
     <Setter Property="ClipToBounds" Value="False" />
 
