@@ -4,7 +4,7 @@ using NodeEditor.Model;
 using NodeEditor.Mvvm;
 using NodeEditorDemo.ViewModels.Nodes;
 
-namespace NodeEditorDemo.ViewModels;
+namespace NodeEditorDemo.Services;
 
 public class NodeFactory
 {

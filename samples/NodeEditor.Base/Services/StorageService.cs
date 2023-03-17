@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform.Storage;
 using Avalonia.VisualTree;
 
-namespace NodeEditorDemo.ViewModels;
+namespace NodeEditorDemo.Services;
 
 internal static class StorageService
 {
