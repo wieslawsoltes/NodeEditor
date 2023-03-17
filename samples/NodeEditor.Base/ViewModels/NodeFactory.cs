@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using NodeEditor.Model;
-using NodeEditor.ViewModels;
+using NodeEditor.Mvvm;
 using NodeEditorDemo.ViewModels.Nodes;
 
 namespace NodeEditorDemo.ViewModels;

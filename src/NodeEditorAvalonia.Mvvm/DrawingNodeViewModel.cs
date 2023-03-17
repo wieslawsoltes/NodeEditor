@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Model;
 
-namespace NodeEditor.ViewModels;
+namespace NodeEditor.Mvvm;
 
 public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 {

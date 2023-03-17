@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using NodeEditor.Model;
 
-namespace NodeEditor.ViewModels;
+namespace NodeEditor.Mvvm;
 
 public static class NodeViewModelExtensions
 {

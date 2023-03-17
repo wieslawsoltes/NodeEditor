@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
 using ReactiveMarbles.PropertyChanged;
 
-namespace NodeEditor.ViewModels;
+namespace NodeEditor.Mvvm;
 
 [ObservableObject]
 public partial class ConnectorViewModel : IConnector

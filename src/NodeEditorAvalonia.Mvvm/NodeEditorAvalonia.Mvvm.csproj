@@ -4,7 +4,7 @@
     <IsPackable>True</IsPackable>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
-    <RootNamespace>NodeEditor</RootNamespace>
+    <RootNamespace>NodeEditor.Mvvm</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -23,9 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NodeEditorAvalonia.Model\NodeEditorAvalonia.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using NodeEditor.Model;
 
-namespace NodeEditor.ViewModels;
+namespace NodeEditor.Mvvm;
 
 public class DrawingNodeFactory : IDrawingNodeFactory
 {

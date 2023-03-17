@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
 
-namespace NodeEditor.ViewModels;
+namespace NodeEditor.Mvvm;
 
 [ObservableObject]
 public partial class NodeViewModel : INode

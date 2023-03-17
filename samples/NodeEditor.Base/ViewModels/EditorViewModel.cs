@@ -12,7 +12,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
 using NodeEditor.Model;
-using NodeEditor.ViewModels;
+using NodeEditor.Mvvm;
 using NodeEditorDemo.Services;
 
 namespace NodeEditorDemo.ViewModels;
