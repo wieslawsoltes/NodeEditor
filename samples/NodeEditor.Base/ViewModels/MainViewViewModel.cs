@@ -1,39 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
-using NodeEditor.Model;
 using NodeEditor.Mvvm;
 using NodeEditorDemo.Services;
 
 namespace NodeEditorDemo.ViewModels;
 
-public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
+public partial class MainViewViewModel : ViewModelBase
 {
-    private readonly INodeSerializer _serializer;
-    private readonly INodeFactory _factory;
-    [ObservableProperty] private IList<INodeTemplate>? _templates;
-    [ObservableProperty] private IDrawingNode? _drawing;
+    [ObservableProperty] private EditorViewModel? _editor;
     [ObservableProperty] private bool _isToolboxVisible;
 
-    public EditorViewModel()
+    public MainViewViewModel()
     {
-        _serializer = new NodeSerializer(typeof(ObservableCollection<>));
-        _factory = new NodeFactory();
-        _templates = _factory.CreateTemplates();
         _isToolboxVisible = true;
-
-        Drawing = Demo.CreateDemoDrawing();
-        Drawing.SetSerializer(_serializer);
     }
 
     [RelayCommand]
@@ -60,8 +50,8 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
     [RelayCommand]
     private void New()
     {
-        Drawing = _factory.CreateDrawing();
-        Drawing.SetSerializer(_serializer);
+        Editor.Drawing = Editor.Factory.CreateDrawing();
+        Editor.Drawing.SetSerializer(Editor.Serializer);
     }
 
     private List<FilePickerFileType> GetOpenFileTypes()
@@ -120,11 +110,11 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 await using var stream = await file.OpenReadAsync();
                 using var reader = new StreamReader(stream);
                 var json = await reader.ReadToEndAsync();
-                var drawing = _serializer.Deserialize<DrawingNodeViewModel?>(json);
+                var drawing = Editor.Serializer.Deserialize<DrawingNodeViewModel?>(json);
                 if (drawing is { })
                 {
-                    Drawing = drawing;
-                    Drawing.SetSerializer(_serializer);
+                    Editor.Drawing = drawing;
+                    Editor.Drawing.SetSerializer(Editor.Serializer);
                 }
             }
             catch (Exception ex)
@@ -157,7 +147,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
         {
             try
             {
-                var json = _serializer.Serialize(_drawing);
+                var json = Editor.Serializer.Serialize(Editor.Drawing);
                 await using var stream = await file.OpenWriteAsync();
                 await using var writer = new StreamWriter(stream);
                 await writer.WriteAsync(json);
@@ -173,7 +163,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
     [RelayCommand]
     public async Task Export()
     {
-        if (Drawing is null)
+        if (Editor.Drawing is null)
         {
             return;
         }
@@ -199,13 +189,13 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
             {
                 var control = new DrawingNode
                 {
-                    DataContext = Drawing
+                    DataContext = Editor.Drawing
                 };
 
                 var root = new ExportRoot(true, control)
                 {
-                    Width = Drawing.Width,
-                    Height = Drawing.Height
+                    Width = Editor.Drawing.Width,
+                    Height = Editor.Drawing.Height
                 };
 
                 root.ApplyTemplate();
@@ -213,7 +203,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
                 root.InvalidateArrange();
                 root.LayoutManager.ExecuteLayoutPass();
 
-                var size = new Size(Drawing.Width, Drawing.Height);
+                var size = new Size(Editor.Drawing.Width, Editor.Drawing.Height);
 
                 if (file.Name.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
                 {
@@ -264,22 +254,6 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
-            }
-        }
-    }
-
-    public void PrintNetList(IDrawingNode? drawing)
-    {
-        if (drawing?.Connectors is null || drawing.Nodes is null)
-        {
-            return;
-        }
-
-        foreach (var connector in drawing.Connectors)
-        {
-            if (connector.Start is { } start && connector.End is { } end)
-            {
-                Debug.WriteLine($"{start.Parent?.Name}:{start.Name} -> {end.Parent?.Name}:{end.Name}");
             }
         }
     }

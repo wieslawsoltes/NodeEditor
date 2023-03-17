@@ -1,6 +1,9 @@
+using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using NodeEditor.Mvvm;
+using NodeEditorDemo.Services;
 using NodeEditorDemo.ViewModels;
 using NodeEditorDemo.Views;
 
@@ -24,13 +27,25 @@ public class App : Application
     
     public override void OnFrameworkInitializationCompleted()
     {
+        var vm = new MainViewViewModel
+        {
+            IsToolboxVisible = true
+        };
+        
+        var editor = new EditorViewModel
+        {
+            Serializer = new NodeSerializer(typeof(ObservableCollection<>)),
+            Factory = new NodeFactory()
+        };
+
+        editor.Templates = editor.Factory.CreateTemplates();
+        editor.Drawing = Demo.CreateDemoDrawing();
+        editor.Drawing.SetSerializer(editor.Serializer);
+
+        vm.Editor = editor;
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var vm = new EditorViewModel
-            {
-                IsToolboxVisible = true
-            };
-
             desktop.MainWindow = new MainWindow
             {
                 DataContext = vm
@@ -38,13 +53,8 @@ public class App : Application
 
             DataContext = vm;
         }
-            
         else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewLifetime)
         {
-            var vm = new EditorViewModel
-            {
-                IsToolboxVisible = true
-            };
             singleViewLifetime.MainView = new MainView
             {
                 DataContext = vm

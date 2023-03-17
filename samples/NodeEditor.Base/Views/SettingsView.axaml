@@ -6,10 +6,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="350"
              x:Class="NodeEditorDemo.Views.SettingsView"
-             x:CompileBindings="True" x:DataType="vm:EditorViewModel">
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
 
   <Design.DataContext>
-    <vm:EditorViewModel />
+    <vm:MainViewViewModel />
   </Design.DataContext>
 
   <DockPanel VerticalAlignment="Top">
@@ -103,7 +103,7 @@
                Margin="4,4,2,4"
                Padding="6"
                TextAlignment="Left"
-               Text="{Binding Drawing.Width, FallbackValue=''}" />
+               Text="{Binding Editor.Drawing.Width, FallbackValue=''}" />
       <Label Grid.Column="2" 
              Content="H"
              Margin="6,0,6,0"
@@ -114,7 +114,7 @@
                Margin="2,4,4,4"
                Padding="6"
                TextAlignment="Left"
-               Text="{Binding Drawing.Height, FallbackValue=''}" />
+               Text="{Binding Editor.Drawing.Height, FallbackValue=''}" />
     </Grid>
 
   </DockPanel>

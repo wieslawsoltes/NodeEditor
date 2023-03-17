@@ -15,10 +15,10 @@
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaChromeHints="PreferSystemChrome"
-        x:CompileBindings="True" x:DataType="vm:EditorViewModel">
+        x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
 
   <Design.DataContext>
-    <vm:EditorViewModel />
+    <vm:MainViewViewModel />
   </Design.DataContext>
 
   <Window.Resources>
@@ -65,30 +65,30 @@
         <NativeMenu>
           <NativeMenuItem Header="Cut" 
                           Icon="{DynamicResource CutIconPath}"
-                          Command="{Binding Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+X" />
           <NativeMenuItem Header="Copy" 
                           Icon="{DynamicResource CopyIconPath}"
-                          Command="{Binding Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+C" />
           <NativeMenuItem Header="Paste" 
                           Icon="{DynamicResource PasteIconPath}"
-                          Command="{Binding Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
+                          Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
                           Gesture="Ctrl+V" />
           <NativeMenuItem Header="Duplicate" 
-                          Command="{Binding Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+D" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Select All" 
-                          Command="{Binding Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+A" />
           <NativeMenuItem Header="Deselect All" 
-                          Command="{Binding Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Escape" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Delete" 
                           Icon="{DynamicResource DeleteIconPath}"
-                          Command="{Binding Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
+                          Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Delete" />
         </NativeMenu>
       </NativeMenuItem>

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using NodeEditor.Model;
 
-namespace NodeEditorDemo.Services;
+namespace NodeEditor.Model;
 
 public interface INodeFactory
 {

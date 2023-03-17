@@ -10,13 +10,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="500"
              x:Class="NodeEditorDemo.Views.ToolboxView"
-             x:CompileBindings="True" x:DataType="vm:EditorViewModel">
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
 
   <Design.DataContext>
-    <vm:EditorViewModel />
+    <vm:MainViewViewModel />
   </Design.DataContext>
 
-  <ListBox Items="{Binding Templates}"
+  <ListBox Items="{Binding Editor.Templates}"
            Background="Transparent">
     <ListBox.Resources>
       <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
@@ -30,7 +30,7 @@
           <i:BehaviorCollectionTemplate>
             <i:BehaviorCollection>
               <idd:ContextDragBehavior />
-              <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding Drawing}" />
+              <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding Editor.Drawing}" />
             </i:BehaviorCollection>
           </i:BehaviorCollectionTemplate>
         </Setter>

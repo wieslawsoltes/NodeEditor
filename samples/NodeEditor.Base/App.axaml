@@ -3,7 +3,7 @@
              xmlns:local="using:NodeEditorDemo"
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:export="clr-namespace:NodeEditorDemo.Services"
-             x:CompileBindings="True" x:DataType="vm:EditorViewModel"
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
              x:Class="NodeEditorDemo.App"
              Name="NodeEditorDemo"
              RequestedThemeVariant="Light">
