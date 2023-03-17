@@ -101,19 +101,11 @@
     },
     {
       "behavior": "assembly",
-      "name": "NodeEditorAvalonia.Export.dll"
-    },
-    {
-      "behavior": "assembly",
       "name": "NodeEditorAvalonia.Model.dll"
     },
     {
       "behavior": "assembly",
       "name": "NodeEditorAvalonia.Mvvm.dll"
-    },
-    {
-      "behavior": "assembly",
-      "name": "NodeEditorAvalonia.Serializer.dll"
     },
     {
       "behavior": "assembly",
