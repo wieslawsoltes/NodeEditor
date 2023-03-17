@@ -20,7 +20,7 @@ namespace NodeEditorDemo.ViewModels;
 public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
 {
     private readonly INodeSerializer _serializer;
-    private readonly NodeFactory _factory;
+    private readonly INodeFactory _factory;
     [ObservableProperty] private IList<INodeTemplate>? _templates;
     [ObservableProperty] private IDrawingNode? _drawing;
     [ObservableProperty] private bool _isToolboxVisible;
@@ -28,14 +28,12 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
     public EditorViewModel()
     {
         _serializer = new NodeSerializer(typeof(ObservableCollection<>));
-        _factory = new();
-
+        _factory = new NodeFactory();
         _templates = _factory.CreateTemplates();
-
-        Drawing = _factory.CreateDemoDrawing();
-        Drawing.SetSerializer(_serializer);
-
         _isToolboxVisible = true;
+
+        Drawing = Demo.CreateDemoDrawing();
+        Drawing.SetSerializer(_serializer);
     }
 
     [RelayCommand]
