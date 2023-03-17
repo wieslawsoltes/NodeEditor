@@ -74,18 +74,6 @@
               </editor:DrawingNode.Styles>
               <editor:DrawingNode.ContextFlyout>
                 <MenuFlyout>
-                  <MenuItem Header="_Edit" 
-                            InputGesture="Ctrl+E"
-                            DataContext="{Binding $parent[UserControl].DataContext}"
-                            Command="{Binding ToggleEditModeCommand}" 
-                            x:DataType="vm:EditorViewModel">
-                    <MenuItem.Icon>
-                      <CheckBox BorderThickness="0" 
-                                IsHitTestVisible="False" 
-                                IsChecked="{Binding IsEditMode, Mode=TwoWay}"/>
-                    </MenuItem.Icon>
-                  </MenuItem>
-                  <MenuItem Header="-" />
                   <MenuItem Header="Cu_t" 
                             Icon="{DynamicResource CutIconPath}"
                             Command="{Binding CutNodesCommand}" 

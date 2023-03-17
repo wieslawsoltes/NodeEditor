@@ -21,12 +21,6 @@
       </ControlTemplate>
     </Setter>
 
-    <Style Selector="^/template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="IsHitTestVisible" Value="{Binding $self.(controls:DrawingNode.IsEditMode), Mode=OneWay, Converter={x:Static BoolConverters.Not}}" 
-              x:DataType="controls:Node"
-              x:CompileBindings="False"/>
-    </Style>
-
   </ControlTheme>
 
 </ResourceDictionary>

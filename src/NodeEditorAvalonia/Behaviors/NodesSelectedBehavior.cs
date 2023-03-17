@@ -11,7 +11,6 @@ namespace NodeEditor.Behaviors;
 
 public class NodesSelectedBehavior : Behavior<ItemsControl>
 {
-    private IDisposable? _isEditModeDisposable;
     private IDisposable? _dataContextDisposable;
     private IDrawingNode? _drawingNode;
 
@@ -21,16 +20,6 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
         if (AssociatedObject is { })
         {
-            _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
-                .Subscribe(new AnonymousObserver<bool>(
-                    x =>
-                    {
-                        if (x == false)
-                        {
-                            RemoveSelectedPseudoClasses(AssociatedObject);
-                        }
-                    }));
-
             _dataContextDisposable = AssociatedObject
                 .GetObservable(StyledElement.DataContextProperty)
                 .Subscribe(x =>
@@ -66,7 +55,6 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
                 _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
             }
 
-            _isEditModeDisposable?.Dispose();
             _dataContextDisposable?.Dispose();
         }
     }

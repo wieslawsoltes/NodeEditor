@@ -24,7 +24,6 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
     private readonly NodeFactory _factory;
     [ObservableProperty] private IList<INodeTemplate>? _templates;
     [ObservableProperty] private IDrawingNode? _drawing;
-    [ObservableProperty] private bool _isEditMode;
     [ObservableProperty] private bool _isToolboxVisible;
 
     public EditorViewModel()
@@ -37,7 +36,6 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
         Drawing = _factory.CreateDemoDrawing();
         Drawing.SetSerializer(_serializer);
 
-        _isEditMode = true;
         _isToolboxVisible = true;
     }
 
@@ -45,12 +43,6 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
     private void ToggleToolboxVisible()
     {
         IsToolboxVisible = !IsToolboxVisible;
-    }
-
-    [RelayCommand]
-    private void ToggleEditMode()
-    {
-        IsEditMode = !IsEditMode;
     }
 
     [RelayCommand]
@@ -210,8 +202,7 @@ public partial class EditorViewModel : ViewModelBase, INodeTemplatesHost
             {
                 var control = new DrawingNode
                 {
-                    DataContext = Drawing,
-                    [DrawingNode.IsEditModeProperty] = false
+                    DataContext = Drawing
                 };
 
                 var root = new ExportRoot(true, control)

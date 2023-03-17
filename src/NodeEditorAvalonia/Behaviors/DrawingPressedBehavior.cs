@@ -14,7 +14,7 @@ public class DrawingPressedBehavior : Behavior<ItemsControl>
 
         if (AssociatedObject is { })
         {
-            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
+            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
         }
     }
 
@@ -30,6 +30,11 @@ public class DrawingPressedBehavior : Behavior<ItemsControl>
 
     private void Pressed(object? sender, PointerPressedEventArgs e)
     {
+        if (e.Handled)
+        {
+            return;
+        }
+
         if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
         {
             return;

@@ -14,7 +14,8 @@
         Background="{x:Null}"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True"
-        ExtendClientAreaChromeHints="PreferSystemChrome">
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        x:CompileBindings="True" x:DataType="vm:EditorViewModel">
 
   <Design.DataContext>
     <vm:EditorViewModel />
@@ -131,7 +132,7 @@
     <ExperimentalAcrylicBorder IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial BackgroundSource="Digger"
-                                     TintColor="Black"
+                                     TintColor="White"
                                      TintOpacity="1"
                                      FallbackColor="{DynamicResource AcrylicFallbackColor}"
                                      MaterialOpacity="1" />

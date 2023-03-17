@@ -27,7 +27,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     public static readonly StyledProperty<double> SnapYProperty = 
         AvaloniaProperty.Register<DrawingSelectionBehavior, double>(nameof(SnapY), 1.0);
 
-    private IDisposable? _isEditModeDisposable;
     private IDisposable? _dataContextDisposable;
     private IDrawingNode? _drawingNode;
     private SelectionAdorner? _selectionAdorner;
@@ -91,21 +90,10 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         _inputSource = InputSource;
 
-        _inputSource.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
-        _inputSource.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel);
-        _inputSource.AddHandler(InputElement.PointerCaptureLostEvent, CaptureLost, RoutingStrategies.Tunnel);
-        _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
-
-        _isEditModeDisposable = AssociatedObject.GetObservable(DrawingNode.IsEditModeProperty)
-            .Subscribe(new AnonymousObserver<bool>(
-                x =>
-                {
-                    if (x == false)
-                    {
-                        RemoveSelection();
-                        RemoveSelected();
-                    }
-                }));
+        _inputSource.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
+        _inputSource.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
+        _inputSource.AddHandler(InputElement.PointerCaptureLostEvent, CaptureLost, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
+        _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
 
         _dataContextDisposable = AssociatedObject
             .GetObservable(StyledElement.DataContextProperty)
@@ -151,9 +139,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         {
             _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
         }
-
-        _isEditModeDisposable?.Dispose();
-        _isEditModeDisposable = null;
 
         _dataContextDisposable?.Dispose();
         _dataContextDisposable = null;
@@ -211,6 +196,11 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void Pressed(object? sender, PointerPressedEventArgs e)
     {
+        if (e.Handled)
+        {
+            return;
+        }
+
         var info = e.GetCurrentPoint(_inputSource);
 
         if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
@@ -219,11 +209,6 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         }
 
         if (e.Source is Control { DataContext: IPin })
-        {
-            return;
-        }
-
-        if (!AssociatedObject.GetValue(DrawingNode.IsEditModeProperty))
         {
             return;
         }

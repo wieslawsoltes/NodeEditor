@@ -6,9 +6,6 @@ namespace NodeEditor.Controls;
 
 public class DrawingNode : TemplatedControl
 {
-    public static readonly AttachedProperty<bool> IsEditModeProperty = 
-        AvaloniaProperty.RegisterAttached<AvaloniaObject, bool>("IsEditMode", typeof(DrawingNode), true, true);
-
     public static readonly StyledProperty<Control?> InputSourceProperty = 
         AvaloniaProperty.Register<DrawingNode, Control?>(nameof(InputSource));
 
@@ -79,15 +76,5 @@ public class DrawingNode : TemplatedControl
     {
         get => GetValue(GridCellHeightProperty);
         set => SetValue(GridCellHeightProperty, value);
-    }
-
-    public static bool GetIsEditMode(AvaloniaObject obj)
-    {
-        return obj.GetValue(IsEditModeProperty);
-    }
-
-    public static void SetIsEditMode(AvaloniaObject obj, bool value)
-    {
-        obj.SetValue(IsEditModeProperty, value);
     }
 }

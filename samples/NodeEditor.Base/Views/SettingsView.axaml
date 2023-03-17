@@ -5,26 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="350"
-             x:Class="NodeEditorDemo.Views.SettingsView">
+             x:Class="NodeEditorDemo.Views.SettingsView"
+             x:CompileBindings="True" x:DataType="vm:EditorViewModel">
 
   <Design.DataContext>
     <vm:EditorViewModel />
   </Design.DataContext>
 
   <DockPanel VerticalAlignment="Top">
-
-    <!-- Edit Mode -->
-    
-    <DockPanel DockPanel.Dock="Bottom">
-      <ToggleSwitch IsChecked="{Binding IsEditMode}"
-                    OnContent="Edit Mode On"
-                    OffContent="Edit Mode Off"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Margin="4,4,4,0"/>
-    </DockPanel>
-
-    <Separator Classes="horizontal" Margin="0,6,0,6" DockPanel.Dock="Bottom" />
 
     <!-- Snap -->
 

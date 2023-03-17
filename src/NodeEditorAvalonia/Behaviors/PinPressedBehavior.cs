@@ -15,7 +15,7 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
 
         if (AssociatedObject is { })
         {
-            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel);
+            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
         }
     }
 
@@ -31,12 +31,12 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
 
     private void Pressed(object? sender, PointerPressedEventArgs e)
     {
-        if (AssociatedObject?.DataContext is not IPin pin)
+        if (e.Handled)
         {
             return;
         }
 
-        if (!AssociatedObject.GetValue(DrawingNode.IsEditModeProperty))
+        if (AssociatedObject?.DataContext is not IPin pin)
         {
             return;
         }
