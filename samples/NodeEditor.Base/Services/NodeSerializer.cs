@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NodeEditor.Model;
 
-namespace NodeEditor.Serializer;
+namespace NodeEditorDemo.Services;
 
 public class NodeSerializer : INodeSerializer
 {
