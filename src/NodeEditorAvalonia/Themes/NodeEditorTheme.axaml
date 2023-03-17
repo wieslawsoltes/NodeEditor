@@ -16,9 +16,12 @@
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Node.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connector.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Pin.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Pins.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Node.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Nodes.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connector.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connectors.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/DrawingNode.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>

@@ -1,9 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-                    xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
-                    xmlns:converters="clr-namespace:NodeEditor.Converters"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     x:CompileBindings="True">
 
@@ -27,64 +24,12 @@
           <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
                                   GridCellWidth="{TemplateBinding GridCellWidth}"
                                   GridCellHeight="{TemplateBinding GridCellHeight}" />
-          <ItemsControl Name="PART_NodesItemsControl"
-                        Items="{Binding Nodes}" 
-                        Width="{Binding Width}" 
-                        Height="{Binding Height}"
-                        Background="Transparent"
-                        ClipToBounds="False">
-            <i:Interaction.Behaviors>
-              <behaviors:NodesSelectedBehavior />
-              <behaviors:DrawingSelectionBehavior InputSource="{Binding $parent[controls:DrawingNode].InputSource}" 
-                                                  AdornerCanvas="{Binding $parent[controls:DrawingNode].AdornerCanvas}" 
-                                                  EnableSnap="{Binding $parent[controls:DrawingNode].EnableSnap}" 
-                                                  SnapX="{Binding $parent[controls:DrawingNode].SnapX}" 
-                                                  SnapY="{Binding $parent[controls:DrawingNode].SnapY}" 
-                                                  x:CompileBindings="False" />
-              <behaviors:DrawingPressedBehavior />
-              <behaviors:DrawingMovedBehavior />
-            </i:Interaction.Behaviors>
-            <ItemsControl.Styles>
-              <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
-                <Setter Property="Canvas.Left" Value="{Binding X}" />
-                <Setter Property="Canvas.Top" Value="{Binding Y}" />
-              </Style>
-            </ItemsControl.Styles>
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <Canvas />
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-              <DataTemplate DataType="m:INode">
-                <controls:Node Name="PART_Node" />
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          </ItemsControl>
-          <ItemsControl Name="PART_ConnectorsItemsControl"
-                        Items="{Binding Connectors}" 
-                        Width="{Binding Width}" 
-                        Height="{Binding Height}"
-                        Background="Transparent"
-                        IsHitTestVisible="False"
-                        ClipToBounds="False">
-            <ItemsControl.ItemsPanel>
-              <ItemsPanelTemplate>
-                <Canvas />
-              </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-              <DataTemplate DataType="m:IConnector">
-                <controls:Connector Name="PART_Connector"
-                                    StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
-                                    EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
-                                    Offset="{Binding Offset}"/>
-              </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          </ItemsControl>
+          <controls:Connectors Name="PART_Connectors" />
+          <controls:Nodes Name="PART_Nodes" />
         </Panel>
       </ControlTemplate>
     </Setter>
 
   </ControlTheme>
+
 </ResourceDictionary>

@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+                    xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    x:CompileBindings="True">
+
+  <ControlTheme x:Key="{x:Type controls:Nodes}" TargetType="controls:Nodes">
+
+    <Setter Property="ClipToBounds" Value="False" />
+
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="m:IDrawingNode">
+        <ItemsControl Name="PART_NodesItemsControl"
+                      Items="{Binding Nodes}" 
+                      Width="{Binding Width}" 
+                      Height="{Binding Height}"
+                      Background="Transparent"
+                      ClipToBounds="False">
+          <i:Interaction.Behaviors>
+            <behaviors:NodesSelectedBehavior />
+            <!-- TODO: Fix using $parent[controls:DrawingNode] -->
+            <behaviors:DrawingSelectionBehavior InputSource="{Binding $parent[controls:DrawingNode].InputSource}" 
+                                                AdornerCanvas="{Binding $parent[controls:DrawingNode].AdornerCanvas}" 
+                                                EnableSnap="{Binding $parent[controls:DrawingNode].EnableSnap}" 
+                                                SnapX="{Binding $parent[controls:DrawingNode].SnapX}" 
+                                                SnapY="{Binding $parent[controls:DrawingNode].SnapY}" 
+                                                x:CompileBindings="False" />
+            <behaviors:DrawingPressedBehavior />
+            <behaviors:DrawingMovedBehavior />
+          </i:Interaction.Behaviors>
+          <ItemsControl.Styles>
+            <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
+              <Setter Property="Canvas.Left" Value="{Binding X}" />
+              <Setter Property="Canvas.Top" Value="{Binding Y}" />
+            </Style>
+          </ItemsControl.Styles>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <Canvas />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="m:INode">
+              <controls:Node Name="PART_Node" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ControlTemplate>
+    </Setter>
+
+  </ControlTheme>
+
+</ResourceDictionary>

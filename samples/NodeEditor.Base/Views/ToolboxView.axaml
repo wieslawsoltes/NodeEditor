@@ -41,7 +41,7 @@
           <Viewbox DockPanel.Dock="Left" Width="32" Height="32" DataContext="{Binding Preview}">
             <editor:Node IsHitTestVisible="False">
               <editor:Node.Styles>
-                <Style Selector="editor|Node /template/ ItemsControl#PART_PinsItemsControl">
+                <Style Selector="editor|Pins /template/ ItemsControl#PART_PinsItemsControl">
                   <Setter Property="IsVisible" Value="False" />
                 </Style>
               </editor:Node.Styles>
