@@ -267,7 +267,7 @@ internal static class HitTestHelper
             foreach (var node in selectedNodes)
             {
                 var index = drawingNode.Nodes.IndexOf(node);
-                var selectedControl = itemsControl.ItemContainerGenerator.ContainerFromIndex(index);
+                var selectedControl = itemsControl.ContainerFromIndex(index);
                 var bounds = selectedControl?.Bounds ?? default;
                 selectedRect = selectedRect.IsDefault ? bounds : selectedRect.Union(bounds);
             }
