@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Avalonia.Controls.PanAndZoom;
 
-namespace NodeEditorDemo.Controls;
+namespace NodeEditor.Controls;
 
 public class NodeZoomBorder : ZoomBorder
 {

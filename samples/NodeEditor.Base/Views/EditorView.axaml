@@ -5,7 +5,6 @@
              xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
              xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
-             xmlns:controls="clr-namespace:NodeEditorDemo.Controls;assembly=NodeEditor.Base"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="700"
@@ -28,15 +27,15 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Auto"
                   DataContext="{Binding Drawing}">
-      <controls:NodeZoomBorder Name="ZoomBorder"
-                               Stretch="None"
-                               ZoomSpeed="1.2"
-                               EnableConstrains="False"
-                               Background="Transparent" 
-                               ClipToBounds="True" 
-                               Focusable="True"
-                               VerticalAlignment="Stretch" 
-                               HorizontalAlignment="Stretch">
+      <editor:NodeZoomBorder Name="ZoomBorder"
+                             Stretch="None"
+                             ZoomSpeed="1.2"
+                             EnableConstrains="False"
+                             Background="Transparent" 
+                             ClipToBounds="True" 
+                             Focusable="True"
+                             VerticalAlignment="Stretch" 
+                             HorizontalAlignment="Stretch">
         <i:Interaction.Behaviors>
           <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
             <idd:ContextDropBehavior.Handler>
@@ -111,7 +110,7 @@
                     IsHitTestVisible="False"/>
           </Panel>
         </Border>
-      </controls:NodeZoomBorder>
+      </editor:NodeZoomBorder>
     </ScrollViewer>
   </Panel>
 </UserControl>

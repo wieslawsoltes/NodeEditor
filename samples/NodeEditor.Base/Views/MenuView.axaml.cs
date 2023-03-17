@@ -2,7 +2,6 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using NodeEditor.Controls;
-using NodeEditorDemo.Controls;
 
 namespace NodeEditorDemo.Views;
 
