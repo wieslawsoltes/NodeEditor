@@ -14,7 +14,7 @@ public class DrawingDropHandler : DefaultDropHandler
 
     public Control? RelativeTo
     {
-        get => GetValue(RelativeToProperty) as Control;
+        get => GetValue(RelativeToProperty);
         set => SetValue(RelativeToProperty, value);
     }
 
