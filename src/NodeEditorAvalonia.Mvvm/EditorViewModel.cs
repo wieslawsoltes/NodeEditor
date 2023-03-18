@@ -5,7 +5,7 @@ using NodeEditor.Model;
 namespace NodeEditor.Mvvm;
 
 [ObservableObject]
-public partial class EditorViewModel : INodeTemplatesHost
+public partial class EditorViewModel : INodeTemplatesHost, IEditor
 {
     [ObservableProperty] private INodeSerializer? _serializer;
     [ObservableProperty] private INodeFactory? _factory;
