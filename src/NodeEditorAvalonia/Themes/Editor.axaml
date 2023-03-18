@@ -1,0 +1,129 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+                    xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
+                    xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+                    x:CompileBindings="True">
+
+  <StreamGeometry x:Key="EditorCutIcon">M16.125 23.4219Q16.9219 23.4531 17.6328 23.7734Q18.3437 24.0938 18.8672 24.6406Q19.3906 25.1875 19.6953 25.9063Q20 26.625 20 27.4219Q20 28.25 19.6797 28.9766Q19.3594 29.7031 18.8203 30.2422Q18.2812 30.7813 17.5469 31.1016Q16.8125 31.4219 16 31.4219Q15.1719 31.4219 14.4453 31.1016Q13.7188 30.7813 13.1797 30.2422Q12.6406 29.7031 12.3203 28.9766Q12 28.25 12 27.4219Q12 26.3125 12.5703 25.3594Q13.1406 24.4063 14.125 23.8906L9.96875 15.5938L5.82813 23.8594Q6.32812 24.125 6.72656 24.5Q7.125 24.875 7.40625 25.3438Q7.6875 25.8125 7.84375 26.3359Q8 26.8594 8 27.4219Q8 28.25 7.67969 28.9766Q7.35937 29.7031 6.82031 30.2422Q6.28125 30.7813 5.54688 31.1016Q4.8125 31.4219 4 31.4219Q3.17187 31.4219 2.44531 31.1016Q1.71875 30.7813 1.17969 30.2422Q0.640625 29.7031 0.320313 28.9766Q0 28.25 4.76837e-07 27.4219Q4.76837e-07 26.625 0.296875 25.9141Q0.59375 25.2031 1.10938 24.6641Q1.625 24.125 2.32031 23.7969Q3.01562 23.4688 3.8125 23.4219L8.84375 13.3281L3.54688 2.73438L4.45313 0L9.96875 11.0625L15.4844 0L16.3906 2.73438L11.0938 13.3281L16.125 23.4219ZM4 29.4219Q4.42188 29.4219 4.78125 29.2656Q5.14063 29.1094 5.41406 28.8359Q5.6875 28.5625 5.84375 28.2031Q6 27.8438 6 27.4219Q6 27 5.84375 26.6406Q5.6875 26.2813 5.41406 26.0078Q5.14063 25.7344 4.78125 25.5781Q4.42187 25.4219 4 25.4219Q3.57813 25.4219 3.21875 25.5781Q2.85937 25.7344 2.58594 26.0078Q2.3125 26.2813 2.15625 26.6406Q2 27 2 27.4219Q2 27.8438 2.15625 28.2031Q2.3125 28.5625 2.58594 28.8359Q2.85937 29.1094 3.21875 29.2656Q3.57813 29.4219 4 29.4219ZM16 29.4219Q16.4219 29.4219 16.7813 29.2656Q17.1406 29.1094 17.4141 28.8359Q17.6875 28.5625 17.8438 28.2031Q18 27.8438 18 27.4219Q18 27 17.8438 26.6406Q17.6875 26.2813 17.4141 26.0078Q17.1406 25.7344 16.7813 25.5781Q16.4219 25.4219 16 25.4219Q15.5781 25.4219 15.2188 25.5781Q14.8594 25.7344 14.5859 26.0078Q14.3125 26.2813 14.1563 26.6406Q14 27 14 27.4219Q14 27.8438 14.1563 28.2031Q14.3125 28.5625 14.5859 28.8359Q14.8594 29.1094 15.2188 29.2656Q15.5781 29.4219 16 29.4219Z</StreamGeometry>
+  <StreamGeometry x:Key="EditorCopyIcon">M28 12.5781L28 32L8 32L8 26L0 26L0 0L13.4219 0L19.4219 6L21.4219 6L28 12.5781ZM22 12L24.5781 12L22 9.42188L22 12ZM8 6L16.5781 6L12.5781 2L2 2L2 24L8 24L8 6ZM26 14L20 14L20 8L10 8L10 30L26 30L26 14Z</StreamGeometry>
+  <StreamGeometry x:Key="EditorPasteIcon">M28 12L28 32L12 32L12 30L0 30L0 4L8 4Q8 3.1875 8.32031 2.45313Q8.64062 1.71875 9.17969 1.17969Q9.71875 0.640629 10.4453 0.320313Q11.1719 0 12 0Q12.8125 0 13.5469 0.320313Q14.2812 0.640627 14.8203 1.17969Q15.3594 1.71875 15.6797 2.45313Q16 3.1875 16 4L24 4L24 12L28 12ZM6 6L6 8L18 8L18 6L14 6Q14 5.75 14.0078 5.47656Q14.0156 5.20313 14.0156 4.92188Q14.0156 4.39063 13.9609 3.86719Q13.9062 3.34375 13.6953 2.92969Q13.4844 2.51563 13.0859 2.25781Q12.6875 2 12 2Q11.3125 2 10.9141 2.25781Q10.5156 2.51563 10.3047 2.92969Q10.0937 3.34375 10.0391 3.86719Q9.98437 4.39063 9.98438 4.92188Q9.98438 5.20313 9.99219 5.47656Q10 5.75 10 6L6 6ZM12 28L12 12L22 12L22 6L20 6L20 10L4 10L4 6L2 6L2 28L12 28ZM26 14L14 14L14 30L26 30L26 14Z</StreamGeometry>
+  <StreamGeometry x:Key="EditorDeleteIcon">M26 6L24 6L24 29Q24 29.625 23.7656 30.1719Q23.5313 30.7188 23.125 31.125Q22.7188 31.5313 22.1719 31.7656Q21.625 32 21 32L5 32Q4.375 32 3.82813 31.7656Q3.28125 31.5313 2.875 31.125Q2.46875 30.7188 2.23438 30.1719Q2 29.625 2 29L2 6L0 6L0 4L8 4L8 2Q8 1.57813 8.15625 1.21875Q8.3125 0.859377 8.58594 0.585938Q8.85937 0.312504 9.21875 0.15625Q9.57813 0 10 0L16 0Q16.4219 0 16.7813 0.15625Q17.1406 0.312502 17.4141 0.585938Q17.6875 0.859377 17.8438 1.21875Q18 1.57813 18 2L18 4L26 4L26 6ZM10 4L16 4L16 2L10 2L10 4ZM22 6L4 6L4 29Q4 29.4063 4.29688 29.7031Q4.59375 30 5 30L21 30Q21.4062 30 21.7031 29.7031Q22 29.4063 22 29L22 6ZM10 26L8 26L8 10L10 10L10 26ZM14 26L12 26L12 10L14 10L14 26ZM18 26L16 26L16 10L18 10L18 26Z</StreamGeometry>
+
+  <ControlTheme x:Key="{x:Type controls:Editor}" TargetType="controls:Editor">
+
+    <Setter Property="ClipToBounds" Value="False" />
+
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="m:IDrawingNode">
+        <Panel>
+          <Panel Background="{DynamicResource EditorBackground}" />
+          <!--<Panel Background="{DynamicResource EditorCheckerBoard}" />-->
+          <ScrollViewer VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Auto">
+            <controls:NodeZoomBorder Name="PART_ZoomBorder"
+                                     Stretch="None"
+                                     ZoomSpeed="1.2"
+                                     EnableConstrains="False"
+                                     Background="Transparent" 
+                                     ClipToBounds="True" 
+                                     Focusable="True"
+                                     VerticalAlignment="Stretch" 
+                                     HorizontalAlignment="Stretch">
+              <i:Interaction.Behaviors>
+                <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
+                  <idd:ContextDropBehavior.Handler>
+                    <behaviors:DrawingDropHandler RelativeTo="{Binding $parent[controls:Editor].DrawingNode}" />
+                  </idd:ContextDropBehavior.Handler>
+                </idd:ContextDropBehavior>
+              </i:Interaction.Behaviors>
+              <Border Background="Transparent"
+                      Width="{Binding Width}"
+                      Height="{Binding Height}"
+                      BoxShadow="4 11 30 1 #3F000000"
+                      ZIndex="-1">
+                <Panel Background="Transparent"
+                       Width="{Binding Width}"
+                       Height="{Binding Height}">
+                  <Panel.Transitions>
+                    <Transitions>
+                      <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+                    </Transitions>
+                  </Panel.Transitions>
+                  <controls:DrawingNode Name="PART_DrawingNode"
+                                        Background="{DynamicResource DrawingBackground}"
+                                        InputSource="{Binding $parent[controls:Editor].ZoomControl}"
+                                        AdornerCanvas="{Binding $parent[controls:Editor].AdornerCanvas}"
+                                        ClipToBounds="False">
+                    <controls:DrawingNode.Styles>
+                      <Style Selector="controls|DrawingNode">
+                        <Setter Property="EnableSnap" Value="True" />
+                        <Setter Property="SnapX" Value="15.0" />
+                        <Setter Property="SnapY" Value="15.0" />
+                        <Setter Property="EnableGrid" Value="True" />
+                        <Setter Property="GridCellWidth" Value="15.0" />
+                        <Setter Property="GridCellHeight" Value="15.0" />
+                        </Style>
+                    </controls:DrawingNode.Styles>
+                    <controls:DrawingNode.ContextFlyout>
+                      <MenuFlyout>
+                        <MenuItem Header="Cu_t" 
+                                  Command="{Binding CutNodesCommand}" 
+                                  InputGesture="Ctrl+X">
+                          <MenuItem.Icon>
+                            <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCutIcon}" />
+                          </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="_Copy" 
+                                  Command="{Binding CopyNodesCommand}" 
+                                  InputGesture="Ctrl+C">
+                          <MenuItem.Icon>
+                            <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCopyIcon}" />
+                          </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="_Paste" 
+                                  Command="{Binding PasteNodesCommand}" 
+                                  InputGesture="Ctrl+V">
+                          <MenuItem.Icon>
+                            <PathIcon Width="16" Height="16" Data="{DynamicResource EditorPasteIcon}" />
+                          </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="D_uplicate" 
+                                  Command="{Binding DuplicateNodesCommand}" 
+                                  InputGesture="Ctrl+D" />
+                        <MenuItem Header="-" />
+                        <MenuItem Header="Select _All" 
+                                  Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
+                                  InputGesture="Ctrl+A" />
+                        <MenuItem Header="De_select All" 
+                                  Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
+                                  InputGesture="Escape" />
+                        <MenuItem Header="-" />
+                        <MenuItem Header="_Delete" 
+                                  Command="{Binding DeleteNodesCommand}" 
+                                  InputGesture="Delete">
+                          <MenuItem.Icon>
+                            <PathIcon Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
+                          </MenuItem.Icon>
+                        </MenuItem>
+                      </MenuFlyout>
+                    </controls:DrawingNode.ContextFlyout>
+                  </controls:DrawingNode>
+                  <Canvas Name="PART_AdornerCanvas"
+                          Background="Transparent"
+                          Width="{Binding Width}"
+                          Height="{Binding Height}"
+                          IsHitTestVisible="False"/>
+                </Panel>
+              </Border>
+            </controls:NodeZoomBorder>
+          </ScrollViewer>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+
+  </ControlTheme>
+
+</ResourceDictionary>
