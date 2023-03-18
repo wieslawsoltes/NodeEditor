@@ -24,6 +24,7 @@
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connectors.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/DrawingNode.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Editor.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Toolbox.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
