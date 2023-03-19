@@ -6,7 +6,7 @@
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
              x:Class="NodeEditorDemo.App"
              Name="NodeEditorDemo"
-             RequestedThemeVariant="Light">
+             RequestedThemeVariant="Dark">
 
   <Application.DataTemplates>
     <local:ViewLocator />
