@@ -5,13 +5,17 @@
     <ResourceDictionary>
       <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key='Default'>
-          <SolidColorBrush x:Key='PinBackgroundBrush'>Black</SolidColorBrush>
-          <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='PinBackgroundBrush'>White</SolidColorBrush>
+          <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>White</SolidColorBrush>
+          <SolidColorBrush x:Key='PinForegroundBrush'>Black</SolidColorBrush>
+          <SolidColorBrush x:Key='PinPointerOverForegroundBrush'>Red</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectorBackgroundBrush'>Red</SolidColorBrush>
         </ResourceDictionary>
         <ResourceDictionary x:Key='Dark'>
-          <SolidColorBrush x:Key='PinBackgroundBrush'>White</SolidColorBrush>
-          <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='PinBackgroundBrush'>Black</SolidColorBrush>
+          <SolidColorBrush x:Key='PinPointerOverBackgroundBrush'>Black</SolidColorBrush>
+          <SolidColorBrush x:Key='PinForegroundBrush'>White</SolidColorBrush>
+          <SolidColorBrush x:Key='PinPointerOverForegroundBrush'>Red</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectorBackgroundBrush'>Red</SolidColorBrush>
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
