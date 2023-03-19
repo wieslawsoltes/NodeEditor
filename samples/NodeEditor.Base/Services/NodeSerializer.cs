@@ -9,7 +9,7 @@ using NodeEditor.Model;
 
 namespace NodeEditorDemo.Services;
 
-public class NodeSerializer : INodeSerializer
+internal class NodeSerializer : INodeSerializer
 {
     private readonly JsonSerializerSettings _settings;
 
