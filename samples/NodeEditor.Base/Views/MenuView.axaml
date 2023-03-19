@@ -52,35 +52,33 @@
     <!-- Menu -->
  
     <Menu IsVisible="{x:Static app:App.EnableMainMenu}">
-      <Menu.Resources>
-        <PathIcon x:Key="NewIconPath" Width="16" Height="16" Data="{DynamicResource NewIcon}" />
-        <PathIcon x:Key="OpenIconPath" Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
-        <PathIcon x:Key="SaveIconPath" Width="16" Height="16" Data="{DynamicResource SaveIcon}" />
-        <PathIcon x:Key="CutIconPath" Width="16" Height="16" Data="{DynamicResource CutIcon}" />
-        <PathIcon x:Key="CopyIconPath" Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
-        <PathIcon x:Key="PasteIconPath" Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
-        <PathIcon x:Key="DeleteIconPath" Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
-        <PathIcon x:Key="ZoomInIconPath" Width="16" Height="16" Data="{DynamicResource ZoomInIcon}" />
-        <PathIcon x:Key="ZoomOutIconPath" Width="16" Height="16" Data="{DynamicResource ZoomOutIcon}" />
-      </Menu.Resources>
       <!-- File -->
       <MenuItem Header="_File">
         <MenuItem Header="_New" 
-                  Icon="{DynamicResource NewIconPath}"
                   Command="{Binding NewCommand}" 
-                  InputGesture="Ctrl+N" />
+                  InputGesture="Ctrl+N">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource NewIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <Separator IsVisible="{x:Static app:App.EnableInputOutput}"/>
         <MenuItem Header="_Open..."
-                  Icon="{DynamicResource OpenIconPath}"
                   Command="{Binding OpenCommand}" 
                   InputGesture="Ctrl+O" 
-                  IsVisible="{x:Static app:App.EnableInputOutput}" />
+                  IsVisible="{x:Static app:App.EnableInputOutput}">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <Separator IsVisible="{x:Static app:App.EnableInputOutput}" />
         <MenuItem Header="_Save..." 
-                  Icon="{DynamicResource SaveIconPath}"
                   Command="{Binding SaveCommand}" 
                   InputGesture="Ctrl+S"
-                  IsVisible="{x:Static app:App.EnableInputOutput}" />
+                  IsVisible="{x:Static app:App.EnableInputOutput}">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource SaveIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <Separator IsVisible="{x:Static app:App.EnableInputOutput}"/>
         <MenuItem Header="Export..." 
                   Command="{Binding ExportCommand}"
@@ -93,17 +91,26 @@
       <!-- Edit -->
       <MenuItem Header="_Edit">
         <MenuItem Header="Cu_t" 
-                  Icon="{DynamicResource CutIconPath}"
                   Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Ctrl+X" />
+                  InputGesture="Ctrl+X">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource CutIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <MenuItem Header="_Copy" 
-                  Icon="{DynamicResource CopyIconPath}"
                   Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Ctrl+C" />
+                  InputGesture="Ctrl+C">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <MenuItem Header="_Paste" 
-                  Icon="{DynamicResource PasteIconPath}"
                   Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
-                  InputGesture="Ctrl+V" />
+                  InputGesture="Ctrl+V">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <MenuItem Header="D_uplicate" 
                   Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
                   InputGesture="Ctrl+D" />
@@ -116,9 +123,12 @@
                   InputGesture="Escape" />
         <Separator />
         <MenuItem Header="_Delete" 
-                  Icon="{DynamicResource DeleteIconPath}"
                   Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Delete" />
+                  InputGesture="Delete">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
       </MenuItem>
       <!-- Zoom -->
       <MenuItem Header="_Zoom" 
@@ -135,13 +145,19 @@
                   CommandParameter="2" />
         <Separator />
         <MenuItem Header="Zoom _In" 
-                  Icon="{DynamicResource ZoomInIconPath}"
                   Command="{Binding #MenuView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
-                  InputGesture="Add"/>
+                  InputGesture="Add">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource ZoomInIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <MenuItem Header="Zoom _Out" 
-                  Icon="{DynamicResource ZoomOutIconPath}"
                   Command="{Binding #MenuView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
-                  InputGesture="Subtract" />
+                  InputGesture="Subtract">
+          <MenuItem.Icon>
+            <PathIcon Width="16" Height="16" Data="{DynamicResource ZoomOutIcon}" />
+          </MenuItem.Icon>
+        </MenuItem>
         <Separator />
         <MenuItem Header="Fit Canvas" 
                   Command="{Binding #MenuView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"

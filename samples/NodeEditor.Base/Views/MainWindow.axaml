@@ -21,34 +21,19 @@
     <vm:MainViewViewModel />
   </Design.DataContext>
 
-  <Window.Resources>
-    <PathIcon x:Key="NewIconPath" Width="16" Height="16" Data="{DynamicResource NewIcon}" />
-    <PathIcon x:Key="OpenIconPath" Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
-    <PathIcon x:Key="SaveIconPath" Width="16" Height="16" Data="{DynamicResource SaveIcon}" />
-    <PathIcon x:Key="CutIconPath" Width="16" Height="16" Data="{DynamicResource CutIcon}" />
-    <PathIcon x:Key="CopyIconPath" Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
-    <PathIcon x:Key="PasteIconPath" Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
-    <PathIcon x:Key="DeleteIconPath" Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
-    <PathIcon x:Key="ZoomInIconPath" Width="16" Height="16" Data="{DynamicResource ZoomInIcon}" />
-    <PathIcon x:Key="ZoomOutIconPath" Width="16" Height="16" Data="{DynamicResource ZoomOutIcon}" />
-  </Window.Resources>
-
   <NativeMenu.Menu>
     <NativeMenu>
       <!-- File -->
       <NativeMenuItem Header="File">
         <NativeMenu>
           <NativeMenuItem Header="New" 
-                          Icon="{DynamicResource NewIconPath}"
                           Command="{Binding NewCommand}" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Open..."
-                          Icon="{DynamicResource OpenIconPath}"
                           Command="{Binding OpenCommand}" 
                           Gesture="Ctrl+O"  />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Save..." 
-                          Icon="{DynamicResource SaveIconPath}"
                           Command="{Binding SaveCommand}" 
                           Gesture="Ctrl+S" />
           <NativeMenuItemSeparator />
@@ -64,15 +49,12 @@
       <NativeMenuItem Header="Edit">
         <NativeMenu>
           <NativeMenuItem Header="Cut" 
-                          Icon="{DynamicResource CutIconPath}"
                           Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+X" />
           <NativeMenuItem Header="Copy" 
-                          Icon="{DynamicResource CopyIconPath}"
                           Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Ctrl+C" />
           <NativeMenuItem Header="Paste" 
-                          Icon="{DynamicResource PasteIconPath}"
                           Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
                           Gesture="Ctrl+V" />
           <NativeMenuItem Header="Duplicate" 
@@ -87,7 +69,6 @@
                           Gesture="Escape" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Delete" 
-                          Icon="{DynamicResource DeleteIconPath}"
                           Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Delete" />
         </NativeMenu>
@@ -106,11 +87,9 @@
                           CommandParameter="2" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Zoom In" 
-                          Icon="{DynamicResource ZoomInIconPath}"
                           Command="{Binding #MainView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
                           Gesture="Add"/>
           <NativeMenuItem Header="Zoom Out" 
-                          Icon="{DynamicResource ZoomOutIconPath}"
                           Command="{Binding #MainView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
                           Gesture="Subtract" />
           <NativeMenuItemSeparator />
