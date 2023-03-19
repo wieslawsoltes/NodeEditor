@@ -55,7 +55,7 @@
     <Style Selector="export|ExportRoot">
       <Setter Property="(TextElement.FontFamily)" Value="avares://Avalonia.Themes.Fluent/Assets#Inter" />
     </Style>
-    
+
   </Application.Styles>
 
   <NativeMenu.Menu>
