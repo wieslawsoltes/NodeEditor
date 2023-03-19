@@ -13,7 +13,7 @@ using SkiaSharp;
 
 namespace NodeEditorDemo.Services;
 
-public static class ExportRenderer
+internal static class ExportRenderer
 {
     internal class ImmediateRenderer : IVisualBrushRenderer//, IRenderer
     {
