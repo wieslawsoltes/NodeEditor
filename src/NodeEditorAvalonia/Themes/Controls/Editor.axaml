@@ -44,9 +44,9 @@
                       Height="{Binding Height}"
                       BoxShadow="4 11 30 1 #3F000000"
                       ZIndex="-1">
-                <Panel Background="Transparent"
-                       Width="{Binding Width}"
-                       Height="{Binding Height}">
+                <Canvas Name="PART_AdornerCanvas"  Background="Transparent"
+                        Width="{Binding Width}"
+                        Height="{Binding Height}">
                   <Panel.Transitions>
                     <Transitions>
                       <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
@@ -113,12 +113,8 @@
                       </MenuFlyout>
                     </controls:DrawingNode.ContextFlyout>
                   </controls:DrawingNode>
-                  <Canvas Name="PART_AdornerCanvas"
-                          Background="Transparent"
-                          Width="{Binding Width}"
-                          Height="{Binding Height}"
-                          IsHitTestVisible="False"/>
-                </Panel>
+                  
+                </Canvas>
               </Border>
             </controls:NodeZoomBorder>
           </ScrollViewer>

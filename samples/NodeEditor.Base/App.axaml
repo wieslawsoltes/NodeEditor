@@ -28,7 +28,7 @@
 
     <StyleInclude Source="avares://NodeEditor.Base/Styles/Nodes.axaml" />
     <StyleInclude Source="avares://NodeEditor.Base/Styles/Icons.axaml" />
-
+    <StyleInclude Source="avares://NodeEditorAvalonia/Themes/Controls/SelectedAdorner.axaml" />
     <Style Selector="MenuItem /template/ ContentPresenter#PART_IconPresenter">
       <Setter Property="Width" Value="20" />
       <Setter Property="Height" Value="20" />

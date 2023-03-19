@@ -5,11 +5,11 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Immutable;
 using Avalonia.Styling;
-using SharpSCADA.DesignBuilder.HMIBase.View;
-using SharpSCADA.DesignBuilder.Mvvm;
 using System;
+using NodeEditor.Mvvm;
+using NodeEditorDemo.ViewModels;
 
-namespace SharpSCADA.DesignBuilder.Base.Controls;
+namespace NodeEditor.Controls;
 
 public class SelectedAdorner : TemplatedControl, IStyleable
 
@@ -165,12 +165,12 @@ public class SelectedAdorner : TemplatedControl, IStyleable
                 break;
             }
 
-            var d = (HMIView)ControlCrent.Content;
+            var d = (NodeView)ControlCrent.Content;
 
-            var c = (TemplatedControl)d.Hmi;
+            
 
-            _leftOffset = c.Bounds.Left;
-            _topOffset = c.Bounds.Top;
+            // _leftOffset = d.Bounds.Left;
+            // _topOffset = c.Bounds.Top;
 
             var rect = new Rect(
                 0,
@@ -208,11 +208,11 @@ public class SelectedAdorner : TemplatedControl, IStyleable
 
     private void UpdateControl(dynamic control, Rect rect)
     {
-        dynamic d = (HMIView)control.Content;
+        dynamic d = (NodeView)control.Content;
 
-        var c = (TemplatedControl)d.Hmi;
-        Canvas.SetLeft(c, rect.Left);
-        Canvas.SetTop(c, rect.Top);
+        
+        // Canvas.SetLeft(d, rect.Left);
+        // Canvas.SetTop(d, rect.Top);
 
         control.Width = rect.Width;
         control.Height = rect.Height;

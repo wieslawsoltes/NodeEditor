@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NodeEditorAvalonia.Model\NodeEditorAvalonia.Model.csproj" />
+    <ProjectReference Include="..\NodeEditorAvalonia.Mvvm\NodeEditorAvalonia.Mvvm.csproj" />
   </ItemGroup>
 
 </Project>

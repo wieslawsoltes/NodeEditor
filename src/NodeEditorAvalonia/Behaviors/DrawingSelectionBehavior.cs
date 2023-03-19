@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Reactive;
@@ -184,7 +185,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
                 if (!_selectedRect.IsDefault && _selectedAdorner is null)
                 {
-                    AddSelected(_selectedRect);
+                    AddSelected(_selectedRect, selectedNodes);
                 }
             }
             else
@@ -424,7 +425,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         InputSource?.InvalidateVisual();
     }
 
-    private void AddSelected(Rect rect)
+    private void AddSelected(Rect rect, dynamic control)
     {
         var layer = AdornerCanvas;
         if (layer is null)
@@ -434,12 +435,15 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
         _selectedAdorner = new SelectedAdorner
         {
+            [AdornerLayer.AdornedElementProperty] = AdornerCanvas,
             IsHitTestVisible = true,
-            Rect = rect
+            Control = control,
+            Rect = rect,
+            EnableResizing = true,
+            EnableDragging = true
         };
 
         layer.Children.Add(_selectedAdorner);
-
         layer.InvalidateVisual();
         InputSource?.InvalidateVisual();
     }

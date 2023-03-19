@@ -45,7 +45,7 @@ public class SelectionAdorner : Control
 
         if (change.Property == TopLeftProperty || change.Property == BottomRightProperty)
         {
-            InvalidateVisual();
+            InvalidateMeasure();
         }
     }
 
@@ -61,5 +61,34 @@ public class SelectionAdorner : Control
         var bounds = GetRect();
         var rect = bounds.Deflate(thickness * 0.5);
         context.DrawRectangle(brush, pen, rect);
+    }
+    protected override Size MeasureOverride(Size availableSize)
+    {
+        var rect = GetRect();
+
+        foreach (var visualChild in VisualChildren)
+        {
+            if (visualChild is Control control)
+            {
+                control.Measure(rect.Size);
+            }
+        }
+
+        return rect.Size;
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var rect = GetRect();
+
+        foreach (var visualChild in VisualChildren)
+        {
+            if (visualChild is Control control)
+            {
+                control.Arrange(rect);
+            }
+        }
+
+        return rect.Size;
     }
 }

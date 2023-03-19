@@ -30,6 +30,7 @@
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/DrawingNodeProperties.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Editor.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Toolbox.axaml" />
+      
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
