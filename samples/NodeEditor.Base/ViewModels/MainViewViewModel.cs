@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -50,8 +49,11 @@ public partial class MainViewViewModel : ViewModelBase
     [RelayCommand]
     private void New()
     {
-        Editor.Drawing = Editor.Factory.CreateDrawing();
-        Editor.Drawing.SetSerializer(Editor.Serializer);
+        if (Editor?.Factory is { })
+        {
+            Editor.Drawing = Editor.Factory.CreateDrawing();
+            Editor.Drawing.SetSerializer(Editor.Serializer);
+        }
     }
 
     private List<FilePickerFileType> GetOpenFileTypes()
@@ -88,6 +90,11 @@ public partial class MainViewViewModel : ViewModelBase
     [RelayCommand]
     private async Task Open()
     {
+        if (Editor?.Serializer is null)
+        {
+            return;
+        }
+
         var storageProvider = StorageService.GetStorageProvider();
         if (storageProvider is null)
         {
@@ -128,6 +135,11 @@ public partial class MainViewViewModel : ViewModelBase
     [RelayCommand]
     private async Task Save()
     {
+        if (Editor?.Serializer is null)
+        {
+            return;
+        }
+
         var storageProvider = StorageService.GetStorageProvider();
         if (storageProvider is null)
         {
@@ -163,7 +175,7 @@ public partial class MainViewViewModel : ViewModelBase
     [RelayCommand]
     public async Task Export()
     {
-        if (Editor.Drawing is null)
+        if (Editor?.Drawing is null)
         {
             return;
         }
