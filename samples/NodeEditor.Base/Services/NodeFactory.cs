@@ -8,7 +8,7 @@ namespace NodeEditorDemo.Services;
 
 public class NodeFactory : INodeFactory
 {
-    internal static INode CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 8)
+    internal static INode CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 10)
     {
         var node = new NodeViewModel
         {
@@ -28,7 +28,7 @@ public class NodeFactory : INodeFactory
         return node;
     }
 
-    internal static INode CreateEllipse(double x, double y, double width, double height, string? label, double pinSize = 8)
+    internal static INode CreateEllipse(double x, double y, double width, double height, string? label, double pinSize = 10)
     {
         var node = new NodeViewModel
         {
@@ -48,7 +48,7 @@ public class NodeFactory : INodeFactory
         return node;
     }
 
-    internal static INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 8, string name = "SIGNAL")
+    internal static INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 10, string name = "SIGNAL")
     {
         var node = new NodeViewModel
         {
@@ -67,7 +67,7 @@ public class NodeFactory : INodeFactory
         return node;
     }
 
-    internal static INode CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 8, string name = "AND")
+    internal static INode CreateAndGate(double x, double y, double width = 60, double height = 60, double pinSize = 10, string name = "AND")
     {
         var node = new NodeViewModel
         {
@@ -88,7 +88,7 @@ public class NodeFactory : INodeFactory
         return node;
     }
 
-    internal static INode CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 8, string name = "OR")
+    internal static INode CreateOrGate(double x, double y, double width = 60, double height = 60, int count = 1, double pinSize = 10, string name = "OR")
     {
         var node = new NodeViewModel
         {
@@ -166,14 +166,14 @@ public class NodeFactory : INodeFactory
             new NodeTemplateViewModel
             {
                 Title = "AND Gate",
-                Template = CreateAndGate(0, 0, 30, 30),
-                Preview = CreateAndGate(0, 0, 30, 30)
+                Template = CreateAndGate(0, 0, 60, 60),
+                Preview = CreateAndGate(0, 0, 60, 60)
             },
             new NodeTemplateViewModel
             {
                 Title = "OR Gate",
-                Template = CreateOrGate(0, 0, 30, 30),
-                Preview = CreateOrGate(0, 0, 30, 30)
+                Template = CreateOrGate(0, 0, 60, 60),
+                Preview = CreateOrGate(0, 0, 60, 60)
             }
         };
     }
