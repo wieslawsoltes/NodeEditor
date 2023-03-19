@@ -132,9 +132,9 @@
     <ExperimentalAcrylicBorder IsHitTestVisible="False">
       <ExperimentalAcrylicBorder.Material>
         <ExperimentalAcrylicMaterial BackgroundSource="Digger"
-                                     TintColor="White"
+                                     TintColor="Black"
                                      TintOpacity="1"
-                                     FallbackColor="{DynamicResource AcrylicFallbackColor}"
+                                     FallbackColor="Black"
                                      MaterialOpacity="1" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
