@@ -5,7 +5,7 @@
              xmlns:export="clr-namespace:NodeEditorDemo.Services"
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
              x:Class="NodeEditorDemo.App"
-             Name="NodeEditorDemo"
+             Name="NodeEditor"
              RequestedThemeVariant="Dark">
 
   <Application.DataTemplates>
