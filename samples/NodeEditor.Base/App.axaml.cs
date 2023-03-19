@@ -20,11 +20,6 @@ public class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public App()
-    {
-        Name = "NodeEditor";
-    }
-    
     public override void OnFrameworkInitializationCompleted()
     {
         var vm = new MainViewViewModel
