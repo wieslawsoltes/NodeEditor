@@ -73,32 +73,32 @@
                       <MenuFlyout>
                         <MenuItem Header="Cu_t" 
                                   Command="{Binding CutNodesCommand}" 
-                                  InputGesture="Ctrl+X">
+                                  InputGesture="CMD+X">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCutIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="_Copy" 
                                   Command="{Binding CopyNodesCommand}" 
-                                  InputGesture="Ctrl+C">
+                                  InputGesture="CMD+C">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCopyIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="_Paste" 
                                   Command="{Binding PasteNodesCommand}" 
-                                  InputGesture="Ctrl+V">
+                                  InputGesture="CMD+V">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorPasteIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="D_uplicate" 
                                   Command="{Binding DuplicateNodesCommand}" 
-                                  InputGesture="Ctrl+D" />
+                                  InputGesture="CMD+D" />
                         <MenuItem Header="-" />
                         <MenuItem Header="Select _All" 
                                   Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
-                                  InputGesture="Ctrl+A" />
+                                  InputGesture="CMD+A" />
                         <MenuItem Header="De_select All" 
                                   Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                                   InputGesture="Escape" />

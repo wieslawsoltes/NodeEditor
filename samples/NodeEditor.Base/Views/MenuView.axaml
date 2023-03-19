@@ -56,7 +56,7 @@
       <MenuItem Header="_File">
         <MenuItem Header="_New" 
                   Command="{Binding NewCommand}" 
-                  InputGesture="Ctrl+N">
+                  InputGesture="CMD+N">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource NewIcon}" />
           </MenuItem.Icon>
@@ -64,7 +64,7 @@
         <Separator IsVisible="{x:Static app:App.EnableInputOutput}"/>
         <MenuItem Header="_Open..."
                   Command="{Binding OpenCommand}" 
-                  InputGesture="Ctrl+O" 
+                  InputGesture="CMD+O" 
                   IsVisible="{x:Static app:App.EnableInputOutput}">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource OpenIcon}" />
@@ -73,7 +73,7 @@
         <Separator IsVisible="{x:Static app:App.EnableInputOutput}" />
         <MenuItem Header="_Save..." 
                   Command="{Binding SaveCommand}" 
-                  InputGesture="Ctrl+S"
+                  InputGesture="CMD+S"
                   IsVisible="{x:Static app:App.EnableInputOutput}">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource SaveIcon}" />
@@ -92,32 +92,32 @@
       <MenuItem Header="_Edit">
         <MenuItem Header="Cu_t" 
                   Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Ctrl+X">
+                  InputGesture="CMD+X">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource CutIcon}" />
           </MenuItem.Icon>
         </MenuItem>
         <MenuItem Header="_Copy" 
                   Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Ctrl+C">
+                  InputGesture="CMD+C">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource CopyIcon}" />
           </MenuItem.Icon>
         </MenuItem>
         <MenuItem Header="_Paste" 
                   Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
-                  InputGesture="Ctrl+V">
+                  InputGesture="CMD+V">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource PasteIcon}" />
           </MenuItem.Icon>
         </MenuItem>
         <MenuItem Header="D_uplicate" 
                   Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Ctrl+D" />
+                  InputGesture="CMD+D" />
         <Separator />
         <MenuItem Header="Select _All" 
                   Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" 
-                  InputGesture="Ctrl+A" />
+                  InputGesture="CMD+A" />
         <MenuItem Header="De_select All" 
                   Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                   InputGesture="Escape" />
@@ -139,7 +139,7 @@
                   CommandParameter="0.5" />
         <MenuItem Header="_100%" 
                   Command="{Binding #MenuView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
-                  InputGesture="Ctrl+D0" />
+                  InputGesture="CMD+D0" />
         <MenuItem Header="_200%" 
                   Command="{Binding #MenuView.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
                   CommandParameter="2" />
@@ -161,13 +161,13 @@
         <Separator />
         <MenuItem Header="Fit Canvas" 
                   Command="{Binding #MenuView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
-                  InputGesture="Ctrl+D1" />
+                  InputGesture="CMD+D1" />
         <MenuItem Header="Fit to Fill" 
                   Command="{Binding #MenuView.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
-                  InputGesture="Ctrl+D2" />
+                  InputGesture="CMD+D2" />
         <MenuItem Header="Fill Canvas" 
                   Command="{Binding #MenuView.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
-                  InputGesture="Ctrl+D3" />
+                  InputGesture="CMD+D3" />
       </MenuItem>
     </Menu>
 
