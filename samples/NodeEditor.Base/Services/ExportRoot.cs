@@ -10,7 +10,7 @@ using Avalonia.Styling;
 
 namespace NodeEditorDemo.Services;
 
-public class ExportRoot : Decorator, IFocusScope, ILayoutRoot, IInputRoot, IRenderRoot, IStyleHost, ILogicalRoot
+internal class ExportRoot : Decorator, IFocusScope, ILayoutRoot, IInputRoot, IRenderRoot, IStyleHost, ILogicalRoot
 {
     public ExportRoot()
     {
