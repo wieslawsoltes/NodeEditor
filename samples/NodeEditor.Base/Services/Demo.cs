@@ -56,11 +56,11 @@ internal static class Demo
         signal1.Parent = drawing;
         drawing.Nodes.Add(signal1);
 
-        var signal2 = NodeFactory.CreateSignal(x: 360, y: 375, label: "out0", state: true);
+        var signal2 = NodeFactory.CreateSignal(x: 420, y: 375, label: "out0", state: true);
         signal2.Parent = drawing;
         drawing.Nodes.Add(signal2);
 
-        var orGate0 = NodeFactory.CreateOrGate(240, 360);
+        var orGate0 = NodeFactory.CreateOrGate(300, 360);
         orGate0.Parent = drawing;
         drawing.Nodes.Add(orGate0);
 
