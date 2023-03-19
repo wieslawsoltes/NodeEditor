@@ -48,7 +48,7 @@ public class NodeFactory : INodeFactory
         return node;
     }
 
-    internal static INode CreateSignal(double x, double y, double width = 120, double height = 30, string? label = null, bool? state = false, double pinSize = 10, string name = "SIGNAL")
+    internal static INode CreateSignal(double x, double y, double width = 180, double height = 30, string? label = null, bool? state = false, double pinSize = 10, string name = "SIGNAL")
     {
         var node = new NodeViewModel
         {
