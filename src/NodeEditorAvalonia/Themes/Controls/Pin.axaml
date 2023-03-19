@@ -14,9 +14,9 @@
 
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:IPin">
-        <Rectangle Name="PART_Pin"
-                   Width="{Binding Width}"
-                   Height="{Binding Height}" />
+        <Ellipse Name="PART_Pin"
+                 Width="{Binding Width}"
+                 Height="{Binding Height}" />
       </ControlTemplate>
     </Setter>
 
@@ -59,12 +59,16 @@
       </Setter.Value>
     </Setter>
 
-    <Style Selector="^/template/ Rectangle#PART_Pin">
+    <Style Selector="^/template/ Ellipse#PART_Pin">
       <Setter Property="Fill" Value="{DynamicResource PinBackgroundBrush}" />
+      <Setter Property="Stroke" Value="{DynamicResource PinForegroundBrush}" />
+      <Setter Property="StrokeThickness" Value="2" />
     </Style>
 
-    <Style Selector="^:pointerover /template/ Rectangle#PART_Pin">
+    <Style Selector="^:pointerover /template/ Ellipse#PART_Pin">
       <Setter Property="Fill" Value="{DynamicResource PinPointerOverBackgroundBrush}" />
+      <Setter Property="Stroke" Value="{DynamicResource PinPointerOverForegroundBrush}" />
+      <Setter Property="StrokeThickness" Value="2" />
     </Style>
 
   </ControlTheme>
