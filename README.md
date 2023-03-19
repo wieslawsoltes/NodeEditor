@@ -67,10 +67,8 @@ You can find the packages here [NuGet](https://www.nuget.org/packages/NodeEditor
 ## Available Packages
 
 * [NodeEditorAvalonia](https://www.nuget.org/packages/NodeEditorAvalonia) - The main package with Avalonia controls and default theme.
-* [NodeEditorAvalonia.MVVM](https://www.nuget.org/packages/NodeEditorAvalonia.MVVM) - The MVVM view models with default implementation.
 * [NodeEditorAvalonia.Model](https://www.nuget.org/packages/NodeEditorAvalonia.Model) - The base interfaces used in controls and view models.
-* [NodeEditorAvalonia.Serializer](https://www.nuget.org/packages/NodeEditorAvalonia.Serializer) - The serializer for ReactiveUI view models.
-* [NodeEditorAvalonia.Export](https://www.nuget.org/packages/NodeEditorAvalonia.Export) - The renderers for exporting drawings as svg, pdf and png files.
+* [NodeEditorAvalonia.MVVM](https://www.nuget.org/packages/NodeEditorAvalonia.MVVM) - The MVVM view models with default implementation.
 
 ### Package Sources
 
