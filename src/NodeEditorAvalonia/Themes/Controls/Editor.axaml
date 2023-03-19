@@ -73,32 +73,32 @@
                       <MenuFlyout>
                         <MenuItem Header="Cu_t" 
                                   Command="{Binding CutNodesCommand}" 
-                                  InputGesture="CMD+X">
+                                  InputGesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCutIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="_Copy" 
                                   Command="{Binding CopyNodesCommand}" 
-                                  InputGesture="CMD+C">
+                                  InputGesture="{OnPlatform macOS=CMD+C, iOS=CMD+C, Default=Ctrl+C}">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCopyIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="_Paste" 
                                   Command="{Binding PasteNodesCommand}" 
-                                  InputGesture="CMD+V">
+                                  InputGesture="{OnPlatform macOS=CMD+V, iOS=CMD+V, Default=Ctrl+V}">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorPasteIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="D_uplicate" 
                                   Command="{Binding DuplicateNodesCommand}" 
-                                  InputGesture="CMD+D" />
+                                  InputGesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
                         <MenuItem Header="-" />
                         <MenuItem Header="Select _All" 
                                   Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
-                                  InputGesture="CMD+A" />
+                                  InputGesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
                         <MenuItem Header="De_select All" 
                                   Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                                   InputGesture="Escape" />

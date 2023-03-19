@@ -65,7 +65,7 @@
       <NativeMenuItemSeparator/>
       <NativeMenuItem Header="Quit NodeEditor" 
                       Command="{Binding ExitCommand}" 
-                      Gesture="CMD+Q"/>
+                      Gesture="{OnPlatform macOS=CMD+Q, iOS=CMD+Q, Default=Ctrl+Q}"/>
     </NativeMenu>
   </NativeMenu.Menu>
 

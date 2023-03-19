@@ -31,18 +31,18 @@
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Open..."
                           Command="{Binding OpenCommand}" 
-                          Gesture="CMD+O"  />
+                          Gesture="{OnPlatform macOS=CMD+O, iOS=CMD+O, Default=Ctrl+O}"  />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Save..." 
                           Command="{Binding SaveCommand}" 
-                          Gesture="CMD+S" />
+                          Gesture="{OnPlatform macOS=CMD+S, iOS=CMD+S, Default=Ctrl+S}" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Export..." 
                           Command="{Binding ExportCommand}" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Quit" 
                           Command="{Binding ExitCommand}"
-                          Gesture="CMD+Q"/>
+                          Gesture="{OnPlatform macOS=CMD+Q, iOS=CMD+Q, Default=Ctrl+Q}"/>
         </NativeMenu>
       </NativeMenuItem>
       <!-- Edit -->
@@ -50,20 +50,20 @@
         <NativeMenu>
           <NativeMenuItem Header="Cut" 
                           Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
-                          Gesture="CMD+X" />
+                          Gesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}" />
           <NativeMenuItem Header="Copy" 
                           Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
-                          Gesture="CMD+C" />
+                          Gesture="{OnPlatform macOS=CMD+C, iOS=CMD+C, Default=Ctrl+C}" />
           <NativeMenuItem Header="Paste" 
                           Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
-                          Gesture="CMD+V" />
+                          Gesture="{OnPlatform macOS=CMD+V, iOS=CMD+V, Default=Ctrl+V}" />
           <NativeMenuItem Header="Duplicate" 
                           Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
-                          Gesture="CMD+D" />
+                          Gesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Select All" 
                           Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" 
-                          Gesture="CMD+A" />
+                          Gesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
           <NativeMenuItem Header="Deselect All" 
                           Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Escape" />
@@ -81,7 +81,7 @@
                           CommandParameter="0.5" />
           <NativeMenuItem Header="100%" 
                           Command="{Binding #MainView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
-                          Gesture="CMD+D0" />
+                          Gesture="{OnPlatform macOS=CMD+D0, iOS=CMD+D0, Default=Ctrl+D0}" />
           <NativeMenuItem Header="200%" 
                           Command="{Binding #MainView.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
                           CommandParameter="2" />
@@ -95,13 +95,13 @@
           <NativeMenuItemSeparator />
           <NativeMenuItem Header="Fit Canvas" 
                           Command="{Binding #MainView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
-                          Gesture="CMD+D1" />
+                          Gesture="{OnPlatform macOS=CMD+D1, iOS=CMD+D1, Default=Ctrl+D1}" />
           <NativeMenuItem Header="Fit to Fill" 
                           Command="{Binding #MainView.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
-                          Gesture="CMD+D2" />
+                          Gesture="{OnPlatform macOS=CMD+D2, iOS=CMD+D2, Default=Ctrl+D2}" />
           <NativeMenuItem Header="Fill Canvas" 
                           Command="{Binding #MainView.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
-                          Gesture="CMD+D3" />
+                          Gesture="{OnPlatform macOS=CMD+D3, iOS=CMD+D3, Default=Ctrl+D3}" />
         </NativeMenu>
       </NativeMenuItem>
     </NativeMenu>
