@@ -6,3 +6,8 @@ namespace NodeEditorDemo.ViewModels;
 public partial class ViewModelBase
 {
 }
+
+public class NodeView:ViewModelBase
+{
+    
+}
