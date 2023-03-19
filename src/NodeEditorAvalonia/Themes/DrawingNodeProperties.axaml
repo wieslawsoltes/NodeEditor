@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+                    xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    x:CompileBindings="True">
+
+  <ControlTheme x:Key="{x:Type controls:DrawingNodeProperties}" TargetType="controls:DrawingNodeProperties">
+
+    <Setter Property="ClipToBounds" Value="False" />
+
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="m:IDrawingNode">
+        <DockPanel>
+          <!-- Snap -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <ToggleSwitch IsChecked="{Binding EnableSnap, FallbackValue=False}"
+                          OnContent="Snap On"
+                          OffContent="Snap Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"
+                          DockPanel.Dock="Top"/>
+            <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+              <Label Grid.Column="0" 
+                     Content="SX"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="1" 
+                       BorderBrush="Transparent"
+                       Margin="4,4,2,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding SnapX, FallbackValue='1.0'}" />
+              <Label Grid.Column="2" 
+                     Content="SY"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="3" 
+                       BorderBrush="Transparent"
+                       Margin="2,4,4,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding SnapY, FallbackValue='1.0'}" />
+            </Grid>
+          </DockPanel>
+          <!-- Grid -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <ToggleSwitch IsChecked="{Binding EnableGrid, FallbackValue=False}"
+                          OnContent="Grid On"
+                          OffContent="Grid Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"
+                          DockPanel.Dock="Top"/>
+            <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+              <Label Grid.Column="0" 
+                     Content="CW"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="1" 
+                       BorderBrush="Transparent"
+                       Margin="4,4,2,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding GridCellWidth, FallbackValue='1.0'}" />
+              <Label Grid.Column="2" 
+                     Content="CH"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="3" 
+                       BorderBrush="Transparent"
+                       Margin="2,4,4,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding GridCellHeight, FallbackValue='1.0'}" />
+            </Grid>
+          </DockPanel>
+          <!-- Width/Height -->
+          <Grid ColumnDefinitions="Auto,50*,Auto,50*" DockPanel.Dock="Bottom">
+            <Label Grid.Column="0" 
+                   Content="W"
+                   Margin="6,0,6,0"
+                   VerticalAlignment="Center"
+                   Opacity="0.6"/>
+            <TextBox Grid.Column="1" 
+                     BorderBrush="Transparent"
+                     Margin="4,4,2,4"
+                     Padding="6"
+                     TextAlignment="Left"
+                     Text="{Binding Width, FallbackValue=''}" />
+            <Label Grid.Column="2" 
+                   Content="H"
+                   Margin="6,0,6,0"
+                   VerticalAlignment="Center"
+                   Opacity="0.6"/>
+            <TextBox Grid.Column="3" 
+                     BorderBrush="Transparent"
+                     Margin="2,4,4,4"
+                     Padding="6"
+                     TextAlignment="Left"
+                     Text="{Binding Height, FallbackValue=''}" />
+          </Grid>
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+
+  </ControlTheme>
+
+</ResourceDictionary>

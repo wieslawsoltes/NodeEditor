@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:app="clr-namespace:NodeEditorDemo"
              Name="MenuView"
              mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
@@ -26,7 +27,7 @@
             DockPanel.Dock="Right">
       <Button.Flyout>
         <Flyout ShowMode="TransientWithDismissOnPointerMoveAway" Placement="BottomEdgeAlignedRight">
-          <views:SettingsView DrawingNode="{Binding $parent[views:MenuView].DrawingNode}"/>
+          <editor:DrawingNodeProperties DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"/>
         </Flyout>
       </Button.Flyout>
       <PathIcon Width="16" Height="16"

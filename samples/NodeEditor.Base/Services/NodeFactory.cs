@@ -129,7 +129,13 @@ public class NodeFactory : INodeFactory
             Height = 600,
             Nodes = new ObservableCollection<INode>(),
             Connectors = new ObservableCollection<IConnector>(),
-            EnableMultiplePinConnections = false
+            EnableMultiplePinConnections = false,
+            EnableSnap = true,
+            SnapX = 15.0,
+            SnapY = 15.0,
+            EnableGrid = true,
+            GridCellWidth = 15.0,
+            GridCellHeight = 15.0,
         };
 
         return drawing;

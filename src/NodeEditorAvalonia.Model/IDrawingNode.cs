@@ -13,6 +13,12 @@ public interface IDrawingNode : INode
     IList<IConnector>? Connectors { get; set; }
     ISet<INode>? GetSelectedNodes();
     bool EnableMultiplePinConnections { get; set; }
+    bool EnableSnap { get; set; }
+    double SnapX { get; set; }
+    double SnapY { get; set; }
+    bool EnableGrid { get; set; }
+    double GridCellWidth { get; set; }
+    double GridCellHeight { get; set; }
     ICommand CutNodesCommand { get; }
     ICommand CopyNodesCommand { get; }
     ICommand PasteNodesCommand { get; }

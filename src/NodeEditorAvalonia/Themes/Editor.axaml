@@ -59,12 +59,14 @@
                                         ClipToBounds="False">
                     <controls:DrawingNode.Styles>
                       <Style Selector="controls|DrawingNode">
-                        <Setter Property="EnableSnap" Value="True" />
-                        <Setter Property="SnapX" Value="15.0" />
-                        <Setter Property="SnapY" Value="15.0" />
-                        <Setter Property="EnableGrid" Value="True" />
-                        <Setter Property="GridCellWidth" Value="15.0" />
-                        <Setter Property="GridCellHeight" Value="15.0" />
+                        <Setter Property="Width" Value="{Binding Width}" />
+                        <Setter Property="Height" Value="{Binding Height}" />
+                        <Setter Property="EnableSnap" Value="{Binding EnableSnap}" />
+                        <Setter Property="SnapX" Value="{Binding SnapX}" />
+                        <Setter Property="SnapY" Value="{Binding SnapY}" />
+                        <Setter Property="EnableGrid" Value="{Binding EnableGrid}" />
+                        <Setter Property="GridCellWidth" Value="{Binding GridCellWidth}" />
+                        <Setter Property="GridCellHeight" Value="{Binding GridCellHeight}" />
                         </Style>
                     </controls:DrawingNode.Styles>
                     <controls:DrawingNode.ContextFlyout>
