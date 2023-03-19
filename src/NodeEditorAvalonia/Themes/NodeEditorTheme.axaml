@@ -16,16 +16,16 @@
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
       <ResourceDictionary.MergedDictionaries>
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Pin.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Pins.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Node.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Nodes.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connector.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Connectors.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/DrawingNode.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/DrawingNodeProperties.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Editor.axaml" />
-        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Toolbox.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Pin.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Pins.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Node.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Nodes.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Connector.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Connectors.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/DrawingNode.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/DrawingNodeProperties.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Editor.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Toolbox.axaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
