@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:NodeEditorDemo.ViewModels.Nodes"
-             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="60"
+             mc:Ignorable="d" d:DesignWidth="180" d:DesignHeight="30"
              x:Class="NodeEditorDemo.Views.Nodes.SignalView"
              x:CompileBindings="True" x:DataType="vm:SignalViewModel"
              ClipToBounds="False">
@@ -25,8 +25,8 @@
     <CheckBox Classes="node"
               IsChecked="{Binding State}" 
               Content="{Binding Label}"
-              HorizontalAlignment="Stretch"
-              HorizontalContentAlignment="Stretch"
+              HorizontalAlignment="Left"
+              HorizontalContentAlignment="Center"
               IsHitTestVisible="True"/>
   </Panel>
 </UserControl>
