@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:NodeEditorDemo.Views"
         mc:Ignorable="d" d:DesignWidth="1230" d:DesignHeight="740"
         x:Class="NodeEditorDemo.Views.MainWindow"
-        x:Name="MainWindow"
+        x:Name="MainWindowView"
         WindowState="Normal" WindowStartupLocation="CenterScreen"
         Width="1230" Height="740"
         Icon="/Assets/Icon.ico"
@@ -117,8 +117,8 @@
                                      MaterialOpacity="1" />
       </ExperimentalAcrylicBorder.Material>
     </ExperimentalAcrylicBorder>
-    <Panel Margin="{Binding #MainWindow.OffScreenMargin}">
-      <Panel Margin="{Binding #MainWindow.WindowDecorationMargin}">
+    <Panel Margin="{Binding #MainWindowView.OffScreenMargin}">
+      <Panel Margin="{Binding #MainWindowView.WindowDecorationMargin}">
         <views:MainView Name="MainView" />
       </Panel>
     </Panel>

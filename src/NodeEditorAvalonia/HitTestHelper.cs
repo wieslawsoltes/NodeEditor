@@ -269,7 +269,7 @@ internal static class HitTestHelper
                 var index = drawingNode.Nodes.IndexOf(node);
                 var selectedControl = itemsControl.ContainerFromIndex(index);
                 var bounds = selectedControl?.Bounds ?? default;
-                selectedRect = selectedRect.IsDefault ? bounds : selectedRect.Union(bounds);
+                selectedRect = selectedRect == default ? bounds : selectedRect.Union(bounds);
             }
         }
 
@@ -278,7 +278,7 @@ internal static class HitTestHelper
             foreach (var connector in selectedConnectors)
             {
                 var bounds = GetConnectorBounds(connector);
-                selectedRect = selectedRect.IsDefault ? bounds : selectedRect.Union(bounds);
+                selectedRect = selectedRect == default ? bounds : selectedRect.Union(bounds);
             }
         }
 

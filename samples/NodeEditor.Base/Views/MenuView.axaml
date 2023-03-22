@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:app="clr-namespace:NodeEditorDemo"
-             Name="MenuView"
+             Name="MenuUserControl"
              mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
              x:Class="NodeEditorDemo.Views.MenuView"
              x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
@@ -135,24 +135,24 @@
                 x:DataType="views:MenuView" 
                 x:CompileBindings="False">
         <MenuItem Header="_50%" 
-                  Command="{Binding #MenuView.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
                   CommandParameter="0.5" />
         <MenuItem Header="_100%" 
-                  Command="{Binding #MenuView.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
                   InputGesture="{OnPlatform macOS=CMD+D0, iOS=CMD+D0, Default=Ctrl+D0}" />
         <MenuItem Header="_200%" 
-                  Command="{Binding #MenuView.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.ZoomToCommand, FallbackValue={x:Null}}"
                   CommandParameter="2" />
         <Separator />
         <MenuItem Header="Zoom _In" 
-                  Command="{Binding #MenuView.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
                   InputGesture="Add">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource ZoomInIcon}" />
           </MenuItem.Icon>
         </MenuItem>
         <MenuItem Header="Zoom _Out" 
-                  Command="{Binding #MenuView.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
                   InputGesture="Subtract">
           <MenuItem.Icon>
             <PathIcon Width="16" Height="16" Data="{DynamicResource ZoomOutIcon}" />
@@ -160,13 +160,13 @@
         </MenuItem>
         <Separator />
         <MenuItem Header="Fit Canvas" 
-                  Command="{Binding #MenuView.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
                   InputGesture="{OnPlatform macOS=CMD+D1, iOS=CMD+D1, Default=Ctrl+D1}" />
         <MenuItem Header="Fit to Fill" 
-                  Command="{Binding #MenuView.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
                   InputGesture="{OnPlatform macOS=CMD+D2, iOS=CMD+D2, Default=Ctrl+D2}" />
         <MenuItem Header="Fill Canvas" 
-                  Command="{Binding #MenuView.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
+                  Command="{Binding #MenuUserControl.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
                   InputGesture="{OnPlatform macOS=CMD+D3, iOS=CMD+D3, Default=Ctrl+D3}" />
       </MenuItem>
     </Menu>

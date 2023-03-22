@@ -1,11 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using NodeEditor.Controls;
 
 namespace NodeEditorDemo.Views;
 
-public class MainView : UserControl
+public partial class MainView : UserControl
 {
     public static readonly StyledProperty<NodeZoomBorder?> ZoomControlProperty = 
         AvaloniaProperty.Register<MenuView, NodeZoomBorder?>(nameof(MainView));
@@ -19,10 +18,5 @@ public class MainView : UserControl
     {
         get => GetValue(ZoomControlProperty);
         set => SetValue(ZoomControlProperty, value);
-    }
-
-    private void InitializeComponent()
-    {
-        AvaloniaXamlLoader.Load(this);
     }
 }
