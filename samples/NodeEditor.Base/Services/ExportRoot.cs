@@ -14,7 +14,7 @@ internal class ExportRoot : Decorator, IFocusScope, ILayoutRoot, IInputRoot, IRe
 {
     public ExportRoot()
     {
-        Renderer = null;
+        Renderer = new DummyRenderer();
         LayoutManager = new LayoutManager(this);
         IsVisible = true;
         KeyboardNavigation.SetTabNavigation(this, KeyboardNavigationMode.Cycle);
