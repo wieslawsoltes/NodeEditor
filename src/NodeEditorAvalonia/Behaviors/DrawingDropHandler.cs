@@ -71,10 +71,10 @@ public class DrawingDropHandler : DefaultDropHandler
             }
         }
 
-        if (e.Data.Contains(DataFormats.FileNames))
+        if (e.Data.Contains(DataFormats.Files))
         {
             // ReSharper disable once UnusedVariable
-            var files = e.Data.GetFileNames()?.ToArray();
+            var files = e.Data.GetFiles()?.ToArray();
             if (bExecute)
             {
                 // TODO: files, point.X, point.Y
