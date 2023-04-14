@@ -55,5 +55,6 @@ internal class DummyRenderer : IRenderer
     }
 
     public RendererDiagnostics Diagnostics { get; }
+
     public event EventHandler<SceneInvalidatedEventArgs> SceneInvalidated;
 }
