@@ -13,7 +13,7 @@
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:INode">
         <ItemsControl Name="PART_PinsItemsControl"
-                      Items="{Binding Pins}"
+                      ItemsSource="{Binding Pins}"
                       Width="{Binding Width}"
                       Height="{Binding Height}"
                       ClipToBounds="False">

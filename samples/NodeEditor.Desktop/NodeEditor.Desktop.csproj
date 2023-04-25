@@ -20,4 +20,8 @@
     <ProjectReference Include="..\NodeEditor.Base\NodeEditor.Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Avalonia.Desktop" Version="11.0.0-preview7" />
+  </ItemGroup>
+
 </Project>

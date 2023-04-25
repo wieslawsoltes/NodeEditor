@@ -13,7 +13,7 @@
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:IDrawingNode">
         <ItemsControl Name="PART_NodesItemsControl"
-                      Items="{Binding Nodes}" 
+                      ItemsSource="{Binding Nodes}" 
                       Width="{Binding Width}" 
                       Height="{Binding Height}"
                       Background="Transparent"

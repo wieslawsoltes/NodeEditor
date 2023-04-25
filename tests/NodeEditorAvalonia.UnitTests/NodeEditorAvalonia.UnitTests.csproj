@@ -17,4 +17,8 @@
     <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Avalonia" Version="11.0.0-preview7" />
+  </ItemGroup>
+
 </Project>

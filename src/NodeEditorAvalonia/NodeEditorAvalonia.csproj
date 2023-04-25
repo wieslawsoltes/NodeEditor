@@ -25,4 +25,9 @@
     <ProjectReference Include="..\NodeEditorAvalonia.Model\NodeEditorAvalonia.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Avalonia" Version="11.0.0-preview7" />
+    <PackageReference Update="Avalonia.Xaml.Behaviors" Version="11.0.0-preview7" />
+  </ItemGroup>
+
 </Project>
