@@ -14,7 +14,7 @@
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:IEditor">
 
-        <ListBox Items="{Binding Templates}"
+        <ListBox ItemsSource="{Binding Templates}"
                  Background="Transparent">
           <ListBox.Resources>
             <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />

@@ -12,7 +12,7 @@
     <Setter Property="Template">
       <ControlTemplate x:DataType="m:IDrawingNode">
         <ItemsControl Name="PART_ConnectorsItemsControl"
-                      Items="{Binding Connectors}" 
+                      ItemsSource="{Binding Connectors}" 
                       Width="{Binding Width}" 
                       Height="{Binding Height}"
                       Background="Transparent"
