@@ -204,16 +204,17 @@ public partial class MainViewViewModel : ViewModelBase
                     DataContext = Editor.Drawing
                 };
 
-                var root = new ExportRoot(true, control)
+                var root = new ExportRoot()
                 {
                     Width = Editor.Drawing.Width,
-                    Height = Editor.Drawing.Height
+                    Height = Editor.Drawing.Height,
+                    Child = control
                 };
 
                 root.ApplyTemplate();
                 root.InvalidateMeasure();
                 root.InvalidateArrange();
-                root.LayoutManager.ExecuteLayoutPass();
+                root.UpdateLayout();
 
                 var size = new Size(Editor.Drawing.Width, Editor.Drawing.Height);
 

@@ -26,7 +26,7 @@ internal static class ExportRenderer
                 null);
             if (drawingContext is { })
             {
-                ImmediateRenderer.Render(target, drawingContext);
+                // TODO: ImmediateRenderer.Render(target, drawingContext);
             }
         }
     }

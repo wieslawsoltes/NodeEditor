@@ -253,11 +253,8 @@ internal static class HitTestHelper
         }
 
         var selectedRect = new Rect();
-
-        if (itemsControl.GetVisualRoot() is TopLevel topLevel)
-        {
-            topLevel.LayoutManager.ExecuteLayoutPass();
-        }
+        
+        itemsControl.UpdateLayout();
 
         var selectedNodes = drawingNode.GetSelectedNodes();
         var selectedConnectors = drawingNode.GetSelectedConnectors();
