@@ -1,4 +1,21 @@
-﻿<Style xmlns="https://github.com/avaloniaui"
+﻿<!--
+  NodeEditor A node editor control for Avalonia.
+  Copyright (C) 2023  Wiesław Šoltés
+  
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU Affero General Public License for more details.
+  
+  You should have received a copy of the GNU Affero General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+<Style xmlns="https://github.com/avaloniaui"
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Style.Resources>
     <StreamGeometry x:Key="NewIcon">M26 8.57813L26 32L0 32L0 0L17.4219 0L26 8.57813ZM18 8L22.5781 8L18 3.42188L18 8ZM24 30L24 10L16 10L16 2L2 2L2 30L24 30Z</StreamGeometry>
