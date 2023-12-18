@@ -24,8 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeEditorAvalonia.UnitTest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{E85732E3-2435-4AAE-A650-A4F7B40E6331}"
 ProjectSection(SolutionItems) = preProject
+	LICENSE.TXT = LICENSE.TXT
 	README.md = README.md
-	COPYING = COPYING
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "git", "git", "{75D70D48-0039-4249-9F9D-5BD2AAF5234D}"
