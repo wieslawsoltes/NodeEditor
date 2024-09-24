@@ -11,11 +11,11 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
+      <ControlTemplate>
         <ItemsControl Name="PART_NodesItemsControl"
-                      ItemsSource="{Binding Nodes}" 
-                      Width="{Binding Width}" 
-                      Height="{Binding Height}"
+                      ItemsSource="{TemplateBinding NodesSource}" 
+                      Width="{TemplateBinding Width}" 
+                      Height="{TemplateBinding Height}"
                       Background="Transparent"
                       ClipToBounds="False">
           <i:Interaction.Behaviors>

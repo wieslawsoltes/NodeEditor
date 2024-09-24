@@ -20,7 +20,10 @@
                                Width="{Binding Width}"
                                Height="{Binding Height}"
                                ConnectorsSource="{Binding Connectors}" />
-          <controls:Nodes Name="PART_Nodes" />
+          <controls:Nodes Name="PART_Nodes"
+                          Width="{Binding Width}"
+                          Height="{Binding Height}"
+                          NodesSource="{Binding Nodes}" />
         </Panel>
       </ControlTemplate>
     </Setter>
