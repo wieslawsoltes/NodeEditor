@@ -2,7 +2,7 @@
 using System.Globalization;
 using Avalonia;
 using Avalonia.Data.Converters;
-using NodeEditor.Model;
+using NodeEditor.Controls;
 
 namespace NodeEditor.Converters;
 
@@ -12,7 +12,7 @@ public class PinMarginConverter : IValueConverter
 
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is IPin pin)
+        if (value is Pin pin)
         {
             return new Thickness(-pin.Width / 2, -pin.Height / 2, 0, 0);
         }

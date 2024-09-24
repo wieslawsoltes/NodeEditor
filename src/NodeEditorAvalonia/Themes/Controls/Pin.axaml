@@ -7,52 +7,49 @@
 
   <ControlTheme x:Key="{x:Type controls:Pin}" TargetType="controls:Pin">
 
-    <Setter Property="Width" Value="{Binding Width}" x:DataType="m:IPin" />
-    <Setter Property="Height" Value="{Binding Height}" x:DataType="m:IPin" />
-    <Setter Property="Margin" Value="{Binding Converter={x:Static converters:PinMarginConverter.Instance}}" x:DataType="m:IPin" />
+    <Setter Property="Margin" Value="{Binding $self, Converter={x:Static converters:PinMarginConverter.Instance}}" />
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IPin">
+      <ControlTemplate>
         <Ellipse Name="PART_Pin"
-                 Width="{Binding Width}"
-                 Height="{Binding Height}" />
+                 Width="{TemplateBinding Width}"
+                 Height="{TemplateBinding Height}" />
       </ControlTemplate>
     </Setter>
 
     <Setter Property="(ToolTip.Tip)">
       <Template>
-        <TextBlock Text="{Binding Name}" 
-                   x:DataType="m:IPin" />
+        <TextBlock Text="{Binding $parent[controls:Pin].Id}" />
       </Template>
     </Setter>
 
     <Setter Property="ContextFlyout">
       <Setter.Value>
-        <Flyout x:DataType="m:IPin">
+        <Flyout>
           <DockPanel>
             <Label Content="Name:" DockPanel.Dock="Top" />
-            <TextBox Text="{Binding Name}" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding $parent[controls:Pin].Id}" DockPanel.Dock="Top" />
             <Label Content="Alignment:" DockPanel.Dock="Top" />
             <RadioButton Content="None"
                          GroupName="Alignment"
-                         IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.None}}"
+                         IsChecked="{Binding $parent[controls:Pin].Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.None}}"
                          DockPanel.Dock="Top" />
             <RadioButton Content="Left"
                          GroupName="Alignment"
-                         IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Left}}"
+                         IsChecked="{Binding $parent[controls:Pin].Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Left}}"
                          DockPanel.Dock="Top" />
             <RadioButton Content="Right"
                          GroupName="Alignment"
-                         IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Right}}"
+                         IsChecked="{Binding $parent[controls:Pin].Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Right}}"
                          DockPanel.Dock="Top" />
             <RadioButton Content="Top"
                          GroupName="Alignment"
-                         IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Top}}"
+                         IsChecked="{Binding $parent[controls:Pin].Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Top}}"
                          DockPanel.Dock="Top" />
             <RadioButton Content="Bottom"
                          GroupName="Alignment"
-                         IsChecked="{Binding Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Bottom}}"
+                         IsChecked="{Binding $parent[controls:Pin].Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Bottom}}"
                          DockPanel.Dock="Top" />
           </DockPanel>
         </Flyout>

@@ -40,7 +40,11 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:IPin">
-              <controls:Pin Name="PART_Pin" />
+              <controls:Pin Name="PART_Pin"
+                            Width="{Binding Width}"
+                            Height="{Binding Height}"
+                            Alignment="{Binding Alignment}"
+                            Id="{Binding Name}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
