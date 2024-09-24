@@ -98,7 +98,7 @@ public sealed class DrawingNodeEditor
 
     public bool CanConnectPin(IPin pin)
     {
-        if (!_node.EnableMultiplePinConnections)
+        if (!_node.Settings.EnableMultiplePinConnections)
         {
             if (IsPinConnected(pin))
             {

@@ -120,8 +120,20 @@ public class NodeFactory : INodeFactory
 
     public IDrawingNode CreateDrawing(string? name = null)
     {
+        var settings = new DrawingNodeSettingsViewModel()
+        {
+            EnableMultiplePinConnections = true,
+            EnableSnap = true,
+            SnapX = 15.0,
+            SnapY = 15.0,
+            EnableGrid = true,
+            GridCellWidth = 15.0,
+            GridCellHeight = 15.0
+        };
+
         var drawing = new DrawingNodeViewModel
         {
+            Settings = settings,
             Name = name,
             X = 0,
             Y = 0,
@@ -129,13 +141,6 @@ public class NodeFactory : INodeFactory
             Height = 600,
             Nodes = new ObservableCollection<INode>(),
             Connectors = new ObservableCollection<IConnector>(),
-            EnableMultiplePinConnections = true,
-            EnableSnap = true,
-            SnapX = 15.0,
-            SnapY = 15.0,
-            EnableGrid = true,
-            GridCellWidth = 15.0,
-            GridCellHeight = 15.0,
         };
 
         return drawing;

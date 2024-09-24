@@ -8,21 +8,26 @@ internal static class Demo
 {
     public static IDrawingNode CreateDemoDrawing()
     {
-        var drawing = new DrawingNodeViewModel
+        var settings = new DrawingNodeSettingsViewModel
         {
-            X = 0,
-            Y = 0,
-            Width = 900,
-            Height = 600,
-            Nodes = new ObservableCollection<INode>(),
-            Connectors = new ObservableCollection<IConnector>(),
             EnableMultiplePinConnections = true,
             EnableSnap = true,
             SnapX = 15.0,
             SnapY = 15.0,
             EnableGrid = true,
             GridCellWidth = 15.0,
-            GridCellHeight = 15.0,
+            GridCellHeight = 15.0
+        };
+
+        var drawing = new DrawingNodeViewModel
+        {
+            Settings = settings,
+            X = 0,
+            Y = 0,
+            Width = 900,
+            Height = 600,
+            Nodes = new ObservableCollection<INode>(),
+            Connectors = new ObservableCollection<IConnector>()
         };
 
         var rectangle0 = NodeFactory.CreateRectangle(30, 30, 60, 60, "rect0");

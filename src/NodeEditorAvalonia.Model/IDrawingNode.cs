@@ -6,12 +6,8 @@ namespace NodeEditor.Model;
 
 public delegate void SelectionChangedEventHandler(object? sender, EventArgs e);
 
-public interface IDrawingNode : INode
+public interface IDrawingNodeSettings
 {
-    public event SelectionChangedEventHandler? SelectionChanged;
-    IList<INode>? Nodes { get; set; }
-    IList<IConnector>? Connectors { get; set; }
-    ISet<INode>? GetSelectedNodes();
     bool EnableMultiplePinConnections { get; set; }
     bool EnableSnap { get; set; }
     double SnapX { get; set; }
@@ -19,6 +15,15 @@ public interface IDrawingNode : INode
     bool EnableGrid { get; set; }
     double GridCellWidth { get; set; }
     double GridCellHeight { get; set; }
+}
+
+public interface IDrawingNode : INode
+{
+    public event SelectionChangedEventHandler? SelectionChanged;
+    IList<INode>? Nodes { get; set; }
+    IList<IConnector>? Connectors { get; set; }
+    IDrawingNodeSettings Settings { get; set; }
+    ISet<INode>? GetSelectedNodes();
     ICommand CutNodesCommand { get; }
     ICommand CopyNodesCommand { get; }
     ICommand PasteNodesCommand { get; }

@@ -13,7 +13,7 @@
         <DockPanel>
           <!-- Snap -->
           <DockPanel DockPanel.Dock="Bottom">
-            <ToggleSwitch IsChecked="{Binding EnableSnap, FallbackValue=False}"
+            <ToggleSwitch IsChecked="{Binding Settings.EnableSnap, FallbackValue=False}"
                           OnContent="Snap On"
                           OffContent="Snap Off"
                           HorizontalAlignment="Left"
@@ -31,7 +31,7 @@
                        Margin="4,4,2,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{Binding SnapX, FallbackValue='1.0'}" />
+                       Text="{Binding Settings.SnapX, FallbackValue='1.0'}" />
               <Label Grid.Column="2" 
                      Content="SY"
                      Margin="6,0,6,0"
@@ -42,12 +42,12 @@
                        Margin="2,4,4,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{Binding SnapY, FallbackValue='1.0'}" />
+                       Text="{Binding Settings.SnapY, FallbackValue='1.0'}" />
             </Grid>
           </DockPanel>
           <!-- Grid -->
           <DockPanel DockPanel.Dock="Bottom">
-            <ToggleSwitch IsChecked="{Binding EnableGrid, FallbackValue=False}"
+            <ToggleSwitch IsChecked="{Binding Settings.EnableGrid, FallbackValue=False}"
                           OnContent="Grid On"
                           OffContent="Grid Off"
                           HorizontalAlignment="Left"
@@ -65,7 +65,7 @@
                        Margin="4,4,2,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{Binding GridCellWidth, FallbackValue='1.0'}" />
+                       Text="{Binding Settings.GridCellWidth, FallbackValue='1.0'}" />
               <Label Grid.Column="2" 
                      Content="CH"
                      Margin="6,0,6,0"
@@ -76,7 +76,7 @@
                        Margin="2,4,4,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{Binding GridCellHeight, FallbackValue='1.0'}" />
+                       Text="{Binding Settings.GridCellHeight, FallbackValue='1.0'}" />
             </Grid>
           </DockPanel>
           <!-- Width/Height -->

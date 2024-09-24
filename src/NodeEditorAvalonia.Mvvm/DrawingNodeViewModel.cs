@@ -7,6 +7,18 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Mvvm;
 
+[ObservableObject]
+public partial class DrawingNodeSettingsViewModel : IDrawingNodeSettings
+{
+    [ObservableProperty] private bool _enableMultiplePinConnections;
+    [ObservableProperty] private bool _enableSnap;
+    [ObservableProperty] private double _snapX;
+    [ObservableProperty] private double _snapY;
+    [ObservableProperty] private bool _enableGrid;
+    [ObservableProperty] private double _gridCellWidth;
+    [ObservableProperty] private double _gridCellHeight;
+}
+
 public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
 {
     private readonly DrawingNodeEditor _editor;
@@ -15,17 +27,13 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     private INodeSerializer? _serializer;
     [ObservableProperty] private IList<INode>? _nodes;
     [ObservableProperty] private IList<IConnector>? _connectors;
-    [ObservableProperty] private bool _enableMultiplePinConnections;
-    [ObservableProperty] private bool _enableSnap;
-    [ObservableProperty] private double _snapX;
-    [ObservableProperty] private double _snapY;
-    [ObservableProperty] private bool _enableGrid;
-    [ObservableProperty] private double _gridCellWidth;
-    [ObservableProperty] private double _gridCellHeight;
+    [ObservableProperty] private IDrawingNodeSettings _settings;
 
     public DrawingNodeViewModel()
     {
         _editor = new DrawingNodeEditor(this, DrawingNodeFactory.Instance);
+
+        _settings = new DrawingNodeSettingsViewModel();
 
         CutNodesCommand = new RelayCommand(CutNodes);
 
