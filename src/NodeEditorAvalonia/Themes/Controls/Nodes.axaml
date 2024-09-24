@@ -43,7 +43,11 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:INode">
-              <controls:Node Name="PART_Node" />
+              <controls:Node Name="PART_Node"
+                             Content="{Binding Content}"
+                             Width="{Binding Width}"
+                             Height="{Binding Height}"
+                             PinsSource="{Binding Pins}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>

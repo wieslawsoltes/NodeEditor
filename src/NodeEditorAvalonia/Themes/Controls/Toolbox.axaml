@@ -38,7 +38,11 @@
             <DataTemplate DataType="m:INodeTemplate">
               <DockPanel>
                 <Viewbox DockPanel.Dock="Left" Width="32" Height="32" DataContext="{Binding Preview}">
-                  <controls:Node IsHitTestVisible="False">
+                  <controls:Node IsHitTestVisible="False"
+                                 Content="{Binding Content}"
+                                 Width="{Binding Width}"
+                                 Height="{Binding Width}"
+                                 PinsSource="{Binding Pins}">
                     <controls:Node.Styles>
                       <Style Selector="controls|Pins /template/ ItemsControl#PART_PinsItemsControl">
                         <Setter Property="IsVisible" Value="False" />
