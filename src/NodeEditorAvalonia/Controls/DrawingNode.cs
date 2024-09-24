@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Collections;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 
@@ -6,6 +7,12 @@ namespace NodeEditor.Controls;
 
 public class DrawingNode : TemplatedControl
 {
+    public static readonly StyledProperty<IEnumerable?> NodesSourceProperty =
+        AvaloniaProperty.Register<DrawingNode, IEnumerable?>(nameof(NodesSource));
+
+    public static readonly StyledProperty<IEnumerable?> ConnectorsSourceProperty =
+        AvaloniaProperty.Register<DrawingNode, IEnumerable?>(nameof(ConnectorsSource));
+
     public static readonly StyledProperty<Control?> InputSourceProperty = 
         AvaloniaProperty.Register<DrawingNode, Control?>(nameof(InputSource));
 
@@ -29,6 +36,18 @@ public class DrawingNode : TemplatedControl
 
     public static readonly StyledProperty<double> GridCellHeightProperty = 
         AvaloniaProperty.Register<DrawingNode, double>(nameof(GridCellHeight));
+    
+    public IEnumerable? NodesSource
+    {
+        get => GetValue(NodesSourceProperty);
+        set => SetValue(NodesSourceProperty, value);
+    }
+
+    public IEnumerable? ConnectorsSource
+    {
+        get => GetValue(ConnectorsSourceProperty);
+        set => SetValue(ConnectorsSourceProperty, value);
+    }
 
     public Control? InputSource
     {

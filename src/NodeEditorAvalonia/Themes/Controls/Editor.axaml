@@ -54,13 +54,15 @@
                   </Panel.Transitions>
                   <controls:DrawingNode Name="PART_DrawingNode"
                                         Background="{DynamicResource DrawingBackground}"
+                                        Width="{Binding Width}"
+                                        Height="{Binding Height}"
+                                        NodesSource="{Binding Nodes}"
+                                        ConnectorsSource="{Binding Connectors}"
                                         InputSource="{Binding $parent[controls:Editor].ZoomControl}"
                                         AdornerCanvas="{Binding $parent[controls:Editor].AdornerCanvas}"
                                         ClipToBounds="False">
                     <controls:DrawingNode.Styles>
                       <Style Selector="controls|DrawingNode">
-                        <Setter Property="Width" Value="{Binding Width}" />
-                        <Setter Property="Height" Value="{Binding Height}" />
                         <Setter Property="EnableSnap" Value="{Binding Settings.EnableSnap}" />
                         <Setter Property="SnapX" Value="{Binding Settings.SnapX}" />
                         <Setter Property="SnapY" Value="{Binding Settings.SnapY}" />

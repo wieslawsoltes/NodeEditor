@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     x:CompileBindings="True">
 
@@ -10,20 +9,20 @@
     <Setter Property="Background" Value="Transparent" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
+      <ControlTemplate>
         <Panel Name="PART_Panel" 
                Background="{TemplateBinding Background}">
           <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
                                   GridCellWidth="{TemplateBinding GridCellWidth}"
                                   GridCellHeight="{TemplateBinding GridCellHeight}" />
           <controls:Connectors Name="PART_Connectors"
-                               Width="{Binding Width}"
-                               Height="{Binding Height}"
-                               ConnectorsSource="{Binding Connectors}" />
+                               Width="{TemplateBinding Width}"
+                               Height="{TemplateBinding Height}"
+                               ConnectorsSource="{TemplateBinding ConnectorsSource}" />
           <controls:Nodes Name="PART_Nodes"
-                          Width="{Binding Width}"
-                          Height="{Binding Height}"
-                          NodesSource="{Binding Nodes}" />
+                          Width="{TemplateBinding Width}"
+                          Height="{TemplateBinding Height}"
+                          NodesSource="{TemplateBinding NodesSource}" />
         </Panel>
       </ControlTemplate>
     </Setter>
