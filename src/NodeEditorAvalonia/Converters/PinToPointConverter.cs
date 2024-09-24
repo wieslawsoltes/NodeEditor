@@ -17,7 +17,7 @@ public class PinToPointConverter : IValueConverter
             var x = pin.X;
             var y = pin.Y;
 
-            if (pin.Parent is { })
+            if (pin.Parent is not null)
             {
                 x += pin.Parent.X;
                 y += pin.Parent.Y;

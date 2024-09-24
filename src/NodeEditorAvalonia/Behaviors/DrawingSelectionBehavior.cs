@@ -74,7 +74,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         {
             DeInitialize();
 
-            if (AssociatedObject is { } && InputSource is { })
+            if (AssociatedObject is not null && InputSource is not null)
             {
                 Initialize();
             }
@@ -126,7 +126,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void DeInitialize()
     {
-        if (_inputSource is { })
+        if (_inputSource is not null)
         {
             _inputSource.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
             _inputSource.RemoveHandler(InputElement.PointerReleasedEvent, Released);
@@ -135,7 +135,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             _inputSource = null;
         }
 
-        if (_drawingNode is { })
+        if (_drawingNode is not null)
         {
             _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
         }
@@ -148,7 +148,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
     {
         base.OnAttached();
 
-        if (AssociatedObject is { } && InputSource is { })
+        if (AssociatedObject is not null && InputSource is not null)
         {
             Initialize();
         }
@@ -168,7 +168,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             return;
         }
         
-        if (_drawingNode is { })
+        if (_drawingNode is not null)
         {
             var selectedNodes = _drawingNode.GetSelectedNodes();
             var selectedConnectors = _drawingNode.GetSelectedConnectors();
@@ -177,7 +177,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             {
                 _selectedRect = HitTestHelper.CalculateSelectedRect(AssociatedObject);
 
-                if (_selectedAdorner is { })
+                if (_selectedAdorner is not null)
                 {
                     RemoveSelected();
                 }
@@ -304,7 +304,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
                 if (e.Source is not Control { DataContext: not IDrawingNode })
                 {
-                    if (_selectionAdorner is { })
+                    if (_selectionAdorner is not null)
                     {
                         HitTestHelper.FindSelectedNodes(AssociatedObject, _selectionAdorner.GetRect());
                     }

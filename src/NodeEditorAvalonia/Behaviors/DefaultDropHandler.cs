@@ -11,14 +11,14 @@ public abstract class DefaultDropHandler : AvaloniaObject, IDropHandler
     public static Point GetPosition(Control? relativeTo, DragEventArgs e)
     {
         relativeTo ??= e.Source as Control;
-        var point = relativeTo is { } ? e.GetPosition(relativeTo) : new Point();
+        var point = relativeTo is not null ? e.GetPosition(relativeTo) : new Point();
         return point;
     }
 
     public static Point GetPositionScreen(object? sender, DragEventArgs e)
     {
         var relativeTo = e.Source as Control;
-        var point = relativeTo is { } ? e.GetPosition(relativeTo) : new Point();
+        var point = relativeTo is not null ? e.GetPosition(relativeTo) : new Point();
         var visual = relativeTo as Visual;
         if (visual is null)
         {

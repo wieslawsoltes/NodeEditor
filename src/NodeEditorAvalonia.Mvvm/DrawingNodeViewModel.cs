@@ -71,7 +71,7 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     public void NotifyDeselectedNodes()
     {
         var selectedNodes = GetSelectedNodes();
-        if (selectedNodes is { })
+        if (selectedNodes is not null)
         {
             foreach (var selectedNode in selectedNodes)
             {
@@ -83,7 +83,7 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode
     public void NotifyDeselectedConnectors()
     {
         var selectedConnectors = GetSelectedConnectors();
-        if (selectedConnectors is { })
+        if (selectedConnectors is not null)
         {
             foreach (var selectedConnector in selectedConnectors)
             {

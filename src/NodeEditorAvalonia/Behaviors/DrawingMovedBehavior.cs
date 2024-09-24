@@ -12,7 +12,7 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
     {
         base.OnAttached();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is not null)
         {
             AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
         }
@@ -22,7 +22,7 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
     {
         base.OnDetaching();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is not null)
         {
             AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
         }

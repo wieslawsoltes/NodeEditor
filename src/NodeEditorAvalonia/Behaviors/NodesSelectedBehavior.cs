@@ -18,45 +18,49 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
     {
         base.OnAttached();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is null)
         {
-            _dataContextDisposable = AssociatedObject
-                .GetObservable(StyledElement.DataContextProperty)
-                .Subscribe(x =>
-                {
-                    if (x is IDrawingNode drawingNode)
-                    {
-                        if (_drawingNode == drawingNode)
-                        {
-                            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
-                        }
-
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-
-                        _drawingNode = drawingNode;
-                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
-                    }
-                    else
-                    {
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-                    }
-                });
+            return;
         }
+
+        _dataContextDisposable = AssociatedObject
+            .GetObservable(StyledElement.DataContextProperty)
+            .Subscribe(x =>
+            {
+                if (x is IDrawingNode drawingNode)
+                {
+                    if (_drawingNode == drawingNode)
+                    {
+                        _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+                    }
+
+                    RemoveSelectedPseudoClasses(AssociatedObject);
+
+                    _drawingNode = drawingNode;
+                    _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
+                }
+                else
+                {
+                    RemoveSelectedPseudoClasses(AssociatedObject);
+                }
+            });
     }
 
     protected override void OnDetaching()
     {
         base.OnDetaching();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is null)
         {
-            if (_drawingNode is { })
-            {
-                _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
-            }
-
-            _dataContextDisposable?.Dispose();
+            return;
         }
+
+        if (_drawingNode is not null)
+        {
+            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+        }
+
+        _dataContextDisposable?.Dispose();
     }
 
 
@@ -67,19 +71,21 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        if (_drawingNode is { })
+        if (_drawingNode is null)
         {
-            var selectedNodes = _drawingNode.GetSelectedNodes();
-            var selectedConnectors = _drawingNode.GetSelectedConnectors();
+            return;
+        }
 
-            if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
-            {
-                AddSelectedPseudoClasses(AssociatedObject);
-            }
-            else
-            {
-                RemoveSelectedPseudoClasses(AssociatedObject);
-            }
+        var selectedNodes = _drawingNode.GetSelectedNodes();
+        var selectedConnectors = _drawingNode.GetSelectedConnectors();
+
+        if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
+        {
+            AddSelectedPseudoClasses(AssociatedObject);
+        }
+        else
+        {
+            RemoveSelectedPseudoClasses(AssociatedObject);
         }
     }
 
@@ -94,24 +100,18 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
             var selectedNodes = _drawingNode?.GetSelectedNodes();
 
-            if (_drawingNode is { } && selectedNodes is { } && selectedNodes.Contains(node))
+            if (_drawingNode is not null && selectedNodes is not null && selectedNodes.Contains(node))
             {
-                if (containerControl is ContentPresenter { Child: { } child })
+                if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
                 {
-                    if (child.Classes is IPseudoClasses pseudoClasses)
-                    {
-                        pseudoClasses.Add(":selected");
-                    }
+                    pseudoClasses.Add(":selected");
                 }
             }
             else
             {
-                if (containerControl is ContentPresenter { Child: { } child })
+                if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
                 {
-                    if (child.Classes is IPseudoClasses pseudoClasses)
-                    {
-                        pseudoClasses.Remove(":selected");
-                    }
+                    pseudoClasses.Remove(":selected");
                 }
             }
         }
@@ -126,12 +126,9 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
                 continue;
             }
 
-            if (containerControl is ContentPresenter { Child: { } child })
+            if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
             {
-                if (child.Classes is IPseudoClasses pseudoClasses)
-                {
-                    pseudoClasses.Remove(":selected");
-                }
+                pseudoClasses.Remove(":selected");
             }
         }
     }

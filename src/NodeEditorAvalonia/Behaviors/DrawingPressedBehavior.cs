@@ -12,7 +12,7 @@ public class DrawingPressedBehavior : Behavior<ItemsControl>
     {
         base.OnAttached();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is not null)
         {
             AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
         }
@@ -22,7 +22,7 @@ public class DrawingPressedBehavior : Behavior<ItemsControl>
     {
         base.OnDetaching();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is not null)
         {
             AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
         }

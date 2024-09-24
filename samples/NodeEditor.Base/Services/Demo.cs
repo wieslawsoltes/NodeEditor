@@ -38,7 +38,7 @@ internal static class Demo
         rectangle1.Parent = drawing;
         drawing.Nodes.Add(rectangle1);
 
-        if (rectangle0.Pins?[1] is { } && rectangle1.Pins?[0] is { })
+        if (rectangle0.Pins?[1] is not null && rectangle1.Pins?[0] is not null)
         {
             var connector0 = NodeFactory.CreateConnector(rectangle0.Pins[1], rectangle1.Pins[0]);
             connector0.Parent = drawing;
@@ -69,21 +69,21 @@ internal static class Demo
         orGate0.Parent = drawing;
         drawing.Nodes.Add(orGate0);
 
-        if (signal0.Pins?[1] is { } && orGate0.Pins?[2] is { })
+        if (signal0.Pins?[1] is not null && orGate0.Pins?[2] is not null)
         {
             var connector0 = NodeFactory.CreateConnector(signal0.Pins[1], orGate0.Pins[2]);
             connector0.Parent = drawing;
             drawing.Connectors.Add(connector0);
         }
 
-        if (signal1.Pins?[1] is { } && orGate0.Pins?[0] is { })
+        if (signal1.Pins?[1] is not null && orGate0.Pins?[0] is not null)
         {
             var connector0 = NodeFactory.CreateConnector(signal1.Pins[1], orGate0.Pins[0]);
             connector0.Parent = drawing;
             drawing.Connectors.Add(connector0);
         }
 
-        if (orGate0.Pins?[1] is { } && signal2.Pins?[0] is { })
+        if (orGate0.Pins?[1] is not null && signal2.Pins?[0] is not null)
         {
             var connector1 = NodeFactory.CreateConnector(orGate0.Pins[1], signal2.Pins[0]);
             connector1.Parent = drawing;

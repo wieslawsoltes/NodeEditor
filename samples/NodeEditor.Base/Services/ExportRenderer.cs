@@ -16,7 +16,7 @@ internal static class ExportRenderer
     {
         using var drawingContextImpl = DrawingContextHelper.WrapSkiaCanvas(canvas, new Vector(dpi, dpi));
         var platformDrawingContextType = typeof(DrawingContext).Assembly.GetType("Avalonia.Media.PlatformDrawingContext");
-        if (platformDrawingContextType is { })
+        if (platformDrawingContextType is not null)
         {
             var drawingContext = (DrawingContext?)Activator.CreateInstance(
                 platformDrawingContextType,
@@ -24,7 +24,7 @@ internal static class ExportRenderer
                 null,
                 new object?[] { drawingContextImpl, true }, 
                 null);
-            if (drawingContext is { })
+            if (drawingContext is not null)
             {
                 // TODO: ImmediateRenderer.Render(target, drawingContext);
             }
