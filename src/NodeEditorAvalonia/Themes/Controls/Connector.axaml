@@ -13,25 +13,25 @@
 
     <Setter Property="ContextFlyout">
       <Setter.Value>
-        <Flyout x:DataType="m:IConnector">
+        <Flyout>
           <DockPanel>
             <DockPanel DockPanel.Dock="Top">
               <Label Content="Orientation:" DockPanel.Dock="Top" />
               <RadioButton Content="Auto"
                            GroupName="Orientation"
-                           IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Auto}}"
+                           IsChecked="{TemplateBinding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Auto}}"
                            DockPanel.Dock="Top" />
               <RadioButton Content="Horizontal"
                            GroupName="Orientation"
-                           IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Horizontal}}"
+                           IsChecked="{TemplateBinding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Horizontal}}"
                            DockPanel.Dock="Top" />
               <RadioButton Content="Vertical"
                            GroupName="Orientation"
-                           IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
+                           IsChecked="{TemplateBinding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
                            DockPanel.Dock="Top" />
             </DockPanel>
             <Label Content="Offset:" DockPanel.Dock="Top" />
-            <TextBox Text="{Binding Offset}" DockPanel.Dock="Top" />
+            <TextBox Text="{TemplateBinding Offset}" DockPanel.Dock="Top" />
           </DockPanel>
         </Flyout>
       </Setter.Value>

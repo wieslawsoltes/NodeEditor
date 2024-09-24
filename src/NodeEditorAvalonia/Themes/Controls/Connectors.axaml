@@ -28,7 +28,8 @@
               <controls:Connector Name="PART_Connector"
                                   StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                                   EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
-                                  Offset="{Binding Offset}"/>
+                                  Offset="{Binding Offset}"
+                                  Orientation="{Binding Orientation}"/>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
