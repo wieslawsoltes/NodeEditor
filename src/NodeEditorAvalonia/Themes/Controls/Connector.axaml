@@ -19,19 +19,19 @@
               <Label Content="Orientation:" DockPanel.Dock="Top" />
               <RadioButton Content="Auto"
                            GroupName="Orientation"
-                           IsChecked="{TemplateBinding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Auto}}"
+                           IsChecked="{Binding $parent[controls:Connector].Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Auto}}"
                            DockPanel.Dock="Top" />
               <RadioButton Content="Horizontal"
                            GroupName="Orientation"
-                           IsChecked="{TemplateBinding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Horizontal}}"
+                           IsChecked="{Binding $parent[controls:Connector].Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Horizontal}}"
                            DockPanel.Dock="Top" />
               <RadioButton Content="Vertical"
                            GroupName="Orientation"
-                           IsChecked="{TemplateBinding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
+                           IsChecked="{Binding $parent[controls:Connector].Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
                            DockPanel.Dock="Top" />
             </DockPanel>
             <Label Content="Offset:" DockPanel.Dock="Top" />
-            <TextBox Text="{TemplateBinding Offset}" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding $parent[controls:Connector].Offset}" DockPanel.Dock="Top" />
           </DockPanel>
         </Flyout>
       </Setter.Value>
