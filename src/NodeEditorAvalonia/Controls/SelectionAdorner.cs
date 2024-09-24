@@ -53,8 +53,8 @@ public class SelectionAdorner : Control
     {
         base.Render(context);
 
+        const double thickness = 2.0;
         var brush = new ImmutableSolidColorBrush(new Color(0xFF, 0x00, 0x00, 0xFF), 0.3);
-        var thickness = 2.0;
         var pen = new ImmutablePen(
             new ImmutableSolidColorBrush(new Color(0xFF, 0x00, 0x00, 0xFF)),
             thickness);
