@@ -16,7 +16,10 @@
           <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
                                   GridCellWidth="{TemplateBinding GridCellWidth}"
                                   GridCellHeight="{TemplateBinding GridCellHeight}" />
-          <controls:Connectors Name="PART_Connectors" />
+          <controls:Connectors Name="PART_Connectors"
+                               Width="{Binding Width}"
+                               Height="{Binding Height}"
+                               ConnectorsSource="{Binding Connectors}" />
           <controls:Nodes Name="PART_Nodes" />
         </Panel>
       </ControlTemplate>
