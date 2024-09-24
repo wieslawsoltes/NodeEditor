@@ -16,7 +16,7 @@ internal class EnumToCheckedConverter : IValueConverter
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is bool and true)
+        if (value is true)
         {
             return parameter;
         }
