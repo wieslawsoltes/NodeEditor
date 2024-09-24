@@ -91,7 +91,9 @@
       <DockPanel Grid.Column="0"
                  IsVisible="{Binding IsToolboxVisible}">
         <Separator Classes="vertical" DockPanel.Dock="Right" />
-        <editor:Toolbox DataContext="{Binding Editor}" Name="ToolboxView" />
+        <editor:Toolbox TemplatesSource="{Binding Editor.Templates}"
+                        Drawing="{Binding Editor.Drawing}"
+                        Name="ToolboxView" />
       </DockPanel>
       <ThemeVariantScope RequestedThemeVariant="Light"
                          Grid.Column="1" Grid.ColumnSpan="2">
