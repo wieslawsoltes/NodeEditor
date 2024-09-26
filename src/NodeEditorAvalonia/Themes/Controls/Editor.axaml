@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
                     xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
@@ -17,13 +16,13 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
+      <ControlTemplate>
         <Panel>
           <Panel Background="{DynamicResource EditorBackground}" />
           <!--<Panel Background="{DynamicResource EditorCheckerBoard}" />-->
           <ScrollViewer VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto">
-            <controls:NodeZoomBorder Name="PART_ZoomBorder"
+            <controls:NodeZoomBorder x:Name="PART_ZoomBorder"
                                      Stretch="None"
                                      ZoomSpeed="1.2"
                                      EnableConstrains="False"
@@ -33,44 +32,41 @@
                                      VerticalAlignment="Stretch" 
                                      HorizontalAlignment="Stretch">
               <i:Interaction.Behaviors>
-                <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
+                <idd:ContextDropBehavior Context="{TemplateBinding DataContext}">
                   <idd:ContextDropBehavior.Handler>
-                    <behaviors:DrawingDropHandler RelativeTo="{Binding $parent[controls:Editor].DrawingNode}" />
+                    <behaviors:DrawingDropHandler RelativeTo="{Binding #PART_DrawingNode}" />
                   </idd:ContextDropBehavior.Handler>
                 </idd:ContextDropBehavior>
               </i:Interaction.Behaviors>
               <Border Background="Transparent"
-                      Width="{Binding Width}"
-                      Height="{Binding Height}"
+                      Width="{TemplateBinding DrawingWidth}"
+                      Height="{TemplateBinding DrawingHeight}"
                       BoxShadow="4 11 30 1 #3F000000"
                       ZIndex="-1">
                 <Panel Background="Transparent"
-                       Width="{Binding Width}"
-                       Height="{Binding Height}">
+                       Width="{TemplateBinding DrawingWidth}"
+                       Height="{TemplateBinding DrawingHeight}">
                   <Panel.Transitions>
                     <Transitions>
                       <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
                     </Transitions>
                   </Panel.Transitions>
-                  <controls:DrawingNode Name="PART_DrawingNode"
+                  <controls:DrawingNode x:Name="PART_DrawingNode"
                                         Background="{DynamicResource DrawingBackground}"
-                                        Width="{Binding Width}"
-                                        Height="{Binding Height}"
-                                        NodesSource="{Binding Nodes}"
-                                        ConnectorsSource="{Binding Connectors}"
-                                        InputSource="{Binding $parent[controls:Editor].ZoomControl}"
-                                        AdornerCanvas="{Binding $parent[controls:Editor].AdornerCanvas}"
+                                        Width="{TemplateBinding DrawingWidth}"
+                                        Height="{TemplateBinding DrawingHeight}"
+                                        NodesSource="{TemplateBinding NodesSource}"
+                                        ConnectorsSource="{TemplateBinding ConnectorsSource}"
+                                        InputSource="{TemplateBinding ZoomControl}"
+                                        AdornerCanvas="{TemplateBinding AdornerCanvas}"
+                                        EnableSnap="{TemplateBinding EnableSnap}"
+                                        SnapX="{TemplateBinding SnapX}"
+                                        SnapY="{TemplateBinding SnapY}"
+                                        EnableGrid="{TemplateBinding EnableGrid}"
+                                        GridCellWidth="{TemplateBinding GridCellWidth}"
+                                        GridCellHeight="{TemplateBinding GridCellHeight}"
                                         ClipToBounds="False">
-                    <controls:DrawingNode.Styles>
-                      <Style Selector="controls|DrawingNode">
-                        <Setter Property="EnableSnap" Value="{Binding Settings.EnableSnap}" />
-                        <Setter Property="SnapX" Value="{Binding Settings.SnapX}" />
-                        <Setter Property="SnapY" Value="{Binding Settings.SnapY}" />
-                        <Setter Property="EnableGrid" Value="{Binding Settings.EnableGrid}" />
-                        <Setter Property="GridCellWidth" Value="{Binding Settings.GridCellWidth}" />
-                        <Setter Property="GridCellHeight" Value="{Binding Settings.GridCellHeight}" />
-                        </Style>
-                    </controls:DrawingNode.Styles>
+                    <!-- TODO:
                     <controls:DrawingNode.ContextFlyout>
                       <MenuFlyout>
                         <MenuItem Header="Cu_t" 
@@ -114,11 +110,12 @@
                         </MenuItem>
                       </MenuFlyout>
                     </controls:DrawingNode.ContextFlyout>
+                    -->
                   </controls:DrawingNode>
-                  <Canvas Name="PART_AdornerCanvas"
+                  <Canvas x:Name="PART_AdornerCanvas"
                           Background="Transparent"
-                          Width="{Binding Width}"
-                          Height="{Binding Height}"
+                          Width="{TemplateBinding DrawingWidth}"
+                          Height="{TemplateBinding DrawingHeight}"
                           IsHitTestVisible="False"/>
                 </Panel>
               </Border>

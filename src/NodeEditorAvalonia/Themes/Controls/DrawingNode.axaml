@@ -10,16 +10,16 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <Panel Name="PART_Panel" 
+        <Panel x:Name="PART_Panel" 
                Background="{TemplateBinding Background}">
           <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
                                   GridCellWidth="{TemplateBinding GridCellWidth}"
                                   GridCellHeight="{TemplateBinding GridCellHeight}" />
-          <controls:Connectors Name="PART_Connectors"
+          <controls:Connectors x:Name="PART_Connectors"
                                Width="{TemplateBinding Width}"
                                Height="{TemplateBinding Height}"
                                ConnectorsSource="{TemplateBinding ConnectorsSource}" />
-          <controls:Nodes Name="PART_Nodes"
+          <controls:Nodes x:Name="PART_Nodes"
                           Width="{TemplateBinding Width}"
                           Height="{TemplateBinding Height}"
                           NodesSource="{TemplateBinding NodesSource}" />

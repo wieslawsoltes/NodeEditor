@@ -12,7 +12,7 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <ItemsControl Name="PART_NodesItemsControl"
+        <ItemsControl x:Name="PART_NodesItemsControl"
                       ItemsSource="{TemplateBinding NodesSource}" 
                       Width="{TemplateBinding Width}" 
                       Height="{TemplateBinding Height}"
@@ -43,7 +43,7 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:INode">
-              <controls:Node Name="PART_Node"
+              <controls:Node x:Name="PART_Node"
                              Content="{Binding Content}"
                              Width="{Binding Width}"
                              Height="{Binding Height}"

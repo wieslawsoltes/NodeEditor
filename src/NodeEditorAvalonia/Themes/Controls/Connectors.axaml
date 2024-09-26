@@ -11,7 +11,7 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <ItemsControl Name="PART_ConnectorsItemsControl"
+        <ItemsControl x:Name="PART_ConnectorsItemsControl"
                       ItemsSource="{TemplateBinding ConnectorsSource}" 
                       Width="{TemplateBinding Width}" 
                       Height="{TemplateBinding Height}"
@@ -25,7 +25,7 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:IConnector">
-              <controls:Connector Name="PART_Connector"
+              <controls:Connector x:Name="PART_Connector"
                                   StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                                   EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
                                   Offset="{Binding Offset}"

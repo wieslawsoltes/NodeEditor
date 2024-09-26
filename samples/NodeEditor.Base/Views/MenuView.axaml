@@ -18,7 +18,7 @@
   <DockPanel VerticalAlignment="Top">
 
     <!-- Settings -->
-    
+
     <Button Margin="0" 
             Padding="6,7,6,7" 
             Background="Transparent"
@@ -27,7 +27,16 @@
             DockPanel.Dock="Right">
       <Button.Flyout>
         <Flyout ShowMode="TransientWithDismissOnPointerMoveAway" Placement="BottomEdgeAlignedRight">
-          <editor:DrawingNodeProperties DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"/>
+          <editor:DrawingNodeProperties 
+            DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"
+            EnableSnap="{Binding Settings.EnableSnap, FallbackValue={x:False}}"
+            SnapX="{Binding Settings.SnapX, FallbackValue='1.0'}"
+            SnapY="{Binding Settings.SnapY, FallbackValue='1.0'}"
+            EnableGrid="{Binding Settings.EnableGrid, FallbackValue={x:False}}"
+            GridCellWidth="{Binding Settings.GridCellWidth, FallbackValue='1.0'}"
+            GridCellHeight="{Binding Settings.GridCellHeight, FallbackValue={x:False}}"
+            DrawingWidth="{Binding Width, FallbackValue=''}"
+            DrawingHeight="{Binding Height, FallbackValue=''}" />
         </Flyout>
       </Button.Flyout>
       <PathIcon Width="16" Height="16"

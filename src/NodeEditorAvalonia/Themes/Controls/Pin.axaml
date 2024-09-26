@@ -12,7 +12,7 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <Ellipse Name="PART_Pin"
+        <Ellipse x:Name="PART_Pin"
                  Width="{TemplateBinding Width}"
                  Height="{TemplateBinding Height}" />
       </ControlTemplate>

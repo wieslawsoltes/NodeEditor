@@ -22,7 +22,7 @@
                             RecognizesAccessKey="True"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
-          <controls:Pins Name="PART_Pins"
+          <controls:Pins x:Name="PART_Pins"
                          Width="{TemplateBinding Width}"
                          Height="{TemplateBinding Height}"
                          PinsSource="{TemplateBinding PinsSource}"/>
