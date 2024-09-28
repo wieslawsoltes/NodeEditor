@@ -1,19 +1,28 @@
-﻿using Avalonia.Controls.Presenters;
+﻿using Avalonia;
+using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
-using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
 
 public class PinPressedBehavior : Behavior<ContentPresenter>
 {
+    public static readonly StyledProperty<IPin?> PinSourceProperty =
+        AvaloniaProperty.Register<PinPressedBehavior, IPin?>(nameof(PinSource));
+
+    public IPin? PinSource
+    {
+        get => GetValue(PinSourceProperty);
+        set => SetValue(PinSourceProperty, value);
+    }
+
     protected override void OnAttached()
     {
         base.OnAttached();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is not null)
         {
             AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
         }
@@ -23,7 +32,7 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
     {
         base.OnDetaching();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is not null)
         {
             AssociatedObject.RemoveHandler(InputElement.PointerPressedEvent, Pressed);
         }

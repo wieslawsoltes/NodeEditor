@@ -10,11 +10,11 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
-        <ItemsControl Name="PART_ConnectorsItemsControl"
-                      ItemsSource="{Binding Connectors}" 
-                      Width="{Binding Width}" 
-                      Height="{Binding Height}"
+      <ControlTemplate>
+        <ItemsControl x:Name="PART_ConnectorsItemsControl"
+                      ItemsSource="{Binding DrawingSource.Connectors, RelativeSource={RelativeSource TemplatedParent}}" 
+                      Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
+                      Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
                       Background="Transparent"
                       IsHitTestVisible="False"
                       ClipToBounds="False">
@@ -25,10 +25,12 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:IConnector">
-              <controls:Connector Name="PART_Connector"
+              <controls:Connector x:Name="PART_Connector"
                                   StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                                   EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
-                                  Offset="{Binding Offset}"/>
+                                  Offset="{Binding Offset}"
+                                  Orientation="{Binding Orientation}"
+                                  ConnectorSource="{Binding .}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>

@@ -49,7 +49,7 @@ public partial class MainViewViewModel : ViewModelBase
     [RelayCommand]
     private void New()
     {
-        if (Editor?.Factory is { })
+        if (Editor?.Factory is not null)
         {
             Editor.Drawing = Editor.Factory.CreateDrawing();
             Editor.Drawing.SetSerializer(Editor.Serializer);
@@ -118,7 +118,7 @@ public partial class MainViewViewModel : ViewModelBase
                 using var reader = new StreamReader(stream);
                 var json = await reader.ReadToEndAsync();
                 var drawing = Editor.Serializer.Deserialize<DrawingNodeViewModel?>(json);
-                if (drawing is { })
+                if (drawing is not null)
                 {
                     Editor.Drawing = drawing;
                     Editor.Drawing.SetSerializer(Editor.Serializer);
@@ -201,10 +201,12 @@ public partial class MainViewViewModel : ViewModelBase
             {
                 var control = new DrawingNode
                 {
-                    DataContext = Editor.Drawing
+                    DrawingSource = Editor.Drawing,
+                    Width = Editor.Drawing.Width,
+                    Height = Editor.Drawing.Height,
                 };
 
-                var root = new ExportRoot()
+                var root = new ExportRoot
                 {
                     Width = Editor.Drawing.Width,
                     Height = Editor.Drawing.Height,

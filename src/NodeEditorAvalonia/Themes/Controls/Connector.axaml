@@ -11,9 +11,9 @@
     <Setter Property="StrokeThickness" Value="2" />
     <Setter Property="ClipToBounds" Value="False" />
 
-    <Setter Property="ContextFlyout">
+    <Setter Property="ContextFlyout" x:DataType="controls:Connector">
       <Setter.Value>
-        <Flyout x:DataType="m:IConnector">
+        <Flyout>
           <DockPanel>
             <DockPanel DockPanel.Dock="Top">
               <Label Content="Orientation:" DockPanel.Dock="Top" />

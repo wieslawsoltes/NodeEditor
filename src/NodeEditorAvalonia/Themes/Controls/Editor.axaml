@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
                     xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
@@ -17,13 +16,13 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
+      <ControlTemplate>
         <Panel>
           <Panel Background="{DynamicResource EditorBackground}" />
           <!--<Panel Background="{DynamicResource EditorCheckerBoard}" />-->
           <ScrollViewer VerticalScrollBarVisibility="Auto"
                         HorizontalScrollBarVisibility="Auto">
-            <controls:NodeZoomBorder Name="PART_ZoomBorder"
+            <controls:NodeZoomBorder x:Name="PART_ZoomBorder"
                                      Stretch="None"
                                      ZoomSpeed="1.2"
                                      EnableConstrains="False"
@@ -33,78 +32,70 @@
                                      VerticalAlignment="Stretch" 
                                      HorizontalAlignment="Stretch">
               <i:Interaction.Behaviors>
-                <idd:ContextDropBehavior Context="{Binding FallbackValue={x:Null}}">
+                <idd:ContextDropBehavior Context="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}">
                   <idd:ContextDropBehavior.Handler>
-                    <behaviors:DrawingDropHandler RelativeTo="{Binding $parent[controls:Editor].DrawingNode}" />
+                    <behaviors:DrawingDropHandler DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  RelativeTo="{Binding #PART_DrawingNode}" />
                   </idd:ContextDropBehavior.Handler>
                 </idd:ContextDropBehavior>
               </i:Interaction.Behaviors>
               <Border Background="Transparent"
-                      Width="{Binding Width}"
-                      Height="{Binding Height}"
+                      Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                      Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                       BoxShadow="4 11 30 1 #3F000000"
                       ZIndex="-1">
                 <Panel Background="Transparent"
-                       Width="{Binding Width}"
-                       Height="{Binding Height}">
+                       Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                       Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}">
                   <Panel.Transitions>
                     <Transitions>
                       <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
                     </Transitions>
                   </Panel.Transitions>
-                  <controls:DrawingNode Name="PART_DrawingNode"
+                  <controls:DrawingNode x:Name="PART_DrawingNode"
                                         Background="{DynamicResource DrawingBackground}"
-                                        InputSource="{Binding $parent[controls:Editor].ZoomControl}"
-                                        AdornerCanvas="{Binding $parent[controls:Editor].AdornerCanvas}"
+                                        DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                        InputSource="{Binding ZoomControl, RelativeSource={RelativeSource TemplatedParent}}"
+                                        AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}"
                                         ClipToBounds="False">
-                    <controls:DrawingNode.Styles>
-                      <Style Selector="controls|DrawingNode">
-                        <Setter Property="Width" Value="{Binding Width}" />
-                        <Setter Property="Height" Value="{Binding Height}" />
-                        <Setter Property="EnableSnap" Value="{Binding EnableSnap}" />
-                        <Setter Property="SnapX" Value="{Binding SnapX}" />
-                        <Setter Property="SnapY" Value="{Binding SnapY}" />
-                        <Setter Property="EnableGrid" Value="{Binding EnableGrid}" />
-                        <Setter Property="GridCellWidth" Value="{Binding GridCellWidth}" />
-                        <Setter Property="GridCellHeight" Value="{Binding GridCellHeight}" />
-                        </Style>
-                    </controls:DrawingNode.Styles>
                     <controls:DrawingNode.ContextFlyout>
                       <MenuFlyout>
                         <MenuItem Header="Cu_t" 
-                                  Command="{Binding CutNodesCommand}" 
+                                  Command="{Binding DrawingSource.CutNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCutIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="_Copy" 
-                                  Command="{Binding CopyNodesCommand}" 
+                                  Command="{Binding DrawingSource.CopyNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+C, iOS=CMD+C, Default=Ctrl+C}">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorCopyIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="_Paste" 
-                                  Command="{Binding PasteNodesCommand}" 
+                                  Command="{Binding DrawingSource.PasteNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+V, iOS=CMD+V, Default=Ctrl+V}">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource EditorPasteIcon}" />
                           </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="D_uplicate" 
-                                  Command="{Binding DuplicateNodesCommand}" 
+                                  Command="{Binding DrawingSource.DuplicateNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
                         <MenuItem Header="-" />
                         <MenuItem Header="Select _All" 
-                                  Command="{Binding SelectAllNodesCommand, FallbackValue={x:Null}}" 
+                                  Command="{Binding DrawingSource.SelectAllNodesCommand, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" 
                                   InputGesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
                         <MenuItem Header="De_select All" 
-                                  Command="{Binding DeselectAllNodesCommand, FallbackValue={x:Null}}" 
+                                  Command="{Binding DrawingSource.DeselectAllNodesCommand, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" 
                                   InputGesture="Escape" />
                         <MenuItem Header="-" />
                         <MenuItem Header="_Delete" 
-                                  Command="{Binding DeleteNodesCommand}" 
+                                  Command="{Binding DrawingSource.DeleteNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="Delete">
                           <MenuItem.Icon>
                             <PathIcon Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
@@ -113,10 +104,10 @@
                       </MenuFlyout>
                     </controls:DrawingNode.ContextFlyout>
                   </controls:DrawingNode>
-                  <Canvas Name="PART_AdornerCanvas"
+                  <Canvas x:Name="PART_AdornerCanvas"
                           Background="Transparent"
-                          Width="{Binding Width}"
-                          Height="{Binding Height}"
+                          Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                          Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                           IsHitTestVisible="False"/>
                 </Panel>
               </Border>

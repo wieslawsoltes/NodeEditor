@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     x:CompileBindings="True">
 
@@ -10,14 +9,22 @@
     <Setter Property="Background" Value="Transparent" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
-        <Panel Name="PART_Panel" 
+      <ControlTemplate>
+        <Panel x:Name="PART_Panel" 
                Background="{TemplateBinding Background}">
-          <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
-                                  GridCellWidth="{TemplateBinding GridCellWidth}"
-                                  GridCellHeight="{TemplateBinding GridCellHeight}" />
-          <controls:Connectors Name="PART_Connectors" />
-          <controls:Nodes Name="PART_Nodes" />
+          <controls:GridDecorator EnableGrid="{Binding DrawingSource.Settings.EnableGrid, RelativeSource={RelativeSource TemplatedParent}}"
+                                  GridCellWidth="{Binding DrawingSource.Settings.GridCellWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                  GridCellHeight="{Binding DrawingSource.Settings.GridCellHeight, RelativeSource={RelativeSource TemplatedParent}}" />
+          <controls:Connectors x:Name="PART_Connectors"
+                               Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                               Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                               DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
+          <controls:Nodes x:Name="PART_Nodes"
+                          Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                          Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                          DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                          InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}"
+                          AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}" />
         </Panel>
       </ControlTemplate>
     </Setter>

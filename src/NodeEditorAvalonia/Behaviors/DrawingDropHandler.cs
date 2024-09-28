@@ -9,8 +9,17 @@ namespace NodeEditor.Behaviors;
 
 public class DrawingDropHandler : DefaultDropHandler
 {
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
+        AvaloniaProperty.Register<DrawingDropHandler, IDrawingNode?>(nameof(DrawingSource));
+
     public static readonly StyledProperty<Control?> RelativeToProperty =
         AvaloniaProperty.Register<DrawingDropHandler, Control?>(nameof(RelativeTo));
+
+    public IDrawingNode? DrawingSource
+    {
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
+    }
 
     public Control? RelativeTo
     {
@@ -27,9 +36,9 @@ public class DrawingDropHandler : DefaultDropHandler
         }
         var point = GetPosition(relativeTo, e);
 
-        if (relativeTo is DrawingNode drawingNode)
+        if (relativeTo is DrawingNode { DrawingSource: not null } drawingNode)
         {
-            point = SnapHelper.Snap(point, drawingNode.SnapX, drawingNode.SnapY, drawingNode.EnableSnap);
+            point = SnapHelper.Snap(point, drawingNode.DrawingSource.Settings.SnapX, drawingNode.DrawingSource.Settings.SnapY, drawingNode.DrawingSource.Settings.EnableSnap);
         }
 
         if (e.Data.Contains(DataFormats.Text))
@@ -38,7 +47,7 @@ public class DrawingDropHandler : DefaultDropHandler
 
             if (bExecute)
             {
-                if (text is { })
+                if (text is not null)
                 {
                     // TODO: text
                 }
@@ -58,7 +67,7 @@ public class DrawingDropHandler : DefaultDropHandler
                     if (bExecute)
                     {
                         var node = drawing.Clone(template.Template);
-                        if (node is { })
+                        if (node is not null)
                         {
                             node.Parent = drawing;
                             node.Move(point.X, point.Y);

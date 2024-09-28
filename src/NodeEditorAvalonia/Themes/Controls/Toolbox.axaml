@@ -12,9 +12,9 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IEditor">
+      <ControlTemplate>
 
-        <ListBox ItemsSource="{Binding Templates}"
+        <ListBox ItemsSource="{Binding TemplatesSource, RelativeSource={RelativeSource TemplatedParent}}"
                  Background="Transparent">
           <ListBox.Resources>
             <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
@@ -28,7 +28,7 @@
                 <i:BehaviorCollectionTemplate>
                   <i:BehaviorCollection>
                     <idd:ContextDragBehavior />
-                    <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding Drawing}" />
+                    <behaviors:InsertTemplateOnDoubleTappedBehavior />
                   </i:BehaviorCollection>
                 </i:BehaviorCollectionTemplate>
               </Setter>
@@ -38,7 +38,11 @@
             <DataTemplate DataType="m:INodeTemplate">
               <DockPanel>
                 <Viewbox DockPanel.Dock="Left" Width="32" Height="32" DataContext="{Binding Preview}">
-                  <controls:Node IsHitTestVisible="False">
+                  <controls:Node IsHitTestVisible="False"
+                                 Content="{Binding Content}"
+                                 Width="{Binding Width}"
+                                 Height="{Binding Width}"
+                                 NodeSource="{Binding .}">
                     <controls:Node.Styles>
                       <Style Selector="controls|Pins /template/ ItemsControl#PART_PinsItemsControl">
                         <Setter Property="IsVisible" Value="False" />

@@ -8,10 +8,7 @@ public partial class MenuView : UserControl
 {
     public static readonly StyledProperty<NodeZoomBorder?> ZoomControlProperty = 
         AvaloniaProperty.Register<MenuView, NodeZoomBorder?>(nameof(ZoomControl));
-
-    public static readonly StyledProperty<DrawingNode?> DrawingNodeProperty = 
-        AvaloniaProperty.Register<MenuView, DrawingNode?>(nameof(DrawingNode));
-
+    
     public MenuView()
     {
         InitializeComponent();
@@ -21,11 +18,5 @@ public partial class MenuView : UserControl
     {
         get => GetValue(ZoomControlProperty);
         set => SetValue(ZoomControlProperty, value);
-    }
-
-    public DrawingNode? DrawingNode
-    {
-        get => GetValue(DrawingNodeProperty);
-        set => SetValue(DrawingNodeProperty, value);
     }
 }

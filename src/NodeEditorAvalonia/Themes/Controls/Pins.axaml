@@ -11,11 +11,11 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:INode">
-        <ItemsControl Name="PART_PinsItemsControl"
-                      ItemsSource="{Binding Pins}"
-                      Width="{Binding Width}"
-                      Height="{Binding Height}"
+      <ControlTemplate>
+        <ItemsControl x:Name="PART_PinsItemsControl"
+                      ItemsSource="{Binding NodeSource.Pins, RelativeSource={RelativeSource TemplatedParent}}"
+                      Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                      Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                       ClipToBounds="False">
           <ItemsControl.Styles>
             <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:IPin">
@@ -40,7 +40,12 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:IPin">
-              <controls:Pin Name="PART_Pin" />
+              <controls:Pin x:Name="PART_Pin"
+                            Width="{Binding Width}"
+                            Height="{Binding Height}"
+                            Alignment="{Binding Alignment}"
+                            Id="{Binding Name}"
+                            PinSource="{Binding .}"/>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>

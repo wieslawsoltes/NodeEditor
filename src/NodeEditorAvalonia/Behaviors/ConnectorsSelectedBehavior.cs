@@ -4,13 +4,21 @@ using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Reactive;
 using Avalonia.Xaml.Interactivity;
-using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
 
 public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
 {
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
+        AvaloniaProperty.Register<ConnectorsSelectedBehavior, IDrawingNode?>(nameof(DrawingSource));
+
+    public IDrawingNode? DrawingSource
+    {
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
+    }
+
     private IDisposable? _dataContextDisposable;
     private IDrawingNode? _drawingNode;
 
@@ -18,69 +26,75 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
     {
         base.OnAttached();
 
-        if (AssociatedObject is { })
+        if (AssociatedObject is null)
         {
-            _dataContextDisposable = AssociatedObject
-                .GetObservable(StyledElement.DataContextProperty)
-                .Subscribe(new AnonymousObserver<object?>(
-                    x =>
-                    {
-                        if (x is IDrawingNode drawingNode)
-                        {
-                            if (_drawingNode == drawingNode)
-                            {
-                                _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
-                            }
-
-                            RemoveSelectedPseudoClasses(AssociatedObject);
-
-                            _drawingNode = drawingNode;
-
-                            _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
-                        }
-                        else
-                        {
-                            RemoveSelectedPseudoClasses(AssociatedObject);
-                        }
-                    }));
+            return;
         }
+
+        _dataContextDisposable = AssociatedObject
+            .GetObservable(StyledElement.DataContextProperty)
+            .Subscribe(new AnonymousObserver<object?>(
+                x =>
+                {
+                    if (x is IDrawingNode drawingNode)
+                    {
+                        if (_drawingNode == drawingNode)
+                        {
+                            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+                        }
+
+                        RemoveSelectedPseudoClasses(AssociatedObject);
+
+                        _drawingNode = drawingNode;
+
+                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
+                    }
+                    else
+                    {
+                        RemoveSelectedPseudoClasses(AssociatedObject);
+                    }
+                }));
     }
 
     protected override void OnDetaching()
     {
         base.OnDetaching();
 
-        if (AssociatedObject is { })
-        {
-            if (_drawingNode is { })
-            {
-                _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
-            }
-
-            _dataContextDisposable?.Dispose();
-        }
-    }
-
-    private void DrawingNode_SelectionChanged(object? sender, EventArgs e)
-    {
-        if (AssociatedObject?.DataContext is not IDrawingNode)
+        if (AssociatedObject is null)
         {
             return;
         }
 
-        if (_drawingNode is { })
+        if (_drawingNode is not null)
         {
-            var selectedNodes = _drawingNode.GetSelectedNodes();
-            var selectedConnectors = _drawingNode.GetSelectedConnectors();
+            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+        }
 
-            if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
-            {
-                AddSelectedPseudoClasses(AssociatedObject);
-            }
-            else
-            {
-                RemoveSelectedPseudoClasses(AssociatedObject);
-            }
+        _dataContextDisposable?.Dispose();
+    }
+
+    private void DrawingNode_SelectionChanged(object? sender, EventArgs e)
+    {
+        if (DrawingSource is not IDrawingNode)
+        {
+            return;
+        }
+
+        if (_drawingNode is null)
+        {
+            return;
+        }
+
+        var selectedNodes = _drawingNode.GetSelectedNodes();
+        var selectedConnectors = _drawingNode.GetSelectedConnectors();
+
+        if (selectedNodes is { Count: > 0 } || selectedConnectors is { Count: > 0 })
+        {
+            AddSelectedPseudoClasses(AssociatedObject);
+        }
+        else
+        {
+            RemoveSelectedPseudoClasses(AssociatedObject);
         }
     }
 
@@ -95,24 +109,18 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
 
             var selectedConnectors = _drawingNode?.GetSelectedConnectors();
 
-            if (_drawingNode is { } && selectedConnectors is { } && selectedConnectors.Contains(connector))
+            if (_drawingNode is not null && selectedConnectors is not null && selectedConnectors.Contains(connector))
             {
-                if (containerControl is ContentPresenter { Child: { } child })
+                if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
                 {
-                    if (child.Classes is IPseudoClasses pseudoClasses)
-                    {
-                        pseudoClasses.Add(":selected");
-                    }
+                    pseudoClasses.Add(":selected");
                 }
             }
             else
             {
-                if (containerControl is ContentPresenter { Child: { } child })
+                if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
                 {
-                    if (child.Classes is IPseudoClasses pseudoClasses)
-                    {
-                        pseudoClasses.Remove(":selected");
-                    }
+                    pseudoClasses.Remove(":selected");
                 }
             }
         }
@@ -127,12 +135,9 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
                 continue;
             }
 
-            if (containerControl is ContentPresenter { Child: { } child })
+            if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
             {
-                if (child.Classes is IPseudoClasses pseudoClasses)
-                {
-                    pseudoClasses.Remove(":selected");
-                }
+                pseudoClasses.Remove(":selected");
             }
         }
     }

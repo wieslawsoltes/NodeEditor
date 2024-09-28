@@ -47,7 +47,7 @@ internal static class HitTestHelper
 
         var p0X = start.X;
         var p0Y = start.Y;
-        if (start.Parent is { })
+        if (start.Parent is not null)
         {
             p0X += start.Parent.X;
             p0Y += start.Parent.Y; 
@@ -55,7 +55,7 @@ internal static class HitTestHelper
 
         var p3X = end.X;
         var p3Y = end.Y;
-        if (end.Parent is { })
+        if (end.Parent is not null)
         {
             p3X += end.Parent.X;
             p3Y += end.Parent.Y; 
@@ -104,7 +104,7 @@ internal static class HitTestHelper
 
         var p0X = start.X;
         var p0Y = start.Y;
-        if (start.Parent is { })
+        if (start.Parent is not null)
         {
             p0X += start.Parent.X;
             p0Y += start.Parent.Y; 
@@ -112,7 +112,7 @@ internal static class HitTestHelper
 
         var p3X = end.X;
         var p3Y = end.Y;
-        if (end.Parent is { })
+        if (end.Parent is not null)
         {
             p3X += end.Parent.X;
             p3Y += end.Parent.Y; 
@@ -167,13 +167,8 @@ internal static class HitTestHelper
             new Point(bottomRightX, bottomRightY));
     }
 
-    public static void FindSelectedNodes(ItemsControl? itemsControl, Rect rect)
+    public static void FindSelectedNodes(IDrawingNode drawingNode, ItemsControl? itemsControl, Rect rect)
     {
-        if (itemsControl?.DataContext is not IDrawingNode drawingNode)
-        {
-            return;
-        }
-
         drawingNode.NotifyDeselectedNodes();
         drawingNode.NotifyDeselectedConnectors();
         drawingNode.SetSelectedNodes(null);
@@ -245,13 +240,8 @@ internal static class HitTestHelper
         }
     }
 
-    public static Rect CalculateSelectedRect(ItemsControl? itemsControl)
+    public static Rect CalculateSelectedRect(IDrawingNode drawingNode, ItemsControl? itemsControl)
     {
-        if (itemsControl?.DataContext is not IDrawingNode drawingNode)
-        {
-            return default;
-        }
-
         var selectedRect = new Rect();
         
         itemsControl.UpdateLayout();

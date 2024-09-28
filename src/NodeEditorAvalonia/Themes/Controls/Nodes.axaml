@@ -11,24 +11,20 @@
     <Setter Property="ClipToBounds" Value="False" />
 
     <Setter Property="Template">
-      <ControlTemplate x:DataType="m:IDrawingNode">
-        <ItemsControl Name="PART_NodesItemsControl"
-                      ItemsSource="{Binding Nodes}" 
-                      Width="{Binding Width}" 
-                      Height="{Binding Height}"
+      <ControlTemplate>
+        <ItemsControl x:Name="PART_NodesItemsControl"
+                      ItemsSource="{Binding DrawingSource.Nodes, RelativeSource={RelativeSource TemplatedParent}}" 
+                      Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
+                      Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
                       Background="Transparent"
                       ClipToBounds="False">
           <i:Interaction.Behaviors>
-            <behaviors:NodesSelectedBehavior />
-            <!-- TODO: Fix using $parent[controls:DrawingNode] -->
-            <behaviors:DrawingSelectionBehavior InputSource="{Binding $parent[controls:DrawingNode].InputSource}" 
-                                                AdornerCanvas="{Binding $parent[controls:DrawingNode].AdornerCanvas}" 
-                                                EnableSnap="{Binding $parent[controls:DrawingNode].EnableSnap}" 
-                                                SnapX="{Binding $parent[controls:DrawingNode].SnapX}" 
-                                                SnapY="{Binding $parent[controls:DrawingNode].SnapY}" 
-                                                x:CompileBindings="False" />
-            <behaviors:DrawingPressedBehavior />
-            <behaviors:DrawingMovedBehavior />
+            <behaviors:NodesSelectedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
+            <behaviors:DrawingSelectionBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}" />
+            <behaviors:DrawingPressedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
+            <behaviors:DrawingMovedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
           </i:Interaction.Behaviors>
           <ItemsControl.Styles>
             <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
@@ -43,7 +39,11 @@
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
             <DataTemplate DataType="m:INode">
-              <controls:Node Name="PART_Node" />
+              <controls:Node x:Name="PART_Node"
+                             Content="{Binding Content}"
+                             Width="{Binding Width}"
+                             Height="{Binding Height}"
+                             NodeSource="{Binding .}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
