@@ -1,17 +1,18 @@
 using System.Collections;
 using Avalonia;
 using Avalonia.Controls.Primitives;
+using NodeEditor.Model;
 
 namespace NodeEditor.Controls;
 
 public class Connectors : TemplatedControl
 {
-    public static readonly StyledProperty<IEnumerable?> ConnectorsSourceProperty =
-        AvaloniaProperty.Register<Connectors, IEnumerable?>(nameof(ConnectorsSource));
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
+        AvaloniaProperty.Register<Connectors, IDrawingNode?>(nameof(DrawingSource));
     
-    public IEnumerable? ConnectorsSource
+    public IDrawingNode? DrawingSource
     {
-        get => GetValue(ConnectorsSourceProperty);
-        set => SetValue(ConnectorsSourceProperty, value);
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
     }
 }

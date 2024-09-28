@@ -11,7 +11,7 @@
     <Setter Property="StrokeThickness" Value="2" />
     <Setter Property="ClipToBounds" Value="False" />
 
-    <Setter Property="ContextFlyout">
+    <Setter Property="ContextFlyout" x:DataType="controls:Connector">
       <Setter.Value>
         <Flyout>
           <DockPanel>
@@ -19,19 +19,19 @@
               <Label Content="Orientation:" DockPanel.Dock="Top" />
               <RadioButton Content="Auto"
                            GroupName="Orientation"
-                           IsChecked="{Binding $parent[controls:Connector].Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Auto}}"
+                           IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Auto}}"
                            DockPanel.Dock="Top" />
               <RadioButton Content="Horizontal"
                            GroupName="Orientation"
-                           IsChecked="{Binding $parent[controls:Connector].Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Horizontal}}"
+                           IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Horizontal}}"
                            DockPanel.Dock="Top" />
               <RadioButton Content="Vertical"
                            GroupName="Orientation"
-                           IsChecked="{Binding $parent[controls:Connector].Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
+                           IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
                            DockPanel.Dock="Top" />
             </DockPanel>
             <Label Content="Offset:" DockPanel.Dock="Top" />
-            <TextBox Text="{Binding $parent[controls:Connector].Offset}" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding Offset}" DockPanel.Dock="Top" />
           </DockPanel>
         </Flyout>
       </Setter.Value>

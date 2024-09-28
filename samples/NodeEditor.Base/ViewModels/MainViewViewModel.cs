@@ -201,10 +201,12 @@ public partial class MainViewViewModel : ViewModelBase
             {
                 var control = new DrawingNode
                 {
-                    DataContext = Editor.Drawing
+                    DrawingSource = Editor.Drawing,
+                    Width = Editor.Drawing.Width,
+                    Height = Editor.Drawing.Height,
                 };
 
-                var root = new ExportRoot()
+                var root = new ExportRoot
                 {
                     Width = Editor.Drawing.Width,
                     Height = Editor.Drawing.Height,

@@ -13,9 +13,9 @@
     <Setter Property="Template">
       <ControlTemplate>
         <ItemsControl x:Name="PART_PinsItemsControl"
-                      ItemsSource="{TemplateBinding PinsSource}"
-                      Width="{TemplateBinding Width}"
-                      Height="{TemplateBinding Height}"
+                      ItemsSource="{Binding NodeSource.Pins, RelativeSource={RelativeSource TemplatedParent}}"
+                      Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                      Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                       ClipToBounds="False">
           <ItemsControl.Styles>
             <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:IPin">
@@ -44,7 +44,8 @@
                             Width="{Binding Width}"
                             Height="{Binding Height}"
                             Alignment="{Binding Alignment}"
-                            Id="{Binding Name}" />
+                            Id="{Binding Name}"
+                            PinSource="{Binding .}"/>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>

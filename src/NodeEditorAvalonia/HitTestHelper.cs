@@ -167,13 +167,8 @@ internal static class HitTestHelper
             new Point(bottomRightX, bottomRightY));
     }
 
-    public static void FindSelectedNodes(ItemsControl? itemsControl, Rect rect)
+    public static void FindSelectedNodes(IDrawingNode drawingNode, ItemsControl? itemsControl, Rect rect)
     {
-        if (itemsControl?.DataContext is not IDrawingNode drawingNode)
-        {
-            return;
-        }
-
         drawingNode.NotifyDeselectedNodes();
         drawingNode.NotifyDeselectedConnectors();
         drawingNode.SetSelectedNodes(null);
@@ -245,13 +240,8 @@ internal static class HitTestHelper
         }
     }
 
-    public static Rect CalculateSelectedRect(ItemsControl? itemsControl)
+    public static Rect CalculateSelectedRect(IDrawingNode drawingNode, ItemsControl? itemsControl)
     {
-        if (itemsControl?.DataContext is not IDrawingNode drawingNode)
-        {
-            return default;
-        }
-
         var selectedRect = new Rect();
         
         itemsControl.UpdateLayout();

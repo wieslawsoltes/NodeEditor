@@ -11,6 +11,15 @@ namespace NodeEditor.Behaviors;
 
 public class NodesSelectedBehavior : Behavior<ItemsControl>
 {
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
+        AvaloniaProperty.Register<NodesSelectedBehavior, IDrawingNode?>(nameof(DrawingSource));
+
+    public IDrawingNode? DrawingSource
+    {
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
+    }
+
     private IDisposable? _dataContextDisposable;
     private IDrawingNode? _drawingNode;
 
@@ -66,7 +75,7 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
     private void DrawingNode_SelectionChanged(object? sender, EventArgs e)
     {
-        if (AssociatedObject?.DataContext is not IDrawingNode)
+        if (DrawingSource is not IDrawingNode)
         {
             return;
         }

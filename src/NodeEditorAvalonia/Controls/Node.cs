@@ -2,18 +2,19 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using NodeEditor.Model;
 
 namespace NodeEditor.Controls;
 
 [PseudoClasses(":selected")]
 public class Node : ContentControl
 {
-    public static readonly StyledProperty<IEnumerable?> PinsSourceProperty =
-        AvaloniaProperty.Register<Node, IEnumerable?>(nameof(PinsSource));
-    
-    public IEnumerable? PinsSource
+    public static readonly StyledProperty<INode?> NodeSourceProperty =
+        AvaloniaProperty.Register<Node, INode?>(nameof(NodeSource));
+
+    public INode? NodeSource
     {
-        get => GetValue(PinsSourceProperty);
-        set => SetValue(PinsSourceProperty, value);
+        get => GetValue(NodeSourceProperty);
+        set => SetValue(NodeSourceProperty, value);
     }
 }

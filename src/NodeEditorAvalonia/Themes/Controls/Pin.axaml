@@ -13,8 +13,8 @@
     <Setter Property="Template">
       <ControlTemplate>
         <Ellipse x:Name="PART_Pin"
-                 Width="{TemplateBinding Width}"
-                 Height="{TemplateBinding Height}" />
+                 Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}"
+                 Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}" />
       </ControlTemplate>
     </Setter>
 

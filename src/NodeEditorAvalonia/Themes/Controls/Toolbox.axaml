@@ -14,7 +14,7 @@
     <Setter Property="Template">
       <ControlTemplate>
 
-        <ListBox ItemsSource="{TemplateBinding TemplatesSource}"
+        <ListBox ItemsSource="{Binding TemplatesSource, RelativeSource={RelativeSource TemplatedParent}}"
                  Background="Transparent">
           <ListBox.Resources>
             <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
@@ -28,7 +28,7 @@
                 <i:BehaviorCollectionTemplate>
                   <i:BehaviorCollection>
                     <idd:ContextDragBehavior />
-                    <behaviors:InsertTemplateOnDoubleTappedBehavior Drawing="{Binding $parent[Toolbox].Drawing}" />
+                    <behaviors:InsertTemplateOnDoubleTappedBehavior />
                   </i:BehaviorCollection>
                 </i:BehaviorCollectionTemplate>
               </Setter>
@@ -42,7 +42,7 @@
                                  Content="{Binding Content}"
                                  Width="{Binding Width}"
                                  Height="{Binding Width}"
-                                 PinsSource="{Binding Pins}">
+                                 NodeSource="{Binding .}">
                     <controls:Node.Styles>
                       <Style Selector="controls|Pins /template/ ItemsControl#PART_PinsItemsControl">
                         <Setter Property="IsVisible" Value="False" />

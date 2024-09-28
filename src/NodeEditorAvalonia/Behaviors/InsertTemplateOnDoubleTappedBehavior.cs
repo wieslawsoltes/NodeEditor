@@ -8,13 +8,13 @@ namespace NodeEditor.Behaviors;
 
 public class InsertTemplateOnDoubleTappedBehavior : Behavior<ListBoxItem>
 {
-    public static readonly StyledProperty<IDrawingNode?> DrawingProperty = 
-        AvaloniaProperty.Register<InsertTemplateOnDoubleTappedBehavior, IDrawingNode?>(nameof(Drawing));
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty = 
+        AvaloniaProperty.Register<InsertTemplateOnDoubleTappedBehavior, IDrawingNode?>(nameof(DrawingSource));
 
-    public IDrawingNode? Drawing
+    public IDrawingNode? DrawingSource
     {
-        get => GetValue(DrawingProperty);
-        set => SetValue(DrawingProperty, value);
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
     }
 
     protected override void OnAttached()
@@ -37,7 +37,7 @@ public class InsertTemplateOnDoubleTappedBehavior : Behavior<ListBoxItem>
 
     private void DoubleTapped(object? sender, RoutedEventArgs args)
     {
-        if (AssociatedObject is { DataContext: INodeTemplate template } && Drawing is { } drawing)
+        if (AssociatedObject is { DataContext: INodeTemplate template } && DrawingSource is { } drawing)
         {
             var node = drawing.Clone(template.Template);
             if (node is not null)

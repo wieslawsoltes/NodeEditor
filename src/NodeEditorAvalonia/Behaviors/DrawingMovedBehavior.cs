@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
@@ -8,6 +9,15 @@ namespace NodeEditor.Behaviors;
 
 public class DrawingMovedBehavior : Behavior<ItemsControl>
 {
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
+        AvaloniaProperty.Register<DrawingMovedBehavior, IDrawingNode?>(nameof(DrawingSource));
+
+    public IDrawingNode? DrawingSource
+    {
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
+    }
+
     protected override void OnAttached()
     {
         base.OnAttached();
@@ -30,7 +40,7 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
 
     private void Moved(object? sender, PointerEventArgs e)
     {
-        if (AssociatedObject?.DataContext is not IDrawingNode drawingNode)
+        if (DrawingSource is not IDrawingNode drawingNode)
         {
             return;
         }

@@ -9,6 +9,9 @@ namespace NodeEditor.Controls;
 [PseudoClasses(":selected")]
 public class Connector : Shape
 {
+    public static readonly StyledProperty<IConnector?> ConnectorSourceProperty =
+        AvaloniaProperty.Register<Connector, IConnector?>(nameof(ConnectorSource));
+
     public static readonly StyledProperty<Point> StartPointProperty =
         AvaloniaProperty.Register<Connector, Point>(nameof(StartPoint));
 
@@ -29,6 +32,12 @@ public class Connector : Shape
             EndPointProperty, 
             OffsetProperty, 
             OrientationProperty);
+    }
+
+    public IConnector? ConnectorSource
+    {
+        get => GetValue(ConnectorSourceProperty);
+        set => SetValue(ConnectorSourceProperty, value);
     }
 
     public Point StartPoint

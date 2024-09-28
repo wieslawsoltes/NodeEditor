@@ -9,8 +9,8 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <Panel Width="{TemplateBinding Width}" 
-               Height="{TemplateBinding Height}">
+        <Panel Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}" 
+               Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}">
           <ContentPresenter x:Name="PART_ContentPresenter"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -23,9 +23,9 @@
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
           <controls:Pins x:Name="PART_Pins"
-                         Width="{TemplateBinding Width}"
-                         Height="{TemplateBinding Height}"
-                         PinsSource="{TemplateBinding PinsSource}"/>
+                         Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                         Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                         NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"/>
         </Panel>
       </ControlTemplate>
     </Setter>

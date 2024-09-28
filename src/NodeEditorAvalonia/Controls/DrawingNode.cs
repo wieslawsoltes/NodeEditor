@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using NodeEditor.Model;
 
 namespace NodeEditor.Controls;
 
 public class DrawingNode : TemplatedControl
 {
-    public static readonly StyledProperty<IEnumerable?> NodesSourceProperty =
-        AvaloniaProperty.Register<DrawingNode, IEnumerable?>(nameof(NodesSource));
-
-    public static readonly StyledProperty<IEnumerable?> ConnectorsSourceProperty =
-        AvaloniaProperty.Register<DrawingNode, IEnumerable?>(nameof(ConnectorsSource));
+    public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
+        AvaloniaProperty.Register<DrawingNode, IDrawingNode?>(nameof(DrawingSource));
 
     public static readonly StyledProperty<Control?> InputSourceProperty = 
         AvaloniaProperty.Register<DrawingNode, Control?>(nameof(InputSource));
@@ -19,34 +16,10 @@ public class DrawingNode : TemplatedControl
     public static readonly StyledProperty<Canvas?> AdornerCanvasProperty = 
         AvaloniaProperty.Register<DrawingNode, Canvas?>(nameof(AdornerCanvas));
 
-    public static readonly StyledProperty<bool> EnableSnapProperty = 
-        AvaloniaProperty.Register<DrawingNode, bool>(nameof(EnableSnap));
-
-    public static readonly StyledProperty<double> SnapXProperty = 
-        AvaloniaProperty.Register<DrawingNode, double>(nameof(SnapX), 1.0);
-
-    public static readonly StyledProperty<double> SnapYProperty = 
-        AvaloniaProperty.Register<DrawingNode, double>(nameof(SnapY), 1.0);
-
-    public static readonly StyledProperty<bool> EnableGridProperty = 
-        AvaloniaProperty.Register<DrawingNode, bool>(nameof(EnableGrid));
-
-    public static readonly StyledProperty<double> GridCellWidthProperty = 
-        AvaloniaProperty.Register<DrawingNode, double>(nameof(GridCellWidth));
-
-    public static readonly StyledProperty<double> GridCellHeightProperty = 
-        AvaloniaProperty.Register<DrawingNode, double>(nameof(GridCellHeight));
-    
-    public IEnumerable? NodesSource
+    public IDrawingNode? DrawingSource
     {
-        get => GetValue(NodesSourceProperty);
-        set => SetValue(NodesSourceProperty, value);
-    }
-
-    public IEnumerable? ConnectorsSource
-    {
-        get => GetValue(ConnectorsSourceProperty);
-        set => SetValue(ConnectorsSourceProperty, value);
+        get => GetValue(DrawingSourceProperty);
+        set => SetValue(DrawingSourceProperty, value);
     }
 
     public Control? InputSource
@@ -59,41 +32,5 @@ public class DrawingNode : TemplatedControl
     {
         get => GetValue(AdornerCanvasProperty);
         set => SetValue(AdornerCanvasProperty, value);
-    }
-
-    public bool EnableSnap
-    {
-        get => GetValue(EnableSnapProperty);
-        set => SetValue(EnableSnapProperty, value);
-    }
-
-    public double SnapX
-    {
-        get => GetValue(SnapXProperty);
-        set => SetValue(SnapXProperty, value);
-    }
-
-    public double SnapY
-    {
-        get => GetValue(SnapYProperty);
-        set => SetValue(SnapYProperty, value);
-    }
-
-    public bool EnableGrid
-    {
-        get => GetValue(EnableGridProperty);
-        set => SetValue(EnableGridProperty, value);
-    }
-
-    public double GridCellWidth
-    {
-        get => GetValue(GridCellWidthProperty);
-        set => SetValue(GridCellWidthProperty, value);
-    }
-
-    public double GridCellHeight
-    {
-        get => GetValue(GridCellHeightProperty);
-        set => SetValue(GridCellHeightProperty, value);
     }
 }

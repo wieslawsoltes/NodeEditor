@@ -12,9 +12,9 @@
     <Setter Property="Template">
       <ControlTemplate>
         <ItemsControl x:Name="PART_ConnectorsItemsControl"
-                      ItemsSource="{TemplateBinding ConnectorsSource}" 
-                      Width="{TemplateBinding Width}" 
-                      Height="{TemplateBinding Height}"
+                      ItemsSource="{Binding DrawingSource.Connectors, RelativeSource={RelativeSource TemplatedParent}}" 
+                      Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
+                      Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
                       Background="Transparent"
                       IsHitTestVisible="False"
                       ClipToBounds="False">
@@ -29,7 +29,8 @@
                                   StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
                                   EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
                                   Offset="{Binding Offset}"
-                                  Orientation="{Binding Orientation}" />
+                                  Orientation="{Binding Orientation}"
+                                  ConnectorSource="{Binding .}" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>

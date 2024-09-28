@@ -12,17 +12,19 @@
       <ControlTemplate>
         <Panel x:Name="PART_Panel" 
                Background="{TemplateBinding Background}">
-          <controls:GridDecorator EnableGrid="{TemplateBinding EnableGrid}"
-                                  GridCellWidth="{TemplateBinding GridCellWidth}"
-                                  GridCellHeight="{TemplateBinding GridCellHeight}" />
+          <controls:GridDecorator EnableGrid="{Binding DrawingSource.Settings.EnableGrid, RelativeSource={RelativeSource TemplatedParent}}"
+                                  GridCellWidth="{Binding DrawingSource.Settings.GridCellWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                  GridCellHeight="{Binding DrawingSource.Settings.GridCellHeight, RelativeSource={RelativeSource TemplatedParent}}" />
           <controls:Connectors x:Name="PART_Connectors"
-                               Width="{TemplateBinding Width}"
-                               Height="{TemplateBinding Height}"
-                               ConnectorsSource="{TemplateBinding ConnectorsSource}" />
+                               Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                               Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                               DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
           <controls:Nodes x:Name="PART_Nodes"
-                          Width="{TemplateBinding Width}"
-                          Height="{TemplateBinding Height}"
-                          NodesSource="{TemplateBinding NodesSource}" />
+                          Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                          Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                          DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                          InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}"
+                          AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}" />
         </Panel>
       </ControlTemplate>
     </Setter>

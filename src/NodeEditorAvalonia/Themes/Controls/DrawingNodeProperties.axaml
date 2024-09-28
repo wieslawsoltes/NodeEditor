@@ -12,7 +12,7 @@
         <DockPanel>
           <!-- Snap -->
           <DockPanel DockPanel.Dock="Bottom">
-            <ToggleSwitch IsChecked="{TemplateBinding EnableSnap}"
+            <ToggleSwitch IsChecked="{Binding EnableSnap, RelativeSource={RelativeSource TemplatedParent}}"
                           OnContent="Snap On"
                           OffContent="Snap Off"
                           HorizontalAlignment="Left"
@@ -30,7 +30,7 @@
                        Margin="4,4,2,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{TemplateBinding SnapX}" />
+                       Text="{Binding SnapX, RelativeSource={RelativeSource TemplatedParent}}" />
               <Label Grid.Column="2" 
                      Content="SY"
                      Margin="6,0,6,0"
@@ -41,12 +41,12 @@
                        Margin="2,4,4,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{TemplateBinding SnapY}" />
+                       Text="{Binding SnapY, RelativeSource={RelativeSource TemplatedParent}}" />
             </Grid>
           </DockPanel>
           <!-- Grid -->
           <DockPanel DockPanel.Dock="Bottom">
-            <ToggleSwitch IsChecked="{TemplateBinding EnableGrid}"
+            <ToggleSwitch IsChecked="{Binding EnableGrid, RelativeSource={RelativeSource TemplatedParent}}"
                           OnContent="Grid On"
                           OffContent="Grid Off"
                           HorizontalAlignment="Left"
@@ -64,7 +64,7 @@
                        Margin="4,4,2,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{TemplateBinding GridCellWidth}" />
+                       Text="{Binding GridCellWidth, RelativeSource={RelativeSource TemplatedParent}}" />
               <Label Grid.Column="2" 
                      Content="CH"
                      Margin="6,0,6,0"
@@ -75,7 +75,7 @@
                        Margin="2,4,4,4"
                        Padding="6"
                        TextAlignment="Left"
-                       Text="{TemplateBinding GridCellHeight}" />
+                       Text="{Binding GridCellHeight, RelativeSource={RelativeSource TemplatedParent}}" />
             </Grid>
           </DockPanel>
           <!-- Width/Height -->
@@ -90,7 +90,7 @@
                      Margin="4,4,2,4"
                      Padding="6"
                      TextAlignment="Left"
-                     Text="{TemplateBinding DrawingWidth}" />
+                     Text="{Binding DrawingWidth, RelativeSource={RelativeSource TemplatedParent}}" />
             <Label Grid.Column="2" 
                    Content="H"
                    Margin="6,0,6,0"
@@ -101,7 +101,7 @@
                      Margin="2,4,4,4"
                      Padding="6"
                      TextAlignment="Left"
-                     Text="{TemplateBinding DrawingHeight}" />
+                     Text="{Binding DrawingHeight, RelativeSource={RelativeSource TemplatedParent}}" />
           </Grid>
         </DockPanel>
       </ControlTemplate>

@@ -1,14 +1,23 @@
-﻿using Avalonia.Controls.Presenters;
+﻿using Avalonia;
+using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
-using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
 
 public class PinPressedBehavior : Behavior<ContentPresenter>
 {
+    public static readonly StyledProperty<IPin?> PinSourceProperty =
+        AvaloniaProperty.Register<PinPressedBehavior, IPin?>(nameof(PinSource));
+
+    public IPin? PinSource
+    {
+        get => GetValue(PinSourceProperty);
+        set => SetValue(PinSourceProperty, value);
+    }
+
     protected override void OnAttached()
     {
         base.OnAttached();

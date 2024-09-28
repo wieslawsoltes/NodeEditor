@@ -75,7 +75,6 @@
   </UserControl.KeyBindings>
   <DockPanel>
     <views:MenuView ZoomControl="{Binding #EditorControl.ZoomControl}"
-                    DrawingNode="{Binding #EditorControl.DrawingNode}"
                     x:CompileBindings="False"
                     DockPanel.Dock="Top" />
     <Separator IsVisible="False" Classes="horizontal" DockPanel.Dock="Top" />
@@ -92,23 +91,12 @@
                  IsVisible="{Binding IsToolboxVisible}">
         <Separator Classes="vertical" DockPanel.Dock="Right" />
         <editor:Toolbox TemplatesSource="{Binding Editor.Templates}"
-                        Drawing="{Binding Editor.Drawing}"
                         Name="ToolboxView" />
       </DockPanel>
       <ThemeVariantScope RequestedThemeVariant="Light"
                          Grid.Column="1" Grid.ColumnSpan="2">
         <editor:Editor Name="EditorControl" 
-                       DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"
-                       DrawingWidth="{Binding Width}"
-                       DrawingHeight="{Binding Height}"
-                       NodesSource="{Binding Nodes}"
-                       ConnectorsSource="{Binding Connectors}"
-                       EnableSnap="{Binding Settings.EnableSnap}"
-                       SnapX="{Binding Settings.SnapX}"
-                       SnapY="{Binding Settings.SnapY}"
-                       EnableGrid="{Binding Settings.EnableGrid}"
-                       GridCellWidth="{Binding Settings.GridCellWidth}"
-                       GridCellHeight="{Binding Settings.GridCellHeight}"/>
+                       DrawingSource="{Binding Editor.Drawing, FallbackValue={x:Null}}" />
       </ThemeVariantScope>
       <GridSplitter Grid.Column="1" Background="Transparent" />
     </Grid>
