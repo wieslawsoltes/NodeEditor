@@ -33,8 +33,8 @@
 
   <!-- Avalonia Behaviors -->
 
-  <assembly fullname="Avalonia.Xaml.Interactions" preserve="All" />
-  <assembly fullname="Avalonia.Xaml.Interactivity" preserve="All" />
+  <assembly fullname="Xaml.Behaviors.Interactions" preserve="All" />
+  <assembly fullname="Xaml.Behaviors.Interactivity" preserve="All" />
 
   <!-- PanAndZoom -->
 
