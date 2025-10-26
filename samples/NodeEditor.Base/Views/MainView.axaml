@@ -16,61 +16,61 @@
     <vm:MainViewViewModel />
   </Design.DataContext>
   <UserControl.KeyBindings>
-    <KeyBinding Command="{Binding NewCommand}" 
+    <KeyBinding Command="{Binding NewCommand}"
                 Gesture="{OnPlatform macOS=CMD+N, iOS=CMD+N, Default=Ctrl+N}" />
-    <KeyBinding Command="{Binding OpenCommand}" 
+    <KeyBinding Command="{Binding OpenCommand}"
                 Gesture="{OnPlatform macOS=CMD+O, iOS=CMD+O, Default=Ctrl+O}" />
-    <KeyBinding Command="{Binding SaveCommand}" 
+    <KeyBinding Command="{Binding SaveCommand}"
                 Gesture="{OnPlatform macOS=CMD+S, iOS=CMD+S, Default=Ctrl+S}" />
-    <KeyBinding Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}" />
-    <KeyBinding Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+C, iOS=CMD+C, Default=Ctrl+C}" />
-    <KeyBinding Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+V, iOS=CMD+V, Default=Ctrl+V}" />
-    <KeyBinding Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
-    <KeyBinding Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}"
                 Gesture="Delete" />
-    <KeyBinding Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
-    <KeyBinding Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}"
                 Gesture="Escape" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+D0, iOS=CMD+D0, Default=Ctrl+D0}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+NumPad0, iOS=CMD+NumPad0, Default=Ctrl+NumPad0}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}"
                 Gesture="Z" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+D1, iOS=CMD+D1, Default=Ctrl+D1}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+NumPad1, iOS=CMD+NumPad1, Default=Ctrl+NumPad1}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitCanvasCommand, FallbackValue={x:Null}}"
                 Gesture="X" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+D2, iOS=CMD+D2, Default=Ctrl+D2}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FitToFillCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+NumPad2, iOS=CMD+NumPad2, Default=Ctrl+NumPad2}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+D3, iOS=CMD+D3, Default=Ctrl+D3}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.FillCanvasCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+NumPad3, iOS=CMD+NumPad3, Default=Ctrl+NumPad3}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
                 Gesture="Add" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
                 Gesture="OemPlus" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+NumPad0, iOS=CMD+Add, Default=Ctrl+Add}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+OemPlus, iOS=CMD+OemPlus, Default=Ctrl+OemPlus}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
                 Gesture="Subtract" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
                 Gesture="OemMinus" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+Subtract, iOS=CMD+Subtract, Default=Ctrl+Subtract}" x:CompileBindings="False" />
-    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" 
+    <KeyBinding Command="{Binding #EditorControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}"
                 Gesture="{OnPlatform macOS=CMD+OemMinus, iOS=CMD+OemMinus, Default=Ctrl+OemMinus}" x:CompileBindings="False" />
   </UserControl.KeyBindings>
   <DockPanel>
@@ -95,7 +95,7 @@
       </DockPanel>
       <ThemeVariantScope RequestedThemeVariant="Light"
                          Grid.Column="1" Grid.ColumnSpan="2">
-        <editor:Editor Name="EditorControl" 
+        <editor:Editor Name="EditorControl"
                        DrawingSource="{Binding Editor.Drawing, FallbackValue={x:Null}}" />
       </ThemeVariantScope>
       <GridSplitter Grid.Column="1" Background="Transparent" />

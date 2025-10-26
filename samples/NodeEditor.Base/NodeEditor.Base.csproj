@@ -22,7 +22,7 @@
   <Import Project="..\..\build\Avalonia.props" />
   <Import Project="..\..\build\Avalonia.Diagnostics.props" Condition="'$(Configuration)' == 'Debug'" />
   <Import Project="..\..\build\Avalonia.Themes.Fluent.props" />
-  <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
+  <Import Project="..\..\build\Xaml.Behaviors.Avalonia.props" />
   <Import Project="..\..\build\Avalonia.Skia.props" />
   <Import Project="..\..\build\Newtonsoft.Json.props" />
 

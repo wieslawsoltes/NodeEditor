@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
     <IsPackable>True</IsPackable>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
@@ -18,8 +18,8 @@
   <Import Project="..\..\build\SourceLink.props" />
   <Import Project="..\..\build\ReferenceAssemblies.props" />
   <Import Project="..\..\build\Avalonia.props" />
-  <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
-  <Import Project="..\..\build\Avalonia.Controls.PanAndZoom.props" />
+  <Import Project="..\..\build\Xaml.Behaviors.Avalonia.props" />
+  <Import Project="..\..\build\PanAndZoom.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\NodeEditorAvalonia.Model\NodeEditorAvalonia.Model.csproj" />

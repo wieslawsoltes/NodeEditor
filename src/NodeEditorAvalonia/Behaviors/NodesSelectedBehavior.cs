@@ -34,7 +34,7 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
 
         _dataContextDisposable = AssociatedObject
             .GetObservable(StyledElement.DataContextProperty)
-            .Subscribe(x =>
+            .Subscribe(new AnonymousObserver<object?>(x =>
             {
                 if (x is IDrawingNode drawingNode)
                 {
@@ -52,7 +52,7 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
                 {
                     RemoveSelectedPseudoClasses(AssociatedObject);
                 }
-            });
+            }));
     }
 
     protected override void OnDetaching()
