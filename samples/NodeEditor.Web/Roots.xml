@@ -38,7 +38,7 @@
 
   <!-- PanAndZoom -->
 
-  <assembly fullname="Avalonia.Controls.PanAndZoom" preserve="All" />
+  <assembly fullname="PanAndZoom" preserve="All" />
 
   <!-- Newtonsoft.Json -->
 
