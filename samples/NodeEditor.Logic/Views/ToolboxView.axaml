@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NodeEditorLogic.ViewModels"
+             xmlns:views="clr-namespace:NodeEditorLogic.Views"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+             xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             mc:Ignorable="d" d:DesignWidth="240" d:DesignHeight="600"
+             x:Class="NodeEditorLogic.Views.ToolboxView"
+             x:CompileBindings="False" x:DataType="vm:MainViewViewModel">
+
+  <Design.DataContext>
+    <vm:MainViewViewModel />
+  </Design.DataContext>
+
+  <DockPanel Margin="12" ClipToBounds="True">
+    <StackPanel DockPanel.Dock="Top" Spacing="8">
+      <TextBlock Text="Toolbox" FontSize="14" FontWeight="SemiBold" />
+      <TextBox Text="{Binding ToolboxFilter}" Watermark="Search nodes" />
+    </StackPanel>
+
+    <ScrollViewer Margin="0,12,0,0">
+      <ItemsControl ItemsSource="{Binding FilteredToolboxCategories}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Expander Header="{Binding Title}"
+                      IsExpanded="{Binding IsExpanded}"
+                      Margin="0,0,0,8"
+                      HorizontalAlignment="Stretch"
+                      HorizontalContentAlignment="Stretch">
+              <ListBox ItemsSource="{Binding Templates}"
+                       Background="Transparent"
+                       HorizontalAlignment="Stretch">
+                <ListBox.Styles>
+                  <Style Selector="ListBox > ListBoxItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="(i:Interaction.Behaviors)">
+                      <i:BehaviorCollectionTemplate>
+                        <i:BehaviorCollection>
+                          <behaviors:ToolboxDragBehavior />
+                          <behaviors:InsertTemplateOnDoubleTappedBehavior DrawingSource="{Binding DataContext.Editor.Drawing, RelativeSource={RelativeSource AncestorType=views:ToolboxView}}" />
+                        </i:BehaviorCollection>
+                      </i:BehaviorCollectionTemplate>
+                    </Setter>
+                  </Style>
+                </ListBox.Styles>
+                <ListBox.ItemTemplate>
+                  <DataTemplate DataType="m:INodeTemplate">
+                    <DockPanel Margin="0,4" HorizontalAlignment="Stretch">
+                      <Viewbox DockPanel.Dock="Left" Width="34" Height="34" Margin="0,0,8,0" DataContext="{Binding Preview}">
+                        <controls:Node IsHitTestVisible="False"
+                                       Content="{Binding Content}"
+                                       Width="{Binding Width}"
+                                       Height="{Binding Height}"
+                                       NodeSource="{Binding .}">
+                          <controls:Node.Styles>
+                            <Style Selector="controls|Pins /template/ ItemsControl#PART_PinsItemsControl">
+                              <Setter Property="IsVisible" Value="False" />
+                            </Style>
+                          </controls:Node.Styles>
+                        </controls:Node>
+                      </Viewbox>
+                      <TextBlock Text="{Binding Title}" VerticalAlignment="Center" />
+                    </DockPanel>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </Expander>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+  </DockPanel>
+</UserControl>

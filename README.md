@@ -56,6 +56,15 @@ dotnet workload install wasm-tools
 dotnet run --project ./samples/NodeEditor.Web/NodeEditor.Web.csproj -c Release
 ```
 
+## Samples
+
+```
+dotnet run --project ./samples/NodeEditor.Desktop/NodeEditor.Desktop.csproj -c Release
+dotnet run --project ./samples/NodeEditor.Logic.Desktop/NodeEditor.Logic.Desktop.csproj -c Release
+```
+
+LogicLab is a digital logic editor/simulator sample with clocks, timing delays, inline component editing, and an IC library.
+
 ## NuGet
 
 NodeEditor is delivered as a NuGet package.

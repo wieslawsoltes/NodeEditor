@@ -1,0 +1,146 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NodeEditorLogic.ViewModels"
+             xmlns:views="clr-namespace:NodeEditorLogic.Views"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             xmlns:app="clr-namespace:NodeEditorLogic"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="60"
+             x:Class="NodeEditorLogic.Views.MenuView"
+             Name="MenuUserControl"
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
+
+  <Design.DataContext>
+    <vm:MainViewViewModel />
+  </Design.DataContext>
+
+  <Border Background="{DynamicResource AppPanelBackground}"
+          BorderBrush="{DynamicResource AppPanelBorder}"
+          BorderThickness="0,0,0,1"
+          PointerPressed="OnDragRegionPointerPressed">
+    <Grid Margin="6,4" ColumnDefinitions="Auto,Auto,*,Auto" VerticalAlignment="Center">
+      <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="6">
+        <Button Padding="6" Background="Transparent" Command="{Binding ToggleToolboxVisibleCommand}" ToolTip.Tip="Toggle toolbox">
+          <PathIcon Width="16" Height="16" Data="{DynamicResource ToolboxIcon}" />
+        </Button>
+        <TextBlock Text="LogicLab" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold" />
+      </StackPanel>
+
+      <Menu Grid.Column="1" Margin="12,0,0,0" IsVisible="{x:Static app:App.EnableMainMenu}">
+        <MenuItem Header="_File">
+          <MenuItem Header="_New" Command="{Binding NewCommand}" InputGesture="{OnPlatform macOS=CMD+N, iOS=CMD+N, Default=Ctrl+N}" />
+          <Separator IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGesture="{OnPlatform macOS=CMD+O, iOS=CMD+O, Default=Ctrl+O}" IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <Separator IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <MenuItem Header="_Save..." Command="{Binding SaveCommand}" InputGesture="{OnPlatform macOS=CMD+S, iOS=CMD+S, Default=Ctrl+S}" IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <Separator IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <MenuItem Header="Export..." Command="{Binding ExportCommand}" IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <Separator IsVisible="{x:Static app:App.EnableInputOutput}" />
+          <MenuItem Header="E_xit" Command="{Binding ExitCommand}" IsVisible="{x:Static app:App.EnableInputOutput}" />
+        </MenuItem>
+        <MenuItem Header="_Edit">
+          <MenuItem Header="_Undo" Command="{Binding Editor.Drawing.UndoCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+Z, iOS=CMD+Z, Default=Ctrl+Z}" />
+          <MenuItem Header="_Redo" Command="{Binding Editor.Drawing.RedoCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+Shift+Z, iOS=CMD+Shift+Z, Default=Ctrl+Y}" />
+          <Separator />
+          <MenuItem Header="Cu_t" Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}" />
+          <MenuItem Header="_Copy" Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+C, iOS=CMD+C, Default=Ctrl+C}" />
+          <MenuItem Header="_Paste" Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+V, iOS=CMD+V, Default=Ctrl+V}" />
+          <MenuItem Header="D_uplicate" Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
+          <Separator />
+          <MenuItem Header="Select _All" Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
+          <MenuItem Header="De_select All" Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" InputGesture="Escape" />
+          <Separator />
+          <MenuItem Header="_Delete" Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" InputGesture="Delete" />
+        </MenuItem>
+        <MenuItem Header="_Draw">
+                    <MenuItem Header="Ink Mode"
+                              IsChecked="{Binding Editor.Drawing.Settings.IsInkMode, FallbackValue={x:False}}"
+                              Command="{Binding Editor.Drawing.DrawInkCommand, FallbackValue={x:Null}}" />
+          <MenuItem Header="Add Pen"
+                    Command="{Binding Editor.Drawing.AddPenCommand, FallbackValue={x:Null}}" />
+          <MenuItem Header="Convert Ink"
+                    Command="{Binding Editor.Drawing.ConvertInkCommand, FallbackValue={x:Null}}" />
+          <MenuItem Header="Clear Ink"
+                    Command="{Binding Editor.Drawing.ClearInkCommand, FallbackValue={x:Null}}" />
+        </MenuItem>
+        <MenuItem Header="_View">
+          <MenuItem Header="_Macros..."
+                    Command="{Binding ShowMacrosCommand}"
+                    InputGesture="{OnPlatform macOS=CMD+Shift+P, iOS=CMD+Shift+P, Default=Ctrl+Shift+P}" />
+        </MenuItem>
+        <MenuItem Header="_Simulation">
+          <MenuItem Header="Run/Stop" Command="{Binding ToggleRunCommand}" InputGesture="F5" />
+          <MenuItem Header="Step" Command="{Binding StepCommand}" InputGesture="F6" />
+          <MenuItem Header="Reset" Command="{Binding ResetCommand}" />
+        </MenuItem>
+        <MenuItem Header="_Zoom" x:DataType="views:MenuView" x:CompileBindings="False">
+          <MenuItem Header="100%" Command="{Binding #MenuUserControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" InputGesture="{OnPlatform macOS=CMD+D0, iOS=CMD+D0, Default=Ctrl+D0}" />
+          <MenuItem Header="Zoom In" Command="{Binding #MenuUserControl.ZoomControl.ZoomInCommand, FallbackValue={x:Null}}" InputGesture="Add" />
+          <MenuItem Header="Zoom Out" Command="{Binding #MenuUserControl.ZoomControl.ZoomOutCommand, FallbackValue={x:Null}}" InputGesture="Subtract" />
+        </MenuItem>
+      </Menu>
+
+      <Border Grid.Column="2" Background="Transparent" />
+
+      <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6">
+        <Button Padding="6" Background="Transparent" ToolTip.Tip="Settings">
+          <Button.Flyout>
+            <Flyout ShowMode="TransientWithDismissOnPointerMoveAway" Placement="BottomEdgeAlignedRight">
+              <StackPanel Spacing="6">
+                <ToggleSwitch IsChecked="{Binding EnableConnectionValidation}"
+                              OnContent="Type Validation On"
+                              OffContent="Type Validation Off"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"
+                              Margin="4,4,4,0"/>
+                <editor:DrawingNodeProperties 
+                  DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"
+                  IsInkMode="{Binding Settings.IsInkMode, FallbackValue={x:False}}"
+                  EnableConnections="{Binding Settings.EnableConnections, FallbackValue={x:True}}"
+                  RequireDirectionalConnections="{Binding Settings.RequireDirectionalConnections, FallbackValue={x:False}}"
+                  RequireMatchingBusWidth="{Binding Settings.RequireMatchingBusWidth, FallbackValue={x:False}}"
+                  EnableMultiplePinConnections="{Binding Settings.EnableMultiplePinConnections, FallbackValue={x:False}}"
+                  AllowSelfConnections="{Binding Settings.AllowSelfConnections, FallbackValue={x:True}}"
+                  AllowDuplicateConnections="{Binding Settings.AllowDuplicateConnections, FallbackValue={x:True}}"
+                  EnableSnap="{Binding Settings.EnableSnap, FallbackValue={x:False}}"
+                  SnapX="{Binding Settings.SnapX, FallbackValue='1.0'}"
+                  SnapY="{Binding Settings.SnapY, FallbackValue='1.0'}"
+                  NudgeStep="{Binding Settings.NudgeStep, FallbackValue='1.0'}"
+                  NudgeMultiplier="{Binding Settings.NudgeMultiplier, FallbackValue='10.0'}"
+                  EnableGrid="{Binding Settings.EnableGrid, FallbackValue={x:False}}"
+                  GridCellWidth="{Binding Settings.GridCellWidth, FallbackValue='1.0'}"
+                  GridCellHeight="{Binding Settings.GridCellHeight, FallbackValue={x:False}}"
+                  EnableGuides="{Binding Settings.EnableGuides, FallbackValue={x:True}}"
+                  GuideSnapTolerance="{Binding Settings.GuideSnapTolerance, FallbackValue='6.0'}"
+                  EnableConnectorRouting="{Binding Settings.EnableConnectorRouting, FallbackValue={x:True}}"
+                  RoutingGridSize="{Binding Settings.RoutingGridSize, FallbackValue='10.0'}"
+                  RoutingObstaclePadding="{Binding Settings.RoutingObstaclePadding, FallbackValue='8.0'}"
+                  RoutingAlgorithm="{Binding Settings.RoutingAlgorithm, FallbackValue={x:Static m:ConnectorRoutingAlgorithm.Auto}}"
+                  RoutingBendPenalty="{Binding Settings.RoutingBendPenalty, FallbackValue='0.6'}"
+                  RoutingDiagonalCost="{Binding Settings.RoutingDiagonalCost, FallbackValue='1.4'}"
+                  RoutingCornerRadius="{Binding Settings.RoutingCornerRadius, FallbackValue='10.0'}"
+                  RoutingMaxCells="{Binding Settings.RoutingMaxCells, FallbackValue='200'}"
+                  DrawingWidth="{Binding Width, FallbackValue=''}"
+                  DrawingHeight="{Binding Height, FallbackValue=''}" />
+              </StackPanel>
+            </Flyout>
+          </Button.Flyout>
+          <PathIcon Width="16" Height="16" Data="{DynamicResource SettingsIcon}" />
+        </Button>
+        <Button Padding="6" Command="{Binding ToggleRunCommand}" ToolTip.Tip="Run/Stop">
+          <PathIcon Width="16" Height="16" Data="{DynamicResource PlayIcon}" />
+        </Button>
+        <Button Padding="6" Command="{Binding StepCommand}" ToolTip.Tip="Step">
+          <PathIcon Width="16" Height="16" Data="{DynamicResource StepIcon}" />
+        </Button>
+        <Button Padding="6" Command="{Binding ResetCommand}" ToolTip.Tip="Reset">
+          <PathIcon Width="16" Height="16" Data="{DynamicResource ResetIcon}" />
+        </Button>
+      </StackPanel>
+    </Grid>
+  </Border>
+
+</UserControl>

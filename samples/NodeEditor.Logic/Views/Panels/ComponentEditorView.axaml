@@ -1,0 +1,144 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NodeEditorLogic.ViewModels.Nodes"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="500"
+             x:Class="NodeEditorLogic.Views.Panels.ComponentEditorView"
+             x:CompileBindings="False" x:DataType="vm:LogicNodeContentViewModel">
+
+  <StackPanel Spacing="12">
+    <TextBlock Text="Component Editor" FontSize="14" FontWeight="SemiBold" />
+
+    <StackPanel Spacing="6">
+      <TextBlock Text="Title" />
+      <TextBox Text="{Binding Title}" />
+      <TextBlock Text="Category" />
+      <TextBox Text="{Binding Subtitle}" />
+      <TextBlock Text="Component Id" />
+      <TextBox Text="{Binding ComponentId}" />
+      <TextBlock Text="Propagation Delay (ticks)" />
+      <NumericUpDown Minimum="0" Maximum="10" Value="{Binding PropagationDelay}" />
+    </StackPanel>
+
+    <Separator />
+
+    <StackPanel Spacing="6">
+      <TextBlock Text="Inputs" FontWeight="SemiBold" />
+      <ItemsControl ItemsSource="{Binding InputPins}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <DockPanel Margin="0,2">
+              <TextBox Text="{Binding Name}" DockPanel.Dock="Left" Width="120" />
+              <Button Content="Remove"
+                      Command="{Binding DataContext.RemoveInputPinCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                      CommandParameter="{Binding .}"
+                      DockPanel.Dock="Right" />
+              <Border Classes="logic-led" Background="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+              <TextBlock Text="{Binding Value, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+            </DockPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <Button Content="Add Input" Command="{Binding AddInputPinCommand}" />
+    </StackPanel>
+
+    <StackPanel Spacing="6">
+      <TextBlock Text="Outputs" FontWeight="SemiBold" />
+      <ItemsControl ItemsSource="{Binding OutputPins}">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <DockPanel Margin="0,2">
+              <TextBox Text="{Binding Name}" DockPanel.Dock="Left" Width="120" />
+              <Button Content="Remove"
+                      Command="{Binding DataContext.RemoveOutputPinCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                      CommandParameter="{Binding .}"
+                      DockPanel.Dock="Right" />
+              <Border Classes="logic-led" Background="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+              <TextBlock Text="{Binding Value, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+            </DockPanel>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <Button Content="Add Output" Command="{Binding AddOutputPinCommand}" />
+    </StackPanel>
+
+    <Separator />
+
+    <ContentControl Content="{Binding .}">
+      <ContentControl.DataTemplates>
+        <DataTemplate DataType="vm:LogicInputNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Input Source" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Label}" />
+            <ToggleSwitch IsChecked="{Binding IsOn}" Content="Enabled" />
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicOutputNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Output Probe" FontWeight="SemiBold" />
+            <TextBox Text="{Binding Label}" />
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicClockNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Clock" FontWeight="SemiBold" />
+            <ToggleSwitch IsChecked="{Binding IsRunning}" Content="Running" />
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <TextBlock Text="Period" VerticalAlignment="Center" />
+              <NumericUpDown Minimum="1" Maximum="16" Width="80" Value="{Binding Period}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="6">
+              <TextBlock Text="High" VerticalAlignment="Center" />
+              <NumericUpDown Minimum="1" Maximum="16" Width="80" Value="{Binding HighTicks}" />
+            </StackPanel>
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicFlipFlopNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Flip-Flop" FontWeight="SemiBold" />
+            <TextBlock Text="Stored" />
+            <TextBlock Text="{Binding StoredValue, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" />
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicBusInputNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Bus Source" FontWeight="SemiBold" />
+            <TextBlock Text="Label" />
+            <TextBox Text="{Binding Label}" />
+            <TextBlock Text="Width" />
+            <NumericUpDown Minimum="1" Maximum="16" Value="{Binding BusWidth}" />
+            <TextBlock Text="Value" />
+            <NumericUpDown Minimum="0" Maximum="{Binding MaxValue}" Value="{Binding BusValue}" />
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicBusOutputNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Bus Probe" FontWeight="SemiBold" />
+            <TextBlock Text="Label" />
+            <TextBox Text="{Binding Label}" />
+            <TextBlock Text="Width" />
+            <NumericUpDown Minimum="1" Maximum="16" Value="{Binding BusWidth}" />
+            <TextBlock Text="Observed" />
+            <TextBlock Text="{Binding ObservedText}" />
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicBusSplitNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Bus Splitter" FontWeight="SemiBold" />
+            <TextBlock Text="Bits" />
+            <NumericUpDown Minimum="1" Maximum="16" Value="{Binding BitCount}" />
+          </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="vm:LogicBusMergeNodeViewModel">
+          <StackPanel Spacing="6">
+            <TextBlock Text="Bus Merger" FontWeight="SemiBold" />
+            <TextBlock Text="Bits" />
+            <NumericUpDown Minimum="1" Maximum="16" Value="{Binding BitCount}" />
+          </StackPanel>
+        </DataTemplate>
+      </ContentControl.DataTemplates>
+    </ContentControl>
+  </StackPanel>
+</UserControl>

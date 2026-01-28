@@ -1,0 +1,92 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia">
+
+  <Style Selector="Border.logic-node">
+    <Setter Property="Background" Value="{DynamicResource NodeBackgroundBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource AppPanelBorder}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="8" />
+    <Setter Property="BoxShadow" Value="0 4 12 0 #14000000" />
+  </Style>
+
+  <Style Selector="TextBlock.logic-title">
+    <Setter Property="FontSize" Value="13" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="TextBlock.logic-subtitle">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource LogicUnknownBrush}" />
+  </Style>
+
+  <Style Selector="TextBlock.logic-port">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="TextBlock.logic-value">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="TextBox.logic-inline">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="NumericUpDown.logic-inline">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="controls|EditableTextBlock.logic-inline">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="controls|EditableTextBlock.logic-inline TextBox">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="controls|EditableTextBlock.logic-inline TextBlock">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource NodeForegroundBrush}" />
+  </Style>
+
+  <Style Selector="Border.logic-note">
+    <Setter Property="Background" Value="{DynamicResource NoteBackgroundBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource NoteBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="10" />
+    <Setter Property="Padding" Value="10" />
+    <Setter Property="BoxShadow" Value="0 6 16 0 #22000000" />
+  </Style>
+
+  <Style Selector="Border.logic-note TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource NoteForegroundBrush}" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+
+  <Style Selector="Border.logic-note TextBox">
+    <Setter Property="Foreground" Value="{DynamicResource NoteForegroundBrush}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+
+</Styles>

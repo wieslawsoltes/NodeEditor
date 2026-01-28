@@ -1,0 +1,162 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NodeEditorLogic.ViewModels.Nodes"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="400"
+             x:Class="NodeEditorLogic.Views.Panels.InspectorView"
+             x:CompileBindings="True" x:DataType="vm:LogicNodeContentViewModel">
+
+  <UserControl.DataTemplates>
+    <DataTemplate DataType="vm:LogicNodeContentViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="{Binding ComponentId}" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <Separator />
+        <TextBlock Text="Inputs" FontSize="12" FontWeight="SemiBold" />
+        <ItemsControl ItemsSource="{Binding InputPins}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <DockPanel Margin="0,2">
+                <TextBlock Text="{Binding Name}" DockPanel.Dock="Left" />
+                <TextBlock Text="{Binding Value, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+                <Border Classes="logic-led" Background="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+              </DockPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBlock Text="Outputs" FontSize="12" FontWeight="SemiBold" Margin="0,8,0,0" />
+        <ItemsControl ItemsSource="{Binding OutputPins}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <DockPanel Margin="0,2">
+                <TextBlock Text="{Binding Name}" DockPanel.Dock="Left" />
+                <TextBlock Text="{Binding Value, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+                <Border Classes="logic-led" Background="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+              </DockPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicInputNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Source" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <ToggleSwitch IsChecked="{Binding IsOn}" Content="{Binding Label}" />
+        <Separator />
+        <TextBlock Text="Output" FontSize="12" FontWeight="SemiBold" />
+        <ItemsControl ItemsSource="{Binding OutputPins}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <DockPanel Margin="0,2">
+                <TextBlock Text="{Binding Name}" DockPanel.Dock="Left" />
+                <TextBlock Text="{Binding Value, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+                <Border Classes="logic-led" Background="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+              </DockPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicOutputNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Probe" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <Separator />
+        <DockPanel>
+          <TextBlock Text="Observed" DockPanel.Dock="Left" />
+          <TextBlock Text="{Binding ObservedValue, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+          <Border Classes="logic-led" Background="{Binding ObservedValue, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+        </DockPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicClockNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Clock" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <ToggleSwitch IsChecked="{Binding IsRunning}" Content="Running" />
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Period" VerticalAlignment="Center" />
+          <NumericUpDown Width="70" Minimum="1" Maximum="10" Value="{Binding Period}" />
+        </StackPanel>
+        <DockPanel>
+          <TextBlock Text="State" DockPanel.Dock="Left" />
+          <TextBlock Text="{Binding State, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+          <Border Classes="logic-led" Background="{Binding State, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+        </DockPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicFlipFlopNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Memory" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <Separator />
+        <DockPanel>
+          <TextBlock Text="Stored" DockPanel.Dock="Left" />
+          <TextBlock Text="{Binding StoredValue, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+          <Border Classes="logic-led" Background="{Binding StoredValue, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+        </DockPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicBusInputNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Bus Source" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Width" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding BusWidth}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Value" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding BusValue}" />
+        </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicBusOutputNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Bus Probe" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Width" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding BusWidth}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Observed" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding ObservedText}" />
+        </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicBusSplitNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Splitter" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Bits" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding BitCount}" />
+        </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="vm:LogicBusMergeNodeViewModel">
+      <StackPanel Spacing="8">
+        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" FontSize="13" />
+        <TextBlock Text="Merger" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <TextBlock Text="Bits" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding BitCount}" />
+        </StackPanel>
+      </StackPanel>
+    </DataTemplate>
+  </UserControl.DataTemplates>
+
+  <ContentControl Content="{Binding .}" />
+</UserControl>

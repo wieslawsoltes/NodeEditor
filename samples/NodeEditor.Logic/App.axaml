@@ -1,0 +1,41 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:NodeEditorLogic"
+             xmlns:vm="using:NodeEditorLogic.ViewModels"
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
+             x:Class="NodeEditorLogic.App"
+             Name="LogicLab"
+             RequestedThemeVariant="Light">
+
+  <Application.DataTemplates>
+    <local:ViewLocator />
+  </Application.DataTemplates>
+
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <MergeResourceInclude Source="/Styles/Themes.axaml" />
+        <MergeResourceInclude Source="/Styles/Icons.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml" />
+    <StyleInclude Source="avares://NodeEditor.Logic/Styles/Nodes.axaml" />
+    <StyleInclude Source="avares://NodeEditor.Logic/Styles/Logic.axaml" />
+  </Application.Styles>
+
+  <NativeMenu.Menu>
+    <NativeMenu>
+      <NativeMenuItem Header="About LogicLab"
+                      Command="{Binding AboutCommand}" />
+      <NativeMenuItemSeparator/>
+      <NativeMenuItem Header="Quit LogicLab"
+                      Command="{Binding ExitCommand}"
+                      Gesture="{OnPlatform macOS=CMD+Q, iOS=CMD+Q, Default=Ctrl+Q}"/>
+    </NativeMenu>
+  </NativeMenu.Menu>
+
+</Application>

@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:NodeEditorLogic.ViewModels.Nodes"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             mc:Ignorable="d" d:DesignWidth="180" d:DesignHeight="80"
+             x:Class="NodeEditorLogic.Views.Nodes.GateNodeView"
+             x:CompileBindings="True" x:DataType="vm:LogicGateNodeViewModel"
+             ClipToBounds="False">
+  <Design.DataContext>
+    <vm:LogicGateNodeViewModel Title="AND" Subtitle="Gate" />
+  </Design.DataContext>
+  <Border Classes="logic-node">
+    <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto">
+      <ItemsControl Grid.Column="0" ItemsSource="{Binding InputPins}" Margin="0,0,8,0">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Spacing="4" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Name}" Width="60" />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+      <StackPanel Grid.Column="1" HorizontalAlignment="Center" Spacing="2">
+        <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Title}" HorizontalAlignment="Center" TextAlignment="Center" />
+        <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Subtitle}" HorizontalAlignment="Center" TextAlignment="Center" FontSize="11" Foreground="{DynamicResource LogicUnknownBrush}" />
+        <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+          <TextBlock Text="d=" FontSize="10" VerticalAlignment="Center" />
+          <NumericUpDown Classes="logic-inline" Minimum="0" Maximum="8" Width="40" Value="{Binding PropagationDelay}" />
+        </StackPanel>
+      </StackPanel>
+
+      <ItemsControl Grid.Column="2" ItemsSource="{Binding OutputPins}" Margin="8,0,0,0">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Spacing="4" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Name}" Width="60" TextAlignment="Right" HorizontalAlignment="Right" />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+
+      <ItemsControl Grid.Column="1" Grid.Row="2" ItemsSource="{Binding OutputPins}" HorizontalAlignment="Center" Margin="0,6,0,0">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal" Spacing="6" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Border Classes="logic-led" Background="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </Grid>
+  </Border>
+</UserControl>
