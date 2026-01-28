@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -7,13 +7,16 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
 
-public class DrawingMovedBehavior : Behavior<ItemsControl>
+public class DrawingReleasedBehavior : Behavior<ItemsControl>
 {
     public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
-        AvaloniaProperty.Register<DrawingMovedBehavior, IDrawingNode?>(nameof(DrawingSource));
+        AvaloniaProperty.Register<DrawingReleasedBehavior, IDrawingNode?>(nameof(DrawingSource));
+
+    public static readonly StyledProperty<double> PinHitToleranceProperty =
+        AvaloniaProperty.Register<DrawingReleasedBehavior, double>(nameof(PinHitTolerance), 8.0);
 
     public static readonly StyledProperty<Control?> InputSourceProperty =
-        AvaloniaProperty.Register<DrawingMovedBehavior, Control?>(nameof(InputSource));
+        AvaloniaProperty.Register<DrawingReleasedBehavior, Control?>(nameof(InputSource));
 
     private Control? _inputSource;
 
@@ -21,6 +24,12 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
     {
         get => GetValue(DrawingSourceProperty);
         set => SetValue(DrawingSourceProperty, value);
+    }
+
+    public double PinHitTolerance
+    {
+        get => GetValue(PinHitToleranceProperty);
+        set => SetValue(PinHitToleranceProperty, value);
     }
 
     public Control? InputSource
@@ -69,7 +78,7 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
+        _inputSource.AddHandler(InputElement.PointerReleasedEvent, Released, RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
     }
 
     private void DeInitialize()
@@ -79,11 +88,11 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        _inputSource.RemoveHandler(InputElement.PointerMovedEvent, Moved);
+        _inputSource.RemoveHandler(InputElement.PointerReleasedEvent, Released);
         _inputSource = null;
     }
 
-    private void Moved(object? sender, PointerEventArgs e)
+    private void Released(object? sender, PointerReleasedEventArgs e)
     {
         if (DrawingSource is not IDrawingNode drawingNode)
         {
@@ -95,8 +104,32 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        var (x, y) = e.GetPosition(AssociatedObject ?? _inputSource);
+        if (!drawingNode.IsConnectorMoving())
+        {
+            return;
+        }
 
-        drawingNode.ConnectorMove(x, y);
+        var isPrimary = e.InitialPressMouseButton == MouseButton.Left || e.Pointer.Type != PointerType.Mouse;
+        if (!isPrimary)
+        {
+            return;
+        }
+
+        var position = e.GetPosition(AssociatedObject ?? _inputSource);
+        if (HitTestHelper.TryFindPinAtPoint(drawingNode, position, PinHitTolerance, out var pin) && pin is not null)
+        {
+            drawingNode.ConnectorLeftPressed(pin, showWhenMoving: true);
+        }
+        else
+        {
+            drawingNode.CancelConnector();
+        }
+
+        if (drawingNode is IUndoRedoHost host)
+        {
+            host.EndUndoBatch();
+        }
+
+        e.Handled = true;
     }
 }

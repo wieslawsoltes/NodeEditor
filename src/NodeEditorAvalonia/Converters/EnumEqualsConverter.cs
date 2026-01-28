@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Avalonia.Data;
 using Avalonia.Data.Converters;
 
 namespace NodeEditor.Converters;
 
-public class EnumToCheckedConverter : IValueConverter
+public sealed class EnumEqualsConverter : IValueConverter
 {
-    public static EnumToCheckedConverter Instance = new();
+    public static readonly EnumEqualsConverter Instance = new();
 
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {

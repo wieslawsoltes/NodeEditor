@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    xmlns:converters="clr-namespace:NodeEditor.Converters"
+                    x:CompileBindings="True">
+
+  <ControlTheme x:Key="{x:Type controls:EditableTextBlock}" TargetType="controls:EditableTextBlock">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid>
+          <TextBlock Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}"
+                     IsVisible="{Binding IsEditing, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:BoolInvertConverter.Instance}}"
+                     TextWrapping="{Binding TextWrapping, RelativeSource={RelativeSource TemplatedParent}}"
+                     TextAlignment="{Binding TextAlignment, RelativeSource={RelativeSource TemplatedParent}}" />
+          <TextBlock Text="{Binding Placeholder, RelativeSource={RelativeSource TemplatedParent}}"
+                     Opacity="0.6"
+                     TextWrapping="{Binding TextWrapping, RelativeSource={RelativeSource TemplatedParent}}"
+                     TextAlignment="{Binding TextAlignment, RelativeSource={RelativeSource TemplatedParent}}">
+            <TextBlock.IsVisible>
+              <MultiBinding Converter="{x:Static converters:PlaceholderVisibilityConverter.Instance}">
+                <Binding Path="Text" RelativeSource="{RelativeSource TemplatedParent}" />
+                <Binding Path="IsEditing" RelativeSource="{RelativeSource TemplatedParent}" />
+              </MultiBinding>
+            </TextBlock.IsVisible>
+          </TextBlock>
+          <TextBox x:Name="PART_Editor"
+                   Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   AcceptsReturn="{Binding AcceptsReturn, RelativeSource={RelativeSource TemplatedParent}}"
+                   TextWrapping="{Binding TextWrapping, RelativeSource={RelativeSource TemplatedParent}}"
+                   TextAlignment="{Binding TextAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                   IsVisible="{Binding IsEditing, RelativeSource={RelativeSource TemplatedParent}}"/>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

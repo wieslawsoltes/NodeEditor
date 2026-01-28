@@ -32,13 +32,12 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        _dataContextDisposable = AssociatedObject
-            .GetObservable(StyledElement.DataContextProperty)
-            .Subscribe(x =>
-            {
-                if (x is IDrawingNode drawingNode)
+        _dataContextDisposable = this
+            .GetObservable(DrawingSourceProperty)
+            .Subscribe(new AnonymousObserver<IDrawingNode?>(
+                drawingNode =>
                 {
-                    if (_drawingNode == drawingNode)
+                    if (_drawingNode is not null)
                     {
                         _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
                     }
@@ -46,13 +45,12 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
                     RemoveSelectedPseudoClasses(AssociatedObject);
 
                     _drawingNode = drawingNode;
-                    _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
-                }
-                else
-                {
-                    RemoveSelectedPseudoClasses(AssociatedObject);
-                }
-            });
+
+                    if (_drawingNode is not null)
+                    {
+                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
+                    }
+                }));
     }
 
     protected override void OnDetaching()
@@ -81,6 +79,11 @@ public class NodesSelectedBehavior : Behavior<ItemsControl>
         }
 
         if (_drawingNode is null)
+        {
+            return;
+        }
+
+        if (AssociatedObject is null)
         {
             return;
         }

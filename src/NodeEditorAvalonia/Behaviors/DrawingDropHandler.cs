@@ -27,7 +27,7 @@ public class DrawingDropHandler : DefaultDropHandler
         set => SetValue(RelativeToProperty, value);
     }
 
-    private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
+    private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, object? sourceContext, bool bExecute)
     {
         var relativeTo = RelativeTo ?? sender as Control;
         if (relativeTo is null)
@@ -41,15 +41,17 @@ public class DrawingDropHandler : DefaultDropHandler
             point = SnapHelper.Snap(point, drawingNode.DrawingSource.Settings.SnapX, drawingNode.DrawingSource.Settings.SnapY, drawingNode.DrawingSource.Settings.EnableSnap);
         }
 
-        if (e.Data.Contains(DataFormats.Text))
+        if (sourceContext is INodeTemplate directTemplate)
         {
-            var text = e.Data.GetText();
-
             if (bExecute)
             {
-                if (text is not null)
+                var node = drawing.Clone(directTemplate.Template);
+                if (node is not null)
                 {
-                    // TODO: text
+                    node.Parent = drawing;
+                    node.Move(point.X, point.Y);
+                    drawing.Nodes?.Add(node);
+                    node.OnCreated();
                 }
             }
 
@@ -80,16 +82,46 @@ public class DrawingDropHandler : DefaultDropHandler
             }
         }
 
-        if (e.Data.Contains(DataFormats.Files))
+        if (e.Data.Contains(DataFormats.Text))
         {
-            // ReSharper disable once UnusedVariable
-            var files = e.Data.GetFiles()?.ToArray();
-            if (bExecute)
+            var text = e.Data.GetText();
+            if (text is null)
             {
-                // TODO: files, point.X, point.Y
+                return false;
             }
 
-            return true;
+            if (drawing is IDrawingDropTarget dropTarget && dropTarget.CanDropText(text, point))
+            {
+                if (bExecute)
+                {
+                    dropTarget.DropText(text, point);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        if (e.Data.Contains(DataFormats.Files))
+        {
+            var files = e.Data.GetFiles()?.ToArray();
+            if (files is null || files.Length == 0)
+            {
+                return false;
+            }
+
+            if (drawing is IDrawingDropTarget dropTarget && dropTarget.CanDropFiles(files, point))
+            {
+                if (bExecute)
+                {
+                    dropTarget.DropFiles(files, point);
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         return false;
@@ -97,21 +129,38 @@ public class DrawingDropHandler : DefaultDropHandler
 
     public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
-        if (targetContext is IDrawingNode drawing)
+        var drawing = targetContext as IDrawingNode ?? DrawingSource;
+        if (drawing is null)
         {
-            return Validate(drawing, sender, e, false);
+            return false;
         }
 
-        return false;
+        return Validate(drawing, sender, e, sourceContext, false);
     }
 
     public override bool Execute(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
-        if (targetContext is IDrawingNode drawing)
+        var drawing = targetContext as IDrawingNode ?? DrawingSource;
+        if (drawing is null)
         {
-            return Validate(drawing, sender, e, true);
+            return false;
         }
 
-        return false;
+        if (drawing is IUndoRedoHost host)
+        {
+            host.BeginUndoBatch();
+        }
+
+        try
+        {
+            return Validate(drawing, sender, e, sourceContext, true);
+        }
+        finally
+        {
+            if (drawing is IUndoRedoHost endHost)
+            {
+                endHost.EndUndoBatch();
+            }
+        }
     }
 }

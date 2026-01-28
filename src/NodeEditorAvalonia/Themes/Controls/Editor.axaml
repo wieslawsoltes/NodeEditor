@@ -1,8 +1,10 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
                     xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
+                    xmlns:input="clr-namespace:Avalonia.Input;assembly=Avalonia.Base"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
                     x:CompileBindings="True">
 
@@ -29,6 +31,7 @@
                                      Background="Transparent" 
                                      ClipToBounds="True" 
                                      Focusable="True"
+                                     input:DragDrop.AllowDrop="True"
                                      VerticalAlignment="Stretch" 
                                      HorizontalAlignment="Stretch">
               <i:Interaction.Behaviors>
@@ -59,9 +62,17 @@
                                         Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                                         InputSource="{Binding ZoomControl, RelativeSource={RelativeSource TemplatedParent}}"
                                         AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}"
+                                        input:DragDrop.AllowDrop="True"
                                         ClipToBounds="False">
                     <controls:DrawingNode.ContextFlyout>
                       <MenuFlyout>
+                        <MenuItem Header="_Undo"
+                                  Command="{Binding DrawingSource.UndoCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                  InputGesture="{OnPlatform macOS=CMD+Z, iOS=CMD+Z, Default=Ctrl+Z}" />
+                        <MenuItem Header="_Redo"
+                                  Command="{Binding DrawingSource.RedoCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                  InputGesture="{OnPlatform macOS=CMD+Shift+Z, iOS=CMD+Shift+Z, Default=Ctrl+Y}" />
+                        <MenuItem Header="-" />
                         <MenuItem Header="Cu_t" 
                                   Command="{Binding DrawingSource.CutNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}">
@@ -86,6 +97,74 @@
                         <MenuItem Header="D_uplicate" 
                                   Command="{Binding DrawingSource.DuplicateNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
+                        <MenuItem Header="-" />
+                        <MenuItem Header="_Draw">
+                          <MenuItem Header="Ink Mode"
+                                    IsChecked="{Binding DrawingSource.Settings.IsInkMode, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Command="{Binding DrawingSource.DrawInkCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="Add Pen"
+                                    Command="{Binding DrawingSource.AddPenCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="Convert Ink"
+                                    Command="{Binding DrawingSource.ConvertInkCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="Clear Ink"
+                                    Command="{Binding DrawingSource.ClearInkCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </MenuItem>
+                        <MenuItem Header="-" />
+                        <MenuItem Header="_Align">
+                          <MenuItem Header="_Left"
+                                    Command="{Binding DrawingSource.AlignNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeAlignment.Left}" />
+                          <MenuItem Header="_Center"
+                                    Command="{Binding DrawingSource.AlignNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeAlignment.Center}" />
+                          <MenuItem Header="_Right"
+                                    Command="{Binding DrawingSource.AlignNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeAlignment.Right}" />
+                          <MenuItem Header="-" />
+                          <MenuItem Header="_Top"
+                                    Command="{Binding DrawingSource.AlignNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeAlignment.Top}" />
+                          <MenuItem Header="_Middle"
+                                    Command="{Binding DrawingSource.AlignNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeAlignment.Middle}" />
+                          <MenuItem Header="_Bottom"
+                                    Command="{Binding DrawingSource.AlignNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeAlignment.Bottom}" />
+                        </MenuItem>
+                        <MenuItem Header="_Distribute">
+                          <MenuItem Header="_Horizontal"
+                                    Command="{Binding DrawingSource.DistributeNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeDistribution.Horizontal}" />
+                          <MenuItem Header="_Vertical"
+                                    Command="{Binding DrawingSource.DistributeNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeDistribution.Vertical}" />
+                        </MenuItem>
+                        <MenuItem Header="_Order">
+                          <MenuItem Header="Bring to _Front"
+                                    Command="{Binding DrawingSource.OrderNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeOrder.BringToFront}" />
+                          <MenuItem Header="Send to _Back"
+                                    Command="{Binding DrawingSource.OrderNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeOrder.SendToBack}" />
+                          <MenuItem Header="Bring _Forward"
+                                    Command="{Binding DrawingSource.OrderNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeOrder.BringForward}" />
+                          <MenuItem Header="Send _Backward"
+                                    Command="{Binding DrawingSource.OrderNodesCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                    CommandParameter="{x:Static m:NodeOrder.SendBackward}" />
+                        </MenuItem>
+                        <MenuItem Header="_State">
+                          <MenuItem Header="_Lock"
+                                    Command="{Binding DrawingSource.LockSelectionCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="_Unlock"
+                                    Command="{Binding DrawingSource.UnlockSelectionCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="_Hide"
+                                    Command="{Binding DrawingSource.HideSelectionCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="_Show"
+                                    Command="{Binding DrawingSource.ShowSelectionCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                          <MenuItem Header="Show _All"
+                                    Command="{Binding DrawingSource.ShowAllCommand, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </MenuItem>
                         <MenuItem Header="-" />
                         <MenuItem Header="Select _All" 
                                   Command="{Binding DrawingSource.SelectAllNodesCommand, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" 

@@ -51,6 +51,21 @@
                          GroupName="Alignment"
                          IsChecked="{Binding $parent[controls:Pin].Alignment, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinAlignment.Bottom}}"
                          DockPanel.Dock="Top" />
+            <Label Content="Direction:" DockPanel.Dock="Top" />
+            <RadioButton Content="Input"
+                         GroupName="Direction"
+                         IsChecked="{Binding $parent[controls:Pin].Direction, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinDirection.Input}}"
+                         DockPanel.Dock="Top" />
+            <RadioButton Content="Output"
+                         GroupName="Direction"
+                         IsChecked="{Binding $parent[controls:Pin].Direction, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinDirection.Output}}"
+                         DockPanel.Dock="Top" />
+            <RadioButton Content="Bidirectional"
+                         GroupName="Direction"
+                         IsChecked="{Binding $parent[controls:Pin].Direction, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:PinDirection.Bidirectional}}"
+                         DockPanel.Dock="Top" />
+            <Label Content="Bus Width:" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding $parent[controls:Pin].BusWidth}" DockPanel.Dock="Top" />
           </DockPanel>
         </Flyout>
       </Setter.Value>

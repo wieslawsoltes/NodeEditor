@@ -1,5 +1,6 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:NodeEditor.Controls"
         x:CompileBindings="True">
   <Styles.Resources>
     <ResourceDictionary>
@@ -10,6 +11,23 @@
           <SolidColorBrush x:Key='PinForegroundBrush'>Black</SolidColorBrush>
           <SolidColorBrush x:Key='PinPointerOverForegroundBrush'>Red</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectorBackgroundBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorLabelBackgroundBrush'>#CCFFFFFF</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorLabelBorderBrush'>#66000000</SolidColorBrush>
+          <SolidColorBrush x:Key='NodeResizeHandleFillBrush'>White</SolidColorBrush>
+          <SolidColorBrush x:Key='NodeResizeHandleBorderBrush'>#66000000</SolidColorBrush>
+          <SolidColorBrush x:Key='GuideLineBrush'>#FF179DE3</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedBrush'>#FFE33F2D</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedLabelBackgroundBrush'>#CC1E1E1E</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedLabelBorderBrush'>#FFE33F2D</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedLabelForegroundBrush'>#FFFFE6E6</SolidColorBrush>
+          <x:String x:Key='ConnectionRejectedLabelText'>Connection blocked</x:String>
+          <SolidColorBrush x:Key='ConnectorCrossingStrokeBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorCrossingBackgroundBrush'>Transparent</SolidColorBrush>
+          <x:Double x:Key='ConnectorCrossingStrokeThickness'>2</x:Double>
+          <x:Double x:Key='ConnectorCrossingArcRadius'>6</x:Double>
+          <SolidColorBrush x:Key='RotationSnapReadoutBackgroundBrush'>#CC1E1E1E</SolidColorBrush>
+          <SolidColorBrush x:Key='RotationSnapReadoutBorderBrush'>#FF179DE3</SolidColorBrush>
+          <SolidColorBrush x:Key='RotationSnapReadoutForegroundBrush'>#FFFFFFFF</SolidColorBrush>
         </ResourceDictionary>
         <ResourceDictionary x:Key='Dark'>
           <SolidColorBrush x:Key='PinBackgroundBrush'>Black</SolidColorBrush>
@@ -17,6 +35,23 @@
           <SolidColorBrush x:Key='PinForegroundBrush'>White</SolidColorBrush>
           <SolidColorBrush x:Key='PinPointerOverForegroundBrush'>Red</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectorBackgroundBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorLabelBackgroundBrush'>#CC1C1C1C</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorLabelBorderBrush'>#66FFFFFF</SolidColorBrush>
+          <SolidColorBrush x:Key='NodeResizeHandleFillBrush'>#FF1C1C1C</SolidColorBrush>
+          <SolidColorBrush x:Key='NodeResizeHandleBorderBrush'>#66FFFFFF</SolidColorBrush>
+          <SolidColorBrush x:Key='GuideLineBrush'>#FF179DE3</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedBrush'>#FFE33F2D</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedLabelBackgroundBrush'>#CC1C1C1C</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedLabelBorderBrush'>#FFE33F2D</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectionRejectedLabelForegroundBrush'>#FFFFE6E6</SolidColorBrush>
+          <x:String x:Key='ConnectionRejectedLabelText'>Connection blocked</x:String>
+          <SolidColorBrush x:Key='ConnectorCrossingStrokeBrush'>Red</SolidColorBrush>
+          <SolidColorBrush x:Key='ConnectorCrossingBackgroundBrush'>Transparent</SolidColorBrush>
+          <x:Double x:Key='ConnectorCrossingStrokeThickness'>2</x:Double>
+          <x:Double x:Key='ConnectorCrossingArcRadius'>6</x:Double>
+          <SolidColorBrush x:Key='RotationSnapReadoutBackgroundBrush'>#CC1C1C1C</SolidColorBrush>
+          <SolidColorBrush x:Key='RotationSnapReadoutBorderBrush'>#FF179DE3</SolidColorBrush>
+          <SolidColorBrush x:Key='RotationSnapReadoutForegroundBrush'>#FFFFFFFF</SolidColorBrush>
         </ResourceDictionary>
       </ResourceDictionary.ThemeDictionaries>
       <ResourceDictionary.MergedDictionaries>
@@ -26,6 +61,7 @@
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Nodes.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Connector.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Connectors.axaml" />
+        <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/EditableTextBlock.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/DrawingNode.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/DrawingNodeProperties.axaml" />
         <ResourceInclude Source="avares://NodeEditorAvalonia/Themes/Controls/Editor.axaml" />
@@ -33,4 +69,25 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
   </Styles.Resources>
+
+  <Style Selector="controls|Connector:selected">
+    <Setter Property="StrokeThickness" Value="3" />
+  </Style>
+
+  <Style Selector="controls|GuidesAdorner">
+    <Setter Property="Stroke" Value="{DynamicResource GuideLineBrush}" />
+    <Setter Property="StrokeThickness" Value="1" />
+  </Style>
+
+  <Style Selector="controls|ConnectorSelectedAdorner">
+    <Setter Property="Stroke" Value="{DynamicResource GuideLineBrush}" />
+    <Setter Property="StrokeThickness" Value="2" />
+  </Style>
+
+  <Style Selector="controls|ConnectorCrossingsAdorner">
+    <Setter Property="Stroke" Value="{DynamicResource ConnectorCrossingStrokeBrush}" />
+    <Setter Property="StrokeThickness" Value="{DynamicResource ConnectorCrossingStrokeThickness}" />
+    <Setter Property="Background" Value="{DynamicResource ConnectorCrossingBackgroundBrush}" />
+    <Setter Property="ArcRadius" Value="{DynamicResource ConnectorCrossingArcRadius}" />
+  </Style>
 </Styles>

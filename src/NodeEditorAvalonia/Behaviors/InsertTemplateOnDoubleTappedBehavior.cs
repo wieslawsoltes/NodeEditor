@@ -39,6 +39,11 @@ public class InsertTemplateOnDoubleTappedBehavior : Behavior<ListBoxItem>
     {
         if (AssociatedObject is { DataContext: INodeTemplate template } && DrawingSource is { } drawing)
         {
+            if (drawing is IUndoRedoHost host)
+            {
+                host.BeginUndoBatch();
+            }
+
             var node = drawing.Clone(template.Template);
             if (node is not null)
             {
@@ -46,6 +51,11 @@ public class InsertTemplateOnDoubleTappedBehavior : Behavior<ListBoxItem>
                 node.Move(0.0, 0.0);
                 drawing.Nodes?.Add(node);
                 node.OnCreated();
+            }
+
+            if (drawing is IUndoRedoHost endHost)
+            {
+                endHost.EndUndoBatch();
             }
         }
     }

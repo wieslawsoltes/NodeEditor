@@ -17,13 +17,10 @@
                       Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
                       Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                       ClipToBounds="False">
-          <ItemsControl.Styles>
-            <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:IPin">
+          <ItemsControl.ItemContainerTheme>
+            <ControlTheme TargetType="ContentPresenter" x:DataType="m:IPin">
               <Setter Property="Canvas.Left" Value="{Binding X}" />
               <Setter Property="Canvas.Top" Value="{Binding Y}" />
-            </Style>
-            <!-- TODO: Workaround -->
-            <Style Selector="ItemsControl > :is(ContentPresenter)">
               <Setter Property="(i:Interaction.Behaviors)">
                 <i:BehaviorCollectionTemplate>
                   <i:BehaviorCollection>
@@ -31,19 +28,21 @@
                   </i:BehaviorCollection>
                 </i:BehaviorCollectionTemplate>
               </Setter>
-            </Style>
-          </ItemsControl.Styles>
+            </ControlTheme>
+          </ItemsControl.ItemContainerTheme>
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
               <Canvas />
             </ItemsPanelTemplate>
           </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="m:IPin">
+            <DataTemplate DataType="m:IPin" x:CompileBindings="False">
               <controls:Pin x:Name="PART_Pin"
                             Width="{Binding Width}"
                             Height="{Binding Height}"
                             Alignment="{Binding Alignment}"
+                            Direction="{Binding Direction, Mode=TwoWay}"
+                            BusWidth="{Binding BusWidth, Mode=TwoWay}"
                             Id="{Binding Name}"
                             PinSource="{Binding .}"/>
             </DataTemplate>
@@ -52,18 +51,6 @@
       </ControlTemplate>
     </Setter>
  
-    <!--
-    <Style Selector="^/template/ ItemsControl#PART_PinsItemsControl > :is(ContentPresenter)">
-      <Setter Property="(i:Interaction.Behaviors)">
-        <i:BehaviorCollectionTemplate>
-          <i:BehaviorCollection>
-            <behaviors:PinPressedBehavior />
-          </i:BehaviorCollection>
-        </i:BehaviorCollectionTemplate>
-      </Setter>
-    </Style>
-    -->
-
     <!--
     <Style Selector="^/template/ ItemsControl#PART_PinsItemsControl">
       <Setter Property="IsVisible" Value="False" />

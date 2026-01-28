@@ -1,16 +1,40 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+                    xmlns:primitives="clr-namespace:Avalonia.Controls.Primitives;assembly=Avalonia.Controls"
                     x:CompileBindings="True">
 
   <ControlTheme x:Key="{x:Type controls:Node}" TargetType="controls:Node">
     
     <Setter Property="ClipToBounds" Value="False" />
 
+    <Setter Property="ContextFlyout" x:DataType="controls:Node">
+      <Setter.Value>
+        <Flyout>
+          <DockPanel>
+            <Label Content="Rotation:" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding NodeSource.Rotation}" DockPanel.Dock="Top" />
+            <CheckBox Content="Locked"
+                      IsChecked="{Binding NodeSource.IsLocked}"
+                      DockPanel.Dock="Top" />
+            <CheckBox Content="Visible"
+                      IsChecked="{Binding NodeSource.IsVisible}"
+                      DockPanel.Dock="Top" />
+          </DockPanel>
+        </Flyout>
+      </Setter.Value>
+    </Setter>
+
     <Setter Property="Template">
       <ControlTemplate>
         <Panel Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}" 
-               Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}">
+               Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+               RenderTransformOrigin="0.5,0.5">
+          <Panel.RenderTransform>
+            <RotateTransform Angle="{Binding NodeSource.Rotation, RelativeSource={RelativeSource TemplatedParent}}" />
+          </Panel.RenderTransform>
           <ContentPresenter x:Name="PART_ContentPresenter"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -26,9 +50,151 @@
                          Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
                          Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
                          NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"/>
+          <Grid x:Name="PART_ResizeHandles"
+                Width="{Binding NodeSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                Height="{Binding NodeSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                IsVisible="False"
+                IsHitTestVisible="False">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="TopLeftCorner"
+                              Grid.Row="0"
+                              Grid.Column="0">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="TopLeft" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="SizeNorthSouth"
+                              Grid.Row="0"
+                              Grid.Column="1"
+                              HorizontalAlignment="Center">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="Top" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="TopRightCorner"
+                              Grid.Row="0"
+                              Grid.Column="2">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="TopRight" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="SizeWestEast"
+                              Grid.Row="1"
+                              Grid.Column="0"
+                              VerticalAlignment="Center">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="Left" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="SizeWestEast"
+                              Grid.Row="1"
+                              Grid.Column="2"
+                              VerticalAlignment="Center">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="Right" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="BottomLeftCorner"
+                              Grid.Row="2"
+                              Grid.Column="0">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="BottomLeft" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="SizeNorthSouth"
+                              Grid.Row="2"
+                              Grid.Column="1"
+                              HorizontalAlignment="Center">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="Bottom" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+            <primitives:Thumb Classes="resize-handle"
+                              Cursor="BottomRightCorner"
+                              Grid.Row="2"
+                              Grid.Column="2">
+              <i:Interaction.Behaviors>
+                <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Direction="BottomRight" />
+              </i:Interaction.Behaviors>
+            </primitives:Thumb>
+          </Grid>
+          <primitives:Thumb Classes="rotate-handle"
+                            Cursor="Hand"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Margin="0,-18,0,0"
+                            IsVisible="False"
+                            IsHitTestVisible="False">
+            <i:Interaction.Behaviors>
+              <behaviors:NodeRotateBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                            AngleReadoutBackground="{DynamicResource RotationSnapReadoutBackgroundBrush}"
+                                            AngleReadoutBorderBrush="{DynamicResource RotationSnapReadoutBorderBrush}"
+                                            AngleReadoutForeground="{DynamicResource RotationSnapReadoutForegroundBrush}" />
+            </i:Interaction.Behaviors>
+          </primitives:Thumb>
         </Panel>
       </ControlTemplate>
     </Setter>
+
+    <Style Selector="^/template/ Thumb.resize-handle">
+      <Setter Property="Width" Value="8" />
+      <Setter Property="Height" Value="8" />
+      <Setter Property="Margin" Value="-4" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{DynamicResource NodeResizeHandleFillBrush}"
+                  BorderBrush="{DynamicResource NodeResizeHandleBorderBrush}"
+                  BorderThickness="1"
+                  CornerRadius="1" />
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="^/template/ Thumb.rotate-handle">
+      <Setter Property="Width" Value="10" />
+      <Setter Property="Height" Value="10" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Ellipse Fill="{DynamicResource NodeResizeHandleFillBrush}"
+                   Stroke="{DynamicResource NodeResizeHandleBorderBrush}"
+                   StrokeThickness="1" />
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="^:selected /template/ Grid#PART_ResizeHandles">
+      <Setter Property="IsVisible" Value="True" />
+      <Setter Property="IsHitTestVisible" Value="True" />
+    </Style>
+
+    <Style Selector="^:selected /template/ Thumb.rotate-handle">
+      <Setter Property="IsVisible" Value="True" />
+      <Setter Property="IsHitTestVisible" Value="True" />
+    </Style>
 
   </ControlTheme>
 
