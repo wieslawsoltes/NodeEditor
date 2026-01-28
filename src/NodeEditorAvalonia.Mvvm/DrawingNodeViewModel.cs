@@ -11,8 +11,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class DrawingNodeSettingsViewModel : IDrawingNodeSettings
+public partial class DrawingNodeSettingsViewModel : ObservableObject, IDrawingNodeSettings
 {
     [ObservableProperty] private bool _enableConnections = true;
     [ObservableProperty] private bool _requireDirectionalConnections;

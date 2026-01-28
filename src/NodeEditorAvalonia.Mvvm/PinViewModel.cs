@@ -4,8 +4,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class PinViewModel : IPin, IConnectablePin
+public partial class PinViewModel : ObservableObject, IPin, IConnectablePin
 {
     [ObservableProperty] private string? _name;
     [ObservableProperty] private INode? _parent;
@@ -63,7 +62,7 @@ public partial class PinViewModel : IPin, IConnectablePin
 
     public void OnMoved()
     {
-        Moved?.Invoke(this, new PinMovedEventArgs(this, _x, _y));
+        Moved?.Invoke(this, new PinMovedEventArgs(this, X, Y));
     }
 
     public void OnSelected()
@@ -78,7 +77,7 @@ public partial class PinViewModel : IPin, IConnectablePin
 
     public void OnResized()
     {
-        Resized?.Invoke(this, new PinResizedEventArgs(this, _x, _y, _width, _height));
+        Resized?.Invoke(this, new PinResizedEventArgs(this, X, Y, Width, Height));
     }
 
     public void OnConnected()

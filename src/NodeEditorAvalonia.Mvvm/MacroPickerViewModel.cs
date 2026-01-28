@@ -7,8 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class MacroPickerViewModel
+public partial class MacroPickerViewModel : ObservableObject
 {
     private readonly ObservableCollection<MacroDefinition> _macros;
     [ObservableProperty] private ObservableCollection<MacroDefinition> _filteredMacros;

@@ -5,8 +5,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class NodeViewModel : INode
+public partial class NodeViewModel : ObservableObject, INode
 {
     [ObservableProperty] private string? _name;
     [ObservableProperty] private INode? _parent;
@@ -200,7 +199,7 @@ public partial class NodeViewModel : INode
 
     public virtual void OnMoved()
     {
-        Moved?.Invoke(this, new NodeMovedEventArgs(this, _x, _y));
+        Moved?.Invoke(this, new NodeMovedEventArgs(this, X, Y));
     }
 
     public virtual void OnSelected()
@@ -215,6 +214,6 @@ public partial class NodeViewModel : INode
 
     public virtual void OnResized()
     {
-        Resized?.Invoke(this, new NodeResizedEventArgs(this, _x, _y, _width, _height));
+        Resized?.Invoke(this, new NodeResizedEventArgs(this, X, Y, Width, Height));
     }
 }
