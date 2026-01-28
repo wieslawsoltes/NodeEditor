@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
 using NodeEditor.Mvvm;
+using NodeEditor.Services;
 using NodeEditorDemo.Services;
+using NodeEditorDemo.Views;
 
 namespace NodeEditorDemo.ViewModels;
 
@@ -19,10 +23,65 @@ public partial class MainViewViewModel : ViewModelBase
 {
     [ObservableProperty] private EditorViewModel? _editor;
     [ObservableProperty] private bool _isToolboxVisible;
+    [ObservableProperty] private bool _enableConnectionValidation = true;
 
     public MainViewViewModel()
     {
         _isToolboxVisible = true;
+    }
+
+    partial void OnEditorChanging(EditorViewModel? value)
+    {
+        if (Editor is not null)
+        {
+            Editor.PropertyChanged -= OnEditorPropertyChanged;
+        }
+    }
+
+    partial void OnEditorChanged(EditorViewModel? value)
+    {
+        if (value is null)
+        {
+            return;
+        }
+
+        value.PropertyChanged += OnEditorPropertyChanged;
+        SyncConnectionValidation();
+    }
+
+    private void OnEditorPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(EditorViewModel.Drawing))
+        {
+            SyncConnectionValidation();
+        }
+    }
+
+    partial void OnEnableConnectionValidationChanged(bool value)
+    {
+        ApplyConnectionValidation();
+    }
+
+    private void SyncConnectionValidation()
+    {
+        if (Editor?.Drawing?.Settings is null)
+        {
+            return;
+        }
+
+        EnableConnectionValidation = Editor.Drawing.Settings.ConnectionValidator is not null;
+    }
+
+    private void ApplyConnectionValidation()
+    {
+        if (Editor?.Drawing?.Settings is null)
+        {
+            return;
+        }
+
+        Editor.Drawing.Settings.ConnectionValidator = EnableConnectionValidation
+            ? BaseConnectionValidation.TypeCompatibility
+            : null;
     }
 
     [RelayCommand]
@@ -85,6 +144,62 @@ public partial class MainViewViewModel : ViewModelBase
             StorageService.ImageSkp,
             StorageService.All
         };
+    }
+
+    private List<MacroDefinition> BuildMacros()
+    {
+        var macros = new List<MacroDefinition>
+        {
+            new("file.new", "New Drawing", NewCommand, category: "File"),
+            new("file.open", "Open Drawing", OpenCommand, category: "File"),
+            new("file.save", "Save Drawing", SaveCommand, category: "File"),
+            new("file.export", "Export Drawing", ExportCommand, category: "File"),
+            new("view.toolbox", "Toggle Toolbox", ToggleToolboxVisibleCommand, category: "View")
+        };
+
+        if (Editor?.Drawing is { } drawing)
+        {
+            macros.Add(new MacroDefinition("draw.ink.toggle", "Toggle Ink Mode", drawing.DrawInkCommand, category: "Draw"));
+            macros.Add(new MacroDefinition("draw.ink.addpen", "Add Pen", drawing.AddPenCommand, category: "Draw"));
+            macros.Add(new MacroDefinition("draw.ink.convert", "Convert Ink", drawing.ConvertInkCommand, category: "Draw"));
+            macros.Add(new MacroDefinition("draw.ink.clear", "Clear Ink", drawing.ClearInkCommand, category: "Draw"));
+            macros.Add(new MacroDefinition("view.grid.toggle", "Toggle Grid", new RelayCommand(() =>
+            {
+                drawing.Settings.EnableGrid = !drawing.Settings.EnableGrid;
+            }), category: "View"));
+            macros.Add(new MacroDefinition("view.snap.toggle", "Toggle Snap", new RelayCommand(() =>
+            {
+                drawing.Settings.EnableSnap = !drawing.Settings.EnableSnap;
+            }), category: "View"));
+        }
+
+        return macros;
+    }
+
+    [RelayCommand]
+    private void ShowMacros()
+    {
+        var macros = BuildMacros();
+        if (macros.Count == 0)
+        {
+            return;
+        }
+
+        var viewModel = new MacroPickerViewModel(macros);
+        var window = new MacroPickerWindow
+        {
+            DataContext = viewModel
+        };
+
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime lifetime
+            && lifetime.MainWindow is Window owner)
+        {
+            window.ShowDialog(owner);
+        }
+        else
+        {
+            window.Show();
+        }
     }
 
     [RelayCommand]

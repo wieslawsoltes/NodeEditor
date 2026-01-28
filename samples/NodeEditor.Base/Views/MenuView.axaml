@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:app="clr-namespace:NodeEditorDemo"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
              Name="MenuUserControl"
              mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="400"
              x:Class="NodeEditorDemo.Views.MenuView"
@@ -27,16 +28,43 @@
             DockPanel.Dock="Right">
       <Button.Flyout>
         <Flyout ShowMode="TransientWithDismissOnPointerMoveAway" Placement="BottomEdgeAlignedRight">
-          <editor:DrawingNodeProperties 
-            DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"
-            EnableSnap="{Binding Settings.EnableSnap, FallbackValue={x:False}}"
-            SnapX="{Binding Settings.SnapX, FallbackValue='1.0'}"
-            SnapY="{Binding Settings.SnapY, FallbackValue='1.0'}"
-            EnableGrid="{Binding Settings.EnableGrid, FallbackValue={x:False}}"
-            GridCellWidth="{Binding Settings.GridCellWidth, FallbackValue='1.0'}"
-            GridCellHeight="{Binding Settings.GridCellHeight, FallbackValue={x:False}}"
-            DrawingWidth="{Binding Width, FallbackValue=''}"
-            DrawingHeight="{Binding Height, FallbackValue=''}" />
+          <StackPanel Spacing="6">
+            <ToggleSwitch IsChecked="{Binding EnableConnectionValidation}"
+                          OnContent="Type Validation On"
+                          OffContent="Type Validation Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"/>
+            <editor:DrawingNodeProperties 
+              DataContext="{Binding Editor.Drawing, FallbackValue={x:Null}}"
+              IsInkMode="{Binding Settings.IsInkMode, FallbackValue={x:False}}"
+              EnableConnections="{Binding Settings.EnableConnections, FallbackValue={x:True}}"
+              RequireDirectionalConnections="{Binding Settings.RequireDirectionalConnections, FallbackValue={x:False}}"
+              RequireMatchingBusWidth="{Binding Settings.RequireMatchingBusWidth, FallbackValue={x:False}}"
+              EnableMultiplePinConnections="{Binding Settings.EnableMultiplePinConnections, FallbackValue={x:False}}"
+              AllowSelfConnections="{Binding Settings.AllowSelfConnections, FallbackValue={x:True}}"
+              AllowDuplicateConnections="{Binding Settings.AllowDuplicateConnections, FallbackValue={x:True}}"
+              EnableSnap="{Binding Settings.EnableSnap, FallbackValue={x:False}}"
+              SnapX="{Binding Settings.SnapX, FallbackValue='1.0'}"
+              SnapY="{Binding Settings.SnapY, FallbackValue='1.0'}"
+              NudgeStep="{Binding Settings.NudgeStep, FallbackValue='1.0'}"
+              NudgeMultiplier="{Binding Settings.NudgeMultiplier, FallbackValue='10.0'}"
+              EnableGrid="{Binding Settings.EnableGrid, FallbackValue={x:False}}"
+              GridCellWidth="{Binding Settings.GridCellWidth, FallbackValue='1.0'}"
+              GridCellHeight="{Binding Settings.GridCellHeight, FallbackValue={x:False}}"
+              EnableGuides="{Binding Settings.EnableGuides, FallbackValue={x:True}}"
+              GuideSnapTolerance="{Binding Settings.GuideSnapTolerance, FallbackValue='6.0'}"
+              EnableConnectorRouting="{Binding Settings.EnableConnectorRouting, FallbackValue={x:True}}"
+              RoutingGridSize="{Binding Settings.RoutingGridSize, FallbackValue='10.0'}"
+              RoutingObstaclePadding="{Binding Settings.RoutingObstaclePadding, FallbackValue='8.0'}"
+              RoutingAlgorithm="{Binding Settings.RoutingAlgorithm, FallbackValue={x:Static m:ConnectorRoutingAlgorithm.Auto}}"
+              RoutingBendPenalty="{Binding Settings.RoutingBendPenalty, FallbackValue='0.6'}"
+              RoutingDiagonalCost="{Binding Settings.RoutingDiagonalCost, FallbackValue='1.4'}"
+              RoutingCornerRadius="{Binding Settings.RoutingCornerRadius, FallbackValue='10.0'}"
+              RoutingMaxCells="{Binding Settings.RoutingMaxCells, FallbackValue='200'}"
+              DrawingWidth="{Binding Width, FallbackValue=''}"
+              DrawingHeight="{Binding Height, FallbackValue=''}" />
+          </StackPanel>
         </Flyout>
       </Button.Flyout>
       <PathIcon Width="16" Height="16"
@@ -99,6 +127,13 @@
       </MenuItem>
       <!-- Edit -->
       <MenuItem Header="_Edit">
+        <MenuItem Header="_Undo"
+                  Command="{Binding Editor.Drawing.UndoCommand, FallbackValue={x:Null}}"
+                  InputGesture="{OnPlatform macOS=CMD+Z, iOS=CMD+Z, Default=Ctrl+Z}" />
+        <MenuItem Header="_Redo"
+                  Command="{Binding Editor.Drawing.RedoCommand, FallbackValue={x:Null}}"
+                  InputGesture="{OnPlatform macOS=CMD+Shift+Z, iOS=CMD+Shift+Z, Default=Ctrl+Y}" />
+        <Separator />
         <MenuItem Header="Cu_t" 
                   Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
                   InputGesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}">
@@ -138,6 +173,24 @@
             <PathIcon Width="16" Height="16" Data="{DynamicResource DeleteIcon}" />
           </MenuItem.Icon>
         </MenuItem>
+      </MenuItem>
+      <!-- Draw -->
+      <MenuItem Header="_Draw">
+        <MenuItem Header="Ink Mode"
+                  IsChecked="{Binding Editor.Drawing.Settings.IsInkMode, FallbackValue={x:False}}"
+                  Command="{Binding Editor.Drawing.DrawInkCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Add Pen"
+                  Command="{Binding Editor.Drawing.AddPenCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Convert Ink"
+                  Command="{Binding Editor.Drawing.ConvertInkCommand, FallbackValue={x:Null}}" />
+        <MenuItem Header="Clear Ink"
+                  Command="{Binding Editor.Drawing.ClearInkCommand, FallbackValue={x:Null}}" />
+      </MenuItem>
+      <!-- View -->
+      <MenuItem Header="_View">
+        <MenuItem Header="_Macros..."
+                  Command="{Binding ShowMacrosCommand}"
+                  InputGesture="{OnPlatform macOS=CMD+Shift+P, iOS=CMD+Shift+P, Default=Ctrl+Shift+P}" />
       </MenuItem>
       <!-- Zoom -->
       <MenuItem Header="_Zoom" 
@@ -183,4 +236,3 @@
   </DockPanel>
 
 </UserControl>
-

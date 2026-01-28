@@ -7,6 +7,7 @@
       <SolidColorBrush x:Key='NodeForegroundBrush'>Black</SolidColorBrush>
       <SolidColorBrush x:Key="EditorBackground" Color="#FFF5F5F5"/>
       <SolidColorBrush x:Key="DrawingBackground" Color="White"/>
+      <SolidColorBrush x:Key="ConnectorCrossingBackgroundBrush" Color="White"/>
       <SolidColorBrush x:Key="SeparatorBackground" Color="#2c2c2c" />
       <VisualBrush x:Key="EditorCheckerBoard" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
         <VisualBrush.Visual>
@@ -20,6 +21,7 @@
       <SolidColorBrush x:Key='NodeForegroundBrush'>White</SolidColorBrush>
       <SolidColorBrush x:Key="EditorBackground" Color="#FF808080"/>
       <SolidColorBrush x:Key="DrawingBackground" Color="#FF808080"/>
+      <SolidColorBrush x:Key="ConnectorCrossingBackgroundBrush" Color="#FF808080"/>
       <SolidColorBrush x:Key="SeparatorBackground" Color="#2c2c2c" />
       <VisualBrush x:Key="EditorCheckerBoard" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
         <VisualBrush.Visual>

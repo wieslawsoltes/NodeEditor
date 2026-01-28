@@ -48,6 +48,13 @@
       <!-- Edit -->
       <NativeMenuItem Header="Edit">
         <NativeMenu>
+          <NativeMenuItem Header="Undo"
+                          Command="{Binding Editor.Drawing.UndoCommand, FallbackValue={x:Null}}"
+                          Gesture="{OnPlatform macOS=CMD+Z, iOS=CMD+Z, Default=Ctrl+Z}" />
+          <NativeMenuItem Header="Redo"
+                          Command="{Binding Editor.Drawing.RedoCommand, FallbackValue={x:Null}}"
+                          Gesture="{OnPlatform macOS=CMD+Shift+Z, iOS=CMD+Shift+Z, Default=Ctrl+Y}" />
+          <NativeMenuItemSeparator />
           <NativeMenuItem Header="Cut" 
                           Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}" />
@@ -71,6 +78,28 @@
           <NativeMenuItem Header="Delete" 
                           Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" 
                           Gesture="Delete" />
+        </NativeMenu>
+      </NativeMenuItem>
+      <!-- Draw -->
+      <NativeMenuItem Header="Draw">
+        <NativeMenu>
+          <NativeMenuItem Header="Ink Mode"
+                          IsChecked="{Binding Editor.Drawing.Settings.IsInkMode, FallbackValue={x:False}}"
+                          Command="{Binding Editor.Drawing.DrawInkCommand, FallbackValue={x:Null}}" />
+          <NativeMenuItem Header="Add Pen"
+                          Command="{Binding Editor.Drawing.AddPenCommand, FallbackValue={x:Null}}" />
+          <NativeMenuItem Header="Convert Ink"
+                          Command="{Binding Editor.Drawing.ConvertInkCommand, FallbackValue={x:Null}}" />
+          <NativeMenuItem Header="Clear Ink"
+                          Command="{Binding Editor.Drawing.ClearInkCommand, FallbackValue={x:Null}}" />
+        </NativeMenu>
+      </NativeMenuItem>
+      <!-- View -->
+      <NativeMenuItem Header="View">
+        <NativeMenu>
+          <NativeMenuItem Header="Macros..."
+                          Command="{Binding ShowMacrosCommand}" 
+                          Gesture="{OnPlatform macOS=CMD+Shift+P, iOS=CMD+Shift+P, Default=Ctrl+Shift+P}" />
         </NativeMenu>
       </NativeMenuItem>
       <!-- Zoom -->
