@@ -17,9 +17,11 @@ public class NodeZoomBorder : ZoomBorder
             return;
         }
 
+        if (!double.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out var ratio) || ratio <= 0.0)
+        {
+            return;
+        }
         ResetMatrix();
-
-        var ratio = double.Parse(s, CultureInfo.InvariantCulture);
         var x = Child.Bounds.Width / 2.0;
         var y = Child.Bounds.Height / 2.0;
 
