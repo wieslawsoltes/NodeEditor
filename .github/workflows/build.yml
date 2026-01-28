@@ -1,4 +1,7 @@
 name: CI
+permissions:
+  contents: read
+  pull-requests: write
 
 on:
   push:
@@ -8,6 +11,11 @@ on:
   pull_request:
     branches:
     - main
+    - release/*
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
 jobs:
   build:
@@ -16,14 +24,50 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     name: Build ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-    - name: Install wasm-tools
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        global-json-file: global.json
+    - name: Install workloads
       run: dotnet workload install wasm-tools wasm-experimental
-    - name: Build Release
-      run: dotnet build --configuration Release
-    - name: Test Release
-      run: dotnet test --configuration Release
+    - name: Build
+      run: dotnet build -c Release
+
+  test:
+    needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Test ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        global-json-file: global.json
+    - name: Install workloads
+      run: dotnet workload install wasm-tools wasm-experimental
+    - name: Test
+      run: dotnet test -c Release
+
+  pack:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        global-json-file: global.json
+    - name: Install workloads
+      run: dotnet workload install wasm-tools wasm-experimental
+    - name: Pack
+      run: dotnet pack -c Release -o artifacts/nuget
+    - name: Upload NuGet artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nightly-nuget-packages
+        path: artifacts/nuget/*.nupkg
