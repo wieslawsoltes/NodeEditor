@@ -1,0 +1,54 @@
+<Solution>
+  <Folder Name="/build/">
+    <File Path=".editorconfig" />
+    <File Path="build.ps1" />
+    <File Path="build.sh" />
+    <File Path="global.json" />
+    <File Path="build/nodeeditor.public.snk" />
+    <Project Path="build/build/_build.csproj" />
+  </Folder>
+  <Folder Name="/build/git/">
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/build/nuget/">
+    <File Path="nuget.config" />
+  </Folder>
+  <Folder Name="/build/props/">
+    <File Path="build/Avalonia.Desktop.props" />
+    <File Path="build/Avalonia.Diagnostics.props" />
+    <File Path="build/Avalonia.props" />
+    <File Path="build/Avalonia.Xaml.Behaviors.props" />
+    <File Path="build/Avalonia.Web.props" />
+    <File Path="build/ReferenceAssemblies.props" />
+    <File Path="build/SignAssembly.props" />
+    <File Path="build/SourceLink.props" />
+    <File Path="build/XUnit.props" />
+    <File Path="build/Newtonsoft.Json.props" />
+    <File Path="build/Avalonia.Controls.PanAndZoom.props" />
+    <File Path="build/ReactiveUI.props" />
+    <File Path="build/Avalonia.Skia.props" />
+    <File Path="build/Avalonia.Themes.Fluent.props" />
+    <File Path="build/CommunityToolkit.Mvvm.props" />
+    <File Path="build/System.Reactive.props" />
+    <File Path="build/ReactiveMarbles.PropertyChanged.props" />
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="LICENSE.TXT" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/NodeEditor.Base/NodeEditor.Base.csproj" />
+    <Project Path="samples/NodeEditor.Desktop/NodeEditor.Desktop.csproj" />
+    <Project Path="samples/NodeEditor.Logic/NodeEditor.Logic.csproj" />
+    <Project Path="samples/NodeEditor.Logic.Desktop/NodeEditor.Logic.Desktop.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/NodeEditorAvalonia/NodeEditorAvalonia.csproj" />
+    <Project Path="src/NodeEditorAvalonia.Model/NodeEditorAvalonia.Model.csproj" />
+    <Project Path="src/NodeEditorAvalonia.Mvvm/NodeEditorAvalonia.Mvvm.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NodeEditorAvalonia.UnitTests/NodeEditorAvalonia.UnitTests.csproj" />
+  </Folder>
+</Solution>
