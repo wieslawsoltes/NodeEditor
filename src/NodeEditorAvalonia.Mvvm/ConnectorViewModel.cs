@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
@@ -12,9 +15,16 @@ public partial class ConnectorViewModel : IConnector
     [ObservableProperty] private string? _name;
     [ObservableProperty] private IDrawingNode? _parent;
     [ObservableProperty] private ConnectorOrientation _orientation;
+    [ObservableProperty] private ConnectorStyle _style = ConnectorStyle.Bezier;
+    [ObservableProperty] private ConnectorRoutingMode _routingMode = ConnectorRoutingMode.Auto;
+    [ObservableProperty] private ConnectorArrowStyle _startArrow;
+    [ObservableProperty] private ConnectorArrowStyle _endArrow;
     [ObservableProperty] private IPin? _start;
     [ObservableProperty] private IPin? _end;
     [ObservableProperty] private double _offset = 50;
+    [ObservableProperty] private IList<ConnectorPoint> _waypoints = new ObservableCollection<ConnectorPoint>();
+    [ObservableProperty] private bool _isVisible = true;
+    [ObservableProperty] private bool _isLocked;
 
     public event EventHandler<ConnectorCreatedEventArgs>? Created;
 
@@ -28,7 +38,20 @@ public partial class ConnectorViewModel : IConnector
 
     public event EventHandler<ConnectorEndChangedEventArgs>? EndChanged;
 
+    private readonly SerialDisposable _startSubscriptions = new();
+    private readonly SerialDisposable _endSubscriptions = new();
+
     public ConnectorViewModel() => ObservePins();
+
+    partial void OnStartChanged(IPin? value)
+    {
+        OnStartChanged();
+    }
+
+    partial void OnEndChanged(IPin? value)
+    {
+        OnEndChanged();
+    }
 
     private void ObservePins()
     {
@@ -36,59 +59,61 @@ public partial class ConnectorViewModel : IConnector
             .DistinctUntilChanged()
             .Subscribe(start =>
             {
-                if (start?.Parent is not null)
-                {
-                    (start.Parent as NodeViewModel)?.WhenChanged(x => x.X).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(Start)));
-                    (start.Parent as NodeViewModel)?.WhenChanged(x => x.Y).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(Start)));
-                }
-                else
-                {
-                    if (start is not null)
-                    {
-                        (start as PinViewModel)?.WhenChanged(x => x.X).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(Start)));
-                        (start as PinViewModel)?.WhenChanged(x => x.Y).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(Start)));
-                    }
-                }
-
-                if (start is not null)
-                {
-                    (start as PinViewModel)?.WhenChanged(x => x.Alignment).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(Start)));
-                }
+                _startSubscriptions.Disposable = ObservePin(start, nameof(Start));
             });
 
         this.WhenChanged(x => x.End)
             .DistinctUntilChanged()
             .Subscribe(end =>
             {
-                if (end?.Parent is not null)
-                {
-                    (end.Parent as NodeViewModel)?.WhenChanged(x => x.X).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(End)));
-                    (end.Parent as NodeViewModel)?.WhenChanged(x => x.Y).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(End)));
-                }
-                else
-                {
-                    if (end is not null)
-                    {
-                        (end as PinViewModel)?.WhenChanged(x => x.X).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(End)));
-                        (end as PinViewModel)?.WhenChanged(x => x.Y).DistinctUntilChanged().Subscribe(_ => OnPropertyChanged(nameof(End)));
-                    }
-                }
-
-                if (end is not null)
-                {
-                    (end as PinViewModel)?.WhenChanged(x => x.Alignment).Subscribe(_ => OnPropertyChanged(nameof(End)));
-                }
+                _endSubscriptions.Disposable = ObservePin(end, nameof(End));
             });
+    }
+
+    private IDisposable ObservePin(IPin? pin, string propertyName)
+    {
+        var disposables = new CompositeDisposable();
+
+        if (pin?.Parent is NodeViewModel parent)
+        {
+            disposables.Add(parent.WhenChanged(x => x.X)
+                .DistinctUntilChanged()
+                .Subscribe(_ => OnPropertyChanged(propertyName)));
+            disposables.Add(parent.WhenChanged(x => x.Y)
+                .DistinctUntilChanged()
+                .Subscribe(_ => OnPropertyChanged(propertyName)));
+            disposables.Add(parent.WhenChanged(x => x.Rotation)
+                .DistinctUntilChanged()
+                .Subscribe(_ => OnPropertyChanged(propertyName)));
+        }
+        else if (pin is PinViewModel pinViewModel)
+        {
+            disposables.Add(pinViewModel.WhenChanged(x => x.X)
+                .DistinctUntilChanged()
+                .Subscribe(_ => OnPropertyChanged(propertyName)));
+            disposables.Add(pinViewModel.WhenChanged(x => x.Y)
+                .DistinctUntilChanged()
+                .Subscribe(_ => OnPropertyChanged(propertyName)));
+        }
+
+        if (pin is PinViewModel alignedPin)
+        {
+            disposables.Add(alignedPin.WhenChanged(x => x.Alignment)
+                .DistinctUntilChanged()
+                .Subscribe(_ => OnPropertyChanged(propertyName)));
+        }
+
+        return disposables;
     }
 
     public virtual bool CanSelect()
     {
-        return true;
+        return IsVisible;
     }
 
     public virtual bool CanRemove()
     {
-        return true;
+        return IsVisible && !IsLocked;
     }
 
     public void OnCreated()

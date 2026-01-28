@@ -5,7 +5,7 @@ using NodeEditor.Model;
 namespace NodeEditor.Mvvm;
 
 [ObservableObject]
-public partial class PinViewModel : IPin
+public partial class PinViewModel : IPin, IConnectablePin
 {
     [ObservableProperty] private string? _name;
     [ObservableProperty] private INode? _parent;
@@ -14,6 +14,8 @@ public partial class PinViewModel : IPin
     [ObservableProperty] private double _width;
     [ObservableProperty] private double _height;
     [ObservableProperty] private PinAlignment _alignment;
+    [ObservableProperty] private PinDirection _direction = PinDirection.Bidirectional;
+    [ObservableProperty] private int _busWidth = 1;
 
     public event EventHandler<PinCreatedEventArgs>? Created;
 
@@ -39,6 +41,14 @@ public partial class PinViewModel : IPin
     public virtual bool CanDisconnect()
     {
         return true;
+    }
+
+    partial void OnBusWidthChanged(int value)
+    {
+        if (value < 1)
+        {
+            BusWidth = 1;
+        }
     }
 
     public void OnCreated()
