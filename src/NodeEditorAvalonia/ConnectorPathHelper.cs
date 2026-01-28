@@ -62,7 +62,8 @@ internal static class ConnectorPathHelper
         if (connector.Style == ConnectorStyle.Bezier)
         {
             var routed = GetPolylinePoints(connector, start, end);
-            if (routed.Count > 2 || connector.Waypoints.Count > 0)
+            var hasWaypoints = connector.Waypoints is { Count: > 0 };
+            if (routed.Count > 2 || hasWaypoints)
             {
                 return routed;
             }
@@ -126,6 +127,11 @@ internal static class ConnectorPathHelper
         for (var i = 1; i < points.Count; i++)
         {
             var segment = Distance(points[i - 1], points[i]);
+            if (segment <= 0.0001)
+            {
+                continue;
+            }
+
             if (traveled + segment >= target)
             {
                 var t = (target - traveled) / segment;
@@ -140,7 +146,7 @@ internal static class ConnectorPathHelper
         return points[points.Count - 1];
     }
 
-    private static Point GetPinPoint(IPin pin)
+    internal static Point GetPinPoint(IPin pin)
     {
         var x = pin.X;
         var y = pin.Y;

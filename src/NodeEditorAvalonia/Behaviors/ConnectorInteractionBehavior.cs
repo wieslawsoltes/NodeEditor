@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -100,25 +102,49 @@ public class ConnectorInteractionBehavior : Behavior<ItemsControl>
                 return;
             }
 
+            var existingWaypoints = connector.Waypoints;
+            if (existingWaypoints is not null && existingWaypoints.IsReadOnly)
+            {
+                SelectConnector(drawingNode, connector, e.KeyModifiers);
+                e.Handled = true;
+                return;
+            }
+
             if (drawingNode is IUndoRedoHost host)
             {
                 host.BeginUndoBatch();
             }
 
-            if (waypointIndex >= 0)
+            try
             {
-                connector.Waypoints.RemoveAt(waypointIndex);
-            }
-            else
-            {
-                var snapped = SnapHelper.Snap(position, drawingNode.Settings.SnapX, drawingNode.Settings.SnapY, drawingNode.Settings.EnableSnap);
-                var insertIndex = connector.Waypoints.Count == 0 ? 0 : Clamp(segmentIndex, 0, connector.Waypoints.Count);
-                connector.Waypoints.Insert(insertIndex, new ConnectorPoint(snapped.X, snapped.Y));
-            }
+                var waypoints = EnsureWaypoints(connector);
+                if (waypoints.IsReadOnly)
+                {
+                    SelectConnector(drawingNode, connector, e.KeyModifiers);
+                    e.Handled = true;
+                    return;
+                }
 
-            if (drawingNode is IUndoRedoHost endHost)
+                if (waypointIndex >= 0)
+                {
+                    if (waypointIndex < waypoints.Count)
+                    {
+                        waypoints.RemoveAt(waypointIndex);
+                    }
+                }
+                else
+                {
+                    var snapped = SnapHelper.Snap(position, drawingNode.Settings.SnapX, drawingNode.Settings.SnapY, drawingNode.Settings.EnableSnap);
+                    var insertIndex = waypoints.Count == 0 ? 0 : Clamp(segmentIndex, 0, waypoints.Count);
+                    waypoints.Insert(insertIndex, new ConnectorPoint(snapped.X, snapped.Y));
+                }
+            }
+            finally
             {
-                endHost.EndUndoBatch();
+                if (drawingNode is IUndoRedoHost endHost)
+                {
+                    endHost.EndUndoBatch();
+                }
             }
 
             if (IsConnectorSelected(drawingNode, connector))
@@ -159,14 +185,15 @@ public class ConnectorInteractionBehavior : Behavior<ItemsControl>
             return;
         }
 
-        if (_dragWaypointIndex >= _dragConnector.Waypoints.Count)
+        var dragWaypoints = _dragConnector.Waypoints;
+        if (dragWaypoints is null || _dragWaypointIndex >= dragWaypoints.Count)
         {
             return;
         }
 
         var position = e.GetPosition(AssociatedObject);
         var snapped = SnapHelper.Snap(position, drawingNode.Settings.SnapX, drawingNode.Settings.SnapY, drawingNode.Settings.EnableSnap);
-        var waypoint = _dragConnector.Waypoints[_dragWaypointIndex];
+        var waypoint = dragWaypoints[_dragWaypointIndex];
         waypoint.X = snapped.X;
         waypoint.Y = snapped.Y;
 
@@ -252,7 +279,8 @@ public class ConnectorInteractionBehavior : Behavior<ItemsControl>
 
     private static int TryFindWaypointIndex(IConnector connector, Point position, double tolerance)
     {
-        if (connector.Waypoints.Count == 0)
+        var waypoints = connector.Waypoints;
+        if (waypoints is null || waypoints.Count == 0)
         {
             return -1;
         }
@@ -260,9 +288,9 @@ public class ConnectorInteractionBehavior : Behavior<ItemsControl>
         var best = -1;
         var bestDistance = tolerance;
 
-        for (var i = 0; i < connector.Waypoints.Count; i++)
+        for (var i = 0; i < waypoints.Count; i++)
         {
-            var waypoint = connector.Waypoints[i];
+            var waypoint = waypoints[i];
             var distance = HitTestHelper.Length(new Point(waypoint.X, waypoint.Y), position);
             if (distance <= bestDistance)
             {
@@ -272,6 +300,18 @@ public class ConnectorInteractionBehavior : Behavior<ItemsControl>
         }
 
         return best;
+    }
+
+    private static IList<ConnectorPoint> EnsureWaypoints(IConnector connector)
+    {
+        if (connector.Waypoints is not null)
+        {
+            return connector.Waypoints;
+        }
+
+        var waypoints = new ObservableCollection<ConnectorPoint>();
+        connector.Waypoints = waypoints;
+        return waypoints;
     }
 
     private static void SelectConnector(IDrawingNode drawingNode, IConnector connector, KeyModifiers modifiers)

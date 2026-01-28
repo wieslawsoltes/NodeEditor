@@ -422,25 +422,30 @@ internal static class HitTestHelper
             return false;
         }
 
+        var expanded = Math.Max(0.0, tolerance);
+
         foreach (var node in drawingNode.Nodes)
         {
+            if (!node.IsVisible)
+            {
+                continue;
+            }
+
             if (node.Pins is null || node.Pins.Count == 0)
             {
                 continue;
             }
 
-            var nodeX = node.X;
-            var nodeY = node.Y;
-
             foreach (var candidate in node.Pins)
             {
-                var x = nodeX + candidate.X;
-                var y = nodeY + candidate.Y;
+                var location = ConnectorPathHelper.GetPinPoint(candidate);
+                var width = Math.Max(0.0, candidate.Width);
+                var height = Math.Max(0.0, candidate.Height);
                 var rect = new Rect(
-                    x - tolerance,
-                    y - tolerance,
-                    candidate.Width + tolerance * 2,
-                    candidate.Height + tolerance * 2);
+                    location.X - width / 2.0 - expanded,
+                    location.Y - height / 2.0 - expanded,
+                    width + expanded * 2,
+                    height + expanded * 2);
 
                 if (rect.Contains(point))
                 {

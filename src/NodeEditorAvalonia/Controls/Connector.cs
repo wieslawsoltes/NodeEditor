@@ -186,7 +186,7 @@ public class Connector : Shape
         if (connector.Style == ConnectorStyle.Bezier)
         {
             var points = ConnectorPathHelper.GetPolylinePoints(connector, start, end);
-            if (points.Count <= 2 && connector.Waypoints.Count == 0)
+            if (points.Count <= 2 && connector.Waypoints is not { Count: > 0 })
             {
                 return BuildSingleBezierGeometry(connector, start, end);
             }
@@ -445,8 +445,13 @@ public class Connector : Shape
         _attachedConnector = null;
     }
 
-    private void AttachWaypoints(IList<ConnectorPoint> waypoints)
+    private void AttachWaypoints(IList<ConnectorPoint>? waypoints)
     {
+        if (waypoints is null)
+        {
+            return;
+        }
+
         if (waypoints is INotifyCollectionChanged notifyCollection)
         {
             _waypointsCollection = notifyCollection;
@@ -690,6 +695,7 @@ public class Connector : Shape
 
         connector.Start = end;
         connector.End = start;
+        (connector.StartArrow, connector.EndArrow) = (connector.EndArrow, connector.StartArrow);
 
         var waypoints = connector.Waypoints;
         if (waypoints is { Count: > 1 } && !waypoints.IsReadOnly)

@@ -289,6 +289,14 @@ public class ConnectorCrossingsAdorner : Control
 
     private void OnConnectorsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
+        if (e.Action == NotifyCollectionChangedAction.Reset)
+        {
+            DetachConnectors();
+            AttachConnectors(Connectors);
+            MarkDirty();
+            return;
+        }
+
         if (e.OldItems is not null)
         {
             foreach (var item in e.OldItems)
@@ -678,6 +686,7 @@ public class ConnectorCrossingsAdorner : Control
     private sealed class WaypointWatcher : IDisposable
     {
         private readonly Action _changed;
+        private IList<ConnectorPoint>? _waypoints;
         private INotifyCollectionChanged? _collection;
         private readonly List<INotifyPropertyChanged> _points = new();
 
@@ -701,6 +710,7 @@ public class ConnectorCrossingsAdorner : Control
 
         private void Attach(IList<ConnectorPoint>? waypoints)
         {
+            _waypoints = waypoints;
             if (waypoints is INotifyCollectionChanged collection)
             {
                 _collection = collection;
@@ -736,6 +746,14 @@ public class ConnectorCrossingsAdorner : Control
 
         private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                Detach();
+                Attach(_waypoints);
+                _changed();
+                return;
+            }
+
             if (e.OldItems is not null)
             {
                 foreach (var item in e.OldItems)

@@ -98,6 +98,13 @@ internal sealed class HitTestIndex
 
         private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                Refresh(_connector.Waypoints);
+                _owner.MarkConnectorDirty(_connector);
+                return;
+            }
+
             if (e.OldItems is not null)
             {
                 foreach (var item in e.OldItems)
@@ -341,6 +348,7 @@ internal sealed class HitTestIndex
     {
         if (e.Action == NotifyCollectionChangedAction.Reset)
         {
+            ResetNodes();
             _rebuildAll = true;
             return;
         }
@@ -453,6 +461,7 @@ internal sealed class HitTestIndex
     {
         if (e.Action == NotifyCollectionChangedAction.Reset)
         {
+            ResetConnectors();
             _rebuildAll = true;
             return;
         }
@@ -499,6 +508,46 @@ internal sealed class HitTestIndex
         }
 
         _dirtyConnectors.Add(connector);
+    }
+
+    private void ResetNodes()
+    {
+        foreach (var node in _attachedNodes)
+        {
+            DetachNode(node);
+            RemoveNode(node);
+        }
+
+        _attachedNodes.Clear();
+        _dirtyNodes.Clear();
+
+        if (_nodes is not null)
+        {
+            foreach (var node in _nodes)
+            {
+                AttachNode(node);
+            }
+        }
+    }
+
+    private void ResetConnectors()
+    {
+        foreach (var connector in _attachedConnectors)
+        {
+            DetachConnector(connector);
+            RemoveConnector(connector);
+        }
+
+        _attachedConnectors.Clear();
+        _dirtyConnectors.Clear();
+
+        if (_connectors is not null)
+        {
+            foreach (var connector in _connectors)
+            {
+                AttachConnector(connector);
+            }
+        }
     }
 
     private void DetachConnector(IConnector connector)

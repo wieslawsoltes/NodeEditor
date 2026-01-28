@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 
 namespace NodeEditor;
@@ -6,13 +7,13 @@ internal static class SnapHelper
 {
     public static double Snap(double value, double snap)
     {
-        if (snap == 0.0)
+        var step = Math.Abs(snap);
+        if (step <= 0.0)
         {
             return value;
         }
-        var c = value % snap;
-        var r = c >= snap / 2.0 ? value + snap - c : value - c;
-        return r;
+
+        return Math.Round(value / step, MidpointRounding.AwayFromZero) * step;
     }
 
     public static Point Snap(Point point, double snapX, double snapY, bool enabled)
