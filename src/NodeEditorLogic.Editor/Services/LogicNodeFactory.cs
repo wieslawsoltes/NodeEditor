@@ -161,7 +161,7 @@ public sealed class LogicNodeFactory : INodeFactory
         return categories;
     }
 
-    internal static IConnector CreateConnector(IPin? start, IPin? end)
+    public static IConnector CreateConnector(IPin? start, IPin? end)
     {
         var connector = new LogicConnectorViewModel
         {

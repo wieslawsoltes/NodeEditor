@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>True</IsPackable>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NodeEditorLogic</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>NodeEditorLogic.Editor</PackageId>
+    <Description>Logic editor view models and services for NodeEditor LogicLab.</Description>
+    <PackageTags>node;editor;logic;simulation;avalonia</PackageTags>
+  </PropertyGroup>
+
+  <Import Project="..\..\build\ReferenceAssemblies.props" />
+  <Import Project="..\..\build\Avalonia.props" />
+  <Import Project="..\..\build\Avalonia.Diagnostics.props" Condition="'$(Configuration)' == 'Debug'" />
+  <Import Project="..\..\build\Avalonia.Themes.Fluent.props" />
+  <Import Project="..\..\build\Avalonia.Xaml.Behaviors.props" />
+  <Import Project="..\..\build\Avalonia.Skia.props" />
+  <Import Project="..\..\build\CommunityToolkit.Mvvm.props" />
+  <Import Project="..\..\build\Newtonsoft.Json.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\NodeEditorLogic.Core\NodeEditorLogic.Core.csproj" />
+    <ProjectReference Include="..\NodeEditorAvalonia.Mvvm\NodeEditorAvalonia.Mvvm.csproj" />
+    <ProjectReference Include="..\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
+  </ItemGroup>
+</Project>

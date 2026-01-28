@@ -26,6 +26,8 @@
   <Import Project="..\..\build\Newtonsoft.Json.props" />
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NodeEditorLogic.Core\NodeEditorLogic.Core.csproj" />
+    <ProjectReference Include="..\..\src\NodeEditorLogic.Editor\NodeEditorLogic.Editor.csproj" />
     <ProjectReference Include="..\..\src\NodeEditorAvalonia.Mvvm\NodeEditorAvalonia.Mvvm.csproj" />
     <ProjectReference Include="..\..\src\NodeEditorAvalonia\NodeEditorAvalonia.csproj" />
   </ItemGroup>

@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
              xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
-             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters;assembly=NodeEditorLogic.Editor"
              mc:Ignorable="d" d:DesignWidth="240" d:DesignHeight="600"
              x:Class="NodeEditorLogic.Views.ToolboxView"
              x:CompileBindings="False" x:DataType="vm:MainViewViewModel">

@@ -5,7 +5,7 @@
              xmlns:vm="using:NodeEditorLogic.ViewModels"
              xmlns:views="clr-namespace:NodeEditorLogic.Views"
              xmlns:panels="clr-namespace:NodeEditorLogic.Views.Panels"
-             xmlns:converters="clr-namespace:NodeEditorLogic.Converters"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters;assembly=NodeEditorLogic.Editor"
              xmlns:coreConverters="clr-namespace:NodeEditor.Converters;assembly=NodeEditorAvalonia"
              xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"

@@ -47,6 +47,8 @@
     <Project Path="src/NodeEditorAvalonia/NodeEditorAvalonia.csproj" />
     <Project Path="src/NodeEditorAvalonia.Model/NodeEditorAvalonia.Model.csproj" />
     <Project Path="src/NodeEditorAvalonia.Mvvm/NodeEditorAvalonia.Mvvm.csproj" />
+    <Project Path="src/NodeEditorLogic.Core/NodeEditorLogic.Core.csproj" />
+    <Project Path="src/NodeEditorLogic.Editor/NodeEditorLogic.Editor.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/NodeEditorAvalonia.UnitTests/NodeEditorAvalonia.UnitTests.csproj" />
