@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -11,6 +12,44 @@ namespace NodeEditor.Behaviors;
 
 public class ToolboxDragBehavior : Behavior<Control>
 {
+    private const string ApplicationPrefix = "";
+    // DataFormat.FromSystemName isn't in netstandard reference assemblies, so resolve via reflection.
+    private static readonly MethodInfo? FromSystemNameMethod = ResolveFromSystemNameMethod();
+    private static readonly DataFormat<INodeTemplate>? ContextTemplateFormat = CreateTemplateFormat(ContextDropBehavior.DataFormat);
+    private static readonly DataFormat<INodeTemplate>? NodeTemplateFormat = CreateTemplateFormat("NodeTemplate");
+
+    private static MethodInfo? ResolveFromSystemNameMethod()
+    {
+        foreach (var method in typeof(DataFormat).GetMethods(BindingFlags.Public | BindingFlags.Static))
+        {
+            if (method.Name != "FromSystemName" || !method.IsGenericMethodDefinition)
+            {
+                continue;
+            }
+
+            var parameters = method.GetParameters();
+            if (parameters.Length == 2
+                && parameters[0].ParameterType == typeof(string)
+                && parameters[1].ParameterType == typeof(string))
+            {
+                return method;
+            }
+        }
+
+        return null;
+    }
+
+    private static DataFormat<INodeTemplate>? CreateTemplateFormat(string? formatId)
+    {
+        if (string.IsNullOrWhiteSpace(formatId) || FromSystemNameMethod is null)
+        {
+            return null;
+        }
+
+        var genericMethod = FromSystemNameMethod.MakeGenericMethod(typeof(INodeTemplate));
+        return genericMethod.Invoke(null, new object?[] { formatId, ApplicationPrefix }) as DataFormat<INodeTemplate>;
+    }
+
     public static readonly StyledProperty<double> DragThresholdProperty =
         AvaloniaProperty.Register<ToolboxDragBehavior, double>(nameof(DragThreshold), 6);
 
@@ -117,21 +156,27 @@ public class ToolboxDragBehavior : Behavior<Control>
 
         try
         {
-            var data = new DataObject();
-            var dataFormat = ContextDropBehavior.DataFormat;
-            if (!string.IsNullOrWhiteSpace(dataFormat))
+            var data = new DataTransfer();
+            var item = new DataTransferItem();
+            if (ContextTemplateFormat is not null)
             {
-                data.Set(dataFormat, template);
+                item.Set(ContextTemplateFormat, template);
             }
-            data.Set("NodeTemplate", template);
 
-        var title = template.Title;
-        if (!string.IsNullOrWhiteSpace(title))
-        {
-            data.Set(DataFormats.Text, title!);
-        }
+            if (NodeTemplateFormat is not null)
+            {
+                item.Set(NodeTemplateFormat, template);
+            }
 
-            await DragDrop.DoDragDrop(e, data, DragDropEffects.Copy);
+            var title = template.Title;
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                item.Set(DataFormat.Text, title!);
+            }
+
+            data.Add(item);
+
+            await DragDrop.DoDragDropAsync(e, data, DragDropEffects.Copy);
         }
         finally
         {

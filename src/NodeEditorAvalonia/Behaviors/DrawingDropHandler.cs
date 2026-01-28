@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -48,48 +48,36 @@ public class DrawingDropHandler : DefaultDropHandler
                 var node = drawing.Clone(directTemplate.Template);
                 if (node is not null)
                 {
-                    node.Parent = drawing;
-                    node.Move(point.X, point.Y);
-                    drawing.Nodes?.Add(node);
-                    node.OnCreated();
+                    AddNodeToDrawing(drawing, node, point);
                 }
             }
 
             return true;
         }
 
-        foreach (var format in e.Data.GetDataFormats())
+        var dataTransfer = e.DataTransfer;
+        if (dataTransfer is null)
         {
-            var data = e.Data.Get(format);
-
-            switch (data)
-            {
-                case INodeTemplate template:
-                {
-                    if (bExecute)
-                    {
-                        var node = drawing.Clone(template.Template);
-                        if (node is not null)
-                        {
-                            node.Parent = drawing;
-                            node.Move(point.X, point.Y);
-                            drawing.Nodes?.Add(node);
-                            node.OnCreated();
-                        }
-                    }
-                    return true;
-                }
-            }
+            return false;
         }
 
-        if (e.Data.Contains(DataFormats.Text))
+        if (TryGetTemplate(dataTransfer, out var template))
         {
-            var text = e.Data.GetText();
-            if (text is null)
+            if (bExecute)
             {
-                return false;
+                var node = drawing.Clone(template.Template);
+                if (node is not null)
+                {
+                    AddNodeToDrawing(drawing, node, point);
+                }
             }
 
+            return true;
+        }
+
+        var text = dataTransfer.TryGetText();
+        if (text is not null)
+        {
             if (drawing is IDrawingDropTarget dropTarget && dropTarget.CanDropText(text, point))
             {
                 if (bExecute)
@@ -103,14 +91,9 @@ public class DrawingDropHandler : DefaultDropHandler
             return false;
         }
 
-        if (e.Data.Contains(DataFormats.Files))
+        var files = dataTransfer.TryGetFiles();
+        if (files is { Length: > 0 })
         {
-            var files = e.Data.GetFiles()?.ToArray();
-            if (files is null || files.Length == 0)
-            {
-                return false;
-            }
-
             if (drawing is IDrawingDropTarget dropTarget && dropTarget.CanDropFiles(files, point))
             {
                 if (bExecute)
@@ -125,6 +108,46 @@ public class DrawingDropHandler : DefaultDropHandler
         }
 
         return false;
+    }
+
+    private static bool TryGetTemplate(IDataTransfer dataTransfer, out INodeTemplate template)
+    {
+        foreach (var item in dataTransfer.Items)
+        {
+            foreach (var format in item.Formats)
+            {
+                if (item.TryGetRaw(format) is INodeTemplate nodeTemplate)
+                {
+                    template = nodeTemplate;
+                    return true;
+                }
+            }
+        }
+
+        template = null!;
+        return false;
+    }
+
+    private static void AddNodeToDrawing(IDrawingNode drawing, INode node, Point point)
+    {
+        drawing.Nodes ??= new ObservableCollection<INode>();
+        node.Parent = drawing;
+
+        var deltaX = point.X - node.X;
+        var deltaY = point.Y - node.Y;
+
+        if (node.CanMove())
+        {
+            node.Move(deltaX, deltaY);
+        }
+        else
+        {
+            node.X += deltaX;
+            node.Y += deltaY;
+        }
+
+        drawing.Nodes.Add(node);
+        node.OnCreated();
     }
 
     public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
