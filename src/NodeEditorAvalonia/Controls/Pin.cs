@@ -56,6 +56,11 @@ public class Pin : TemplatedControl
     {
         base.OnPointerPressed(e);
 
+        if (e.Handled)
+        {
+            return;
+        }
+
         var pin = PinSource ?? DataContext as IPin;
         if (pin is null)
         {

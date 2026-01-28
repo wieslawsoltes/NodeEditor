@@ -40,6 +40,11 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
 
     private void Pressed(object? sender, PointerPressedEventArgs e)
     {
+        if (e.Handled)
+        {
+            return;
+        }
+
         if (AssociatedObject?.DataContext is not IPin pin)
         {
             return;
