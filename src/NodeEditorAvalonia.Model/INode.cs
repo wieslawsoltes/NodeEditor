@@ -89,8 +89,11 @@ public interface INode
     double Y { get; set; }
     double Width { get; set; }
     double Height { get; set; }
+    double Rotation { get; set; }
     object? Content { get; set; }
     IList<IPin>? Pins { get; set; }
+    bool IsVisible { get; set; }
+    bool IsLocked { get; set; }
     bool CanSelect();
     bool CanRemove();
     bool CanMove();
