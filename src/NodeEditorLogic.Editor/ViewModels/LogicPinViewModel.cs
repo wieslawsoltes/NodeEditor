@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using NodeEditor.Model;
 using NodeEditor.Mvvm;
@@ -9,23 +10,62 @@ public partial class LogicPinViewModel : PinViewModel, IConnectablePin
 {
     [ObservableProperty] private LogicPinKind _kind;
     [ObservableProperty] private LogicValue _value = LogicValue.Unknown;
-    [ObservableProperty] private int _busWidth = 1;
     [ObservableProperty] private LogicValue[] _busValue = new[] { LogicValue.Unknown };
 
     private bool _suppressSignalSync;
+    private bool _syncingDirection;
 
-    public PinDirection Direction => Kind == LogicPinKind.Input ? PinDirection.Input : PinDirection.Output;
-
-    partial void OnBusWidthChanged(int value)
+    public LogicPinViewModel()
     {
-        var clamped = value < 1 ? 1 : value;
-        if (clamped != value)
+        PropertyChanged += OnSelfPropertyChanged;
+        base.Direction = Kind == LogicPinKind.Input ? PinDirection.Input : PinDirection.Output;
+        EnsureBusValue();
+    }
+
+    partial void OnKindChanged(LogicPinKind value)
+    {
+        if (_syncingDirection)
         {
-            BusWidth = clamped;
             return;
         }
 
-        EnsureBusValue();
+        _syncingDirection = true;
+        base.Direction = value == LogicPinKind.Input ? PinDirection.Input : PinDirection.Output;
+        _syncingDirection = false;
+    }
+
+    private void OnSelfPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(BusWidth))
+        {
+            EnsureBusValue();
+            return;
+        }
+
+        if (e.PropertyName == nameof(Direction))
+        {
+            if (_syncingDirection)
+            {
+                return;
+            }
+
+            _syncingDirection = true;
+            var expectedDirection = Kind == LogicPinKind.Input ? PinDirection.Input : PinDirection.Output;
+            if (Direction == PinDirection.Bidirectional)
+            {
+                base.Direction = expectedDirection;
+            }
+            else
+            {
+                var desiredKind = Direction == PinDirection.Input ? LogicPinKind.Input : LogicPinKind.Output;
+                if (Kind != desiredKind)
+                {
+                    Kind = desiredKind;
+                }
+            }
+
+            _syncingDirection = false;
+        }
     }
 
     partial void OnBusValueChanged(LogicValue[] value)

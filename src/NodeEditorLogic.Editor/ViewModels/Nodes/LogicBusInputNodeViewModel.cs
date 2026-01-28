@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using NodeEditorLogic.Services;
 
 namespace NodeEditorLogic.ViewModels.Nodes;
 
@@ -25,6 +26,11 @@ public partial class LogicBusInputNodeViewModel : LogicNodeContentViewModel
         }
 
         OnPropertyChanged(nameof(MaxValue));
+
+        if (HostNode is not null)
+        {
+            LogicNodeFactory.RefreshBusInputPins(HostNode, this);
+        }
     }
 
     partial void OnBusValueChanged(int value)

@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using NodeEditorLogic.Services;
 
 namespace NodeEditorLogic.ViewModels.Nodes;
 
@@ -14,6 +15,12 @@ public partial class LogicBusOutputNodeViewModel : LogicNodeContentViewModel
         if (clamped != value)
         {
             BusWidth = clamped;
+            return;
+        }
+
+        if (HostNode is not null)
+        {
+            LogicNodeFactory.RefreshBusOutputPins(HostNode, this);
         }
     }
 }

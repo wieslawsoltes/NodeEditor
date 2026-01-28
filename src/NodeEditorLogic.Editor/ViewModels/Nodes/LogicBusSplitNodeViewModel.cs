@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using NodeEditorLogic.Services;
 
 namespace NodeEditorLogic.ViewModels.Nodes;
 
@@ -12,6 +13,12 @@ public partial class LogicBusSplitNodeViewModel : LogicNodeContentViewModel
         if (clamped != value)
         {
             BitCount = clamped;
+            return;
+        }
+
+        if (HostNode is not null)
+        {
+            LogicNodeFactory.RefreshBusSplitPins(HostNode, this);
         }
     }
 }

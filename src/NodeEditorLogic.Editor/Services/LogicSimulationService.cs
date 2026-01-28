@@ -831,9 +831,10 @@ public sealed class LogicSimulationService
     {
         if (pin.BusWidth > 1)
         {
-            if (!SignalsEqual(pin.BusValue, signal))
+            var normalized = NormalizeSignal(signal, pin.BusWidth);
+            if (!SignalsEqual(pin.BusValue, normalized))
             {
-                pin.BusValue = signal;
+                pin.BusValue = normalized;
                 changed = true;
             }
 
@@ -842,6 +843,23 @@ public sealed class LogicSimulationService
 
         var value = signal.Length > 0 ? signal[0] : LogicValue.Unknown;
         UpdatePinValue(pin, value, ref changed);
+    }
+
+    private static LogicValue[] NormalizeSignal(IReadOnlyList<LogicValue> signal, int width)
+    {
+        var clampedWidth = Math.Max(1, width);
+        if (signal.Count == clampedWidth)
+        {
+            return signal as LogicValue[] ?? signal.ToArray();
+        }
+
+        var normalized = new LogicValue[clampedWidth];
+        for (var i = 0; i < normalized.Length; i++)
+        {
+            normalized[i] = i < signal.Count ? signal[i] : LogicValue.Unknown;
+        }
+
+        return normalized;
     }
 
     private static bool SignalsEqual(IReadOnlyList<LogicValue> left, IReadOnlyList<LogicValue> right)

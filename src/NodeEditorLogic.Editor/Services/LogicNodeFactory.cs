@@ -719,6 +719,8 @@ public sealed class LogicNodeFactory : INodeFactory
             var connector = drawing.Connectors[i];
             if (connector.Start == pin || connector.End == pin)
             {
+                connector.Start?.OnDisconnected();
+                connector.End?.OnDisconnected();
                 connector.OnRemoved();
                 drawing.Connectors.RemoveAt(i);
             }
