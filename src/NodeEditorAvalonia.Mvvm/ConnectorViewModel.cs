@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,8 +10,7 @@ using ReactiveMarbles.PropertyChanged;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class ConnectorViewModel : IConnector
+public partial class ConnectorViewModel : ObservableObject, IConnector
 {
     [ObservableProperty] private string? _name;
     [ObservableProperty] private IDrawingNode? _parent;
@@ -74,19 +74,61 @@ public partial class ConnectorViewModel : IConnector
     {
         var disposables = new CompositeDisposable();
 
-        if (pin?.Parent is NodeViewModel parent)
+        if (pin is null)
         {
-            disposables.Add(parent.WhenChanged(x => x.X)
-                .DistinctUntilChanged()
-                .Subscribe(_ => OnPropertyChanged(propertyName)));
-            disposables.Add(parent.WhenChanged(x => x.Y)
-                .DistinctUntilChanged()
-                .Subscribe(_ => OnPropertyChanged(propertyName)));
-            disposables.Add(parent.WhenChanged(x => x.Rotation)
-                .DistinctUntilChanged()
-                .Subscribe(_ => OnPropertyChanged(propertyName)));
+            return disposables;
         }
-        else if (pin is PinViewModel pinViewModel)
+
+        var parentSubscriptions = new SerialDisposable();
+        disposables.Add(parentSubscriptions);
+
+        IDisposable CreateParentSubscriptions(INode? parent)
+        {
+            if (parent is NodeViewModel parentViewModel)
+            {
+                var parentDisposables = new CompositeDisposable
+                {
+                    parentViewModel.WhenChanged(x => x.X)
+                        .DistinctUntilChanged()
+                        .Subscribe(_ => OnPropertyChanged(propertyName)),
+                    parentViewModel.WhenChanged(x => x.Y)
+                        .DistinctUntilChanged()
+                        .Subscribe(_ => OnPropertyChanged(propertyName)),
+                    parentViewModel.WhenChanged(x => x.Rotation)
+                        .DistinctUntilChanged()
+                        .Subscribe(_ => OnPropertyChanged(propertyName))
+                };
+                return parentDisposables;
+            }
+
+            if (parent is INotifyPropertyChanged parentNotify)
+            {
+                PropertyChangedEventHandler handler = (_, e) =>
+                {
+                    if (string.IsNullOrEmpty(e.PropertyName)
+                        || e.PropertyName == nameof(INode.X)
+                        || e.PropertyName == nameof(INode.Y)
+                        || e.PropertyName == nameof(INode.Rotation))
+                    {
+                        OnPropertyChanged(propertyName);
+                    }
+                };
+
+                parentNotify.PropertyChanged += handler;
+                return Disposable.Create(() => parentNotify.PropertyChanged -= handler);
+            }
+
+            return Disposable.Empty;
+        }
+
+        void AttachParent(INode? parent)
+        {
+            parentSubscriptions.Disposable = CreateParentSubscriptions(parent);
+        }
+
+        AttachParent(pin.Parent);
+
+        if (pin is PinViewModel pinViewModel)
         {
             disposables.Add(pinViewModel.WhenChanged(x => x.X)
                 .DistinctUntilChanged()
@@ -94,13 +136,39 @@ public partial class ConnectorViewModel : IConnector
             disposables.Add(pinViewModel.WhenChanged(x => x.Y)
                 .DistinctUntilChanged()
                 .Subscribe(_ => OnPropertyChanged(propertyName)));
-        }
-
-        if (pin is PinViewModel alignedPin)
-        {
-            disposables.Add(alignedPin.WhenChanged(x => x.Alignment)
+            disposables.Add(pinViewModel.WhenChanged(x => x.Alignment)
                 .DistinctUntilChanged()
                 .Subscribe(_ => OnPropertyChanged(propertyName)));
+            disposables.Add(pinViewModel.WhenChanged(x => x.Parent)
+                .DistinctUntilChanged()
+                .Subscribe(parent =>
+                {
+                    AttachParent(parent);
+                    OnPropertyChanged(propertyName);
+                }));
+        }
+        else if (pin is INotifyPropertyChanged pinNotify)
+        {
+            PropertyChangedEventHandler handler = (_, e) =>
+            {
+                if (string.IsNullOrEmpty(e.PropertyName)
+                    || e.PropertyName == nameof(IPin.X)
+                    || e.PropertyName == nameof(IPin.Y)
+                    || e.PropertyName == nameof(IPin.Alignment))
+                {
+                    OnPropertyChanged(propertyName);
+                }
+
+                if (string.IsNullOrEmpty(e.PropertyName)
+                    || e.PropertyName == nameof(IPin.Parent))
+                {
+                    AttachParent(pin.Parent);
+                    OnPropertyChanged(propertyName);
+                }
+            };
+
+            pinNotify.PropertyChanged += handler;
+            disposables.Add(Disposable.Create(() => pinNotify.PropertyChanged -= handler));
         }
 
         return disposables;
