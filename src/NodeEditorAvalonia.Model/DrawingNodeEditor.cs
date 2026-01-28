@@ -396,10 +396,25 @@ public sealed class DrawingNodeEditor
             var x = pin.X;
             var y = pin.Y;
 
-            if (pin.Parent is not null)
+            if (pin.Parent is { } parent)
             {
-                x += pin.Parent.X;
-                y += pin.Parent.Y;
+                if (Math.Abs(parent.Rotation) > 0.001)
+                {
+                    var centerX = parent.Width / 2.0;
+                    var centerY = parent.Height / 2.0;
+                    var radians = parent.Rotation * Math.PI / 180.0;
+                    var cos = Math.Cos(radians);
+                    var sin = Math.Sin(radians);
+                    var dx = x - centerX;
+                    var dy = y - centerY;
+                    var rotatedX = dx * cos - dy * sin + centerX;
+                    var rotatedY = dx * sin + dy * cos + centerY;
+                    x = rotatedX;
+                    y = rotatedY;
+                }
+
+                x += parent.X;
+                y += parent.Y;
             }
 
             var end = _factory.CreatePin();
@@ -429,6 +444,12 @@ public sealed class DrawingNodeEditor
         }
         else
         {
+            if (_connector.Start == pin)
+            {
+                CancelConnector();
+                return;
+            }
+
             if (_connector.Start != pin)
             {
                 if (!CanConnectPin(pin) || !pin.CanConnect())
@@ -669,9 +690,17 @@ public sealed class DrawingNodeEditor
 
             foreach (var node in clipboard.SelectedNodes)
             {
-                if (node.CanMove())
+                if (Math.Abs(deltaX) > 0.001 || Math.Abs(deltaY) > 0.001)
                 {
-                    node.Move(deltaX, deltaY);
+                    if (node.CanMove())
+                    {
+                        node.Move(deltaX, deltaY);
+                    }
+                    else
+                    {
+                        node.X += deltaX;
+                        node.Y += deltaY;
+                    }
                 }
 
                 node.Parent = _node;
@@ -693,6 +722,26 @@ public sealed class DrawingNodeEditor
 
             foreach (var connector in clipboard.SelectedConnectors)
             {
+                var startPin = connector.Start;
+                var endPin = connector.End;
+                if (startPin is null || endPin is null)
+                {
+                    continue;
+                }
+
+                var startNode = startPin.Parent;
+                var endNode = endPin.Parent;
+                var nodes = _node.Nodes;
+                if (nodes is null || startNode is null || endNode is null)
+                {
+                    continue;
+                }
+
+                if (!nodes.Contains(startNode) || !nodes.Contains(endNode))
+                {
+                    continue;
+                }
+
                 if (connector.Waypoints is { Count: > 0 })
                 {
                     foreach (var waypoint in connector.Waypoints)
@@ -703,6 +752,9 @@ public sealed class DrawingNodeEditor
                 }
 
                 connector.Parent = _node;
+
+                startPin.OnConnected();
+                endPin.OnConnected();
 
                 _node.Connectors.Add(connector);
                 connector.OnCreated();
@@ -747,6 +799,12 @@ public sealed class DrawingNodeEditor
     {
         _pressedX = double.NaN;
         _pressedY = double.NaN;
+
+        var selectedNodes = _node.GetSelectedNodes();
+        if (selectedNodes is not { Count: > 0 })
+        {
+            return;
+        }
 
         CopyNodes();
         PasteNodes();
