@@ -3618,6 +3618,25 @@ references:
   commentId: T:NodeEditor.Controls.Toolbox
   fullName: NodeEditor.Controls.Toolbox
   nameWithType: Toolbox
+- uid: NodeEditor.Controls.Toolbox.DrawingSource
+  name: DrawingSource
+  href: api/NodeEditor.Controls.Toolbox.html#NodeEditor_Controls_Toolbox_DrawingSource
+  commentId: P:NodeEditor.Controls.Toolbox.DrawingSource
+  fullName: NodeEditor.Controls.Toolbox.DrawingSource
+  nameWithType: Toolbox.DrawingSource
+- uid: NodeEditor.Controls.Toolbox.DrawingSource*
+  name: DrawingSource
+  href: api/NodeEditor.Controls.Toolbox.html#NodeEditor_Controls_Toolbox_DrawingSource_
+  commentId: Overload:NodeEditor.Controls.Toolbox.DrawingSource
+  isSpec: "True"
+  fullName: NodeEditor.Controls.Toolbox.DrawingSource
+  nameWithType: Toolbox.DrawingSource
+- uid: NodeEditor.Controls.Toolbox.DrawingSourceProperty
+  name: DrawingSourceProperty
+  href: api/NodeEditor.Controls.Toolbox.html#NodeEditor_Controls_Toolbox_DrawingSourceProperty
+  commentId: F:NodeEditor.Controls.Toolbox.DrawingSourceProperty
+  fullName: NodeEditor.Controls.Toolbox.DrawingSourceProperty
+  nameWithType: Toolbox.DrawingSourceProperty
 - uid: NodeEditor.Controls.Toolbox.TemplatesSource
   name: TemplatesSource
   href: api/NodeEditor.Controls.Toolbox.html#NodeEditor_Controls_Toolbox_TemplatesSource
