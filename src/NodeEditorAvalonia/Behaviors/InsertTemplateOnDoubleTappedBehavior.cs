@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System.Collections.ObjectModel;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
@@ -39,14 +40,43 @@ public class InsertTemplateOnDoubleTappedBehavior : Behavior<ListBoxItem>
     {
         if (AssociatedObject is { DataContext: INodeTemplate template } && DrawingSource is { } drawing)
         {
+            if (drawing is IUndoRedoHost host)
+            {
+                host.BeginUndoBatch();
+            }
+
             var node = drawing.Clone(template.Template);
             if (node is not null)
             {
-                node.Parent = drawing;
-                node.Move(0.0, 0.0);
-                drawing.Nodes?.Add(node);
-                node.OnCreated();
+                AddNodeToDrawing(drawing, node);
+            }
+
+            if (drawing is IUndoRedoHost endHost)
+            {
+                endHost.EndUndoBatch();
             }
         }
+    }
+
+    private static void AddNodeToDrawing(IDrawingNode drawing, INode node)
+    {
+        drawing.Nodes ??= new ObservableCollection<INode>();
+        node.Parent = drawing;
+
+        var deltaX = -node.X;
+        var deltaY = -node.Y;
+
+        if (node.CanMove())
+        {
+            node.Move(deltaX, deltaY);
+        }
+        else
+        {
+            node.X += deltaX;
+            node.Y += deltaY;
+        }
+
+        drawing.Nodes.Add(node);
+        node.OnCreated();
     }
 }

@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:NodeEditorLogic.ViewModels.Nodes;assembly=NodeEditorLogic.Editor"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters;assembly=NodeEditorLogic.Editor"
+             xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             mc:Ignorable="d" d:DesignWidth="190" d:DesignHeight="90"
+             x:Class="NodeEditorLogic.Views.Nodes.ClockNodeView"
+             x:CompileBindings="True" x:DataType="vm:LogicClockNodeViewModel"
+             ClipToBounds="False">
+  <Design.DataContext>
+    <vm:LogicClockNodeViewModel Title="Clock" IsRunning="True" Period="2" State="High" />
+  </Design.DataContext>
+  <Border Classes="logic-node">
+    <StackPanel Spacing="6">
+      <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Title}" />
+      <ToggleSwitch IsChecked="{Binding IsRunning}" Content="Running" />
+      <StackPanel Orientation="Horizontal" Spacing="6">
+        <TextBlock Text="Period" VerticalAlignment="Center" />
+        <NumericUpDown Classes="logic-inline" Width="60" Minimum="1" Maximum="16" Value="{Binding Period}" />
+      </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="6">
+        <TextBlock Text="High" VerticalAlignment="Center" />
+        <NumericUpDown Classes="logic-inline" Width="60" Minimum="1" Maximum="16" Value="{Binding HighTicks}" />
+      </StackPanel>
+      <DockPanel>
+        <TextBlock Text="{Binding State, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+        <Border Classes="logic-led" Background="{Binding State, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+      </DockPanel>
+    </StackPanel>
+  </Border>
+</UserControl>

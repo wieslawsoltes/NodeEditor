@@ -16,7 +16,8 @@ internal static class Demo
             SnapY = 15.0,
             EnableGrid = true,
             GridCellWidth = 15.0,
-            GridCellHeight = 15.0
+            GridCellHeight = 15.0,
+            ConnectionValidator = BaseConnectionValidation.TypeCompatibility
         };
 
         var drawing = new DrawingNodeViewModel

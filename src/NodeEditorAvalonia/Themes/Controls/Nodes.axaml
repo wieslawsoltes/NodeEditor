@@ -16,22 +16,33 @@
                       ItemsSource="{Binding DrawingSource.Nodes, RelativeSource={RelativeSource TemplatedParent}}" 
                       Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
                       Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
-                      Background="Transparent"
                       ClipToBounds="False">
           <i:Interaction.Behaviors>
             <behaviors:NodesSelectedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
             <behaviors:DrawingSelectionBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" 
                                                 InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" 
                                                 AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}" />
-            <behaviors:DrawingPressedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
-            <behaviors:DrawingMovedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
+            <behaviors:ConnectionFeedbackBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  RejectionStroke="{DynamicResource ConnectionRejectedBrush}"
+                                                  LabelBackground="{DynamicResource ConnectionRejectedLabelBackgroundBrush}"
+                                                  LabelBorderBrush="{DynamicResource ConnectionRejectedLabelBorderBrush}"
+                                                  LabelForeground="{DynamicResource ConnectionRejectedLabelForegroundBrush}"
+                                                  LabelText="{DynamicResource ConnectionRejectedLabelText}" />
+            <behaviors:DrawingPressedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                             InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" />
+            <behaviors:DrawingMovedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                            InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" />
+            <behaviors:DrawingReleasedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                               InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" />
           </i:Interaction.Behaviors>
-          <ItemsControl.Styles>
-            <Style Selector="ItemsControl > ContentPresenter" x:DataType="m:INode">
+          <ItemsControl.ItemContainerTheme>
+            <ControlTheme TargetType="ContentPresenter" x:DataType="m:INode">
               <Setter Property="Canvas.Left" Value="{Binding X}" />
               <Setter Property="Canvas.Top" Value="{Binding Y}" />
-            </Style>
-          </ItemsControl.Styles>
+              <Setter Property="IsVisible" Value="{Binding IsVisible}" />
+            </ControlTheme>
+          </ItemsControl.ItemContainerTheme>
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
               <Canvas />
@@ -43,7 +54,16 @@
                              Content="{Binding Content}"
                              Width="{Binding Width}"
                              Height="{Binding Height}"
-                             NodeSource="{Binding .}" />
+                             NodeSource="{Binding .}">
+                <controls:Node.DataTemplates>
+                  <DataTemplate DataType="m:InkShape">
+                    <controls:InkStrokePresenter Stroke="{Binding Stroke}"
+                                                 HorizontalAlignment="Stretch"
+                                                 VerticalAlignment="Stretch"
+                                                 IsHitTestVisible="False" />
+                  </DataTemplate>
+                </controls:Node.DataTemplates>
+              </controls:Node>
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>

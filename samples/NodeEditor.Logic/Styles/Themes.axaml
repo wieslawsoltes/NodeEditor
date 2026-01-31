@@ -1,0 +1,64 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ResourceDictionary.ThemeDictionaries>
+
+    <ResourceDictionary x:Key='Default'>
+      <SolidColorBrush x:Key="AppBackgroundBrush" Color="#F4F6F9" />
+      <LinearGradientBrush x:Key="AppGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#F9FBFF" />
+        <GradientStop Offset="1" Color="#EDF1F6" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="AppPanelBackground" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="AppPanelBorder" Color="#D6DBE3" />
+      <SolidColorBrush x:Key="EditorBackground" Color="#E9EDF2" />
+      <SolidColorBrush x:Key="DrawingBackground" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="ConnectorCrossingBackgroundBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="SeparatorBackground" Color="#1F000000" />
+      <SolidColorBrush x:Key="NodeBackgroundBrush" Color="#FFFFFF" />
+      <SolidColorBrush x:Key="NodeForegroundBrush" Color="#1E2630" />
+      <SolidColorBrush x:Key="ToolboxBackgroundBrush" Color="#F8FAFD" />
+      <SolidColorBrush x:Key="InspectorBackgroundBrush" Color="#FDFEFF" />
+      <SolidColorBrush x:Key="StatusBarBackgroundBrush" Color="#F1F4F8" />
+      <SolidColorBrush x:Key="AccentBrush" Color="#2E5AAC" />
+      <SolidColorBrush x:Key="AccentMutedBrush" Color="#CFE0FF" />
+      <SolidColorBrush x:Key="LogicHighBrush" Color="#2F9E44" />
+      <SolidColorBrush x:Key="LogicLowBrush" Color="#D9480F" />
+      <SolidColorBrush x:Key="LogicUnknownBrush" Color="#8A94A6" />
+      <SolidColorBrush x:Key="LogicInvalidBrush" Color="#E03131" />
+      <SolidColorBrush x:Key="LogicContentionBrush" Color="#F08C00" />
+      <SolidColorBrush x:Key="NoteBackgroundBrush" Color="#FFF4C2" />
+      <SolidColorBrush x:Key="NoteBorderBrush" Color="#E3C15D" />
+      <SolidColorBrush x:Key="NoteForegroundBrush" Color="#4A3B0F" />
+    </ResourceDictionary>
+
+    <ResourceDictionary x:Key='Dark'>
+      <SolidColorBrush x:Key="AppBackgroundBrush" Color="#12161D" />
+      <LinearGradientBrush x:Key="AppGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Offset="0" Color="#1B202A" />
+        <GradientStop Offset="1" Color="#0F1319" />
+      </LinearGradientBrush>
+      <SolidColorBrush x:Key="AppPanelBackground" Color="#1C2230" />
+      <SolidColorBrush x:Key="AppPanelBorder" Color="#2C3445" />
+      <SolidColorBrush x:Key="EditorBackground" Color="#1A1F2A" />
+      <SolidColorBrush x:Key="DrawingBackground" Color="#1B212E" />
+      <SolidColorBrush x:Key="ConnectorCrossingBackgroundBrush" Color="#1B212E" />
+      <SolidColorBrush x:Key="SeparatorBackground" Color="#40FFFFFF" />
+      <SolidColorBrush x:Key="NodeBackgroundBrush" Color="#1C2432" />
+      <SolidColorBrush x:Key="NodeForegroundBrush" Color="#E6E9EF" />
+      <SolidColorBrush x:Key="ToolboxBackgroundBrush" Color="#171D29" />
+      <SolidColorBrush x:Key="InspectorBackgroundBrush" Color="#171D29" />
+      <SolidColorBrush x:Key="StatusBarBackgroundBrush" Color="#151B25" />
+      <SolidColorBrush x:Key="AccentBrush" Color="#7BA2FF" />
+      <SolidColorBrush x:Key="AccentMutedBrush" Color="#2E3A57" />
+      <SolidColorBrush x:Key="LogicHighBrush" Color="#51CF66" />
+      <SolidColorBrush x:Key="LogicLowBrush" Color="#FF6B6B" />
+      <SolidColorBrush x:Key="LogicUnknownBrush" Color="#9AA5B1" />
+      <SolidColorBrush x:Key="LogicInvalidBrush" Color="#FF8787" />
+      <SolidColorBrush x:Key="LogicContentionBrush" Color="#FFC078" />
+      <SolidColorBrush x:Key="NoteBackgroundBrush" Color="#3A2F17" />
+      <SolidColorBrush x:Key="NoteBorderBrush" Color="#6B5525" />
+      <SolidColorBrush x:Key="NoteForegroundBrush" Color="#F5E6B5" />
+    </ResourceDictionary>
+
+  </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

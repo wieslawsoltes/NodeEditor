@@ -3,8 +3,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class NodeTemplateViewModel : INodeTemplate
+public partial class NodeTemplateViewModel : ObservableObject, INodeTemplate
 {
     [ObservableProperty] private string? _title;
     [ObservableProperty] private INode? _template;

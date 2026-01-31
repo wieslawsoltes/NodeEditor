@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    xmlns:converters="clr-namespace:NodeEditor.Converters"
+                    xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     x:CompileBindings="True">
 
   <ControlTheme x:Key="{x:Type controls:DrawingNodeProperties}" TargetType="controls:DrawingNodeProperties">
@@ -10,6 +12,40 @@
     <Setter Property="Template">
       <ControlTemplate>
         <DockPanel>
+          <!-- Ink -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <ToggleSwitch IsChecked="{Binding IsInkMode, RelativeSource={RelativeSource TemplatedParent}}"
+                          OnContent="Ink On"
+                          OffContent="Ink Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"
+                          DockPanel.Dock="Top"/>
+          </DockPanel>
+          <!-- Connections -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <ToggleSwitch IsChecked="{Binding EnableConnections, RelativeSource={RelativeSource TemplatedParent}}"
+                          OnContent="Connect On"
+                          OffContent="Connect Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"
+                          DockPanel.Dock="Top"/>
+            <StackPanel Spacing="2"
+                        Margin="4,4,4,0"
+                        IsEnabled="{Binding EnableConnections, RelativeSource={RelativeSource TemplatedParent}}">
+              <CheckBox Content="Directional"
+                        IsChecked="{Binding RequireDirectionalConnections, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <CheckBox Content="Match Bus Width"
+                        IsChecked="{Binding RequireMatchingBusWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <CheckBox Content="Multiple Per Pin"
+                        IsChecked="{Binding EnableMultiplePinConnections, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <CheckBox Content="Allow Self"
+                        IsChecked="{Binding AllowSelfConnections, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <CheckBox Content="Allow Duplicate"
+                        IsChecked="{Binding AllowDuplicateConnections, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </StackPanel>
+          </DockPanel>
           <!-- Snap -->
           <DockPanel DockPanel.Dock="Bottom">
             <ToggleSwitch IsChecked="{Binding EnableSnap, RelativeSource={RelativeSource TemplatedParent}}"
@@ -43,6 +79,151 @@
                        TextAlignment="Left"
                        Text="{Binding SnapY, RelativeSource={RelativeSource TemplatedParent}}" />
             </Grid>
+          </DockPanel>
+          <!-- Nudge -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+              <Label Grid.Column="0"
+                     Content="Step"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="1"
+                       BorderBrush="Transparent"
+                       Margin="4,4,2,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding NudgeStep, RelativeSource={RelativeSource TemplatedParent}}" />
+              <Label Grid.Column="2"
+                     Content="Mul"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="3"
+                       BorderBrush="Transparent"
+                       Margin="2,4,4,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding NudgeMultiplier, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Grid>
+          </DockPanel>
+          <!-- Guides -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <ToggleSwitch IsChecked="{Binding EnableGuides, RelativeSource={RelativeSource TemplatedParent}}"
+                          OnContent="Guides On"
+                          OffContent="Guides Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"
+                          DockPanel.Dock="Top"/>
+            <Grid ColumnDefinitions="Auto,*">
+              <Label Grid.Column="0"
+                     Content="Tol"
+                     Margin="6,0,6,0"
+                     VerticalAlignment="Center"
+                     Opacity="0.6"/>
+              <TextBox Grid.Column="1"
+                       BorderBrush="Transparent"
+                       Margin="4,4,4,4"
+                       Padding="6"
+                       TextAlignment="Left"
+                       Text="{Binding GuideSnapTolerance, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Grid>
+          </DockPanel>
+          <!-- Routing -->
+          <DockPanel DockPanel.Dock="Bottom">
+            <ToggleSwitch IsChecked="{Binding EnableConnectorRouting, RelativeSource={RelativeSource TemplatedParent}}"
+                          OnContent="Routing On"
+                          OffContent="Routing Off"
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Center"
+                          Margin="4,4,4,0"
+                          DockPanel.Dock="Top"/>
+            <StackPanel Spacing="4">
+              <StackPanel Orientation="Horizontal" Spacing="6" Margin="4,4,4,0">
+                <RadioButton Content="Auto"
+                             GroupName="RoutingAlgorithm"
+                             IsChecked="{Binding RoutingAlgorithm, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingAlgorithm.Auto}}"/>
+                <RadioButton Content="Ortho"
+                             GroupName="RoutingAlgorithm"
+                             IsChecked="{Binding RoutingAlgorithm, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingAlgorithm.Orthogonal}}"/>
+                <RadioButton Content="Octi"
+                             GroupName="RoutingAlgorithm"
+                             IsChecked="{Binding RoutingAlgorithm, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingAlgorithm.Octilinear}}"/>
+              </StackPanel>
+              <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+                <Label Grid.Column="0"
+                       Content="RG"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"
+                       Opacity="0.6"/>
+                <TextBox Grid.Column="1"
+                         BorderBrush="Transparent"
+                         Margin="4,4,2,4"
+                         Padding="6"
+                         TextAlignment="Left"
+                         Text="{Binding RoutingGridSize, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Label Grid.Column="2"
+                       Content="Pad"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"
+                       Opacity="0.6"/>
+                <TextBox Grid.Column="3"
+                         BorderBrush="Transparent"
+                         Margin="2,4,4,4"
+                         Padding="6"
+                         TextAlignment="Left"
+                         Text="{Binding RoutingObstaclePadding, RelativeSource={RelativeSource TemplatedParent}}" />
+              </Grid>
+              <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+                <Label Grid.Column="0"
+                       Content="Bend"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"
+                       Opacity="0.6"/>
+                <TextBox Grid.Column="1"
+                         BorderBrush="Transparent"
+                         Margin="4,4,2,4"
+                         Padding="6"
+                         TextAlignment="Left"
+                         Text="{Binding RoutingBendPenalty, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Label Grid.Column="2"
+                       Content="Diag"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"
+                       Opacity="0.6"/>
+                <TextBox Grid.Column="3"
+                         BorderBrush="Transparent"
+                         Margin="2,4,4,4"
+                         Padding="6"
+                         TextAlignment="Left"
+                         Text="{Binding RoutingDiagonalCost, RelativeSource={RelativeSource TemplatedParent}}" />
+              </Grid>
+              <Grid ColumnDefinitions="Auto,50*,Auto,50*">
+                <Label Grid.Column="0"
+                       Content="Rad"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"
+                       Opacity="0.6"/>
+                <TextBox Grid.Column="1"
+                         BorderBrush="Transparent"
+                         Margin="4,4,2,4"
+                         Padding="6"
+                         TextAlignment="Left"
+                         Text="{Binding RoutingCornerRadius, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Label Grid.Column="2"
+                       Content="Max"
+                       Margin="6,0,6,0"
+                       VerticalAlignment="Center"
+                       Opacity="0.6"/>
+                <TextBox Grid.Column="3"
+                         BorderBrush="Transparent"
+                         Margin="2,4,4,4"
+                         Padding="6"
+                         TextAlignment="Left"
+                         Text="{Binding RoutingMaxCells, RelativeSource={RelativeSource TemplatedParent}}" />
+              </Grid>
+            </StackPanel>
           </DockPanel>
           <!-- Grid -->
           <DockPanel DockPanel.Dock="Bottom">

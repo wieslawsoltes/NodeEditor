@@ -12,10 +12,36 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
     public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
         AvaloniaProperty.Register<DrawingMovedBehavior, IDrawingNode?>(nameof(DrawingSource));
 
+    public static readonly StyledProperty<Control?> InputSourceProperty =
+        AvaloniaProperty.Register<DrawingMovedBehavior, Control?>(nameof(InputSource));
+
+    private Control? _inputSource;
+
     public IDrawingNode? DrawingSource
     {
         get => GetValue(DrawingSourceProperty);
         set => SetValue(DrawingSourceProperty, value);
+    }
+
+    public Control? InputSource
+    {
+        get => GetValue(InputSourceProperty);
+        set => SetValue(InputSourceProperty, value);
+    }
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == InputSourceProperty)
+        {
+            DeInitialize();
+
+            if (AssociatedObject is not null)
+            {
+                Initialize();
+            }
+        }
     }
 
     protected override void OnAttached()
@@ -24,7 +50,7 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
 
         if (AssociatedObject is not null)
         {
-            AssociatedObject.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel);
+            Initialize();
         }
     }
 
@@ -32,10 +58,29 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
     {
         base.OnDetaching();
 
-        if (AssociatedObject is not null)
+        DeInitialize();
+    }
+
+    private void Initialize()
+    {
+        _inputSource = InputSource ?? AssociatedObject;
+        if (_inputSource is null)
         {
-            AssociatedObject.RemoveHandler(InputElement.PointerMovedEvent, Moved);
+            return;
         }
+
+        _inputSource.AddHandler(InputElement.PointerMovedEvent, Moved, RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
+    }
+
+    private void DeInitialize()
+    {
+        if (_inputSource is null)
+        {
+            return;
+        }
+
+        _inputSource.RemoveHandler(InputElement.PointerMovedEvent, Moved);
+        _inputSource = null;
     }
 
     private void Moved(object? sender, PointerEventArgs e)
@@ -45,13 +90,13 @@ public class DrawingMovedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        var (x, y) = e.GetPosition(AssociatedObject);
-
-        var info = e.GetCurrentPoint(AssociatedObject);
-
-        if (info.Pointer.Type == PointerType.Mouse)
+        if (drawingNode.Settings.EnableInk && drawingNode.Settings.IsInkMode)
         {
-            drawingNode.ConnectorMove(x, y);
+            return;
         }
+
+        var (x, y) = e.GetPosition(AssociatedObject ?? _inputSource);
+
+        drawingNode.ConnectorMove(x, y);
     }
 }

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net6.0;net10.0</TargetFrameworks>
+    <IsPackable>True</IsPackable>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NodeEditorLogic</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>NodeEditorLogic.Core</PackageId>
+    <Description>Core logic primitives and component library for NodeEditor LogicLab.</Description>
+    <PackageTags>node;editor;logic;simulation;core</PackageTags>
+  </PropertyGroup>
+
+  <Import Project="..\..\build\ReferenceAssemblies.props" />
+</Project>

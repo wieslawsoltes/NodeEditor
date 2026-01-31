@@ -3,7 +3,7 @@
              xmlns:vm="using:NodeEditorDemo.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converters="clr-namespace:NodeEditorDemo.Converters"
+             xmlns:converters="clr-namespace:NodeEditor.Converters;assembly=NodeEditorAvalonia"
              xmlns:views="clr-namespace:NodeEditorDemo.Views"
              xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
              mc:Ignorable="d" d:DesignWidth="1030" d:DesignHeight="740"
@@ -22,6 +22,10 @@
                 Gesture="{OnPlatform macOS=CMD+O, iOS=CMD+O, Default=Ctrl+O}" />
     <KeyBinding Command="{Binding SaveCommand}" 
                 Gesture="{OnPlatform macOS=CMD+S, iOS=CMD+S, Default=Ctrl+S}" />
+    <KeyBinding Command="{Binding Editor.Drawing.UndoCommand, FallbackValue={x:Null}}"
+                Gesture="{OnPlatform macOS=CMD+Z, iOS=CMD+Z, Default=Ctrl+Z}" />
+    <KeyBinding Command="{Binding Editor.Drawing.RedoCommand, FallbackValue={x:Null}}"
+                Gesture="{OnPlatform macOS=CMD+Shift+Z, iOS=CMD+Shift+Z, Default=Ctrl+Y}" />
     <KeyBinding Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" 
                 Gesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}" />
     <KeyBinding Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" 
@@ -36,6 +40,8 @@
                 Gesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
     <KeyBinding Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" 
                 Gesture="Escape" />
+    <KeyBinding Command="{Binding ShowMacrosCommand}"
+                Gesture="{OnPlatform macOS=CMD+Shift+P, iOS=CMD+Shift+P, Default=Ctrl+Shift+P}" />
     <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" 
                 Gesture="{OnPlatform macOS=CMD+D0, iOS=CMD+D0, Default=Ctrl+D0}" x:CompileBindings="False" />
     <KeyBinding Command="{Binding #EditorControl.ZoomControl.ResetZoomCommand, FallbackValue={x:Null}}" 

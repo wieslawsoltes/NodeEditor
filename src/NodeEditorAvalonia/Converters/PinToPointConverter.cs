@@ -22,6 +22,21 @@ public class PinToPointConverter : IValueConverter
 
         if (pin.Parent is not null)
         {
+            if (Math.Abs(pin.Parent.Rotation) > 0.001)
+            {
+                var centerX = pin.Parent.Width / 2.0;
+                var centerY = pin.Parent.Height / 2.0;
+                var radians = pin.Parent.Rotation * Math.PI / 180.0;
+                var cos = Math.Cos(radians);
+                var sin = Math.Sin(radians);
+                var dx = x - centerX;
+                var dy = y - centerY;
+                var rotatedX = dx * cos - dy * sin + centerX;
+                var rotatedY = dx * sin + dy * cos + centerY;
+                x = rotatedX;
+                y = rotatedY;
+            }
+
             x += pin.Parent.X;
             y += pin.Parent.Y;
         }

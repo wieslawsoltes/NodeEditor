@@ -4,8 +4,7 @@ using NodeEditor.Model;
 
 namespace NodeEditor.Mvvm;
 
-[ObservableObject]
-public partial class PinViewModel : IPin
+public partial class PinViewModel : ObservableObject, IPin, IConnectablePin
 {
     [ObservableProperty] private string? _name;
     [ObservableProperty] private INode? _parent;
@@ -14,6 +13,8 @@ public partial class PinViewModel : IPin
     [ObservableProperty] private double _width;
     [ObservableProperty] private double _height;
     [ObservableProperty] private PinAlignment _alignment;
+    [ObservableProperty] private PinDirection _direction = PinDirection.Bidirectional;
+    [ObservableProperty] private int _busWidth = 1;
 
     public event EventHandler<PinCreatedEventArgs>? Created;
 
@@ -41,6 +42,14 @@ public partial class PinViewModel : IPin
         return true;
     }
 
+    partial void OnBusWidthChanged(int value)
+    {
+        if (value < 1)
+        {
+            BusWidth = 1;
+        }
+    }
+
     public void OnCreated()
     {
         Created?.Invoke(this, new PinCreatedEventArgs(this));
@@ -53,7 +62,7 @@ public partial class PinViewModel : IPin
 
     public void OnMoved()
     {
-        Moved?.Invoke(this, new PinMovedEventArgs(this, _x, _y));
+        Moved?.Invoke(this, new PinMovedEventArgs(this, X, Y));
     }
 
     public void OnSelected()
@@ -68,7 +77,7 @@ public partial class PinViewModel : IPin
 
     public void OnResized()
     {
-        Resized?.Invoke(this, new PinResizedEventArgs(this, _x, _y, _width, _height));
+        Resized?.Invoke(this, new PinResizedEventArgs(this, X, Y, Width, Height));
     }
 
     public void OnConnected()

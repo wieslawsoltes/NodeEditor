@@ -3,6 +3,8 @@
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:converters="clr-namespace:NodeEditor.Converters"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
                     x:CompileBindings="True">
 
   <ControlTheme x:Key="{x:Type controls:Connectors}" TargetType="controls:Connectors">
@@ -11,29 +13,74 @@
 
     <Setter Property="Template">
       <ControlTemplate>
-        <ItemsControl x:Name="PART_ConnectorsItemsControl"
-                      ItemsSource="{Binding DrawingSource.Connectors, RelativeSource={RelativeSource TemplatedParent}}" 
-                      Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
-                      Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
-                      Background="Transparent"
-                      IsHitTestVisible="False"
-                      ClipToBounds="False">
-          <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-              <Canvas />
-            </ItemsPanelTemplate>
-          </ItemsControl.ItemsPanel>
-          <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="m:IConnector">
-              <controls:Connector x:Name="PART_Connector"
-                                  StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
-                                  EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
-                                  Offset="{Binding Offset}"
-                                  Orientation="{Binding Orientation}"
-                                  ConnectorSource="{Binding .}" />
-            </DataTemplate>
-          </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Grid>
+          <ItemsControl x:Name="PART_ConnectorsItemsControl"
+                        ItemsSource="{Binding DrawingSource.Connectors, RelativeSource={RelativeSource TemplatedParent}}" 
+                        Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
+                        Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
+                        Background="Transparent"
+                        IsHitTestVisible="True"
+                        ClipToBounds="False">
+            <i:Interaction.Behaviors>
+              <behaviors:ConnectorsSelectedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
+              <behaviors:ConnectorInteractionBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
+            </i:Interaction.Behaviors>
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <Canvas />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate DataType="m:IConnector">
+                <Canvas IsVisible="{Binding IsVisible}">
+                  <controls:Connector x:Name="PART_Connector"
+                                      StartPoint="{Binding Start, Converter={x:Static converters:PinToPointConverter.Instance}}" 
+                                      EndPoint="{Binding End, Converter={x:Static converters:PinToPointConverter.Instance}}"
+                                      Offset="{Binding Offset, Mode=TwoWay}"
+                                      Orientation="{Binding Orientation, Mode=TwoWay}"
+                                      ConnectorStyle="{Binding Style, Mode=TwoWay}"
+                                      ConnectorSource="{Binding .}" />
+                  <ItemsControl ItemsSource="{Binding Waypoints}"
+                                IsVisible="{Binding RoutingMode, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingMode.Manual}}">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <Canvas />
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate DataType="m:ConnectorPoint">
+                        <Ellipse Width="8"
+                                 Height="8"
+                                 Fill="{DynamicResource ConnectorLabelBackgroundBrush}"
+                                 Stroke="{DynamicResource ConnectorBackgroundBrush}"
+                                 StrokeThickness="1"
+                                 Canvas.Left="{Binding X}"
+                                 Canvas.Top="{Binding Y}"
+                                 Margin="-4,-4,0,0" />
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                  <Border Background="{DynamicResource ConnectorLabelBackgroundBrush}"
+                          BorderBrush="{DynamicResource ConnectorLabelBorderBrush}"
+                          BorderThickness="1"
+                          CornerRadius="4"
+                          Padding="4"
+                          Margin="8,-18,0,0"
+                          Canvas.Left="{Binding ElementName=PART_Connector, Path=LabelPoint.X}"
+                          Canvas.Top="{Binding ElementName=PART_Connector, Path=LabelPoint.Y}"
+                          IsVisible="{Binding Name, Converter={x:Static converters:StringNotEmptyConverter.Instance}}">
+                    <controls:EditableTextBlock Text="{Binding Name}" FontSize="11" />
+                  </Border>
+                </Canvas>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          <controls:ConnectorCrossingsAdorner Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Connectors="{Binding DrawingSource.Connectors, RelativeSource={RelativeSource TemplatedParent}}"
+                                              IsHitTestVisible="False"
+                                              ClipToBounds="False" />
+        </Grid>
       </ControlTemplate>
     </Setter>
 

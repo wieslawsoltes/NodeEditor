@@ -1,0 +1,56 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+        xmlns:converters="clr-namespace:NodeEditorLogic.Converters;assembly=NodeEditorLogic.Editor"
+        x:CompileBindings="False">
+
+  <Style Selector="controls|Connector">
+    <Setter Property="Stroke">
+      <Setter.Value>
+        <MultiBinding Converter="{x:Static converters:ConnectorSignalMultiConverter.Instance}">
+          <Binding Path="Start" />
+          <Binding Path="End" />
+          <Binding Path="IsInvalid" />
+          <Binding Path="IsContention" />
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="StrokeThickness">
+      <Setter.Value>
+        <MultiBinding Converter="{x:Static converters:ConnectorStrokeThicknessConverter.Instance}">
+          <Binding Path="IsBus" />
+          <Binding Path="IsInvalid" />
+          <Binding Path="IsContention" />
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="StrokeDashArray">
+      <Setter.Value>
+        <MultiBinding Converter="{x:Static converters:ConnectorDashArrayConverter.Instance}">
+          <Binding Path="IsInvalid" />
+          <Binding Path="IsContention" />
+        </MultiBinding>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ToolTip.Tip" Value="{Binding StatusMessage}" />
+  </Style>
+
+  <Style Selector="controls|Pin /template/ Ellipse#PART_Pin">
+    <Setter Property="Fill" Value="{Binding Value, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" />
+    <Setter Property="Stroke" Value="{DynamicResource NodeForegroundBrush}" />
+    <Setter Property="StrokeThickness" Value="1.5" />
+  </Style>
+
+  <Style Selector="controls|Pin:pointerover /template/ Ellipse#PART_Pin">
+    <Setter Property="Stroke" Value="{DynamicResource AccentBrush}" />
+  </Style>
+
+  <Style Selector="Border.logic-led">
+    <Setter Property="Width" Value="10" />
+    <Setter Property="Height" Value="10" />
+    <Setter Property="CornerRadius" Value="5" />
+    <Setter Property="BorderBrush" Value="{DynamicResource NodeForegroundBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+
+</Styles>

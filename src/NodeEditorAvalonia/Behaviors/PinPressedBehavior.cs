@@ -24,7 +24,7 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
 
         if (AssociatedObject is not null)
         {
-            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble);
+            AssociatedObject.AddHandler(InputElement.PointerPressedEvent, Pressed, RoutingStrategies.Tunnel | RoutingStrategies.Bubble, true);
         }
     }
 
@@ -59,11 +59,30 @@ public class PinPressedBehavior : Behavior<ContentPresenter>
         {
             var info = e.GetCurrentPoint(AssociatedObject);
 
-            if (info.Properties.IsLeftButtonPressed)
+            var isPrimary = info.Properties.IsLeftButtonPressed || info.Pointer.Type != PointerType.Mouse;
+            if (isPrimary)
             {
-                var showWhenMoving = info.Pointer.Type == PointerType.Mouse;
+                if (!drawingNode.CanConnectPin(pin) || !pin.CanConnect())
+                {
+                    return;
+                }
+
+                var showWhenMoving = true;
+                var undoHost = drawingNode as IUndoRedoHost;
+                var wasMoving = drawingNode.IsConnectorMoving();
+
+                if (!wasMoving)
+                {
+                    undoHost?.BeginUndoBatch();
+                }
 
                 drawingNode.ConnectorLeftPressed(pin, showWhenMoving);
+
+                var isMoving = drawingNode.IsConnectorMoving();
+                if (!isMoving)
+                {
+                    undoHost?.EndUndoBatch();
+                }
 
                 e.Handled = true;
             }

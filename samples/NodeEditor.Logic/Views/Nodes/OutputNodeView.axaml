@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:NodeEditorLogic.ViewModels.Nodes;assembly=NodeEditorLogic.Editor"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters;assembly=NodeEditorLogic.Editor"
+             xmlns:controls="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             mc:Ignorable="d" d:DesignWidth="170" d:DesignHeight="80"
+             x:Class="NodeEditorLogic.Views.Nodes.OutputNodeView"
+             x:CompileBindings="True" x:DataType="vm:LogicOutputNodeViewModel"
+             ClipToBounds="False">
+  <Design.DataContext>
+    <vm:LogicOutputNodeViewModel Title="Output" Label="Q" ObservedValue="High" />
+  </Design.DataContext>
+  <Border Classes="logic-node">
+    <StackPanel Spacing="6">
+      <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Title}" />
+      <controls:EditableTextBlock Classes="logic-inline" Text="{Binding Label}" Width="80" />
+      <DockPanel>
+        <TextBlock Text="{Binding ObservedValue, Converter={x:Static converters:LogicValueToTextConverter.Instance}}" DockPanel.Dock="Right" Margin="6,0,0,0" />
+        <Border Classes="logic-led" Background="{Binding ObservedValue, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}" DockPanel.Dock="Right" />
+      </DockPanel>
+    </StackPanel>
+  </Border>
+</UserControl>

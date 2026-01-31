@@ -5,7 +5,7 @@ using Avalonia.Data.Converters;
 
 namespace NodeEditor.Converters;
 
-internal class EnumToCheckedConverter : IValueConverter
+public class EnumToCheckedConverter : IValueConverter
 {
     public static EnumToCheckedConverter Instance = new();
 

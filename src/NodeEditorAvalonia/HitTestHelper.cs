@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.VisualTree;
@@ -9,6 +10,16 @@ namespace NodeEditor;
 
 internal static class HitTestHelper
 {
+    private const double IntersectionEpsilon = 1e-6;
+    private static readonly ConditionalWeakTable<IDrawingNode, HitTestIndex> HitTestIndices = new();
+
+    internal enum SelectionMode
+    {
+        Replace,
+        Add,
+        Toggle
+    }
+
     public static double Length(Point pt0, Point pt1)
     {
         return Math.Sqrt(Math.Pow(pt1.X - pt0.X, 2) + Math.Pow(pt1.Y - pt0.Y, 2));
@@ -38,53 +49,25 @@ internal static class HitTestHelper
 
     public static bool HitTestConnector(IConnector connector, Rect rect)
     {
-        var start = connector.Start;
-        var end = connector.End;
-        if (start is null || end is null)
+        if (!ConnectorPathHelper.TryGetEndpoints(connector, out var start, out var end))
         {
             return false;
         }
 
-        var p0X = start.X;
-        var p0Y = start.Y;
-        if (start.Parent is not null)
+        var points = ConnectorPathHelper.GetFlattenedPath(connector, start, end);
+        if (points.Count == 0)
         {
-            p0X += start.Parent.X;
-            p0Y += start.Parent.Y; 
+            return false;
         }
 
-        var p3X = end.X;
-        var p3Y = end.Y;
-        if (end.Parent is not null)
+        if (points.Count == 1)
         {
-            p3X += end.Parent.X;
-            p3Y += end.Parent.Y; 
+            return rect.Contains(points[0]);
         }
-            
-        var p1X = p0X;
-        var p1Y = p0Y;
 
-        var p2X = p3X;
-        var p2Y = p3Y;
-
-        connector.GetControlPoints(
-            connector.Orientation, 
-            connector.Offset, 
-            start.Alignment,
-            end.Alignment,
-            ref p1X, ref p1Y, 
-            ref p2X, ref p2Y);
-
-        var pt0 = new Point(p0X, p0Y);
-        var pt1 = new Point(p1X, p1Y);
-        var pt2 = new Point(p2X, p2Y);
-        var pt3 = new Point(p3X, p3Y);
-
-        var points = FlattenCubic(pt0, pt1, pt2, pt3);
-
-        for (var i = 0; i < points.Length; i++)
+        for (var i = 1; i < points.Count; i++)
         {
-            if (rect.Contains(points[i]))
+            if (SegmentIntersectsRect(points[i - 1], points[i], rect))
             {
                 return true;
             }
@@ -95,105 +78,182 @@ internal static class HitTestHelper
 
     public static Rect GetConnectorBounds(IConnector connector)
     {
-        var start = connector.Start;
-        var end = connector.End;
-        if (start is null || end is null)
+        if (!ConnectorPathHelper.TryGetEndpoints(connector, out var start, out var end))
         {
             return default;
         }
 
-        var p0X = start.X;
-        var p0Y = start.Y;
-        if (start.Parent is not null)
+        var points = ConnectorPathHelper.GetFlattenedPath(connector, start, end);
+        if (points.Count == 0)
         {
-            p0X += start.Parent.X;
-            p0Y += start.Parent.Y; 
+            return default;
         }
 
-        var p3X = end.X;
-        var p3Y = end.Y;
-        if (end.Parent is not null)
+        var topLeftX = points[0].X;
+        var topLeftY = points[0].Y;
+        var bottomRightX = points[0].X;
+        var bottomRightY = points[0].Y;
+
+        for (var i = 1; i < points.Count; i++)
         {
-            p3X += end.Parent.X;
-            p3Y += end.Parent.Y; 
+            topLeftX = Math.Min(topLeftX, points[i].X);
+            topLeftY = Math.Min(topLeftY, points[i].Y);
+            bottomRightX = Math.Max(bottomRightX, points[i].X);
+            bottomRightY = Math.Max(bottomRightY, points[i].Y);
         }
 
-        var p1X = p0X;
-        var p1Y = p0Y;
+        return new Rect(new Point(topLeftX, topLeftY), new Point(bottomRightX, bottomRightY));
+    }
 
-        var p2X = p3X;
-        var p2Y = p3Y;
+    public static bool TryFindConnectorAtPoint(IDrawingNode drawingNode, Point point, double tolerance, out IConnector? connector, out int segmentIndex)
+    {
+        connector = null;
+        segmentIndex = -1;
 
-        connector.GetControlPoints(
-            connector.Orientation, 
-            connector.Offset, 
-            start.Alignment,
-            end.Alignment,
-            ref p1X, ref p1Y, 
-            ref p2X, ref p2Y);
+        var index = GetIndex(drawingNode);
+        var queryRect = new Rect(point.X - tolerance, point.Y - tolerance, tolerance * 2.0, tolerance * 2.0);
+        var bestDistance = tolerance;
 
-        var pt0 = new Point(p0X, p0Y);
-        var pt1 = new Point(p1X, p1Y);
-        var pt2 = new Point(p2X, p2Y);
-        var pt3 = new Point(p3X, p3Y);
-
-        var points = FlattenCubic(pt0, pt1, pt2, pt3);
-
-        var topLeftX = 0.0;
-        var topLeftY = 0.0;
-        var bottomRightX = 0.0;
-        var bottomRightY = 0.0;
-
-        for (var i = 0; i < points.Length; i++)
+        foreach (var (candidate, candidateSegment, start, end) in index.QueryConnectorSegments(queryRect))
         {
-            if (i == 0)
+            var distance = DistanceToSegment(point, start, end);
+            if (distance <= bestDistance)
             {
-                topLeftX = points[i].X;
-                topLeftY = points[i].Y;
-                bottomRightX = points[i].X;
-                bottomRightY = points[i].Y;
-            }
-            else
-            {
-                topLeftX = Math.Min(topLeftX, points[i].X);
-                topLeftY = Math.Min(topLeftY, points[i].Y);
-                bottomRightX = Math.Max(bottomRightX, points[i].X);
-                bottomRightY = Math.Max(bottomRightY, points[i].Y);
+                bestDistance = distance;
+                connector = candidate;
+                segmentIndex = candidateSegment;
             }
         }
 
-        return new Rect(
-            new Point(topLeftX, topLeftY), 
-            new Point(bottomRightX, bottomRightY));
+        return connector is not null;
+    }
+
+    public static double DistanceToSegment(Point point, Point a, Point b)
+    {
+        var dx = b.X - a.X;
+        var dy = b.Y - a.Y;
+
+        if (Math.Abs(dx) < 0.001 && Math.Abs(dy) < 0.001)
+        {
+            return Length(point, a);
+        }
+
+        var t = ((point.X - a.X) * dx + (point.Y - a.Y) * dy) / (dx * dx + dy * dy);
+        t = Clamp(t, 0.0, 1.0);
+
+        var closest = new Point(a.X + t * dx, a.Y + t * dy);
+        return Length(point, closest);
+    }
+
+    private static double Clamp(double value, double min, double max)
+    {
+        if (value < min)
+        {
+            return min;
+        }
+
+        return value > max ? max : value;
+    }
+
+    private static bool SegmentIntersectsRect(Point a, Point b, Rect rect)
+    {
+        if (rect.Contains(a) || rect.Contains(b))
+        {
+            return true;
+        }
+
+        var minX = Math.Min(a.X, b.X);
+        var maxX = Math.Max(a.X, b.X);
+        var minY = Math.Min(a.Y, b.Y);
+        var maxY = Math.Max(a.Y, b.Y);
+        var segmentBounds = new Rect(new Point(minX, minY), new Point(maxX, maxY));
+
+        if (!rect.Intersects(segmentBounds))
+        {
+            return false;
+        }
+
+        var topLeft = new Point(rect.Left, rect.Top);
+        var topRight = new Point(rect.Right, rect.Top);
+        var bottomLeft = new Point(rect.Left, rect.Bottom);
+        var bottomRight = new Point(rect.Right, rect.Bottom);
+
+        return SegmentsIntersect(a, b, topLeft, topRight)
+               || SegmentsIntersect(a, b, topRight, bottomRight)
+               || SegmentsIntersect(a, b, bottomRight, bottomLeft)
+               || SegmentsIntersect(a, b, bottomLeft, topLeft);
+    }
+
+    private static bool SegmentsIntersect(Point a1, Point a2, Point b1, Point b2)
+    {
+        var d1 = Cross(a1, a2, b1);
+        var d2 = Cross(a1, a2, b2);
+        var d3 = Cross(b1, b2, a1);
+        var d4 = Cross(b1, b2, a2);
+
+        if (HasOppositeSigns(d1, d2) && HasOppositeSigns(d3, d4))
+        {
+            return true;
+        }
+
+        if (Math.Abs(d1) < IntersectionEpsilon && OnSegment(a1, a2, b1))
+        {
+            return true;
+        }
+
+        if (Math.Abs(d2) < IntersectionEpsilon && OnSegment(a1, a2, b2))
+        {
+            return true;
+        }
+
+        if (Math.Abs(d3) < IntersectionEpsilon && OnSegment(b1, b2, a1))
+        {
+            return true;
+        }
+
+        return Math.Abs(d4) < IntersectionEpsilon && OnSegment(b1, b2, a2);
+    }
+
+    private static bool HasOppositeSigns(double a, double b)
+    {
+        return (a > 0 && b < 0) || (a < 0 && b > 0);
+    }
+
+    private static double Cross(Point a, Point b, Point c)
+    {
+        return (b.X - a.X) * (c.Y - a.Y) - (b.Y - a.Y) * (c.X - a.X);
+    }
+
+    private static bool OnSegment(Point a, Point b, Point p)
+    {
+        return p.X >= Math.Min(a.X, b.X) - IntersectionEpsilon
+               && p.X <= Math.Max(a.X, b.X) + IntersectionEpsilon
+               && p.Y >= Math.Min(a.Y, b.Y) - IntersectionEpsilon
+               && p.Y <= Math.Max(a.Y, b.Y) + IntersectionEpsilon;
     }
 
     public static void FindSelectedNodes(IDrawingNode drawingNode, ItemsControl? itemsControl, Rect rect)
     {
-        drawingNode.NotifyDeselectedNodes();
-        drawingNode.NotifyDeselectedConnectors();
-        drawingNode.SetSelectedNodes(null);
-        drawingNode.SetSelectedConnectors(null);
-        drawingNode.NotifySelectionChanged();
+        GetHitElements(drawingNode, itemsControl, rect, out var selectedNodes, out var selectedConnectors);
+        ApplySelection(drawingNode, selectedNodes, selectedConnectors, SelectionMode.Replace);
+    }
 
-        var selectedNodes = new HashSet<INode>();
-        var selectedConnectors = new HashSet<IConnector>();
+    public static void GetHitElements(
+        IDrawingNode drawingNode,
+        ItemsControl? itemsControl,
+        Rect rect,
+        out HashSet<INode> selectedNodes,
+        out HashSet<IConnector> selectedConnectors)
+    {
+        selectedNodes = new HashSet<INode>();
+        selectedConnectors = new HashSet<IConnector>();
+
+        var index = GetIndex(drawingNode);
 
         if (drawingNode.CanSelectNodes())
         {
-            foreach (var control in itemsControl.GetRealizedContainers())
+            foreach (var node in index.QueryNodes(rect))
             {
-                if (control is not { DataContext: INode node } containerControl)
-                {
-                    continue;
-                }
-
-                var bounds = containerControl.Bounds;
-
-                if (!rect.Intersects(bounds))
-                {
-                    continue;
-                }
-
                 if (node.CanSelect())
                 {
                     selectedNodes.Add(node);
@@ -203,72 +263,250 @@ internal static class HitTestHelper
 
         if (drawingNode.CanSelectConnectors())
         {
-            if (drawingNode.Connectors is { Count: > 0 })
+            foreach (var (connector, _, start, end) in index.QueryConnectorSegments(rect))
             {
-                foreach (var connector in drawingNode.Connectors)
+                if (!SegmentIntersectsRect(start, end, rect))
                 {
-                    if (!HitTestConnector(connector, rect))
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    if (connector.CanSelect())
-                    {
-                        selectedConnectors.Add(connector);
-                    }
+                if (connector.CanSelect())
+                {
+                    selectedConnectors.Add(connector);
                 }
             }
         }
+    }
 
-        var notify = false;
+    public static bool ApplySelection(
+        IDrawingNode drawingNode,
+        ISet<INode> selectedNodes,
+        ISet<IConnector> selectedConnectors,
+        SelectionMode mode)
+    {
+        var currentNodes = drawingNode.GetSelectedNodes();
+        var currentConnectors = drawingNode.GetSelectedConnectors();
 
-        if (selectedConnectors.Count > 0)
+        var nodesChanged = UpdateSelection(
+            currentNodes,
+            selectedNodes,
+            mode,
+            node => node.OnSelected(),
+            node => node.OnDeselected(),
+            out var nextNodes);
+
+        var connectorsChanged = UpdateSelection(
+            currentConnectors,
+            selectedConnectors,
+            mode,
+            connector => connector.OnSelected(),
+            connector => connector.OnDeselected(),
+            out var nextConnectors);
+
+        if (nodesChanged || connectorsChanged)
         {
-            drawingNode.SetSelectedConnectors(selectedConnectors);
-            notify = true;
-        }
-
-        if (selectedNodes.Count > 0)
-        {
-            drawingNode.SetSelectedNodes(selectedNodes);
-            notify = true;
-        }
-
-        if (notify)
-        {
+            drawingNode.SetSelectedNodes(nextNodes);
+            drawingNode.SetSelectedConnectors(nextConnectors);
             drawingNode.NotifySelectionChanged();
+            return true;
         }
+
+        return false;
+    }
+
+    private static bool UpdateSelection<T>(
+        ISet<T>? current,
+        ISet<T> hits,
+        SelectionMode mode,
+        Action<T> onSelected,
+        Action<T> onDeselected,
+        out ISet<T>? result)
+    {
+        var changed = false;
+
+        switch (mode)
+        {
+            case SelectionMode.Replace:
+                if (current is { Count: > 0 })
+                {
+                    foreach (var item in current)
+                    {
+                        if (!hits.Contains(item))
+                        {
+                            onDeselected(item);
+                            changed = true;
+                        }
+                    }
+                }
+
+                foreach (var item in hits)
+                {
+                    if (current is null || !current.Contains(item))
+                    {
+                        onSelected(item);
+                        changed = true;
+                    }
+                }
+
+                result = hits.Count > 0 ? new HashSet<T>(hits) : null;
+                break;
+            case SelectionMode.Add:
+                var added = current is not null ? new HashSet<T>(current) : new HashSet<T>();
+                foreach (var item in hits)
+                {
+                    if (added.Add(item))
+                    {
+                        onSelected(item);
+                        changed = true;
+                    }
+                }
+
+                result = added.Count > 0 ? added : null;
+                break;
+            case SelectionMode.Toggle:
+                var toggled = current is not null ? new HashSet<T>(current) : new HashSet<T>();
+                foreach (var item in hits)
+                {
+                    if (toggled.Remove(item))
+                    {
+                        onDeselected(item);
+                        changed = true;
+                    }
+                    else
+                    {
+                        toggled.Add(item);
+                        onSelected(item);
+                        changed = true;
+                    }
+                }
+
+                result = toggled.Count > 0 ? toggled : null;
+                break;
+            default:
+                result = current;
+                break;
+        }
+
+        return changed;
     }
 
     public static Rect CalculateSelectedRect(IDrawingNode drawingNode, ItemsControl? itemsControl)
     {
         var selectedRect = new Rect();
         
-        itemsControl.UpdateLayout();
+        if (itemsControl is not null)
+        {
+            itemsControl.UpdateLayout();
+        }
 
         var selectedNodes = drawingNode.GetSelectedNodes();
-        var selectedConnectors = drawingNode.GetSelectedConnectors();
 
-        if (selectedNodes is { Count: > 0 } && drawingNode.Nodes is { Count: > 0 })
+        if (selectedNodes is { Count: > 0 })
         {
             foreach (var node in selectedNodes)
             {
-                var index = drawingNode.Nodes.IndexOf(node);
-                var selectedControl = itemsControl.ContainerFromIndex(index);
-                var bounds = selectedControl?.Bounds ?? default;
-                selectedRect = selectedRect == default ? bounds : selectedRect.Union(bounds);
-            }
-        }
-
-        if (selectedConnectors is { Count: > 0 } && drawingNode.Connectors is { Count: > 0 })
-        {
-            foreach (var connector in selectedConnectors)
-            {
-                var bounds = GetConnectorBounds(connector);
+                var bounds = GetNodeBounds(node);
                 selectedRect = selectedRect == default ? bounds : selectedRect.Union(bounds);
             }
         }
 
         return selectedRect;
+    }
+
+    public static bool TryFindPinAtPoint(IDrawingNode drawingNode, Point point, double tolerance, out IPin? pin)
+    {
+        pin = null;
+
+        if (drawingNode.Nodes is not { Count: > 0 })
+        {
+            return false;
+        }
+
+        var expanded = Math.Max(0.0, tolerance);
+
+        foreach (var node in drawingNode.Nodes)
+        {
+            if (!node.IsVisible)
+            {
+                continue;
+            }
+
+            if (node.Pins is null || node.Pins.Count == 0)
+            {
+                continue;
+            }
+
+            foreach (var candidate in node.Pins)
+            {
+                var location = ConnectorPathHelper.GetPinPoint(candidate);
+                var width = Math.Max(0.0, candidate.Width);
+                var height = Math.Max(0.0, candidate.Height);
+                var rect = new Rect(
+                    location.X - width / 2.0 - expanded,
+                    location.Y - height / 2.0 - expanded,
+                    width + expanded * 2,
+                    height + expanded * 2);
+
+                if (rect.Contains(point))
+                {
+                    pin = candidate;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    internal static Rect GetNodeBounds(INode node)
+    {
+        var width = Math.Max(0.0, node.Width);
+        var height = Math.Max(0.0, node.Height);
+        var x = node.X;
+        var y = node.Y;
+
+        if (Math.Abs(node.Rotation) < 0.001 || width <= 0.0 || height <= 0.0)
+        {
+            return new Rect(x, y, width, height);
+        }
+
+        var centerX = x + width / 2.0;
+        var centerY = y + height / 2.0;
+        var radians = node.Rotation * Math.PI / 180.0;
+        var cos = Math.Cos(radians);
+        var sin = Math.Sin(radians);
+
+        var points = new[]
+        {
+            new Point(x, y),
+            new Point(x + width, y),
+            new Point(x + width, y + height),
+            new Point(x, y + height)
+        };
+
+        var minX = double.PositiveInfinity;
+        var minY = double.PositiveInfinity;
+        var maxX = double.NegativeInfinity;
+        var maxY = double.NegativeInfinity;
+
+        foreach (var point in points)
+        {
+            var dx = point.X - centerX;
+            var dy = point.Y - centerY;
+            var rotatedX = dx * cos - dy * sin + centerX;
+            var rotatedY = dx * sin + dy * cos + centerY;
+
+            minX = Math.Min(minX, rotatedX);
+            minY = Math.Min(minY, rotatedY);
+            maxX = Math.Max(maxX, rotatedX);
+            maxY = Math.Max(maxY, rotatedY);
+        }
+
+        return new Rect(new Point(minX, minY), new Point(maxX, maxY));
+    }
+
+    private static HitTestIndex GetIndex(IDrawingNode drawingNode)
+    {
+        return HitTestIndices.GetValue(drawingNode, node => new HitTestIndex(node));
     }
 }

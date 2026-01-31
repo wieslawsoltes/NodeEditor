@@ -1,0 +1,212 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NodeEditorLogic.ViewModels"
+             xmlns:views="clr-namespace:NodeEditorLogic.Views"
+             xmlns:panels="clr-namespace:NodeEditorLogic.Views.Panels"
+             xmlns:converters="clr-namespace:NodeEditorLogic.Converters;assembly=NodeEditorLogic.Editor"
+             xmlns:coreConverters="clr-namespace:NodeEditor.Converters;assembly=NodeEditorAvalonia"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             mc:Ignorable="d" d:DesignWidth="1360" d:DesignHeight="840"
+             x:Class="NodeEditorLogic.Views.MainView"
+             x:CompileBindings="True" x:DataType="vm:MainViewViewModel"
+             ClipToBounds="False"
+             ZoomControl="{Binding #EditorControl.ZoomControl}"
+             FontFamily="avares://Avalonia.Fonts.Inter/Assets#Inter">
+  <Design.DataContext>
+    <vm:MainViewViewModel />
+  </Design.DataContext>
+  <UserControl.KeyBindings>
+    <KeyBinding Command="{Binding NewCommand}" Gesture="{OnPlatform macOS=CMD+N, iOS=CMD+N, Default=Ctrl+N}" />
+    <KeyBinding Command="{Binding OpenCommand}" Gesture="{OnPlatform macOS=CMD+O, iOS=CMD+O, Default=Ctrl+O}" />
+    <KeyBinding Command="{Binding SaveCommand}" Gesture="{OnPlatform macOS=CMD+S, iOS=CMD+S, Default=Ctrl+S}" />
+    <KeyBinding Command="{Binding Editor.Drawing.UndoCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+Z, iOS=CMD+Z, Default=Ctrl+Z}" />
+    <KeyBinding Command="{Binding Editor.Drawing.RedoCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+Shift+Z, iOS=CMD+Shift+Z, Default=Ctrl+Y}" />
+    <KeyBinding Command="{Binding Editor.Drawing.CutNodesCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+X, iOS=CMD+X, Default=Ctrl+X}" />
+    <KeyBinding Command="{Binding Editor.Drawing.CopyNodesCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+C, iOS=CMD+C, Default=Ctrl+C}" />
+    <KeyBinding Command="{Binding Editor.Drawing.PasteNodesCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+V, iOS=CMD+V, Default=Ctrl+V}" />
+    <KeyBinding Command="{Binding Editor.Drawing.DuplicateNodesCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
+    <KeyBinding Command="{Binding Editor.Drawing.DeleteNodesCommand, FallbackValue={x:Null}}" Gesture="Delete" />
+    <KeyBinding Command="{Binding Editor.Drawing.SelectAllNodesCommand, FallbackValue={x:Null}}" Gesture="{OnPlatform macOS=CMD+A, iOS=CMD+A, Default=Ctrl+A}" />
+    <KeyBinding Command="{Binding Editor.Drawing.DeselectAllNodesCommand, FallbackValue={x:Null}}" Gesture="Escape" />
+    <KeyBinding Command="{Binding ToggleRunCommand}" Gesture="F5" />
+    <KeyBinding Command="{Binding StepCommand}" Gesture="F6" />
+    <KeyBinding Command="{Binding ShowMacrosCommand}" Gesture="{OnPlatform macOS=CMD+Shift+P, iOS=CMD+Shift+P, Default=Ctrl+Shift+P}" />
+  </UserControl.KeyBindings>
+  <DockPanel>
+    <views:MenuView DockPanel.Dock="Top" ZoomControl="{Binding #EditorControl.ZoomControl}" x:CompileBindings="False" />
+    <Border DockPanel.Dock="Top" Background="{DynamicResource AppPanelBackground}" BorderBrush="{DynamicResource AppPanelBorder}" BorderThickness="0,0,0,1">
+      <StackPanel Margin="10,6" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+        <TextBlock Text="Tools" FontWeight="SemiBold" VerticalAlignment="Center" />
+        <RadioButton Content="Select"
+                     GroupName="ToolMode"
+                     IsChecked="{Binding IsSelectToolActive}" />
+        <RadioButton Content="Wire"
+                     GroupName="ToolMode"
+                     IsChecked="{Binding IsWireToolActive}" />
+        <RadioButton Content="Ink"
+                     GroupName="ToolMode"
+                     IsChecked="{Binding IsInkToolActive}" />
+        <Border Width="1" Height="18" Background="{DynamicResource AppPanelBorder}" Margin="4,0" />
+        <ToggleButton Content="Snap"
+                      IsChecked="{Binding Editor.Drawing.Settings.EnableSnap, FallbackValue={x:False}}" />
+        <ToggleButton Content="Grid"
+                      IsChecked="{Binding Editor.Drawing.Settings.EnableGrid, FallbackValue={x:False}}" />
+        <ToggleButton Content="Multi"
+                      ToolTip.Tip="Allow multiple pin connections"
+                      IsChecked="{Binding Editor.Drawing.Settings.EnableMultiplePinConnections, FallbackValue={x:True}}" />
+        <ToggleButton Content="Strict"
+                      ToolTip.Tip="Require output-to-input connections"
+                      IsChecked="{Binding Editor.Drawing.Settings.RequireDirectionalConnections, FallbackValue={x:True}}" />
+        <ToggleButton Content="Bus match"
+                      ToolTip.Tip="Require matching bus widths"
+                      IsChecked="{Binding Editor.Drawing.Settings.RequireMatchingBusWidth, FallbackValue={x:True}}" />
+        <Border Width="1" Height="18" Background="{DynamicResource AppPanelBorder}" Margin="4,0" />
+        <TextBlock Text="Connector" FontWeight="SemiBold" VerticalAlignment="Center" />
+        <RadioButton Content="Bezier"
+                     GroupName="ConnectorStyle"
+                     IsChecked="{Binding Editor.Drawing.Settings.DefaultConnectorStyle, Converter={x:Static coreConverters:EnumEqualsConverter.Instance}, ConverterParameter={x:Static m:ConnectorStyle.Bezier}}" />
+        <RadioButton Content="Straight"
+                     GroupName="ConnectorStyle"
+                     IsChecked="{Binding Editor.Drawing.Settings.DefaultConnectorStyle, Converter={x:Static coreConverters:EnumEqualsConverter.Instance}, ConverterParameter={x:Static m:ConnectorStyle.Straight}}" />
+        <RadioButton Content="Orthogonal"
+                     GroupName="ConnectorStyle"
+                     IsChecked="{Binding Editor.Drawing.Settings.DefaultConnectorStyle, Converter={x:Static coreConverters:EnumEqualsConverter.Instance}, ConverterParameter={x:Static m:ConnectorStyle.Orthogonal}}" />
+      </StackPanel>
+    </Border>
+    <Grid RowDefinitions="*,Auto">
+      <Grid.Resources>
+        <x:Double x:Key="ToolboxWidth">240</x:Double>
+        <GridLength x:Key="InspectorWidth">320</GridLength>
+      </Grid.Resources>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="{Binding IsToolboxVisible, Converter={x:Static coreConverters:ColumnWidthConverter.Instance}, ConverterParameter={StaticResource ToolboxWidth}}" />
+        <ColumnDefinition Width="6" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="6" />
+        <ColumnDefinition Width="{StaticResource InspectorWidth}" />
+      </Grid.ColumnDefinitions>
+
+      <Border Grid.Column="0" Background="{DynamicResource ToolboxBackgroundBrush}" BorderBrush="{DynamicResource AppPanelBorder}" BorderThickness="0,0,1,0" IsVisible="{Binding IsToolboxVisible}">
+        <views:ToolboxView />
+      </Border>
+
+      <GridSplitter Grid.Column="1" Background="Transparent" IsVisible="{Binding IsToolboxVisible}" />
+
+      <Border Grid.Column="2" Background="{DynamicResource EditorBackground}" BorderBrush="{DynamicResource AppPanelBorder}" BorderThickness="1" CornerRadius="12" Margin="10">
+        <editor:Editor Name="EditorControl"
+                       DrawingSource="{Binding Editor.Drawing, FallbackValue={x:Null}}" />
+      </Border>
+
+      <GridSplitter Grid.Column="3" Background="Transparent" />
+
+      <Border Grid.Column="4" Background="{DynamicResource InspectorBackgroundBrush}" BorderBrush="{DynamicResource AppPanelBorder}" BorderThickness="1,0,0,0">
+        <TabControl x:CompileBindings="False">
+          <TabItem Header="Inspector">
+            <ScrollViewer>
+              <StackPanel Margin="16" Spacing="12">
+                <TextBlock Text="Selection" FontSize="14" FontWeight="SemiBold" />
+                <TextBlock Text="Select a logic node to inspect."
+                           IsVisible="{Binding SelectedNode.Content, Converter={x:Static converters:LogicNodeContentVisibilityConverter.Instance}, ConverterParameter=invert}" />
+                <panels:InspectorView DataContext="{Binding SelectedNode.Content}"
+                                     IsVisible="{Binding SelectedNode.Content, Converter={x:Static converters:LogicNodeContentVisibilityConverter.Instance}}" />
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+          <TabItem Header="Component">
+            <ScrollViewer>
+              <StackPanel Margin="16" Spacing="12">
+                <TextBlock Text="Select a logic node to edit components."
+                           IsVisible="{Binding SelectedNode.Content, Converter={x:Static converters:LogicNodeContentVisibilityConverter.Instance}, ConverterParameter=invert}" />
+                <panels:ComponentEditorView DataContext="{Binding SelectedNode.Content}"
+                                            IsVisible="{Binding SelectedNode.Content, Converter={x:Static converters:LogicNodeContentVisibilityConverter.Instance}}" />
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+          <TabItem Header="Simulation">
+            <ScrollViewer>
+              <StackPanel Margin="16" Spacing="12">
+                <TextBlock Text="Simulation" FontSize="14" FontWeight="SemiBold" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Button Command="{Binding ToggleRunCommand}" Content="{Binding RunButtonLabel}" />
+                  <Button Command="{Binding StepCommand}" Content="Step" />
+                  <Button Command="{Binding ResetCommand}" Content="Reset" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="Speed" VerticalAlignment="Center" />
+                  <Slider Minimum="1" Maximum="12" Width="140" Value="{Binding SimulationSpeed}" />
+                  <TextBlock Text="{Binding SimulationSpeed}" VerticalAlignment="Center" />
+                </StackPanel>
+                <CheckBox IsChecked="{Binding AutoEvaluate}" Content="Auto evaluate" />
+                <TextBlock Text="{Binding SimulationStatus}" />
+                <TextBlock Text="{Binding TickCount, StringFormat=Ticks: {0}}" />
+                <ItemsControl ItemsSource="{Binding SimulationMessages}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Border Background="{DynamicResource AccentMutedBrush}" CornerRadius="6" Padding="8" Margin="0,0,0,6">
+                        <TextBlock Text="{Binding .}" />
+                      </Border>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+          <TabItem Header="Waveforms">
+            <ScrollViewer>
+              <StackPanel Margin="16" Spacing="12">
+                <TextBlock Text="Waveforms" FontSize="14" FontWeight="SemiBold" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <CheckBox IsChecked="{Binding TrackOutputs}" Content="Outputs" />
+                  <CheckBox IsChecked="{Binding TrackInputs}" Content="Inputs" />
+                  <CheckBox IsChecked="{Binding TrackClocks}" Content="Clocks" />
+                  <Button Content="Clear" Command="{Binding ClearWaveformsCommand}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <TextBlock Text="Depth" VerticalAlignment="Center" />
+                  <NumericUpDown Minimum="8" Maximum="128" Width="80" Value="{Binding WaveformDepth}" />
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding WaveformSignals}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <StackPanel Spacing="6" Margin="0,0,0,12">
+                        <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                          <ItemsControl ItemsSource="{Binding Samples}">
+                            <ItemsControl.ItemsPanel>
+                              <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="4" />
+                              </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                              <DataTemplate>
+                                <Border Padding="4,2"
+                                        CornerRadius="3"
+                                        Background="{Binding Aggregate, Converter={x:Static converters:LogicValueToBrushConverter.Instance}}">
+                                  <TextBlock Text="{Binding Display}" FontSize="10" />
+                                </Border>
+                              </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                          </ItemsControl>
+                        </ScrollViewer>
+                      </StackPanel>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+            </ScrollViewer>
+          </TabItem>
+        </TabControl>
+      </Border>
+
+      <Border Grid.Row="1" Grid.ColumnSpan="5" Background="{DynamicResource StatusBarBackgroundBrush}" BorderBrush="{DynamicResource AppPanelBorder}" BorderThickness="0,1,0,0" Padding="12,6">
+        <DockPanel>
+          <TextBlock Text="{Binding SimulationStatus}" DockPanel.Dock="Left" />
+          <TextBlock Text="{Binding TickCount, StringFormat=Ticks: {0}}" HorizontalAlignment="Right" />
+        </DockPanel>
+      </Border>
+    </Grid>
+  </DockPanel>
+</UserControl>

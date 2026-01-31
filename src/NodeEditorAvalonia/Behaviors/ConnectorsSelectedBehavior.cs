@@ -3,7 +3,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
 using Avalonia.Reactive;
+using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactivity;
+using NodeEditor.Controls;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
@@ -31,27 +33,23 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
             return;
         }
 
-        _dataContextDisposable = AssociatedObject
-            .GetObservable(StyledElement.DataContextProperty)
-            .Subscribe(new AnonymousObserver<object?>(
-                x =>
+        _dataContextDisposable = this
+            .GetObservable(DrawingSourceProperty)
+            .Subscribe(new AnonymousObserver<IDrawingNode?>(
+                drawingNode =>
                 {
-                    if (x is IDrawingNode drawingNode)
+                    if (_drawingNode is not null)
                     {
-                        if (_drawingNode == drawingNode)
-                        {
-                            _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
-                        }
-
-                        RemoveSelectedPseudoClasses(AssociatedObject);
-
-                        _drawingNode = drawingNode;
-
-                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
+                        _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
                     }
-                    else
+
+                    RemoveSelectedPseudoClasses(AssociatedObject);
+
+                    _drawingNode = drawingNode;
+
+                    if (_drawingNode is not null)
                     {
-                        RemoveSelectedPseudoClasses(AssociatedObject);
+                        _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
                     }
                 }));
     }
@@ -85,6 +83,11 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
             return;
         }
 
+        if (AssociatedObject is null)
+        {
+            return;
+        }
+
         var selectedNodes = _drawingNode.GetSelectedNodes();
         var selectedConnectors = _drawingNode.GetSelectedConnectors();
 
@@ -109,16 +112,22 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
 
             var selectedConnectors = _drawingNode?.GetSelectedConnectors();
 
+            var connectorControl = FindConnectorControl(containerControl as ContentPresenter);
+            if (connectorControl is null)
+            {
+                continue;
+            }
+
             if (_drawingNode is not null && selectedConnectors is not null && selectedConnectors.Contains(connector))
             {
-                if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
+                if (connectorControl.Classes is IPseudoClasses pseudoClasses)
                 {
                     pseudoClasses.Add(":selected");
                 }
             }
             else
             {
-                if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
+                if (connectorControl.Classes is IPseudoClasses pseudoClasses)
                 {
                     pseudoClasses.Remove(":selected");
                 }
@@ -135,10 +144,34 @@ public class ConnectorsSelectedBehavior : Behavior<ItemsControl>
                 continue;
             }
 
-            if (containerControl is ContentPresenter { Child.Classes: IPseudoClasses pseudoClasses })
+            var connectorControl = FindConnectorControl(containerControl as ContentPresenter);
+            if (connectorControl?.Classes is IPseudoClasses pseudoClasses)
             {
                 pseudoClasses.Remove(":selected");
             }
         }
+    }
+
+    private static Connector? FindConnectorControl(ContentPresenter? presenter)
+    {
+        if (presenter?.Child is Connector connector)
+        {
+            return connector;
+        }
+
+        if (presenter?.Child is not Visual visual)
+        {
+            return null;
+        }
+
+        foreach (var descendant in visual.GetVisualDescendants())
+        {
+            if (descendant is Connector found)
+            {
+                return found;
+            }
+        }
+
+        return null;
     }
 }

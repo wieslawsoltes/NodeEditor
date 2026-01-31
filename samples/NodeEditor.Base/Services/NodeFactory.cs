@@ -8,6 +8,8 @@ namespace NodeEditorDemo.Services;
 
 public class NodeFactory : INodeFactory
 {
+    private const string ShapePinType = "shape";
+    private const string SignalPinType = "sig";
     internal static INode CreateRectangle(double x, double y, double width, double height, string? label, double pinSize = 10)
     {
         var node = new NodeViewModel
@@ -20,10 +22,10 @@ public class NodeFactory : INodeFactory
             Content = new RectangleViewModel { Label = label }
         };
 
-        node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
-        node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
-        node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
-        node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
+        AddTypedPin(node, 0, height / 2, pinSize, pinSize, PinAlignment.Left, "L", ShapePinType);
+        AddTypedPin(node, width, height / 2, pinSize, pinSize, PinAlignment.Right, "R", ShapePinType);
+        AddTypedPin(node, width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T", ShapePinType);
+        AddTypedPin(node, width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B", ShapePinType);
 
         return node;
     }
@@ -40,10 +42,10 @@ public class NodeFactory : INodeFactory
             Content = new EllipseViewModel { Label = label }
         };
 
-        node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
-        node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
-        node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
-        node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
+        AddTypedPin(node, 0, height / 2, pinSize, pinSize, PinAlignment.Left, "L", ShapePinType);
+        AddTypedPin(node, width, height / 2, pinSize, pinSize, PinAlignment.Right, "R", ShapePinType);
+        AddTypedPin(node, width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T", ShapePinType);
+        AddTypedPin(node, width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B", ShapePinType);
             
         return node;
     }
@@ -61,8 +63,8 @@ public class NodeFactory : INodeFactory
             Content = new SignalViewModel { Label = label, State = state }
         };
 
-        node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "IN");
-        node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "OUT");
+        AddTypedPin(node, 0, height / 2, pinSize, pinSize, PinAlignment.Left, "IN", SignalPinType, PinDirection.Input);
+        AddTypedPin(node, width, height / 2, pinSize, pinSize, PinAlignment.Right, "OUT", SignalPinType, PinDirection.Output);
   
         return node;
     }
@@ -80,10 +82,10 @@ public class NodeFactory : INodeFactory
             Content = new AndGateViewModel { Label = "&" }
         };
 
-        node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
-        node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
-        node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
-        node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
+        AddTypedPin(node, 0, height / 2, pinSize, pinSize, PinAlignment.Left, "L", SignalPinType, PinDirection.Input);
+        AddTypedPin(node, width, height / 2, pinSize, pinSize, PinAlignment.Right, "R", SignalPinType, PinDirection.Output);
+        AddTypedPin(node, width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T", SignalPinType, PinDirection.Input);
+        AddTypedPin(node, width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B", SignalPinType, PinDirection.Input);
 
         return node;
     }
@@ -101,10 +103,10 @@ public class NodeFactory : INodeFactory
             Content = new OrGateViewModel { Label = "≥", Count = count}
         };
 
-        node.AddPin(0, height / 2, pinSize, pinSize, PinAlignment.Left, "L");
-        node.AddPin(width, height / 2, pinSize, pinSize, PinAlignment.Right, "R");
-        node.AddPin(width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T");
-        node.AddPin(width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B");
+        AddTypedPin(node, 0, height / 2, pinSize, pinSize, PinAlignment.Left, "L", SignalPinType, PinDirection.Input);
+        AddTypedPin(node, width, height / 2, pinSize, pinSize, PinAlignment.Right, "R", SignalPinType, PinDirection.Output);
+        AddTypedPin(node, width / 2, 0, pinSize, pinSize, PinAlignment.Top, "T", SignalPinType, PinDirection.Input);
+        AddTypedPin(node, width / 2, height, pinSize, pinSize, PinAlignment.Bottom, "B", SignalPinType, PinDirection.Input);
 
         return node;
     }
@@ -128,7 +130,8 @@ public class NodeFactory : INodeFactory
             SnapY = 15.0,
             EnableGrid = true,
             GridCellWidth = 15.0,
-            GridCellHeight = 15.0
+            GridCellHeight = 15.0,
+            ConnectionValidator = BaseConnectionValidation.TypeCompatibility
         };
 
         var drawing = new DrawingNodeViewModel
@@ -144,6 +147,36 @@ public class NodeFactory : INodeFactory
         };
 
         return drawing;
+    }
+
+    private static IPin AddTypedPin(
+        NodeViewModel node,
+        double x,
+        double y,
+        double width,
+        double height,
+        PinAlignment alignment,
+        string name,
+        string? typeTag,
+        PinDirection? direction = null)
+    {
+        var pin = node.AddPin(x, y, width, height, alignment, FormatPinName(typeTag, name));
+        if (direction.HasValue && pin is PinViewModel viewModel)
+        {
+            viewModel.Direction = direction.Value;
+        }
+
+        return pin;
+    }
+
+    private static string FormatPinName(string? typeTag, string name)
+    {
+        if (string.IsNullOrWhiteSpace(typeTag))
+        {
+            return name;
+        }
+
+        return $"{typeTag}:{name}";
     }
 
     public IList<INodeTemplate> CreateTemplates()

@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:NodeEditor.Mvvm;assembly=NodeEditorAvalonia.Mvvm"
+        mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="480"
+        x:Class="NodeEditorLogic.Views.MacroPickerWindow"
+        x:CompileBindings="True"
+        x:DataType="vm:MacroPickerViewModel"
+        Width="420" Height="480"
+        MinWidth="360" MinHeight="360"
+        WindowStartupLocation="CenterOwner"
+        Title="Macros">
+  <Window.KeyBindings>
+    <KeyBinding Command="{Binding RunSelectedCommand}" Gesture="Enter" />
+    <KeyBinding Command="{Binding CloseCommand}" Gesture="Escape" />
+  </Window.KeyBindings>
+  <DockPanel Margin="16">
+    <TextBox DockPanel.Dock="Top"
+             Watermark="Filter macros..."
+             Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
+    <ListBox ItemsSource="{Binding FilteredMacros}"
+             SelectedItem="{Binding SelectedMacro}"
+             Margin="0,12,0,12"
+             DoubleTapped="OnMacroDoubleTapped">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Spacing="2">
+            <TextBlock Text="{Binding Title}" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding Category}" Opacity="0.7" FontSize="11" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+    <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button Content="Run" Command="{Binding RunSelectedCommand}" />
+      <Button Content="Close" Command="{Binding CloseCommand}" />
+    </StackPanel>
+  </DockPanel>
+</Window>

@@ -8,6 +8,7 @@
   <ControlTheme x:Key="{x:Type controls:Connector}" TargetType="controls:Connector">
 
     <Setter Property="Stroke" Value="{DynamicResource ConnectorBackgroundBrush}" />
+    <Setter Property="Fill" Value="{DynamicResource ConnectorBackgroundBrush}" />
     <Setter Property="StrokeThickness" Value="2" />
     <Setter Property="ClipToBounds" Value="False" />
 
@@ -30,18 +31,82 @@
                            IsChecked="{Binding Orientation, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorOrientation.Vertical}}"
                            DockPanel.Dock="Top" />
             </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="0,6,0,0">
+              <Label Content="Style:" DockPanel.Dock="Top" />
+              <RadioButton Content="Bezier"
+                           GroupName="Style"
+                           IsChecked="{Binding ConnectorStyle, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorStyle.Bezier}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Straight"
+                           GroupName="Style"
+                           IsChecked="{Binding ConnectorStyle, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorStyle.Straight}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Orthogonal"
+                           GroupName="Style"
+                           IsChecked="{Binding ConnectorStyle, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorStyle.Orthogonal}}"
+                           DockPanel.Dock="Top" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="0,6,0,0">
+              <Label Content="Routing:" DockPanel.Dock="Top" />
+              <RadioButton Content="Manual"
+                           GroupName="Routing"
+                           IsChecked="{Binding ConnectorSource.RoutingMode, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingMode.Manual}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Auto"
+                           GroupName="Routing"
+                           IsChecked="{Binding ConnectorSource.RoutingMode, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingMode.Auto}}"
+                           DockPanel.Dock="Top" />
+            </DockPanel>
+            <Button Content="Swap Direction"
+                    Command="{Binding SwapDirectionCommand}"
+                    Margin="0,6,0,0"
+                    DockPanel.Dock="Top" />
             <Label Content="Offset:" DockPanel.Dock="Top" />
             <TextBox Text="{Binding Offset}" DockPanel.Dock="Top" />
+            <DockPanel DockPanel.Dock="Top" Margin="0,6,0,0">
+              <Label Content="Start Arrow:" DockPanel.Dock="Top" />
+              <RadioButton Content="None"
+                           GroupName="StartArrow"
+                           IsChecked="{Binding ConnectorSource.StartArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.None}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Arrow"
+                           GroupName="StartArrow"
+                           IsChecked="{Binding ConnectorSource.StartArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.Arrow}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Circle"
+                           GroupName="StartArrow"
+                           IsChecked="{Binding ConnectorSource.StartArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.Circle}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Diamond"
+                           GroupName="StartArrow"
+                           IsChecked="{Binding ConnectorSource.StartArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.Diamond}}"
+                           DockPanel.Dock="Top" />
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Margin="0,6,0,0">
+              <Label Content="End Arrow:" DockPanel.Dock="Top" />
+              <RadioButton Content="None"
+                           GroupName="EndArrow"
+                           IsChecked="{Binding ConnectorSource.EndArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.None}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Arrow"
+                           GroupName="EndArrow"
+                           IsChecked="{Binding ConnectorSource.EndArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.Arrow}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Circle"
+                           GroupName="EndArrow"
+                           IsChecked="{Binding ConnectorSource.EndArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.Circle}}"
+                           DockPanel.Dock="Top" />
+              <RadioButton Content="Diamond"
+                           GroupName="EndArrow"
+                           IsChecked="{Binding ConnectorSource.EndArrow, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorArrowStyle.Diamond}}"
+                           DockPanel.Dock="Top" />
+            </DockPanel>
+            <Label Content="Label:" DockPanel.Dock="Top" />
+            <TextBox Text="{Binding ConnectorSource.Name}" Watermark="Label" DockPanel.Dock="Top" />
           </DockPanel>
         </Flyout>
       </Setter.Value>
     </Setter>
-
-    <!--
-    <Style Selector="^:selected">
-      <Setter Property="Stroke" Value="Blue" />
-    </Style>
-    -->
 
   </ControlTheme>
 

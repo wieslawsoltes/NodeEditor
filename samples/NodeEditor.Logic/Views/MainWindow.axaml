@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:NodeEditorLogic.ViewModels"
+        xmlns:views="clr-namespace:NodeEditorLogic.Views"
+        mc:Ignorable="d" d:DesignWidth="1360" d:DesignHeight="840"
+        x:Class="NodeEditorLogic.Views.MainWindow"
+        x:Name="MainWindowView"
+        WindowStartupLocation="CenterScreen"
+        Width="1360" Height="840"
+        Title="LogicLab"
+        Background="{DynamicResource AppGradientBrush}"
+        x:CompileBindings="True" x:DataType="vm:MainViewViewModel">
+
+  <Design.DataContext>
+    <vm:MainViewViewModel />
+  </Design.DataContext>
+
+  <Panel>
+    <Border Background="{DynamicResource AppGradientBrush}">
+      <Panel Margin="{Binding #MainWindowView.OffScreenMargin}">
+        <Panel Margin="{Binding #MainWindowView.WindowDecorationMargin}">
+          <views:MainView Name="MainView" />
+        </Panel>
+      </Panel>
+    </Border>
+  </Panel>
+
+</Window>

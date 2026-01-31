@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -27,7 +27,7 @@ public class DrawingDropHandler : DefaultDropHandler
         set => SetValue(RelativeToProperty, value);
     }
 
-    private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, bool bExecute)
+    private bool Validate(IDrawingNode drawing, object? sender, DragEventArgs e, object? sourceContext, bool bExecute)
     {
         var relativeTo = RelativeTo ?? sender as Control;
         if (relativeTo is null)
@@ -41,77 +41,149 @@ public class DrawingDropHandler : DefaultDropHandler
             point = SnapHelper.Snap(point, drawingNode.DrawingSource.Settings.SnapX, drawingNode.DrawingSource.Settings.SnapY, drawingNode.DrawingSource.Settings.EnableSnap);
         }
 
-        if (e.Data.Contains(DataFormats.Text))
+        if (sourceContext is INodeTemplate directTemplate)
         {
-            var text = e.Data.GetText();
-
             if (bExecute)
             {
-                if (text is not null)
+                var node = drawing.Clone(directTemplate.Template);
+                if (node is not null)
                 {
-                    // TODO: text
+                    AddNodeToDrawing(drawing, node, point);
                 }
             }
 
             return true;
         }
 
-        foreach (var format in e.Data.GetDataFormats())
+        var dataTransfer = e.DataTransfer;
+        if (dataTransfer is null)
         {
-            var data = e.Data.Get(format);
+            return false;
+        }
 
-            switch (data)
+        if (TryGetTemplate(dataTransfer, out var template))
+        {
+            if (bExecute)
             {
-                case INodeTemplate template:
+                var node = drawing.Clone(template.Template);
+                if (node is not null)
                 {
-                    if (bExecute)
-                    {
-                        var node = drawing.Clone(template.Template);
-                        if (node is not null)
-                        {
-                            node.Parent = drawing;
-                            node.Move(point.X, point.Y);
-                            drawing.Nodes?.Add(node);
-                            node.OnCreated();
-                        }
-                    }
+                    AddNodeToDrawing(drawing, node, point);
+                }
+            }
+
+            return true;
+        }
+
+        var text = dataTransfer.TryGetText();
+        if (text is not null)
+        {
+            if (drawing is IDrawingDropTarget dropTarget && dropTarget.CanDropText(text, point))
+            {
+                if (bExecute)
+                {
+                    dropTarget.DropText(text, point);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        var files = dataTransfer.TryGetFiles();
+        if (files is { Length: > 0 })
+        {
+            if (drawing is IDrawingDropTarget dropTarget && dropTarget.CanDropFiles(files, point))
+            {
+                if (bExecute)
+                {
+                    dropTarget.DropFiles(files, point);
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
+    }
+
+    private static bool TryGetTemplate(IDataTransfer dataTransfer, out INodeTemplate template)
+    {
+        foreach (var item in dataTransfer.Items)
+        {
+            foreach (var format in item.Formats)
+            {
+                if (item.TryGetRaw(format) is INodeTemplate nodeTemplate)
+                {
+                    template = nodeTemplate;
                     return true;
                 }
             }
         }
 
-        if (e.Data.Contains(DataFormats.Files))
-        {
-            // ReSharper disable once UnusedVariable
-            var files = e.Data.GetFiles()?.ToArray();
-            if (bExecute)
-            {
-                // TODO: files, point.X, point.Y
-            }
+        template = null!;
+        return false;
+    }
 
-            return true;
+    private static void AddNodeToDrawing(IDrawingNode drawing, INode node, Point point)
+    {
+        drawing.Nodes ??= new ObservableCollection<INode>();
+        node.Parent = drawing;
+
+        var deltaX = point.X - node.X;
+        var deltaY = point.Y - node.Y;
+
+        if (node.CanMove())
+        {
+            node.Move(deltaX, deltaY);
+        }
+        else
+        {
+            node.X += deltaX;
+            node.Y += deltaY;
         }
 
-        return false;
+        drawing.Nodes.Add(node);
+        node.OnCreated();
     }
 
     public override bool Validate(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
-        if (targetContext is IDrawingNode drawing)
+        var drawing = targetContext as IDrawingNode ?? DrawingSource;
+        if (drawing is null)
         {
-            return Validate(drawing, sender, e, false);
+            return false;
         }
 
-        return false;
+        return Validate(drawing, sender, e, sourceContext, false);
     }
 
     public override bool Execute(object? sender, DragEventArgs e, object? sourceContext, object? targetContext, object? state)
     {
-        if (targetContext is IDrawingNode drawing)
+        var drawing = targetContext as IDrawingNode ?? DrawingSource;
+        if (drawing is null)
         {
-            return Validate(drawing, sender, e, true);
+            return false;
         }
 
-        return false;
+        if (drawing is IUndoRedoHost host)
+        {
+            host.BeginUndoBatch();
+        }
+
+        try
+        {
+            return Validate(drawing, sender, e, sourceContext, true);
+        }
+        finally
+        {
+            if (drawing is IUndoRedoHost endHost)
+            {
+                endHost.EndUndoBatch();
+            }
+        }
     }
 }

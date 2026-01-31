@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>False</IsPackable>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>..\NodeEditor.Base\Assets\Icon.ico</ApplicationIcon>
+    <RootNamespace>NodeEditorLogic</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+    <Import Project="..\..\build\ReferenceAssemblies.props" />
+  <Import Project="..\..\build\Avalonia.Desktop.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\NodeEditor.Logic\NodeEditor.Logic.csproj" />
+  </ItemGroup>
+
+</Project>

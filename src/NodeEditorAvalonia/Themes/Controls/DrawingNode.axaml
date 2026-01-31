@@ -25,6 +25,12 @@
                           DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
                           InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}"
                           AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}" />
+          <controls:InkLayer x:Name="PART_InkLayer"
+                             Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                             Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                             DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                             IsVisible="{Binding DrawingSource.Settings.EnableInk, RelativeSource={RelativeSource TemplatedParent}}"
+                             IsHitTestVisible="{Binding DrawingSource.Settings.IsInkMode, RelativeSource={RelativeSource TemplatedParent}}" />
         </Panel>
       </ControlTemplate>
     </Setter>
