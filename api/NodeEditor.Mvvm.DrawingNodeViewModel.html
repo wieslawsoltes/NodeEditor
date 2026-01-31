@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DrawingNodeViewModel | NodeEditor for Avalonia </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DrawingNodeViewModel | NodeEditor for Avalonia ">
+      
+      <meta name="description" content="A base class for objects of which the properties must be observable.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/new/main/apiSpec/new?filename=NodeEditor_Mvvm_DrawingNodeViewModel.md&amp;value=---%0Auid%3A%20NodeEditor.Mvvm.DrawingNodeViewModel%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="NodeEditor.Mvvm.DrawingNodeViewModel">
+
+
+
+  <h1 id="NodeEditor_Mvvm_DrawingNodeViewModel" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel" class="text-break">
+Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="NodeEditor.html">NodeEditor</a>.<a class="xref" href="NodeEditor.Mvvm.html">Mvvm</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>NodeEditorAvalonia.Mvvm.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A base class for objects of which the properties must be observable.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DrawingNodeViewModel : NodeViewModel, INotifyPropertyChanged, INotifyPropertyChanging, IDrawingNode, INode, IUndoRedoHost</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject">ObservableObject</a></div>
+      <div><a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html">NodeViewModel</a></div>
+      <div><span class="xref">DrawingNodeViewModel</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><a class="xref" href="NodeEditor.Model.IDrawingNode.html">IDrawingNode</a></div>
+      <div><a class="xref" href="NodeEditor.Model.INode.html">INode</a></div>
+      <div><a class="xref" href="NodeEditor.Model.IUndoRedoHost.html">IUndoRedoHost</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Created">NodeViewModel.Created</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Removed">NodeViewModel.Removed</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Moved">NodeViewModel.Moved</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Selected">NodeViewModel.Selected</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Deselected">NodeViewModel.Deselected</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Resized">NodeViewModel.Resized</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_CanSelect">NodeViewModel.CanSelect()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_CanRemove">NodeViewModel.CanRemove()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_CanMove">NodeViewModel.CanMove()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_CanResize">NodeViewModel.CanResize()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Move_System_Double_System_Double_">NodeViewModel.Move(double, double)</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Resize_System_Double_System_Double_NodeEditor_Model_NodeResizeDirection_">NodeViewModel.Resize(double, double, NodeResizeDirection)</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_OnCreated">NodeViewModel.OnCreated()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_OnRemoved">NodeViewModel.OnRemoved()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_OnMoved">NodeViewModel.OnMoved()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_OnSelected">NodeViewModel.OnSelected()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_OnDeselected">NodeViewModel.OnDeselected()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_OnResized">NodeViewModel.OnResized()</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Name">NodeViewModel.Name</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Parent">NodeViewModel.Parent</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_X">NodeViewModel.X</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Y">NodeViewModel.Y</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Width">NodeViewModel.Width</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Height">NodeViewModel.Height</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Rotation">NodeViewModel.Rotation</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Content">NodeViewModel.Content</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_Pins">NodeViewModel.Pins</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_IsVisible">NodeViewModel.IsVisible</a>
+    </div>
+    <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModel.html#NodeEditor_Mvvm_NodeViewModel_IsLocked">NodeViewModel.IsLocked</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-componentmodel-propertychangedeventargs)">ObservableObject.OnPropertyChanged(PropertyChangedEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-componentmodel-propertychangingeventargs)">ObservableObject.OnPropertyChanging(PropertyChangingEventArgs)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanged#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanged(system-string)">ObservableObject.OnPropertyChanged(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.onpropertychanging#communitytoolkit-mvvm-componentmodel-observableobject-onpropertychanging(system-string)">ObservableObject.OnPropertyChanging(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0@-0-system-collections-generic-iequalitycomparer((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(ref T, T, IEqualityComparer&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-1(-0-0-system-collections-generic-iequalitycomparer((-0))-system-action((-0))-system-string)">ObservableObject.SetProperty&lt;T&gt;(T, T, IEqualityComparer&lt;T&gt;, Action&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setproperty#communitytoolkit-mvvm-componentmodel-observableobject-setproperty-2(-1-1-system-collections-generic-iequalitycomparer((-1))-0-system-action((-0-1))-system-string)">ObservableObject.SetProperty&lt;TModel, T&gt;(T, T, IEqualityComparer&lt;T&gt;, TModel, Action&lt;TModel, T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier@-system-threading-tasks-task-system-action((system-threading-tasks-task))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion(ref ObservableObject.TaskNotifier, Task, Action&lt;Task&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.setpropertyandnotifyoncompletion#communitytoolkit-mvvm-componentmodel-observableobject-setpropertyandnotifyoncompletion-1(communitytoolkit-mvvm-componentmodel-observableobject-tasknotifier((-0))@-system-threading-tasks-task((-0))-system-action((system-threading-tasks-task((-0))))-system-string)">ObservableObject.SetPropertyAndNotifyOnCompletion&lt;T&gt;(ref ObservableObject.TaskNotifier&lt;T&gt;, Task&lt;T&gt;, Action&lt;Task&lt;T&gt;&gt;, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanged">ObservableObject.PropertyChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/communitytoolkit.mvvm.componentmodel.observableobject.propertychanging">ObservableObject.PropertyChanging</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="NodeEditor.Mvvm.NodeViewModelExtensions.html#NodeEditor_Mvvm_NodeViewModelExtensions_AddPin_NodeEditor_Mvvm_NodeViewModel_System_Double_System_Double_System_Double_System_Double_NodeEditor_Model_PinAlignment_System_String_">NodeViewModelExtensions.AddPin(NodeViewModel, double, double, double, double, PinAlignment, string?)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel__ctor_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.#ctor*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel__ctor" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.#ctor">
+  DrawingNodeViewModel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawingNodeViewModel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel__ctor_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.#ctor*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel__ctor_NodeEditor_Model_IDrawingNodeFactory_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.#ctor(NodeEditor.Model.IDrawingNodeFactory)">
+  DrawingNodeViewModel(IDrawingNodeFactory?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawingNodeViewModel(IDrawingNodeFactory? factory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>factory</code> <a class="xref" href="NodeEditor.Model.IDrawingNodeFactory.html">IDrawingNodeFactory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AddPenCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddPenCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AddPenCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddPenCommand">
+  AddPenCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand AddPenCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignNodesCommand">
+  AlignNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand AlignNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CanRedo_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanRedo*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanRedo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanRedo">
+  CanRedo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanRedo { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CanUndo_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanUndo*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanUndo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanUndo">
+  CanUndo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanUndo { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ClearInkCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ClearInkCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ClearInkCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ClearInkCommand">
+  ClearInkCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand ClearInkCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Connectors_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Connectors*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Connectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Connectors">
+  Connectors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ConvertInkCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConvertInkCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConvertInkCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConvertInkCommand">
+  ConvertInkCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand ConvertInkCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CopyNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CopyNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodesCommand">
+  CopyNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand CopyNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodesCommand">
+  CutNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand CutNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DeleteNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeleteNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeleteNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeleteNodesCommand">
+  DeleteNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand DeleteNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DeselectAllNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeselectAllNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeselectAllNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeselectAllNodesCommand">
+  DeselectAllNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand DeselectAllNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DistributeNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DistributeNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DistributeNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DistributeNodesCommand">
+  DistributeNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand DistributeNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawInkCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawInkCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawInkCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawInkCommand">
+  DrawInkCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand DrawInkCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DuplicateNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DuplicateNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DuplicateNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DuplicateNodesCommand">
+  DuplicateNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand DuplicateNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelectionCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelectionCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelectionCommand">
+  HideSelectionCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand HideSelectionCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_InkStrokes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.InkStrokes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_InkStrokes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.InkStrokes">
+  InkStrokes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public IList&lt;InkStroke&gt;? InkStrokes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="NodeEditor.Model.InkStroke.html">InkStroke</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_LockSelectionCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.LockSelectionCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_LockSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.LockSelectionCommand">
+  LockSelectionCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand LockSelectionCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Nodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Nodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Nodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Nodes">
+  Nodes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public IList&lt;INode&gt;? Nodes { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="NodeEditor.Model.INode.html">INode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_OrderNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.OrderNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_OrderNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.OrderNodesCommand">
+  OrderNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand OrderNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_PasteNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_PasteNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodesCommand">
+  PasteNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand PasteNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_RedoCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RedoCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_RedoCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RedoCommand">
+  RedoCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand RedoCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodesCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodesCommand">
+  SelectAllNodesCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand SelectAllNodesCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Settings_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Settings*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Settings" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Settings">
+  Settings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[ExcludeFromCodeCoverage]
+public IDrawingNodeSettings Settings { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.IDrawingNodeSettings.html">IDrawingNodeSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowAllCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowAllCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowAllCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowAllCommand">
+  ShowAllCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand ShowAllCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowSelectionCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelectionCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelectionCommand">
+  ShowSelectionCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand ShowSelectionCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_UndoCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UndoCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_UndoCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UndoCommand">
+  UndoCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand UndoCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_UnlockSelectionCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelectionCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_UnlockSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelectionCommand">
+  UnlockSelectionCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand UnlockSelectionCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AddPen_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddPen*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AddPen" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddPen">
+  AddPen()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void AddPen()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignSelectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignSelectedNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignSelectedNodes_NodeEditor_Model_NodeAlignment_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignSelectedNodes(NodeEditor.Model.NodeAlignment)">
+  AlignSelectedNodes(NodeAlignment)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L337"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void AlignSelectedNodes(NodeAlignment alignment)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>alignment</code> <a class="xref" href="NodeEditor.Model.NodeAlignment.html">NodeAlignment</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_BeginUndoBatch_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.BeginUndoBatch*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_BeginUndoBatch" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.BeginUndoBatch">
+  BeginUndoBatch()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L406"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginUndoBatch()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CanConnectPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanConnectPin*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanConnectPin_NodeEditor_Model_IPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanConnectPin(NodeEditor.Model.IPin)">
+  CanConnectPin(IPin)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool CanConnectPin(IPin pin)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pin</code> <a class="xref" href="NodeEditor.Model.IPin.html">IPin</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CanSelectConnectors_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanSelectConnectors*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanSelectConnectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanSelectConnectors">
+  CanSelectConnectors()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool CanSelectConnectors()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CanSelectNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanSelectNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanSelectNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanSelectNodes">
+  CanSelectNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool CanSelectNodes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CancelConnector_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CancelConnector*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CancelConnector" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CancelConnector">
+  CancelConnector()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CancelConnector()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ClearInk_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ClearInk*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ClearInk" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ClearInk">
+  ClearInk()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ClearInk()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Clone_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Clone*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Clone__1___0_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Clone``1(``0)">
+  Clone&lt;T&gt;(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T? Clone&lt;T&gt;(T source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectorLeftPressed_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectorLeftPressed*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectorLeftPressed_NodeEditor_Model_IPin_System_Boolean_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectorLeftPressed(NodeEditor.Model.IPin,System.Boolean)">
+  ConnectorLeftPressed(IPin, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L278"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ConnectorLeftPressed(IPin pin, bool showWhenMoving)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pin</code> <a class="xref" href="NodeEditor.Model.IPin.html">IPin</a></dt>
+    <dd></dd>
+    <dt><code>showWhenMoving</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectorMove_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectorMove*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectorMove_System_Double_System_Double_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectorMove(System.Double,System.Double)">
+  ConnectorMove(double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ConnectorMove(double x, double y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ConvertInkToNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConvertInkToNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConvertInkToNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConvertInkToNodes">
+  ConvertInkToNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L333"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ConvertInkToNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CopyNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CopyNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodes">
+  CopyNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L284"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void CopyNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodes">
+  CutNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L282"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void CutNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DeleteNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeleteNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeleteNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeleteNodes">
+  DeleteNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DeleteNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DeselectAllNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeselectAllNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeselectAllNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeselectAllNodes">
+  DeselectAllNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L357"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DeselectAllNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DistributeSelectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DistributeSelectedNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DistributeSelectedNodes_NodeEditor_Model_NodeDistribution_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DistributeSelectedNodes(NodeEditor.Model.NodeDistribution)">
+  DistributeSelectedNodes(NodeDistribution)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DistributeSelectedNodes(NodeDistribution distribution)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>distribution</code> <a class="xref" href="NodeEditor.Model.NodeDistribution.html">NodeDistribution</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawingLeftPressed_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawingLeftPressed*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawingLeftPressed_System_Double_System_Double_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawingLeftPressed(System.Double,System.Double)">
+  DrawingLeftPressed(double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DrawingLeftPressed(double x, double y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawingRightPressed_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawingRightPressed*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawingRightPressed_System_Double_System_Double_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawingRightPressed(System.Double,System.Double)">
+  DrawingRightPressed(double, double)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L276"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DrawingRightPressed(double x, double y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_DuplicateNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DuplicateNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DuplicateNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DuplicateNodes">
+  DuplicateNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L288"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DuplicateNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_EndUndoBatch_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.EndUndoBatch*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_EndUndoBatch" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.EndUndoBatch">
+  EndUndoBatch()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L421"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EndUndoBatch()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedConnectors_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedConnectors*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedConnectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedConnectors">
+  GetSelectedConnectors()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISet&lt;IConnector&gt;? GetSelectedConnectors()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedNodes">
+  GetSelectedNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISet&lt;INode&gt;? GetSelectedNodes()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="NodeEditor.Model.INode.html">INode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSerializer_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSerializer*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSerializer" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSerializer">
+  GetSerializer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public INodeSerializer? GetSerializer()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.INodeSerializer.html">INodeSerializer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelection_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelection*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelection">
+  HideSelection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L349"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void HideSelection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_IsConnectorMoving_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.IsConnectorMoving*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_IsConnectorMoving" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.IsConnectorMoving">
+  IsConnectorMoving()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsConnectorMoving()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_IsPinConnected_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.IsPinConnected*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_IsPinConnected_NodeEditor_Model_IPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.IsPinConnected(NodeEditor.Model.IPin)">
+  IsPinConnected(IPin)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPinConnected(IPin pin)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pin</code> <a class="xref" href="NodeEditor.Model.IPin.html">IPin</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_LockSelection_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.LockSelection*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_LockSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.LockSelection">
+  LockSelection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void LockSelection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyConnectionRejected_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyConnectionRejected*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyConnectionRejected_NodeEditor_Model_IPin_NodeEditor_Model_IPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyConnectionRejected(NodeEditor.Model.IPin,NodeEditor.Model.IPin)">
+  NotifyConnectionRejected(IPin, IPin)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyConnectionRejected(IPin start, IPin end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <a class="xref" href="NodeEditor.Model.IPin.html">IPin</a></dt>
+    <dd></dd>
+    <dt><code>end</code> <a class="xref" href="NodeEditor.Model.IPin.html">IPin</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyDeselectedConnectors_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyDeselectedConnectors*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyDeselectedConnectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyDeselectedConnectors">
+  NotifyDeselectedConnectors()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L228"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyDeselectedConnectors()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyDeselectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyDeselectedNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyDeselectedNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyDeselectedNodes">
+  NotifyDeselectedNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifyDeselectedNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifySelectionChanged_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifySelectionChanged*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifySelectionChanged" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifySelectionChanged">
+  NotifySelectionChanged()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NotifySelectionChanged()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_OrderSelectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.OrderSelectedNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_OrderSelectedNodes_NodeEditor_Model_NodeOrder_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.OrderSelectedNodes(NodeEditor.Model.NodeOrder)">
+  OrderSelectedNodes(NodeOrder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L343"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OrderSelectedNodes(NodeOrder order)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>order</code> <a class="xref" href="NodeEditor.Model.NodeOrder.html">NodeOrder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_PasteNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_PasteNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodes">
+  PasteNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void PasteNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Redo_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Redo*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Redo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Redo">
+  Redo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L385"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Redo()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodes">
+  SelectAllNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L355"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SelectAllNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SetFactory_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetFactory*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetFactory_NodeEditor_Model_IDrawingNodeFactory_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetFactory(NodeEditor.Model.IDrawingNodeFactory)">
+  SetFactory(IDrawingNodeFactory)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L359"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFactory(IDrawingNodeFactory factory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>factory</code> <a class="xref" href="NodeEditor.Model.IDrawingNodeFactory.html">IDrawingNodeFactory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSelectedConnectors_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSelectedConnectors*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSelectedConnectors_System_Collections_Generic_ISet_NodeEditor_Model_IConnector__" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSelectedConnectors(System.Collections.Generic.ISet{NodeEditor.Model.IConnector})">
+  SetSelectedConnectors(ISet&lt;IConnector&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSelectedConnectors(ISet&lt;IConnector&gt;? connectors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSelectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSelectedNodes*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSelectedNodes_System_Collections_Generic_ISet_NodeEditor_Model_INode__" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSelectedNodes(System.Collections.Generic.ISet{NodeEditor.Model.INode})">
+  SetSelectedNodes(ISet&lt;INode&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L242"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSelectedNodes(ISet&lt;INode&gt;? nodes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iset-1">ISet</a>&lt;<a class="xref" href="NodeEditor.Model.INode.html">INode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSerializer_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSerializer*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSerializer_NodeEditor_Model_INodeSerializer_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSerializer(NodeEditor.Model.INodeSerializer)">
+  SetSerializer(INodeSerializer?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSerializer(INodeSerializer? serializer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serializer</code> <a class="xref" href="NodeEditor.Model.INodeSerializer.html">INodeSerializer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowAll_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowAll*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowAll" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowAll">
+  ShowAll()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ShowAll()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowSelection_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelection*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelection">
+  ShowSelection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L351"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ShowSelection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ToggleInkMode_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ToggleInkMode*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ToggleInkMode" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ToggleInkMode">
+  ToggleInkMode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ToggleInkMode()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Undo_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Undo*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Undo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Undo">
+  Undo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L364"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Undo()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_UnlockSelection_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelection*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_UnlockSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelection">
+  UnlockSelection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L347"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void UnlockSelection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectionRejected" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectionRejected">
+  ConnectionRejected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ConnectionRejectedEventArgs&gt;? ConnectionRejected</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.ConnectionRejectedEventArgs.html">ConnectionRejectedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectionChanged" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectionChanged">
+  SelectionChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event SelectionChangedEventHandler? SelectionChanged</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.SelectionChangedEventHandler.html">SelectionChangedEventHandler</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Editor Control and Visual Tree | NodeEditor for Avalonia </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Editor Control and Visual Tree | NodeEditor for Avalonia ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/editor-control.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="editor-control-and-visual-tree">Editor Control and Visual Tree</h1>
+
+<p>The Avalonia UI layer defines a set of controls that render the drawing and handle input. These controls bind directly to the model interfaces.</p>
+<h2 id="editor">Editor</h2>
+<p><code>NodeEditor.Controls.Editor</code> is the main control. It exposes:</p>
+<ul>
+<li><code>DrawingSource</code>: the <code>IDrawingNode</code> to render.</li>
+<li><code>InputSource</code>: control that receives input (usually the editor itself).</li>
+<li><code>AdornerCanvas</code>: a canvas used for selection and guide overlays.</li>
+<li><code>ZoomControl</code>: a <code>NodeZoomBorder</code> used for zoom and pan.</li>
+</ul>
+<p>The control template defines two named parts:</p>
+<ul>
+<li><code>PART_ZoomBorder</code></li>
+<li><code>PART_AdornerCanvas</code></li>
+</ul>
+<h3 id="basic-xaml">Basic XAML</h3>
+<pre><code class="lang-xml">&lt;editor:Editor DrawingSource=&quot;{Binding Editor.Drawing}&quot; /&gt;
+</code></pre>
+<h2 id="drawingnode--nodes--connectors">DrawingNode / Nodes / Connectors</h2>
+<p>The rendering pipeline is composed of nested templated controls:</p>
+<ul>
+<li><code>DrawingNode</code>: hosts the full drawing.</li>
+<li><code>Nodes</code>: renders the node list.</li>
+<li><code>Connectors</code>: renders connector list.</li>
+<li><code>Pins</code>: renders pins inside each node.</li>
+</ul>
+<p>Each control has a <code>DrawingSource</code> or <code>NodeSource</code> property to bind to model data.</p>
+<h2 id="nodezoomborder">NodeZoomBorder</h2>
+<p><code>NodeZoomBorder</code> is a specialized <code>ZoomBorder</code> with commands:</p>
+<ul>
+<li><code>ZoomIn</code>, <code>ZoomOut</code></li>
+<li><code>ResetZoom</code></li>
+<li><code>FitCanvas</code>, <code>FitToFill</code>, <code>Fill</code></li>
+</ul>
+<p>This matches the key bindings in the samples and provides a clean API for toolbar buttons.</p>
+<h2 id="exportroot">ExportRoot</h2>
+<p><code>ExportRoot</code> is a simple decorator used as a top-level container for exporting the editor content. It ensures a stable visual root for export operations.</p>
+<h2 id="editabletextblock">EditableTextBlock</h2>
+<p><code>EditableTextBlock</code> is used in the default templates to allow inline editing of node labels.</p>
+<h2 id="control-templates">Control templates</h2>
+<p>Default templates are provided in <code>NodeEditorAvalonia/Themes/Controls/*.axaml</code>. You can replace any of these with custom templates by overriding them in your app styles.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/editor-control.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

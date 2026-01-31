@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Connectors and Routing | NodeEditor for Avalonia </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Connectors and Routing | NodeEditor for Avalonia ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/connectors-and-routing.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="connectors-and-routing">Connectors and Routing</h1>
+
+<p>Connectors link pins and define how wires are rendered and routed.</p>
+<h2 id="connectorviewmodel">ConnectorViewModel</h2>
+<p><code>ConnectorViewModel</code> implements <code>IConnector</code> and tracks:</p>
+<ul>
+<li>Start and end pins.</li>
+<li>Style (<code>Bezier</code>, <code>Straight</code>, <code>Orthogonal</code>).</li>
+<li>Routing mode (<code>Auto</code> or <code>Manual</code>).</li>
+<li>Orientation (<code>Auto</code>, <code>Horizontal</code>, <code>Vertical</code>).</li>
+<li>Arrow styles (<code>None</code>, <code>Arrow</code>, <code>Circle</code>, <code>Diamond</code>).</li>
+<li>Waypoints (for manual routing).</li>
+</ul>
+<p>The MVVM implementation observes pin and parent changes so connectors redraw when a node moves or rotates.</p>
+<h2 id="control-points-for-bezier-connectors">Control points for Bezier connectors</h2>
+<p><code>ConnectorExtensions.GetControlPoints</code> uses the pin alignment and connector orientation to compute Bezier control points. This ensures the curve flows out of a pin in the expected direction.</p>
+<h2 id="routing-modes">Routing modes</h2>
+<ul>
+<li><strong>Auto</strong>: the routing engine computes a path based on obstacles.</li>
+<li><strong>Manual</strong>: use <code>Waypoints</code> to define the path. If waypoints are empty, the connector falls back to a simple path.</li>
+</ul>
+<h2 id="auto-routing-algorithm">Auto routing algorithm</h2>
+<p><code>OrthogonalRouter</code> builds a grid and runs a shortest path search with:</p>
+<ul>
+<li>Obstacle avoidance (nodes are treated as blocked cells).</li>
+<li>Bend penalties (<code>RoutingBendPenalty</code>).</li>
+<li>Optional diagonal movement (<code>ConnectorRoutingAlgorithm.Octilinear</code>).</li>
+<li>A maximum grid size (<code>RoutingMaxCells</code>).</li>
+</ul>
+<p>If routing fails, the connector falls back to a simple orthogonal or straight path.</p>
+<h2 id="routing-settings">Routing settings</h2>
+<p>Auto routing uses these <code>IDrawingNodeSettings</code> values:</p>
+<ul>
+<li><code>EnableConnectorRouting</code></li>
+<li><code>RoutingGridSize</code>, <code>RoutingObstaclePadding</code></li>
+<li><code>RoutingAlgorithm</code>, <code>RoutingBendPenalty</code>, <code>RoutingDiagonalCost</code></li>
+<li><code>RoutingCornerRadius</code></li>
+</ul>
+<h2 id="arrow-styles">Arrow styles</h2>
+<p><code>Connector</code> renders optional arrows at either end. Arrow size scales with the connector stroke thickness.</p>
+<h2 id="manual-waypoint-example">Manual waypoint example</h2>
+<pre><code class="lang-csharp">connector.RoutingMode = ConnectorRoutingMode.Manual;
+connector.Waypoints = new List&lt;ConnectorPoint&gt;
+{
+    new ConnectorPoint { X = 200, Y = 120 },
+    new ConnectorPoint { X = 220, Y = 160 }
+};
+</code></pre>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/connectors-and-routing.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

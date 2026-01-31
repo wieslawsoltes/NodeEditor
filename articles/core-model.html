@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Core Model Interfaces | NodeEditor for Avalonia </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Core Model Interfaces | NodeEditor for Avalonia ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/core-model.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="core-model-interfaces">Core Model Interfaces</h1>
+
+<p>This section maps the model layer (<code>NodeEditorAvalonia.Model</code>) which defines all core concepts and behaviors.</p>
+<h2 id="ieditor">IEditor</h2>
+<pre><code class="lang-csharp">public interface IEditor
+{
+    IList&lt;INodeTemplate&gt;? Templates { get; set; }
+    IDrawingNode? Drawing { get; set; }
+}
+</code></pre>
+<p><code>IEditor</code> is a lightweight host contract used by the MVVM layer and UI. It pairs a drawing with a set of templates for the toolbox.</p>
+<h2 id="idrawingnode">IDrawingNode</h2>
+<p><code>IDrawingNode</code> is the root of a graph. It extends <code>INode</code> and adds:</p>
+<ul>
+<li>Node and connector collections (<code>Nodes</code>, <code>Connectors</code>).</li>
+<li>Ink strokes (<code>InkStrokes</code>).</li>
+<li>Settings (<code>IDrawingNodeSettings</code>).</li>
+<li>Selection state and events.</li>
+<li>Editor commands for clipboard, alignment, ordering, visibility, and more.</li>
+</ul>
+<p>The drawing is also responsible for selection notifications and connection rejection events.</p>
+<h2 id="inode">INode</h2>
+<p>A node represents a visual container positioned on the canvas.</p>
+<p>Key properties:</p>
+<ul>
+<li>Position, size, rotation: <code>X</code>, <code>Y</code>, <code>Width</code>, <code>Height</code>, <code>Rotation</code>.</li>
+<li>Content object: <code>Content</code> (typically a view model).</li>
+<li>Pins: <code>IList&lt;IPin&gt;? Pins</code>.</li>
+<li>Visibility and locking: <code>IsVisible</code>, <code>IsLocked</code>.</li>
+</ul>
+<p>Key behaviors:</p>
+<ul>
+<li><code>CanSelect/CanRemove/CanMove/CanResize</code> gate interaction.</li>
+<li><code>Move</code> and <code>Resize</code> implement geometry updates.</li>
+<li>Events: Created, Removed, Moved, Selected, Deselected, Resized.</li>
+</ul>
+<h2 id="ipin-and-iconnectablepin">IPin and IConnectablePin</h2>
+<p><code>IPin</code> is a connection point on a node.</p>
+<p>Core properties:</p>
+<ul>
+<li>Position and size: <code>X</code>, <code>Y</code>, <code>Width</code>, <code>Height</code>.</li>
+<li>Alignment: <code>PinAlignment</code> (Left, Right, Top, Bottom, None).</li>
+<li>Connection capability: <code>CanConnect</code>, <code>CanDisconnect</code>.</li>
+</ul>
+<p><code>IConnectablePin</code> extends <code>IPin</code> with connection semantics:</p>
+<ul>
+<li><code>Direction</code>: Input, Output, or Bidirectional.</li>
+<li><code>BusWidth</code>: integer width for bus signals.</li>
+</ul>
+<h2 id="iconnector">IConnector</h2>
+<p>A connector defines a link between two pins:</p>
+<ul>
+<li>Endpoints: <code>Start</code>, <code>End</code>.</li>
+<li>Style: <code>ConnectorStyle</code> (Bezier, Straight, Orthogonal).</li>
+<li>Routing mode: <code>ConnectorRoutingMode</code> (Auto, Manual).</li>
+<li>Orientation: <code>ConnectorOrientation</code> (Auto, Horizontal, Vertical).</li>
+<li>Arrow styles: <code>ConnectorArrowStyle</code> (None, Arrow, Circle, Diamond).</li>
+<li><code>Waypoints</code> for manual routing.</li>
+<li>Visibility and locking: <code>IsVisible</code>, <code>IsLocked</code>.</li>
+</ul>
+<p>Like nodes and pins, connectors raise Created/Removed/Selected events.</p>
+<h2 id="templates-and-factories">Templates and factories</h2>
+<ul>
+<li><code>INodeTemplate</code> represents a toolbox template with a title, a template node, and a preview node.</li>
+<li><code>INodeTemplatesHost</code> exposes a template list on a host view model.</li>
+<li><code>INodeFactory</code> creates templates and drawings.</li>
+<li><code>IDrawingNodeFactory</code> creates pins, connectors, and lists used by the editor implementation.</li>
+</ul>
+<h2 id="serialization-and-undo-hosting">Serialization and undo hosting</h2>
+<ul>
+<li><code>INodeSerializer</code> provides <code>Serialize</code> / <code>Deserialize</code> for graph persistence and clipboard support.</li>
+<li><code>IUndoRedoHost</code> exposes undo/redo state and batching APIs used by the UI behaviors.</li>
+</ul>
+<h2 id="enumerations">Enumerations</h2>
+<p>Key enums defined in the model layer:</p>
+<ul>
+<li><code>PinAlignment</code>, <code>PinDirection</code>.</li>
+<li><code>ConnectorStyle</code>, <code>ConnectorRoutingMode</code>, <code>ConnectorRoutingAlgorithm</code>, <code>ConnectorOrientation</code>, <code>ConnectorArrowStyle</code>.</li>
+<li><code>NodeAlignment</code>, <code>NodeDistribution</code>, <code>NodeOrder</code>.</li>
+<li><code>NodeResizeDirection</code>.</li>
+</ul>
+<p>These are used across UI, MVVM, and logic layers to keep interaction consistent.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/core-model.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

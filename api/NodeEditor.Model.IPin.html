@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IPin | NodeEditor for Avalonia </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IPin | NodeEditor for Avalonia ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/new/main/apiSpec/new?filename=NodeEditor_Model_IPin.md&amp;value=---%0Auid%3A%20NodeEditor.Model.IPin%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="NodeEditor.Model.IPin">
+
+
+
+  <h1 id="NodeEditor_Model_IPin" data-uid="NodeEditor.Model.IPin" class="text-break">
+Interface IPin  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="NodeEditor.html">NodeEditor</a>.<a class="xref" href="NodeEditor.Model.html">Model</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>NodeEditorAvalonia.Model.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPin</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="NodeEditor_Model_IPin_Alignment_" data-uid="NodeEditor.Model.IPin.Alignment*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_Alignment" data-uid="NodeEditor.Model.IPin.Alignment">
+  Alignment
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PinAlignment Alignment { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.PinAlignment.html">PinAlignment</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_Height_" data-uid="NodeEditor.Model.IPin.Height*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_Height" data-uid="NodeEditor.Model.IPin.Height">
+  Height
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double Height { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_Name_" data-uid="NodeEditor.Model.IPin.Name*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_Name" data-uid="NodeEditor.Model.IPin.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? Name { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_Parent_" data-uid="NodeEditor.Model.IPin.Parent*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_Parent" data-uid="NodeEditor.Model.IPin.Parent">
+  Parent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">INode? Parent { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.INode.html">INode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_Width_" data-uid="NodeEditor.Model.IPin.Width*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_Width" data-uid="NodeEditor.Model.IPin.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double Width { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_X_" data-uid="NodeEditor.Model.IPin.X*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_X" data-uid="NodeEditor.Model.IPin.X">
+  X
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double X { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_Y_" data-uid="NodeEditor.Model.IPin.Y*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_Y" data-uid="NodeEditor.Model.IPin.Y">
+  Y
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double Y { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="NodeEditor_Model_IPin_CanConnect_" data-uid="NodeEditor.Model.IPin.CanConnect*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_CanConnect" data-uid="NodeEditor.Model.IPin.CanConnect">
+  CanConnect()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanConnect()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_CanDisconnect_" data-uid="NodeEditor.Model.IPin.CanDisconnect*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_CanDisconnect" data-uid="NodeEditor.Model.IPin.CanDisconnect">
+  CanDisconnect()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanDisconnect()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnConnected_" data-uid="NodeEditor.Model.IPin.OnConnected*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnConnected" data-uid="NodeEditor.Model.IPin.OnConnected">
+  OnConnected()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnConnected()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnCreated_" data-uid="NodeEditor.Model.IPin.OnCreated*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnCreated" data-uid="NodeEditor.Model.IPin.OnCreated">
+  OnCreated()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnCreated()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnDeselected_" data-uid="NodeEditor.Model.IPin.OnDeselected*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnDeselected" data-uid="NodeEditor.Model.IPin.OnDeselected">
+  OnDeselected()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnDeselected()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnDisconnected_" data-uid="NodeEditor.Model.IPin.OnDisconnected*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnDisconnected" data-uid="NodeEditor.Model.IPin.OnDisconnected">
+  OnDisconnected()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnDisconnected()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnMoved_" data-uid="NodeEditor.Model.IPin.OnMoved*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnMoved" data-uid="NodeEditor.Model.IPin.OnMoved">
+  OnMoved()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnMoved()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnRemoved_" data-uid="NodeEditor.Model.IPin.OnRemoved*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnRemoved" data-uid="NodeEditor.Model.IPin.OnRemoved">
+  OnRemoved()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnRemoved()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnResized_" data-uid="NodeEditor.Model.IPin.OnResized*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnResized" data-uid="NodeEditor.Model.IPin.OnResized">
+  OnResized()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnResized()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Model_IPin_OnSelected_" data-uid="NodeEditor.Model.IPin.OnSelected*"></a>
+
+  <h3 id="NodeEditor_Model_IPin_OnSelected" data-uid="NodeEditor.Model.IPin.OnSelected">
+  OnSelected()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void OnSelected()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Connected" data-uid="NodeEditor.Model.IPin.Connected">
+  Connected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinConnectedEventArgs&gt;? Connected</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinConnectedEventArgs.html">PinConnectedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Created" data-uid="NodeEditor.Model.IPin.Created">
+  Created
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinCreatedEventArgs&gt;? Created</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinCreatedEventArgs.html">PinCreatedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Deselected" data-uid="NodeEditor.Model.IPin.Deselected">
+  Deselected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinDeselectedEventArgs&gt;? Deselected</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinDeselectedEventArgs.html">PinDeselectedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Disconnected" data-uid="NodeEditor.Model.IPin.Disconnected">
+  Disconnected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinDisconnectedEventArgs&gt;? Disconnected</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinDisconnectedEventArgs.html">PinDisconnectedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Moved" data-uid="NodeEditor.Model.IPin.Moved">
+  Moved
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinMovedEventArgs&gt;? Moved</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinMovedEventArgs.html">PinMovedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Removed" data-uid="NodeEditor.Model.IPin.Removed">
+  Removed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinRemovedEventArgs&gt;? Removed</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinRemovedEventArgs.html">PinRemovedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Resized" data-uid="NodeEditor.Model.IPin.Resized">
+  Resized
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinResizedEventArgs&gt;? Resized</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinResizedEventArgs.html">PinResizedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Model_IPin_Selected" data-uid="NodeEditor.Model.IPin.Selected">
+  Selected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event EventHandler&lt;PinSelectedEventArgs&gt;? Selected</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="NodeEditor.Model.PinSelectedEventArgs.html">PinSelectedEventArgs</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Model/IPin.cs/#L103" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

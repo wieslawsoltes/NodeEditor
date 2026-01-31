@@ -1,0 +1,2650 @@
+{
+  "source_base_path": "/home/runner/work/NodeEditor/NodeEditor/docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.ConnectionFeedbackBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.ConnectionFeedbackBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.ConnectionFeedbackBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.ConnectorInteractionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.ConnectorInteractionBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.ConnectorInteractionBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.ConnectorsSelectedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.ConnectorsSelectedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.ConnectorsSelectedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.DefaultDropHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.DefaultDropHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.DefaultDropHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.DrawingDropHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.DrawingDropHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.DrawingDropHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.DrawingMovedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.DrawingMovedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.DrawingMovedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.DrawingPressedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.DrawingPressedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.DrawingPressedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.DrawingReleasedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.DrawingReleasedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.DrawingReleasedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.DrawingSelectionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.DrawingSelectionBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.DrawingSelectionBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.IDrawingDropTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.IDrawingDropTarget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.IDrawingDropTarget",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.InsertTemplateOnDoubleTappedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.InsertTemplateOnDoubleTappedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.InsertTemplateOnDoubleTappedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.NodeResizeBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.NodeResizeBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.NodeResizeBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.NodeRotateBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.NodeRotateBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.NodeRotateBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.NodesSelectedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.NodesSelectedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.NodesSelectedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.PinPressedBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.PinPressedBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.PinPressedBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.TemplatesListBoxDropHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.TemplatesListBoxDropHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.TemplatesListBoxDropHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.ToolboxDragBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.ToolboxDragBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.ToolboxDragBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Connector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Connector.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Connector",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.ConnectorCrossingsAdorner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.ConnectorCrossingsAdorner.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.ConnectorCrossingsAdorner",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.ConnectorSelectedAdorner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.ConnectorSelectedAdorner.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.ConnectorSelectedAdorner",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Connectors.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Connectors.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Connectors",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.DrawingNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.DrawingNode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.DrawingNode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.DrawingNodeProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.DrawingNodeProperties.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.DrawingNodeProperties",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.EditableTextBlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.EditableTextBlock.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.EditableTextBlock",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.ExportRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.ExportRoot.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.ExportRoot",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.GridDecorator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.GridDecorator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.GridDecorator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.GuideLine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.GuideLine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.GuideLine",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.GuidesAdorner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.GuidesAdorner.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.GuidesAdorner",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.InkLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.InkLayer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.InkLayer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.InkStrokePresenter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.InkStrokePresenter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.InkStrokePresenter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Node.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Node.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Node",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.NodeZoomBorder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.NodeZoomBorder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.NodeZoomBorder",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Nodes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Nodes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Nodes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Pin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Pin.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Pin",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Pins.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Pins.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Pins",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.SelectedAdorner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.SelectedAdorner.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.SelectedAdorner",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.SelectionAdorner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.SelectionAdorner.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.SelectionAdorner",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.Toolbox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.Toolbox.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.Toolbox",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.BoolInvertConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.BoolInvertConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.BoolInvertConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.ColumnWidthConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.ColumnWidthConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.ColumnWidthConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.EnumEqualsConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.EnumEqualsConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.EnumEqualsConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.EnumToCheckedConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.EnumToCheckedConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.EnumToCheckedConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.NullToBoolConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.NullToBoolConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.NullToBoolConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.PinMarginConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.PinMarginConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.PinMarginConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.PinToPointConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.PinToPointConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.PinToPointConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.PlaceholderVisibilityConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.PlaceholderVisibilityConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.PlaceholderVisibilityConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.StringNotEmptyConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.StringNotEmptyConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters.StringNotEmptyConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectionRejectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectionRejectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectionRejectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectionValidationContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectionValidationContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectionValidationContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectionValidationHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectionValidationHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectionValidationHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorArrowStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorArrowStyle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorArrowStyle",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorCreatedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorCreatedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorCreatedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorDeselectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorDeselectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorDeselectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorEndChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorEndChangedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorEndChangedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorOrientation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorOrientation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorOrientation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorPoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorPoint.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorPoint",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorRemovedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorRemovedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorRemovedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorRoutingAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorRoutingAlgorithm.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorRoutingAlgorithm",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorRoutingMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorRoutingMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorRoutingMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorSelectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorSelectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorSelectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorStartChangedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorStartChangedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorStartChangedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ConnectorStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ConnectorStyle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ConnectorStyle",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.DrawingNodeEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.DrawingNodeEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.DrawingNodeEditor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IConnectablePin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IConnectablePin.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IConnectablePin",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IConnector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IConnector.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IConnector",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IDrawingNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IDrawingNode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IDrawingNode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IDrawingNodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IDrawingNodeFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IDrawingNodeFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IDrawingNodeSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IDrawingNodeSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IDrawingNodeSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IEditor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.INode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.INode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.INode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.INodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.INodeFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.INodeFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.INodeSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.INodeSerializer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.INodeSerializer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.INodeTemplate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.INodeTemplate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.INodeTemplate",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.INodeTemplatesHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.INodeTemplatesHost.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.INodeTemplatesHost",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IPin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IPin.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IPin",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IUndoRedoHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IUndoRedoHost.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IUndoRedoHost",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.InkPen.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.InkPen.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.InkPen",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.InkPoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.InkPoint.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.InkPoint",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.InkShape.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.InkShape.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.InkShape",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.InkStroke.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.InkStroke.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.InkStroke",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeAlignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeAlignment.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeAlignment",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeCreatedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeCreatedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeCreatedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeDeselectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeDeselectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeDeselectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeDistribution.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeDistribution.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeDistribution",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeMovedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeMovedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeMovedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeOrder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeOrder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeOrder",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeRemovedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeRemovedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeRemovedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeResizeDirection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeResizeDirection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeResizeDirection",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeResizedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeResizedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeResizedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.NodeSelectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.NodeSelectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.NodeSelectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinAlignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinAlignment.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinAlignment",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinConnectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinConnectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinConnectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinCreatedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinCreatedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinCreatedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinDeselectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinDeselectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinDeselectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinDirection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinDirection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinDirection",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinDisconnectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinDisconnectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinDisconnectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinMovedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinMovedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinMovedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinRemovedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinRemovedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinRemovedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinResizedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinResizedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinResizedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.PinSelectedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.PinSelectedEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.PinSelectedEventArgs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.SelectionChangedEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.SelectionChangedEventHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.SelectionChangedEventHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.ConnectorViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.ConnectorViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.ConnectorViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.ConnectorViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.DrawingNodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.DrawingNodeFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.DrawingNodeFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.DrawingNodeSettingsViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.DrawingNodeSettingsViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.DrawingNodeSettingsViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.DrawingNodeSettingsViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.DrawingNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.DrawingNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.DrawingNodeViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.DrawingNodeViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.EditorViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.EditorViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.EditorViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.EditorViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.MacroDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.MacroDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.MacroDefinition",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.MacroPickerViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.MacroPickerViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.MacroPickerViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.MacroPickerViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.NodeSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.NodeSerializer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.NodeSerializer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.NodeTemplateViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.NodeTemplateViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.NodeTemplateViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.NodeTemplateViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.NodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.NodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.NodeViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.NodeViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.NodeViewModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.NodeViewModelExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.NodeViewModelExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.PinViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.PinViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.PinViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.PinViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Services.ExportRenderer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Services.ExportRenderer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Services.ExportRenderer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Services.StorageService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Services.StorageService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Services.StorageService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Services.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.ConnectorDashArrayConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.ConnectorDashArrayConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.ConnectorDashArrayConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.ConnectorSignalMultiConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.ConnectorSignalMultiConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.ConnectorSignalMultiConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.ConnectorSignalToBrushConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.ConnectorSignalToBrushConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.ConnectorSignalToBrushConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.ConnectorStrokeThicknessConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.ConnectorStrokeThicknessConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.ConnectorStrokeThicknessConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.LogicNodeContentVisibilityConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.LogicNodeContentVisibilityConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.LogicNodeContentVisibilityConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.LogicValueToBrushConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.LogicValueToBrushConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.LogicValueToBrushConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.LogicValueToTextConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.LogicValueToTextConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters.LogicValueToTextConverter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Converters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Converters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Converters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.LogicComponentDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.LogicComponentDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models.LogicComponentDefinition",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.LogicEditorTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.LogicEditorTool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models.LogicEditorTool",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.LogicPinKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.LogicPinKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models.LogicPinKind",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.LogicSignalHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.LogicSignalHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models.LogicSignalHelper",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.LogicValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.LogicValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models.LogicValue",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.LogicValueExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.LogicValueExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models.LogicValueExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.LogicComponentLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.LogicComponentLibrary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services.LogicComponentLibrary",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.LogicConnectionValidation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.LogicConnectionValidation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services.LogicConnectionValidation",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.LogicDrawingNodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.LogicDrawingNodeFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services.LogicDrawingNodeFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.LogicNodeFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.LogicNodeFactory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services.LogicNodeFactory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.LogicSimulationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.LogicSimulationResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services.LogicSimulationResult",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.LogicSimulationService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.LogicSimulationService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services.LogicSimulationService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.Services.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.LogicConnectorViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.LogicConnectorViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.LogicConnectorViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditorLogic.ViewModels.LogicConnectorViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.LogicPinViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.LogicPinViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.LogicPinViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditorLogic.ViewModels.LogicPinViewModel.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusInputNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusInputNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicBusInputNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusMergeNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusMergeNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicBusMergeNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusOutputNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusOutputNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicBusOutputNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusSplitNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicBusSplitNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicBusSplitNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicClockNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicClockNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicClockNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicFlipFlopNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicFlipFlopNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicFlipFlopNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicGateNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicGateNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicGateNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicInputNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicInputNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicInputNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicNodeContentViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicNodeContentViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicNodeContentViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicNoteNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicNoteNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicNoteNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicOutputNodeViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.LogicOutputNodeViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes.LogicOutputNodeViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Nodes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Nodes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Nodes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.ToolboxCategoryViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.ToolboxCategoryViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.ToolboxCategoryViewModel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.ViewModelBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.ViewModelBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.ViewModelBase",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSample.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSample",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSignal.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSignal",
+      "Summary": "<p sourcefile=\"api/NodeEditorLogic.ViewModels.Waveforms.LogicWaveformSignal.yml\" sourcestartlinenumber=\"1\">A base class for objects of which the properties must be observable.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.Waveforms.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.Waveforms.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels.Waveforms",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditorLogic.ViewModels.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditorLogic.ViewModels.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditorLogic.ViewModels",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/architecture-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/architecture-overview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/commands-and-undo.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/commands-and-undo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/connectors-and-routing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/connectors-and-routing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/core-model.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/core-model.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/drawing-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/drawing-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/editor-control.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/editor-control.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/export-and-storage.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/export-and-storage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/extensibility.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/extensibility.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/ink-and-annotations.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/ink-and-annotations.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/interaction-selection.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/interaction-selection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/license.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/license.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/logiclab-buses.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/logiclab-buses.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/logiclab-components.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/logiclab-components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/logiclab-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/logiclab-overview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/logiclab-simulation.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/logiclab-simulation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/logiclab-toolbox.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/logiclab-toolbox.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/nodes-and-pins.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/nodes-and-pins.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/performance-hit-testing.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/performance-hit-testing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/resize-rotate-transform.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/resize-rotate-transform.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/samples.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/samples.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/serialization.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/serialization.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/snap-grid-guides.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/snap-grid-guides.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/templates-toolbox.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/templates-toolbox.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/theming-and-styling.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/theming-and-styling.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

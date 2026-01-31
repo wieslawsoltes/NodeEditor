@@ -2,21 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>NodeEditor for Avalonia | NodeEditor for Avalonia </title>
+      <title>Samples | NodeEditor for Avalonia </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="NodeEditor for Avalonia | NodeEditor for Avalonia ">
+      <meta name="title" content="Samples | NodeEditor for Avalonia ">
       
       
-      <link rel="icon" href="favicon.ico">
-      <link rel="stylesheet" href="public/docfx.min.css">
-      <link rel="stylesheet" href="public/main.css">
-      <meta name="docfx:navrel" content="toc.html">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
       <meta name="docfx:tocrel" content="toc.html">
       
       
       
       
-      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/index.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/samples.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -30,7 +30,7 @@
       <meta name="loc:copy" content="Copy">
       <meta name="loc:downloadPdf" content="Download PDF">
 
-      <script type="module" src="./public/docfx.min.js"></script>
+      <script type="module" src="./../public/docfx.min.js"></script>
 
       <script>
         const theme = localStorage.getItem('theme') || 'auto'
@@ -43,8 +43,8 @@
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
-          <a class="navbar-brand" href="index.html">
-            <img id="logo" class="svg" src="images/logo.svg" alt="">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
             
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,44 +59,45 @@
     </header>
 
     <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
       <div class="content">
         <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
           <nav id="breadcrumb"></nav>
         </div>
 
         <article data-uid="">
-<h1 id="nodeeditor-for-avalonia">NodeEditor for Avalonia</h1>
+<h1 id="samples">Samples</h1>
 
-<p><strong>NodeEditor</strong> is a node editor control for Avalonia. It lets you build interactive graphs with nodes, pins, and connectors, while keeping node content and styling fully customizable in XAML. The default MVVM layer is built with CommunityToolkit.Mvvm, but you can plug in your own view models by implementing the core model interfaces.</p>
-<h2 id="getting-started">Getting Started</h2>
-<h3 id="install">Install</h3>
-<pre><code class="lang-bash">dotnet add package NodeEditorAvalonia
+<p>This repository includes several sample apps that show different usage patterns.</p>
+<h2 id="nodeeditordesktop">NodeEditor.Desktop</h2>
+<p>Desktop host for the base editor sample (controls, theming, and view locator setup).</p>
+<pre><code class="lang-bash">dotnet run --project samples/NodeEditor.Desktop/NodeEditor.Desktop.csproj -c Release
 </code></pre>
-<pre><code class="lang-xml">&lt;PackageReference Include=&quot;NodeEditorAvalonia&quot; Version=&quot;...&quot; /&gt;
+<h2 id="nodeeditorlogicdesktop">NodeEditor.Logic.Desktop</h2>
+<p>LogicLab is a digital logic editor/simulator built on top of the NodeEditor control.</p>
+<pre><code class="lang-bash">dotnet run --project samples/NodeEditor.Logic.Desktop/NodeEditor.Logic.Desktop.csproj -c Release
 </code></pre>
-<h3 id="add-themes-in-appaxaml">Add Themes in App.axaml</h3>
-<pre><code class="lang-xml">&lt;Application.Styles&gt;
-  &lt;FluentTheme /&gt;
-  &lt;StyleInclude Source=&quot;avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml&quot; /&gt;
-&lt;/Application.Styles&gt;
-</code></pre>
-<h3 id="basic-usage">Basic Usage</h3>
-<pre><code class="lang-xml">&lt;editor:Editor DrawingSource=&quot;{Binding Editor.Drawing}&quot; /&gt;
-</code></pre>
-<h2 id="documentation-sections">Documentation Sections</h2>
-<ul>
-<li><strong><a href="articles/intro.html">Articles</a></strong>: Guides for concepts, setup, and samples.</li>
-<li><strong><a href="api/index.html">API Documentation</a></strong>: Reference for all public types and members.</li>
-</ul>
-<h2 id="license">License</h2>
-<p>NodeEditor is licensed under the MIT License. See the <a href="articles/license.html">License</a> page for details.</p>
+<p>The <code>samples/NodeEditor.Base</code> and <code>samples/NodeEditor.Logic</code> projects contain the shared assets and view models used by the desktop hosts.</p>
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/index.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/docfx/articles/samples.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>
