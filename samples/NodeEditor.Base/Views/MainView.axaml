@@ -97,6 +97,7 @@
                  IsVisible="{Binding IsToolboxVisible}">
         <Separator Classes="vertical" DockPanel.Dock="Right" />
         <editor:Toolbox TemplatesSource="{Binding Editor.Templates}"
+                        DrawingSource="{Binding Editor.Drawing}"
                         Name="ToolboxView" />
       </DockPanel>
       <ThemeVariantScope RequestedThemeVariant="Light"

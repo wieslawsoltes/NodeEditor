@@ -28,7 +28,8 @@
                 <i:BehaviorCollectionTemplate>
                   <i:BehaviorCollection>
                     <idd:ContextDragBehavior />
-                    <behaviors:InsertTemplateOnDoubleTappedBehavior />
+                    <behaviors:InsertTemplateOnDoubleTappedBehavior
+                      DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
                   </i:BehaviorCollection>
                 </i:BehaviorCollectionTemplate>
               </Setter>
