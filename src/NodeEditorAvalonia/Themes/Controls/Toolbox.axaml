@@ -2,8 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-                    xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
                     x:CompileBindings="True">
 
@@ -19,19 +17,19 @@
           <ListBox.Resources>
             <behaviors:TemplatesListBoxDropHandler x:Key="TemplatesListBoxDropHandler" />
           </ListBox.Resources>
-          <i:Interaction.Behaviors>
-            <idd:ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
-          </i:Interaction.Behaviors>
+          <Interaction.Behaviors>
+            <ContextDropBehavior Handler="{StaticResource TemplatesListBoxDropHandler}" />
+          </Interaction.Behaviors>
           <ListBox.Styles>
             <Style Selector="ListBox > ListBoxItem">
-              <Setter Property="(i:Interaction.Behaviors)">
-                <i:BehaviorCollectionTemplate>
-                  <i:BehaviorCollection>
-                    <idd:ContextDragBehavior />
+              <Setter Property="(Interaction.Behaviors)">
+                <BehaviorCollectionTemplate>
+                  <BehaviorCollection>
+                    <ContextDragBehavior />
                     <behaviors:InsertTemplateOnDoubleTappedBehavior
                       DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
-                  </i:BehaviorCollection>
-                </i:BehaviorCollectionTemplate>
+                  </BehaviorCollection>
+                </BehaviorCollectionTemplate>
               </Setter>
             </Style>
           </ListBox.Styles>

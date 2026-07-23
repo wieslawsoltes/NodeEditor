@@ -2,8 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-                    xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
                     xmlns:input="clr-namespace:Avalonia.Input;assembly=Avalonia.Base"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
                     x:CompileBindings="True">
@@ -34,14 +32,14 @@
                                      input:DragDrop.AllowDrop="True"
                                      VerticalAlignment="Stretch" 
                                      HorizontalAlignment="Stretch">
-              <i:Interaction.Behaviors>
-                <idd:ContextDropBehavior Context="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}">
-                  <idd:ContextDropBehavior.Handler>
+              <Interaction.Behaviors>
+                <ContextDropBehavior Context="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}">
+                  <ContextDropBehavior.Handler>
                     <behaviors:DrawingDropHandler DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
                                                   RelativeTo="{Binding #PART_DrawingNode}" />
-                  </idd:ContextDropBehavior.Handler>
-                </idd:ContextDropBehavior>
-              </i:Interaction.Behaviors>
+                  </ContextDropBehavior.Handler>
+                </ContextDropBehavior>
+              </Interaction.Behaviors>
               <Border Background="Transparent"
                       Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
                       Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"

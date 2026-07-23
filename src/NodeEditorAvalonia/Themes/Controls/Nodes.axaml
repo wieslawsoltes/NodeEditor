@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     x:CompileBindings="True">
@@ -17,7 +16,7 @@
                       Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" 
                       Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
                       ClipToBounds="False">
-          <i:Interaction.Behaviors>
+          <Interaction.Behaviors>
             <behaviors:NodesSelectedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
             <behaviors:DrawingSelectionBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" 
                                                 InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" 
@@ -35,7 +34,7 @@
                                             InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" />
             <behaviors:DrawingReleasedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
                                                InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" />
-          </i:Interaction.Behaviors>
+          </Interaction.Behaviors>
           <ItemsControl.ItemContainerTheme>
             <ControlTheme TargetType="ContentPresenter" x:DataType="m:INode">
               <Setter Property="Canvas.Left" Value="{Binding X}" />
