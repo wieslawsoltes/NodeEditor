@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
                     xmlns:primitives="clr-namespace:Avalonia.Controls.Primitives;assembly=Avalonia.Controls"
                     x:CompileBindings="True">
@@ -69,77 +68,77 @@
                               Cursor="TopLeftCorner"
                               Grid.Row="0"
                               Grid.Column="0">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="TopLeft" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="SizeNorthSouth"
                               Grid.Row="0"
                               Grid.Column="1"
                               HorizontalAlignment="Center">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="Top" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="TopRightCorner"
                               Grid.Row="0"
                               Grid.Column="2">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="TopRight" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="SizeWestEast"
                               Grid.Row="1"
                               Grid.Column="0"
                               VerticalAlignment="Center">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="Left" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="SizeWestEast"
                               Grid.Row="1"
                               Grid.Column="2"
                               VerticalAlignment="Center">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="Right" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="BottomLeftCorner"
                               Grid.Row="2"
                               Grid.Column="0">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="BottomLeft" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="SizeNorthSouth"
                               Grid.Row="2"
                               Grid.Column="1"
                               HorizontalAlignment="Center">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="Bottom" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
             <primitives:Thumb Classes="resize-handle"
                               Cursor="BottomRightCorner"
                               Grid.Row="2"
                               Grid.Column="2">
-              <i:Interaction.Behaviors>
+              <Interaction.Behaviors>
                 <behaviors:NodeResizeBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                               Direction="BottomRight" />
-              </i:Interaction.Behaviors>
+              </Interaction.Behaviors>
             </primitives:Thumb>
           </Grid>
           <primitives:Thumb Classes="rotate-handle"
@@ -149,12 +148,12 @@
                             Margin="0,-18,0,0"
                             IsVisible="False"
                             IsHitTestVisible="False">
-            <i:Interaction.Behaviors>
+            <Interaction.Behaviors>
               <behaviors:NodeRotateBehavior NodeSource="{Binding NodeSource, RelativeSource={RelativeSource TemplatedParent}}"
                                             AngleReadoutBackground="{DynamicResource RotationSnapReadoutBackgroundBrush}"
                                             AngleReadoutBorderBrush="{DynamicResource RotationSnapReadoutBorderBrush}"
                                             AngleReadoutForeground="{DynamicResource RotationSnapReadoutForegroundBrush}" />
-            </i:Interaction.Behaviors>
+            </Interaction.Behaviors>
           </primitives:Thumb>
         </Panel>
       </ControlTemplate>
