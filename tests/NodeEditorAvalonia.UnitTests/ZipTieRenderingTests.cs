@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
@@ -10,6 +11,7 @@ using Avalonia.Headless.XUnit;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using Avalonia.Xaml.Interactivity;
 using NodeEditor.Behaviors;
 using NodeEditor.Controls;
@@ -17,6 +19,8 @@ using NodeEditor.Model;
 using NodeEditor.Mvvm;
 using NodeEditor.Services;
 using NodeEditorDemo.Services;
+using NodeEditorDemo.ViewModels;
+using ReactiveUI;
 using Xunit;
 
 namespace NodeEditor.UnitTests;
@@ -120,6 +124,88 @@ public sealed class ZipTieRenderingTests
         var renderedWire = new Connector { ConnectorSource = wire };
         Assert.Equal(95, renderedWire.LabelPoint.X, precision: 6);
         Assert.Equal(105, renderedWire.LabelPoint.Y, precision: 6);
+    }
+
+    [AvaloniaFact]
+    public void RestoringSnapshotInEditorRemovesPreviousDrawingSelectionOverlay()
+    {
+        using var vm = new ZipTieDemoViewModel();
+        using var ui = new EditorSelectionHarness(vm.Drawing);
+        using var binding = ui.Editor.Bind(Editor.DrawingSourceProperty,
+            vm.WhenAnyValue(viewModel => viewModel.Drawing));
+
+        vm.Drawing.ZipTies[0].Waypoints.Add(new ConnectorPoint(500, 350));
+        vm.SaveSnapshotCommand.Execute().Subscribe();
+        Assert.True(vm.HasSnapshot);
+        vm.SetWireStyleCommand.Execute(ConnectorStyle.Straight).Subscribe();
+        vm.Drawing.RemoveZipTie(vm.Drawing.ZipTies[0]);
+        vm.SelectWiresCommand.Execute().Subscribe();
+        vm.Drawing.CreateZipTieCommand.Execute(null);
+        Dispatcher.UIThread.RunJobs();
+
+        var previousDrawing = vm.Drawing;
+        var previousOverlay = Assert.Single(ui.Editor.AdornerCanvas!.Children.OfType<ConnectorSelectedAdorner>());
+        Assert.Equal(6, previousOverlay.Connectors!.Count);
+        Assert.All(previousOverlay.Connectors, wire => Assert.Same(previousDrawing, wire.Parent));
+
+        vm.LoadSnapshotCommand.Execute().Subscribe();
+        Dispatcher.UIThread.RunJobs();
+
+        Assert.NotSame(previousDrawing, vm.Drawing);
+        Assert.Same(vm.Drawing, ui.Editor.DrawingSource);
+        Assert.Null(vm.Drawing.GetSelectedConnectors());
+        Assert.Empty(ui.Editor.AdornerCanvas.Children.OfType<ConnectorSelectedAdorner>());
+        Assert.Null(previousOverlay.Parent);
+        Assert.Null(previousOverlay.Connectors);
+        Assert.Single(vm.Drawing.ZipTies[0].Waypoints);
+
+        // Events from the replaced drawing must not recreate its overlay.
+        previousDrawing.NotifySelectionChanged();
+        previousDrawing.ZipTies[0].End.X += 40;
+        Dispatcher.UIThread.RunJobs();
+        Assert.Empty(ui.Editor.AdornerCanvas.Children.OfType<ConnectorSelectedAdorner>());
+
+        // The new drawing still receives normal selection rendering.
+        vm.SelectWiresCommand.Execute().Subscribe();
+        Dispatcher.UIThread.RunJobs();
+        var currentOverlay = Assert.Single(ui.Editor.AdornerCanvas.Children.OfType<ConnectorSelectedAdorner>());
+        Assert.NotSame(previousOverlay, currentOverlay);
+        Assert.All(currentOverlay.Connectors!, wire => Assert.Same(vm.Drawing, wire.Parent));
+    }
+
+    [AvaloniaFact]
+    public void DetachingEditorSelectionBehaviorRemovesAndReattachingRestoresCurrentAdorners()
+    {
+        var drawing = ZipTieDemo.CreateDrawing();
+        using var ui = new EditorSelectionHarness(drawing);
+        drawing.SetSelectedNodes(new HashSet<INode>(drawing.Nodes!));
+        drawing.SetSelectedConnectors(new HashSet<IConnector>(drawing.Connectors!));
+        drawing.NotifySelectionChanged();
+        Dispatcher.UIThread.RunJobs();
+
+        var layer = ui.Editor.AdornerCanvas!;
+        var previousOverlay = Assert.Single(layer.Children.OfType<ConnectorSelectedAdorner>());
+        Assert.Single(layer.Children.OfType<SelectedAdorner>());
+        var surface = Assert.Single(ui.Editor.GetVisualDescendants().OfType<ItemsControl>(),
+            control => Interaction.GetBehaviors(control).OfType<DrawingSelectionBehavior>().Any());
+        var behaviors = Interaction.GetBehaviors(surface);
+        var selection = Assert.Single(behaviors.OfType<DrawingSelectionBehavior>());
+        behaviors.Remove(selection);
+        Dispatcher.UIThread.RunJobs();
+
+        Assert.Empty(layer.Children.OfType<ConnectorSelectedAdorner>());
+        Assert.Empty(layer.Children.OfType<SelectedAdorner>());
+        Assert.Null(previousOverlay.Parent);
+        Assert.Null(previousOverlay.Connectors);
+        drawing.NotifySelectionChanged();
+        Assert.Empty(layer.Children.OfType<ConnectorSelectedAdorner>());
+
+        // Existing model selection is restored once when the behavior is attached again.
+        behaviors.Add(selection);
+        Dispatcher.UIThread.RunJobs();
+        var currentOverlay = Assert.Single(layer.Children.OfType<ConnectorSelectedAdorner>());
+        Assert.Equal(6, currentOverlay.Connectors!.Count);
+        Assert.Single(layer.Children.OfType<SelectedAdorner>());
     }
 
     [AvaloniaFact]
@@ -259,5 +345,21 @@ public sealed class ZipTieRenderingTests
             Interaction.GetBehaviors(_surface).Clear();
             _window.Close();
         }
+    }
+
+    private sealed class EditorSelectionHarness : IDisposable
+    {
+        private readonly Window _window;
+        public Editor Editor { get; }
+
+        public EditorSelectionHarness(DrawingNodeViewModel drawing)
+        {
+            Editor = new Editor { DrawingSource = drawing };
+            _window = new Window { Width = 1120, Height = 680, Content = Editor };
+            _window.Show();
+            Dispatcher.UIThread.RunJobs();
+        }
+
+        public void Dispose() => _window.Close();
     }
 }

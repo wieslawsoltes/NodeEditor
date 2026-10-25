@@ -71,6 +71,11 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                 Initialize();
             }
         }
+        else if (change.Property == AdornerCanvasProperty)
+        {
+            RemoveAdorners();
+            DrawingNode_SelectionChanged(_drawingNode, EventArgs.Empty);
+        }
     }
 
     private void Initialize()
@@ -98,14 +103,14 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                         _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
                     }
 
-                    RemoveSelection();
-                    RemoveSelected();
+                    RemoveAdorners();
 
                     _drawingNode = drawingNode;
 
                     if (_drawingNode is not null)
                     {
                         _drawingNode.SelectionChanged += DrawingNode_SelectionChanged;
+                        DrawingNode_SelectionChanged(_drawingNode, EventArgs.Empty);
                     }
                 }));
     }
@@ -125,10 +130,20 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
         if (_drawingNode is not null)
         {
             _drawingNode.SelectionChanged -= DrawingNode_SelectionChanged;
+            _drawingNode = null;
         }
 
         _dataContextDisposable?.Dispose();
         _dataContextDisposable = null;
+        RemoveAdorners();
+    }
+
+    private void RemoveAdorners()
+    {
+        RemoveSelection();
+        RemoveSelected();
+        RemoveConnectorSelected();
+        RemoveGuides();
     }
 
     protected override void OnAttached()
@@ -825,13 +840,12 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void RemoveGuides()
     {
-        var layer = AdornerCanvas;
-        if (layer is null || _guidesAdorner is null)
+        if (_guidesAdorner is null)
         {
             return;
         }
 
-        layer.Children.Remove(_guidesAdorner);
+        (_guidesAdorner.Parent as Panel)?.Children.Remove(_guidesAdorner);
         _guidesAdorner = null;
     }
 
@@ -872,13 +886,12 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void RemoveSelection()
     {
-        var layer = AdornerCanvas;
-        if (layer is null || _selectionAdorner is null)
+        if (_selectionAdorner is null)
         {
             return;
         }
 
-        layer.Children.Remove(_selectionAdorner);
+        (_selectionAdorner.Parent as Panel)?.Children.Remove(_selectionAdorner);
         _selectionAdorner = null;
     }
 
@@ -921,13 +934,12 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void RemoveSelected()
     {
-        var layer = AdornerCanvas;
-        if (layer is null || _selectedAdorner is null)
+        if (_selectedAdorner is null)
         {
             return;
         }
 
-        layer.Children.Remove(_selectedAdorner);
+        (_selectedAdorner.Parent as Panel)?.Children.Remove(_selectedAdorner);
         _selectedAdorner = null;
     }
 
@@ -978,13 +990,14 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private void RemoveConnectorSelected()
     {
-        var layer = AdornerCanvas;
-        if (layer is null || _connectorSelectedAdorner is null)
+        if (_connectorSelectedAdorner is null)
         {
             return;
         }
 
-        layer.Children.Remove(_connectorSelectedAdorner);
+        // Clear the old document references even when the canvas binding changes during teardown.
+        _connectorSelectedAdorner.Connectors = null;
+        (_connectorSelectedAdorner.Parent as Panel)?.Children.Remove(_connectorSelectedAdorner);
         _connectorSelectedAdorner = null;
     }
 
