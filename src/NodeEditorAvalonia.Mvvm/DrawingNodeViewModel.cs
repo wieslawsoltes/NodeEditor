@@ -576,7 +576,7 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
             return;
         }
 
-        DetachSnapshotParentSubscriptions(state.Nodes, state.Connectors);
+        PrepareGraphTransfer(state.Nodes, state.Connectors);
         _isRestoring = true;
         try
         {

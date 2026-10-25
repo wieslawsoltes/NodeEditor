@@ -516,6 +516,40 @@ public sealed class ZipTieModelTests
         Assert.All(drawing.Connectors!, c => Assert.Same(drawing, c.Parent));
     }
 
+    [Fact]
+    public void ClipboardTransferDetachesTemporaryParentsWithoutAffectingSourceBundle()
+    {
+        var drawing = CreateDrawing(3);
+        var oldWire = drawing.Connectors![0];
+        drawing.Connectors[0] = new ParentTrackingConnectorViewModel
+        {
+            Parent = drawing, Start = oldWire.Start, End = oldWire.End
+        };
+        drawing.SetSerializer(new NodeSerializer(typeof(ObservableCollection<>)));
+        var originalTie = drawing.CreateZipTie(drawing.Connectors)!;
+        drawing.SetSelectedNodes(new HashSet<INode>(drawing.Nodes!));
+        drawing.CopyNodes();
+        drawing.PasteNodes();
+
+        var pastedTie = drawing.ZipTies[1];
+        var pastedWire = Assert.IsType<ParentTrackingConnectorViewModel>(pastedTie.Connectors[0]);
+        var temporaryParent = Assert.IsType<DrawingNodeViewModel>(pastedWire.PreviousParent);
+        var retiredNotifications = 0;
+        temporaryParent.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(IZipTieHost.ZipTies))
+            {
+                retiredNotifications++;
+            }
+        };
+
+        drawing.ReverseZipTie(pastedTie);
+        Assert.Equal(0, retiredNotifications);
+        Assert.Equal(drawing.Connectors.Take(3), originalTie.Connectors);
+        Assert.All(pastedTie.Connectors, c => Assert.Same(drawing, c.Parent));
+        Assert.All(originalTie.Connectors, c => Assert.Same(originalTie, drawing.FindZipTie(c)));
+    }
+
     public sealed class ParentTrackingConnectorViewModel : ConnectorViewModel
     {
         private IDrawingNode? _lastParent;

@@ -686,6 +686,11 @@ public sealed class DrawingNodeEditor
             return;
         }
 
+        if (_node is IDrawingGraphTransferObserver transferObserver)
+        {
+            transferObserver.PrepareGraphTransfer(clipboard.SelectedNodes, clipboard.SelectedConnectors);
+        }
+
         _node.NotifyDeselectedNodes();
         _node.NotifyDeselectedConnectors();
 

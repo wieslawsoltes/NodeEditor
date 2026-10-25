@@ -12,7 +12,7 @@ using ReactiveUI;
 
 namespace NodeEditor.Mvvm;
 
-public partial class DrawingNodeViewModel : IZipTieHost, IZipTieCommands, IZipTieLaneProvider
+public partial class DrawingNodeViewModel : IZipTieHost, IZipTieCommands, IZipTieLaneProvider, IDrawingGraphTransferObserver
 {
     private IList<IZipTie> _zipTies = new ObservableCollection<IZipTie>();
     private IZipTie? _selectedZipTie;
@@ -494,7 +494,8 @@ public partial class DrawingNodeViewModel : IZipTieHost, IZipTieCommands, IZipTi
         OnPropertyChanged(nameof(ZipTies));
     }
 
-    private void DetachSnapshotParentSubscriptions(IList<INode>? nodes, IList<IConnector>? connectors)
+    /// <inheritdoc/>
+    public void PrepareGraphTransfer(IEnumerable<INode>? nodes, IEnumerable<IConnector>? connectors)
     {
         // Reference-preserving snapshots include parent drawings through the
         // nodes/wires. Once their children are reparented to this live document,
@@ -504,7 +505,7 @@ public partial class DrawingNodeViewModel : IZipTieHost, IZipTieCommands, IZipTi
         {
             foreach (var node in nodes)
             {
-                if (node.Parent is DrawingNodeViewModel parent && !ReferenceEquals(parent, this))
+                if (node?.Parent is DrawingNodeViewModel parent && !ReferenceEquals(parent, this))
                 {
                     parents.Add(parent);
                 }
@@ -515,7 +516,7 @@ public partial class DrawingNodeViewModel : IZipTieHost, IZipTieCommands, IZipTi
         {
             foreach (var connector in connectors)
             {
-                if (connector.Parent is DrawingNodeViewModel parent && !ReferenceEquals(parent, this))
+                if (connector?.Parent is DrawingNodeViewModel parent && !ReferenceEquals(parent, this))
                 {
                     parents.Add(parent);
                 }
