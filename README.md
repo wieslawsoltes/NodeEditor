@@ -57,8 +57,16 @@ Open up a terminal prompt and execute the commands:
 
 ## Web
 
+The browser sample demonstrates **wire zip ties**: independently colored wires
+share parallel lanes between movable collars, with intermediate bends, all wire
+styles, selection tools, undo/redo, and JSON persistence. See the
+[zip-tie guide](docs/zip-ties.md) for interaction details and model integration.
+The [validation record](docs/zip-ties-validation.md) includes automated coverage
+and a screenshot of the running browser sample.
+
 ```
 git clone https://github.com/wieslawsoltes/NodeEditor.git
+cd NodeEditor
 dotnet workload install wasm-tools
 dotnet run --project ./samples/NodeEditor.Web/NodeEditor.Web.csproj -c Release
 ```

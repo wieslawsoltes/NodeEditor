@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <PackageReference Include="Avalonia.Xaml.Behaviors" />
+    <PackageReference Include="Xaml.Behaviors.Interactivity" />
+    <PackageReference Include="Xaml.Behaviors.Interactions.DragAndDrop" />
   </ItemGroup>
 </Project>

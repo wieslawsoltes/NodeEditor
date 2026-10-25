@@ -19,6 +19,7 @@
   <Import Project="..\..\build\CommunityToolkit.Mvvm.props" />
   <Import Project="..\..\build\ReactiveMarbles.PropertyChanged.props" />
   <Import Project="..\..\build\System.Reactive.props" />
+  <Import Project="..\..\build\ReactiveUI.props" />
   <Import Project="..\..\build\Newtonsoft.Json.props" />
 
   <ItemGroup>

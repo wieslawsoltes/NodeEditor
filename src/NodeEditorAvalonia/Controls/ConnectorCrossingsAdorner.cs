@@ -36,6 +36,7 @@ public class ConnectorCrossingsAdorner : Control
     private INotifyCollectionChanged? _connectorsCollection;
     private readonly Dictionary<IConnector, INotifyPropertyChanged> _connectorSubscriptions = new();
     private readonly Dictionary<IConnector, WaypointWatcher> _waypointWatchers = new();
+    private readonly Dictionary<IConnector, ZipTieConnectorSubscription> _zipTieSubscriptions = new();
     private bool _isAttached;
     private bool _crossingsDirty = true;
     private readonly List<Crossing> _crossings = new();
@@ -256,6 +257,12 @@ public class ConnectorCrossingsAdorner : Control
         }
 
         _waypointWatchers.Clear();
+
+        foreach (var watcher in _zipTieSubscriptions.Values)
+        {
+            watcher.Dispose();
+        }
+        _zipTieSubscriptions.Clear();
     }
 
     private void AttachConnector(IConnector connector)
@@ -269,6 +276,11 @@ public class ConnectorCrossingsAdorner : Control
         if (!_waypointWatchers.ContainsKey(connector))
         {
             _waypointWatchers[connector] = new WaypointWatcher(connector.Waypoints, MarkDirty);
+        }
+
+        if (!_zipTieSubscriptions.ContainsKey(connector))
+        {
+            _zipTieSubscriptions[connector] = new ZipTieConnectorSubscription(connector, MarkDirty);
         }
     }
 
@@ -284,6 +296,11 @@ public class ConnectorCrossingsAdorner : Control
         {
             _waypointWatchers.Remove(connector);
             watcher.Dispose();
+        }
+
+        if (_zipTieSubscriptions.Remove(connector, out var zipTieWatcher))
+        {
+            zipTieWatcher.Dispose();
         }
     }
 

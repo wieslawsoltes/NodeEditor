@@ -1,0 +1,7 @@
+html, body, #out { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #161923; }
+body { color: #eef2ff; font: 16px system-ui, sans-serif; }
+.avalonia-splash { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #161923; pointer-events: none; }
+.splash-mark { color: #8db8ff; font-size: 72px; line-height: 1; }
+.avalonia-splash h1 { margin: 0; font-size: 24px; font-weight: 600; }
+.avalonia-splash p { margin: 8px; color: #a8b3c9; text-align: center; }
+.avalonia-splash.splash-close { display: none; }
