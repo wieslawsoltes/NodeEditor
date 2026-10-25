@@ -3,6 +3,7 @@ using System.Reactive.Linq;
 using NodeEditor.Model;
 using NodeEditorDemo.Services;
 using NodeEditorDemo.ViewModels;
+using NodeEditorDemo.ViewModels.Nodes;
 using Xunit;
 
 namespace NodeEditor.UnitTests;
@@ -63,6 +64,47 @@ public class ZipTieDemoTests
         Assert.All(vm.Drawing.Connectors!, wire => Assert.Equal(ConnectorStyle.Orthogonal, wire.Style));
         vm.Drawing.Undo();
         Assert.All(vm.Drawing.Connectors!, wire => Assert.Equal(ConnectorStyle.Bezier, wire.Style));
+    }
+
+    [Fact]
+    public void SocketTitlesAndSubtitlesSurviveUndoRedoAndSnapshotRestore()
+    {
+        using var vm = new ZipTieDemoViewModel();
+        AssertLabels();
+
+        vm.Spacing = 14;
+        vm.Drawing.Undo();
+        AssertLabels();
+        vm.Drawing.Redo();
+        AssertLabels();
+
+        vm.SaveSnapshotCommand.Execute().Subscribe();
+        Assert.True(vm.HasSnapshot);
+        foreach (var node in vm.Drawing.Nodes!)
+        {
+            var socket = Assert.IsType<WireSocketViewModel>(node.Content);
+            socket.Title = "Changed title";
+            socket.Subtitle = "Changed subtitle";
+        }
+        vm.LoadSnapshotCommand.Execute().Subscribe();
+        AssertLabels();
+
+        void AssertLabels()
+        {
+            Assert.Collection(vm.Drawing.Nodes!,
+                node =>
+                {
+                    var socket = Assert.IsType<WireSocketViewModel>(node.Content);
+                    Assert.Equal("Source", socket.Title);
+                    Assert.Equal("OUTPUT CHANNELS", socket.Subtitle);
+                },
+                node =>
+                {
+                    var socket = Assert.IsType<WireSocketViewModel>(node.Content);
+                    Assert.Equal("Destination", socket.Title);
+                    Assert.Equal("INPUT CHANNELS", socket.Subtitle);
+                });
+        }
     }
 
     [Fact]
