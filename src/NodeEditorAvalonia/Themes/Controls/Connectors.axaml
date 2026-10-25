@@ -1,9 +1,9 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
                     xmlns:converters="clr-namespace:NodeEditor.Converters"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Xaml.Behaviors.Interactivity"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors;assembly=NodeEditorAvalonia"
                     x:CompileBindings="True">
 
@@ -41,7 +41,7 @@
                                       ConnectorStyle="{Binding Style, Mode=TwoWay}"
                                       ConnectorSource="{Binding .}" />
                   <ItemsControl ItemsSource="{Binding Waypoints}"
-                                IsVisible="{Binding RoutingMode, Converter={x:Static converters:EnumToCheckedConverter.Instance}, ConverterParameter={x:Static m:ConnectorRoutingMode.Manual}}">
+                                IsVisible="{Binding ElementName=PART_Connector, Path=HasEditableWaypoints}">
                     <ItemsControl.ItemsPanel>
                       <ItemsPanelTemplate>
                         <Canvas />

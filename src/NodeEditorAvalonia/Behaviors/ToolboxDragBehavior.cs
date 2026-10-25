@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Xaml.Interactivity;
-using Avalonia.Xaml.Interactions.DragAndDrop;
 using NodeEditor.Model;
 
 namespace NodeEditor.Behaviors;
@@ -15,7 +14,6 @@ public class ToolboxDragBehavior : Behavior<Control>
     private const string ApplicationPrefix = "";
     // DataFormat.FromSystemName isn't in netstandard reference assemblies, so resolve via reflection.
     private static readonly MethodInfo? FromSystemNameMethod = ResolveFromSystemNameMethod();
-    private static readonly DataFormat<INodeTemplate>? ContextTemplateFormat = CreateTemplateFormat(ContextDropBehavior.DataFormat);
     private static readonly DataFormat<INodeTemplate>? NodeTemplateFormat = CreateTemplateFormat("NodeTemplate");
 
     private static MethodInfo? ResolveFromSystemNameMethod()
@@ -166,11 +164,6 @@ public class ToolboxDragBehavior : Behavior<Control>
         {
             var data = new DataTransfer();
             var item = new DataTransferItem();
-            if (ContextTemplateFormat is not null)
-            {
-                item.Set(ContextTemplateFormat, template);
-            }
-
             if (NodeTemplateFormat is not null)
             {
                 item.Set(NodeTemplateFormat, template);

@@ -260,6 +260,26 @@ public class ZipTieGeometryTests
     }
 
     [Fact]
+    public void OrthogonalSpineKeepsItsShapeWhenWireDirectionIsReversed()
+    {
+        var tie = CreateTie(3, ConnectorStyle.Orthogonal);
+        tie.Start = new ConnectorPoint(100, 100);
+        tie.End = new ConnectorPoint(100, 500);
+        tie.Waypoints.Add(new ConnectorPoint(500, 500));
+        var wire = tie.Connectors[1];
+        var start = new Point(0, 100);
+        var end = new Point(0, 500);
+        var forward = ZipTieGeometry.GetPathPoints(tie, wire, start, end);
+        (wire.Start, wire.End) = (wire.End, wire.Start);
+        var reverse = ZipTieGeometry.GetPathPoints(tie, wire, end, start);
+        Assert.Equal(forward.Count, reverse.Count);
+        for (var i = 0; i < forward.Count; i++)
+        {
+            Assert.Equal(forward[i], reverse[reverse.Count - 1 - i]);
+        }
+    }
+
+    [Fact]
     public void InsertionHandlesCollapsedSpinesAndRejectsNonFinitePointerCoordinates()
     {
         var tie = CreateTie();

@@ -284,6 +284,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
             }
         }
 
+        ZipTieInteractionBehavior.MoveWithNodes(drawingNode, selectedNodes, deltaX, deltaY);
+
         if (AssociatedObject is not null)
         {
             _selectedRect = HitTestHelper.CalculateSelectedRect(drawingNode, AssociatedObject);
@@ -582,6 +584,8 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
                             }
                         }
                     }
+
+                    ZipTieInteractionBehavior.MoveWithNodes(drawingNode, selectedNodes, deltaX, deltaY);
 
                     var selectedRect = HitTestHelper.CalculateSelectedRect(drawingNode, AssociatedObject);
 
@@ -1065,7 +1069,7 @@ public class DrawingSelectionBehavior : Behavior<ItemsControl>
 
     private static bool IsInteractiveControl(Control control, bool includeFocusable)
     {
-        if (control is Node or DrawingNode or Pin or Connector)
+        if (control is Node or DrawingNode or NodeZoomBorder or Pin or Connector)
         {
             return false;
         }

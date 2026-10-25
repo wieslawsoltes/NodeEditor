@@ -305,7 +305,8 @@ public static class ZipTieGeometry
             }
             else if (connector.Style == ConnectorStyle.Orthogonal)
             {
-                AppendOrthogonal(path, a, b, frames[index].Tangent * direction);
+                // Every member follows the same physical dogleg, including opposite-direction wires.
+                AppendOrthogonal(path, a, b, frames[Math.Min(index, next)].Tangent);
             }
             else
             {

@@ -84,6 +84,14 @@ public class ConnectorInteractionBehavior : Behavior<ItemsControl>
 
         var isManual = connector.RoutingMode == ConnectorRoutingMode.Manual;
 
+        if (drawingNode is IZipTieHost zipTieHost && zipTieHost.FindZipTie(connector) is { IsVisible: true })
+        {
+            // Individual waypoints remain preserved while the bundle owns the rendered route.
+            SelectConnector(drawingNode, connector, e.KeyModifiers);
+            e.Handled = true;
+            return;
+        }
+
         if (connector.IsLocked)
         {
             SelectConnector(drawingNode, connector, e.KeyModifiers);

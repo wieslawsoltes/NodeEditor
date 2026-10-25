@@ -6,13 +6,15 @@
   <ItemGroup>
     <PackageVersion Include="Avalonia" Version="12.0.0" />
     <PackageVersion Include="Avalonia.Browser" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Controls.PanAndZoom" Version="11.3.0" />
+    <PackageVersion Include="PanAndZoom" Version="12.0.0.1" />
     <PackageVersion Include="Avalonia.Desktop" Version="12.0.0" />
     <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.0.0" />
     <PackageVersion Include="Avalonia.HarfBuzz" Version="12.0.0" />
+    <PackageVersion Include="Avalonia.Headless.XUnit" Version="12.0.0" />
     <PackageVersion Include="Avalonia.Skia" Version="12.0.0" />
     <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Xaml.Behaviors" Version="11.3.0.6" />
+    <PackageVersion Include="Xaml.Behaviors.Interactivity" Version="12.0.0.1" />
+    <PackageVersion Include="Xaml.Behaviors.Interactions.DragAndDrop" Version="12.0.0.1" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageVersion Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
@@ -24,13 +26,7 @@
     <PackageVersion Include="reactiveui" Version="22.3.1" />
     <PackageVersion Include="System.Reactive" Version="6.1.0" />
     <PackageVersion Include="Tmds.DBus.Protocol" Version="0.92.0" />
-    <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.abstractions" Version="2.0.3" />
-    <PackageVersion Include="xunit.assert" Version="2.9.3" />
-    <PackageVersion Include="xunit.core" Version="2.9.3" />
-    <PackageVersion Include="xunit.extensibility.core" Version="2.9.3" />
-    <PackageVersion Include="xunit.extensibility.execution" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.console" Version="2.9.3" />
+    <PackageVersion Include="xunit.v3" Version="3.2.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
 </Project>
