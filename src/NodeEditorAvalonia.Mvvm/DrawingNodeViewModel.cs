@@ -72,6 +72,7 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
         public IList<INode>? Nodes { get; set; }
         public IList<IConnector>? Connectors { get; set; }
         public IList<InkStroke>? InkStrokes { get; set; }
+        public IList<IZipTie>? ZipTies { get; set; }
     }
 
     private const int MaxUndoEntries = 100;
@@ -155,6 +156,8 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
         ShowSelectionCommand = new RelayCommand(ShowSelection);
 
         ShowAllCommand = new RelayCommand(ShowAll);
+
+        InitializeZipTies();
     }
  
     public event SelectionChangedEventHandler? SelectionChanged;
@@ -206,7 +209,11 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
 
     public bool CanRedo => _redoStack.Count > 0;
 
-    public void NotifySelectionChanged() => SelectionChanged?.Invoke(this, EventArgs.Empty);
+    public void NotifySelectionChanged()
+    {
+        UpdateZipTieCommandState();
+        SelectionChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     public void NotifyConnectionRejected(IPin start, IPin end)
     {
@@ -279,13 +286,25 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
 
     public virtual void ConnectorMove(double x, double y) => _editor.ConnectorMove(x, y);
 
-    public virtual void CutNodes() => ExecuteWithUndo(_editor.CutNodes);
+    public virtual void CutNodes() => ExecuteWithUndo(() =>
+    {
+        _editor.CutNodes();
+        PruneZipTies();
+    });
 
     public virtual void CopyNodes() => _editor.CopyNodes();
 
-    public virtual void PasteNodes() => ExecuteWithUndo(_editor.PasteNodes);
+    public virtual void PasteNodes() => ExecuteWithUndo(() =>
+    {
+        _editor.PasteNodes();
+        PruneZipTies();
+    });
 
-    public virtual void DuplicateNodes() => ExecuteWithUndo(_editor.DuplicateNodes);
+    public virtual void DuplicateNodes() => ExecuteWithUndo(() =>
+    {
+        _editor.DuplicateNodes();
+        PruneZipTies();
+    });
 
     public virtual void ToggleInkMode()
     {
@@ -332,7 +351,16 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
 
     public virtual void ConvertInkToNodes() => ExecuteWithUndo(ConvertInkToNodesCore);
 
-    public virtual void DeleteNodes() => ExecuteWithUndo(_editor.DeleteNodes);
+    public virtual void DeleteNodes() => ExecuteWithUndo(() =>
+    {
+        if (SelectedZipTie is { } tie)
+        {
+            _zipTieEditor.Remove(tie);
+        }
+
+        _editor.DeleteNodes();
+        PruneZipTies();
+    });
 
     public virtual void AlignSelectedNodes(NodeAlignment alignment) =>
         ExecuteWithUndo(() => _editor.AlignSelectedNodes(alignment));
@@ -342,19 +370,64 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
 
     public virtual void OrderSelectedNodes(NodeOrder order) => ExecuteWithUndo(() => _editor.OrderSelectedNodes(order));
 
-    public virtual void LockSelection() => ExecuteWithUndo(_editor.LockSelection);
+    public virtual void LockSelection() => ExecuteWithUndo(() =>
+    {
+        if (SelectedZipTie is { } tie)
+        {
+            tie.IsLocked = true;
+        }
 
-    public virtual void UnlockSelection() => ExecuteWithUndo(_editor.UnlockSelection);
+        _editor.LockSelection();
+    });
 
-    public virtual void HideSelection() => ExecuteWithUndo(_editor.HideSelection);
+    public virtual void UnlockSelection() => ExecuteWithUndo(() =>
+    {
+        if (SelectedZipTie is { } tie)
+        {
+            tie.IsLocked = false;
+        }
 
-    public virtual void ShowSelection() => ExecuteWithUndo(_editor.ShowSelection);
+        _editor.UnlockSelection();
+    });
 
-    public virtual void ShowAll() => ExecuteWithUndo(_editor.ShowAll);
+    public virtual void HideSelection() => ExecuteWithUndo(() =>
+    {
+        if (SelectedZipTie is { } tie)
+        {
+            tie.IsVisible = false;
+            SelectedZipTie = null;
+        }
+
+        _editor.HideSelection();
+    });
+
+    public virtual void ShowSelection() => ExecuteWithUndo(() =>
+    {
+        if (SelectedZipTie is { } tie)
+        {
+            tie.IsVisible = true;
+        }
+
+        _editor.ShowSelection();
+    });
+
+    public virtual void ShowAll() => ExecuteWithUndo(() =>
+    {
+        foreach (var tie in ZipTies)
+        {
+            tie.IsVisible = true;
+        }
+
+        _editor.ShowAll();
+    });
 
     public virtual void SelectAllNodes() => _editor.SelectAllNodes();
 
-    public virtual void DeselectAllNodes() => _editor.DeselectAllNodes();
+    public virtual void DeselectAllNodes()
+    {
+        SelectedZipTie = null;
+        _editor.DeselectAllNodes();
+    }
 
     public void SetFactory(IDrawingNodeFactory factory)
     {
@@ -483,7 +556,8 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
         {
             Nodes = Nodes,
             Connectors = Connectors,
-            InkStrokes = InkStrokes
+            InkStrokes = InkStrokes,
+            ZipTies = ZipTies
         };
 
         return _serializer.Serialize(snapshot);
@@ -502,6 +576,7 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
             return;
         }
 
+        DetachSnapshotParentSubscriptions(state.Nodes, state.Connectors);
         _isRestoring = true;
         try
         {
@@ -509,10 +584,12 @@ public partial class DrawingNodeViewModel : NodeViewModel, IDrawingNode, IUndoRe
             NotifyDeselectedConnectors();
             SetSelectedNodes(null);
             SetSelectedConnectors(null);
+            SelectedZipTie = null;
 
             Nodes = state.Nodes;
             Connectors = state.Connectors;
             InkStrokes = state.InkStrokes;
+            ZipTies = state.ZipTies ?? new ObservableCollection<IZipTie>();
 
             if (Nodes is { Count: > 0 })
             {

@@ -16,6 +16,7 @@ public sealed class DrawingNodeEditor
     {
         public ISet<INode>? SelectedNodes { get; set; }
         public ISet<IConnector>? SelectedConnectors { get; set; }
+        public IList<IZipTie>? ZipTies { get; set; }
     }
 
     public DrawingNodeEditor(IDrawingNode node, IDrawingNodeFactory factory)
@@ -321,6 +322,25 @@ public sealed class DrawingNodeEditor
     private void RemoveConnector(IConnector connector)
     {
         _node.Connectors?.Remove(connector);
+        // Also support non-observable connector lists and custom drawing hosts.
+        // A deleted wire cannot remain a member, even when its bundle is locked.
+        if (_node is IZipTieHost host)
+        {
+            for (var i = host.ZipTies.Count - 1; i >= 0; i--)
+            {
+                var tie = host.ZipTies[i];
+                tie.Connectors.Remove(connector);
+                if (tie.Connectors.Count < 2)
+                {
+                    host.ZipTies.Remove(tie);
+                    if (ReferenceEquals(host.SelectedZipTie, tie))
+                    {
+                        host.SelectedZipTie = null;
+                    }
+                }
+            }
+        }
+
         connector.Start?.OnDisconnected();
         connector.End?.OnDisconnected();
         connector.OnRemoved();
@@ -546,7 +566,8 @@ public sealed class DrawingNodeEditor
             var clipboard = new Clipboard
             {
                 SelectedNodes = nodesToCopy.Count > 0 ? nodesToCopy : null,
-                SelectedConnectors = connectorsToCopy.Count > 0 ? connectorsToCopy : null
+                SelectedConnectors = connectorsToCopy.Count > 0 ? connectorsToCopy : null,
+                ZipTies = CollectZipTiesToCopy(connectorsToCopy)
             };
 
             _clipboard = serializer.Serialize(clipboard);
@@ -597,6 +618,11 @@ public sealed class DrawingNodeEditor
 
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
+        if (_node is IZipTieHost cutZipTieHost)
+        {
+            cutZipTieHost.SelectedZipTie = null;
+        }
+
         _node.NotifySelectionChanged();
     }
 
@@ -631,7 +657,8 @@ public sealed class DrawingNodeEditor
         var clipboard = new Clipboard
         {
             SelectedNodes = nodesToCopy.Count > 0 ? nodesToCopy : null,
-            SelectedConnectors = connectorsToCopy.Count > 0 ? connectorsToCopy : null
+            SelectedConnectors = connectorsToCopy.Count > 0 ? connectorsToCopy : null,
+            ZipTies = CollectZipTiesToCopy(connectorsToCopy)
         };
 
         _clipboard = serializer.Serialize(clipboard);
@@ -664,6 +691,10 @@ public sealed class DrawingNodeEditor
 
         _node.SetSelectedNodes(null);
         _node.SetSelectedConnectors(null);
+        if (_node is IZipTieHost pasteZipTieHost)
+        {
+            pasteZipTieHost.SelectedZipTie = null;
+        }
 
         var selectedNodes = new HashSet<INode>();
         var selectedConnectors = new HashSet<IConnector>();
@@ -767,6 +798,40 @@ public sealed class DrawingNodeEditor
             }
         }
 
+        if (_node is IZipTieHost zipTieHost && clipboard.ZipTies is { Count: > 0 })
+        {
+            foreach (var tie in clipboard.ZipTies)
+            {
+                // Copying a subset of a bundle keeps only wires whose endpoint
+                // nodes were pasted. The reference-preserving serializer ensures
+                // these are the exact connector instances added above.
+                for (var i = tie.Connectors.Count - 1; i >= 0; i--)
+                {
+                    if (_node.Connectors is null || !_node.Connectors.Contains(tie.Connectors[i]))
+                    {
+                        tie.Connectors.RemoveAt(i);
+                    }
+                }
+
+                if (tie.Connectors.Count < 2)
+                {
+                    continue;
+                }
+
+                tie.Start.X += deltaX;
+                tie.Start.Y += deltaY;
+                tie.End.X += deltaX;
+                tie.End.Y += deltaY;
+                foreach (var waypoint in tie.Waypoints)
+                {
+                    waypoint.X += deltaX;
+                    waypoint.Y += deltaY;
+                }
+
+                zipTieHost.ZipTies.Add(tie);
+            }
+        }
+
         _node.NotifyDeselectedNodes();
 
         if (selectedNodes.Count > 0)
@@ -793,6 +858,34 @@ public sealed class DrawingNodeEditor
 
         _pressedX = double.NaN;
         _pressedY = double.NaN;
+    }
+
+    private IList<IZipTie>? CollectZipTiesToCopy(ISet<IConnector> connectors)
+    {
+        if (_node is not IZipTieHost host || connectors.Count < 2)
+        {
+            return null;
+        }
+
+        var ties = new List<IZipTie>();
+        foreach (var tie in host.ZipTies)
+        {
+            var copiedMembers = 0;
+            foreach (var connector in tie.Connectors)
+            {
+                if (connectors.Contains(connector))
+                {
+                    copiedMembers++;
+                }
+            }
+
+            if (copiedMembers >= 2)
+            {
+                ties.Add(tie);
+            }
+        }
+
+        return ties.Count == 0 ? null : ties;
     }
 
     public void DuplicateNodes()
