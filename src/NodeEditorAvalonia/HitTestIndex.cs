@@ -176,11 +176,16 @@ internal sealed class HitTestIndex
     private INotifyPropertyChanged? _drawingNotifier;
     private IDrawingNodeSettings? _settings;
     private INotifyPropertyChanged? _settingsNotifier;
+    private readonly ZipTieCollectionSubscription? _zipTieSubscription;
 
     public HitTestIndex(IDrawingNode drawingNode)
     {
         _drawingNode = drawingNode;
         AttachDrawingNode();
+        if (drawingNode is IZipTieHost host)
+        {
+            _zipTieSubscription = new ZipTieCollectionSubscription(host, ZipTieChanged);
+        }
     }
 
     public IEnumerable<INode> QueryNodes(Rect rect)
@@ -206,6 +211,8 @@ internal sealed class HitTestIndex
 
     public void EnsureUpToDate()
     {
+        _zipTieSubscription?.Refresh();
+
         if (!ReferenceEquals(_nodes, _drawingNode.Nodes))
         {
             AttachNodes(_drawingNode.Nodes);
@@ -259,6 +266,20 @@ internal sealed class HitTestIndex
         AttachNodes(_drawingNode.Nodes);
         AttachConnectors(_drawingNode.Connectors);
         AttachSettings(_drawingNode.Settings);
+    }
+
+    private void ZipTieChanged(IZipTie? tie)
+    {
+        if (tie is null)
+        {
+            MarkAllConnectorsDirty();
+            return;
+        }
+
+        foreach (var connector in tie.Connectors)
+        {
+            MarkConnectorDirty(connector);
+        }
     }
 
     private void AttachSettings(IDrawingNodeSettings? settings)
@@ -335,7 +356,7 @@ internal sealed class HitTestIndex
             _nodesCollection = null;
         }
 
-        foreach (var node in _attachedNodes)
+        foreach (var node in new List<INode>(_attachedNodes))
         {
             DetachNode(node);
         }
@@ -394,6 +415,7 @@ internal sealed class HitTestIndex
 
     private void DetachNode(INode node)
     {
+        _attachedNodes.Remove(node);
         if (node is INotifyPropertyChanged notifier)
         {
             notifier.PropertyChanged -= NodePropertyChanged;
@@ -447,7 +469,7 @@ internal sealed class HitTestIndex
             _connectorsCollection = null;
         }
 
-        foreach (var connector in _attachedConnectors)
+        foreach (var connector in new List<IConnector>(_attachedConnectors))
         {
             DetachConnector(connector);
             RemoveConnector(connector);
@@ -512,7 +534,7 @@ internal sealed class HitTestIndex
 
     private void ResetNodes()
     {
-        foreach (var node in _attachedNodes)
+        foreach (var node in new List<INode>(_attachedNodes))
         {
             DetachNode(node);
             RemoveNode(node);
@@ -532,7 +554,7 @@ internal sealed class HitTestIndex
 
     private void ResetConnectors()
     {
-        foreach (var connector in _attachedConnectors)
+        foreach (var connector in new List<IConnector>(_attachedConnectors))
         {
             DetachConnector(connector);
             RemoveConnector(connector);
@@ -552,6 +574,7 @@ internal sealed class HitTestIndex
 
     private void DetachConnector(IConnector connector)
     {
+        _attachedConnectors.Remove(connector);
         if (connector is INotifyPropertyChanged notifier)
         {
             notifier.PropertyChanged -= ConnectorPropertyChanged;
@@ -615,7 +638,10 @@ internal sealed class HitTestIndex
 
     internal void MarkConnectorDirty(IConnector connector)
     {
-        _dirtyConnectors.Add(connector);
+        if (_attachedConnectors.Contains(connector))
+        {
+            _dirtyConnectors.Add(connector);
+        }
     }
 
     private void RebuildAll()
@@ -671,6 +697,11 @@ internal sealed class HitTestIndex
     private void UpdateConnector(IConnector connector)
     {
         RemoveConnector(connector);
+
+        if (!connector.IsVisible || !_attachedConnectors.Contains(connector))
+        {
+            return;
+        }
 
         if (!ConnectorPathHelper.TryGetEndpoints(connector, out var start, out var end))
         {
