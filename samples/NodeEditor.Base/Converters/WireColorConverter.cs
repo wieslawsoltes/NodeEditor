@@ -20,6 +20,7 @@ public sealed class WireColorConverter : IValueConverter
         new ImmutableSolidColorBrush(0xFFD486F6)
     };
 
+    /// <inheritdoc />
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return value is WireConnectorViewModel wire
@@ -27,6 +28,7 @@ public sealed class WireColorConverter : IValueConverter
             : _brushes[0];
     }
 
+    /// <inheritdoc />
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
         => throw new NotSupportedException();
 }

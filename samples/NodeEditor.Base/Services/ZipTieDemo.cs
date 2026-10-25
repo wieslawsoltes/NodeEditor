@@ -9,6 +9,7 @@ namespace NodeEditorDemo.Services;
 /// <summary>Creates an editable six-wire bundle using the same public APIs as a host application.</summary>
 public static class ZipTieDemo
 {
+    /// <summary>Creates two socket nodes and six independent wires in a selected zip-tie bundle.</summary>
     public static DrawingNodeViewModel CreateDrawing()
     {
         var drawing = new DrawingNodeViewModel

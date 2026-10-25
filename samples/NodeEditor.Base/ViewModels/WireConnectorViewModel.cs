@@ -7,6 +7,7 @@ public sealed class WireConnectorViewModel : ConnectorViewModel
 {
     private int _channel;
 
+    /// <summary>Gets or sets the serialized channel index used to choose the wire's color.</summary>
     public int Channel
     {
         get => _channel;

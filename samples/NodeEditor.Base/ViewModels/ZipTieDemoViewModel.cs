@@ -21,11 +21,13 @@ public sealed class ZipTieDemoViewModel : ReactiveObject, IDisposable
     private string _status = "Drag either collar to shape the bundle. Shift-drag a collar to move the whole harness.";
     private bool _disposed;
 
+    /// <summary>Creates the demo with the default reference-preserving JSON serializer.</summary>
     public ZipTieDemoViewModel()
         : this(new NodeSerializer(typeof(ObservableCollection<>)))
     {
     }
 
+    /// <summary>Creates the demo with the serializer used by history and saved snapshots.</summary>
     public ZipTieDemoViewModel(INodeSerializer serializer)
     {
         _serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
@@ -43,6 +45,7 @@ public sealed class ZipTieDemoViewModel : ReactiveObject, IDisposable
             this.WhenAnyValue(x => x.CanEditSelectedTie));
     }
 
+    /// <summary>Gets the current drawing, replaced when the demo or a snapshot is restored.</summary>
     public DrawingNodeViewModel Drawing
     {
         get => _drawing;
@@ -67,20 +70,25 @@ public sealed class ZipTieDemoViewModel : ReactiveObject, IDisposable
         }
     }
 
+    /// <summary>Gets feedback for the latest demo operation.</summary>
     public string Status
     {
         get => _status;
         private set => this.RaiseAndSetIfChanged(ref _status, value);
     }
 
+    /// <summary>Gets whether a JSON snapshot has been saved in this demo session.</summary>
     public bool HasSnapshot => _savedDrawing is not null;
 
+    /// <summary>Gets whether the active bundle is visible and unlocked.</summary>
     public bool CanEditSelectedTie => Drawing.SelectedZipTie is { IsLocked: false, IsVisible: true };
 
+    /// <summary>Gets the active bundle name or the number of selected wires.</summary>
     public string SelectionText => Drawing.SelectedZipTie is { } tie
         ? $"{tie.Name ?? "Zip tie"} · {tie.Connectors.Count} wires"
         : $"{Drawing.GetSelectedConnectors()?.Count ?? 0} wires selected";
 
+    /// <summary>Gets or edits the active bundle's lane spacing as one undoable operation.</summary>
     public double Spacing
     {
         get => Drawing.SelectedZipTie?.Spacing ?? 7;
@@ -110,11 +118,17 @@ public sealed class ZipTieDemoViewModel : ReactiveObject, IDisposable
         }
     }
 
+    /// <summary>Gets the command that replaces the drawing with the initial six-wire demo.</summary>
     public ReactiveCommand<Unit, Unit> ResetCommand { get; }
+    /// <summary>Gets the command that selects all eligible wires in the current drawing.</summary>
     public ReactiveCommand<Unit, Unit> SelectWiresCommand { get; }
+    /// <summary>Gets the command that serializes the drawing into an in-memory snapshot.</summary>
     public ReactiveCommand<Unit, Unit> SaveSnapshotCommand { get; }
+    /// <summary>Gets the command that restores the saved JSON snapshot as a new drawing.</summary>
     public ReactiveCommand<Unit, Unit> LoadSnapshotCommand { get; }
+    /// <summary>Gets the command that changes the routing style of unlocked wires.</summary>
     public ReactiveCommand<ConnectorStyle, Unit> SetWireStyleCommand { get; }
+    /// <summary>Gets the command that adds an intermediate collar to the active bundle.</summary>
     public ReactiveCommand<Unit, Unit> AddBendCommand { get; }
 
     private void ObserveDrawing(DrawingNodeViewModel drawing)
@@ -275,6 +289,7 @@ public sealed class ZipTieDemoViewModel : ReactiveObject, IDisposable
         }
     }
 
+    /// <summary>Releases drawing subscriptions and reactive commands owned by the demo.</summary>
     public void Dispose()
     {
         if (_disposed)
