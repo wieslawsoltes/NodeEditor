@@ -12,6 +12,7 @@ using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NodeEditor.Controls;
+using NodeEditor.Model;
 using NodeEditor.Mvvm;
 using NodeEditor.Services;
 using NodeEditorDemo.Services;
@@ -159,6 +160,15 @@ public partial class MainViewViewModel : ViewModelBase
 
         if (Editor?.Drawing is { } drawing)
         {
+            if (drawing is IZipTieCommands zipTies)
+            {
+                macros.Add(new MacroDefinition("wire.ziptie.create", "Create Zip Tie from Selected Wires", zipTies.CreateZipTieCommand, category: "Wires"));
+                macros.Add(new MacroDefinition("wire.ziptie.dissolve", "Dissolve Selected Zip Tie", zipTies.RemoveZipTieCommand, category: "Wires"));
+                macros.Add(new MacroDefinition("wire.ziptie.attach", "Attach Selected Wires to Zip Tie", zipTies.AddSelectedToZipTieCommand, category: "Wires"));
+                macros.Add(new MacroDefinition("wire.ziptie.detach", "Detach Selected Wires from Zip Tie", zipTies.RemoveSelectedFromZipTieCommand, category: "Wires"));
+                macros.Add(new MacroDefinition("wire.ziptie.reverse", "Reverse Zip Tie Lanes", zipTies.ReverseZipTieCommand, category: "Wires"));
+                macros.Add(new MacroDefinition("wire.ziptie.straighten", "Straighten Zip Tie", zipTies.StraightenZipTieCommand, category: "Wires"));
+            }
             macros.Add(new MacroDefinition("draw.ink.toggle", "Toggle Ink Mode", drawing.DrawInkCommand, category: "Draw"));
             macros.Add(new MacroDefinition("draw.ink.addpen", "Add Pen", drawing.AddPenCommand, category: "Draw"));
             macros.Add(new MacroDefinition("draw.ink.convert", "Convert Ink", drawing.ConvertInkCommand, category: "Draw"));

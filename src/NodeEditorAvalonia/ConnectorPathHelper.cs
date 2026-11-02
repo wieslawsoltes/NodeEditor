@@ -19,11 +19,17 @@ internal static class ConnectorPathHelper
 
         start = GetPinPoint(connector.Start);
         end = GetPinPoint(connector.End);
-        return true;
+        return double.IsFinite(start.X) && double.IsFinite(start.Y)
+            && double.IsFinite(end.X) && double.IsFinite(end.Y);
     }
 
     public static List<Point> GetPolylinePoints(IConnector connector, Point start, Point end)
     {
+        if (ZipTieGeometry.TryCreatePath(connector, start, end, out var bundledPath))
+        {
+            return bundledPath.Flatten(0.35);
+        }
+
         var settings = connector.Parent?.Settings;
         var routingEnabled = settings is not null && settings.EnableConnectorRouting;
         var manual = connector.RoutingMode == ConnectorRoutingMode.Manual;
@@ -58,43 +64,82 @@ internal static class ConnectorPathHelper
     }
 
     public static List<Point> GetFlattenedPath(IConnector connector, Point start, Point end)
+        => BuildPath(connector, start, end).Flatten(0.35);
+
+    internal static ConnectorPath BuildPath(IConnector connector, Point start, Point end)
     {
-        if (connector.Style == ConnectorStyle.Bezier)
+        if (ZipTieGeometry.TryCreatePath(connector, start, end, out var bundledPath))
         {
-            var routed = GetPolylinePoints(connector, start, end);
-            var hasWaypoints = connector.Waypoints is { Count: > 0 };
-            if (routed.Count > 2 || hasWaypoints)
-            {
-                return routed;
-            }
-
-            var p1X = start.X;
-            var p1Y = start.Y;
-            var p2X = end.X;
-            var p2Y = end.Y;
-
-            connector.GetControlPoints(
-                connector.Orientation,
-                connector.Offset,
-                connector.Start?.Alignment ?? PinAlignment.None,
-                connector.End?.Alignment ?? PinAlignment.None,
-                ref p1X,
-                ref p1Y,
-                ref p2X,
-                ref p2Y);
-
-            var pt0 = start;
-            var pt1 = new Point(p1X, p1Y);
-            var pt2 = new Point(p2X, p2Y);
-            var pt3 = end;
-
-            var flattened = HitTestHelper.FlattenCubic(pt0, pt1, pt2, pt3);
-            var points = new List<Point>(flattened.Length + 1) { pt0 };
-            points.AddRange(flattened);
-            return points;
+            return bundledPath;
         }
 
-        return GetPolylinePoints(connector, start, end);
+        var routed = GetPolylinePoints(connector, start, end);
+        var path = new ConnectorPath(start);
+        if (connector.Style == ConnectorStyle.Bezier)
+        {
+            if (routed.Count <= 2 && connector.Waypoints is not { Count: > 0 })
+            {
+                var p1X = start.X;
+                var p1Y = start.Y;
+                var p2X = end.X;
+                var p2Y = end.Y;
+                connector.GetControlPoints(
+                    connector.Orientation,
+                    connector.Offset,
+                    connector.Start?.Alignment ?? PinAlignment.None,
+                    connector.End?.Alignment ?? PinAlignment.None,
+                    ref p1X,
+                    ref p1Y,
+                    ref p2X,
+                    ref p2Y);
+                path.CubicTo(new Point(p1X, p1Y), new Point(p2X, p2Y), end);
+                return path;
+            }
+
+            var radius = connector.Parent?.Settings.RoutingCornerRadius ?? 0;
+            if (double.IsFinite(radius) && radius > 0.001)
+            {
+                AppendRoundedPolyline(path, routed, radius);
+                return path;
+            }
+        }
+
+        for (var i = 1; i < routed.Count; i++)
+        {
+            path.LineTo(routed[i]);
+        }
+        return path;
+    }
+
+    private static void AppendRoundedPolyline(ConnectorPath path, IReadOnlyList<Point> points, double radius)
+    {
+        for (var i = 1; i < points.Count - 1; i++)
+        {
+            var previous = points[i - 1];
+            var current = points[i];
+            var next = points[i + 1];
+            Vector incoming = previous - current;
+            Vector outgoing = next - current;
+            var incomingLength = incoming.Length;
+            var outgoingLength = outgoing.Length;
+            var cross = incoming.X * outgoing.Y - incoming.Y * outgoing.X;
+            if (incomingLength < 0.001 || outgoingLength < 0.001 || Math.Abs(cross) < 0.001)
+            {
+                path.LineTo(current);
+                continue;
+            }
+
+            var distance = Math.Min(radius, Math.Min(incomingLength, outgoingLength) * 0.5);
+            var curveStart = current + incoming * (distance / incomingLength);
+            var curveEnd = current + outgoing * (distance / outgoingLength);
+            path.LineTo(curveStart);
+            path.CubicTo(current, current, curveEnd);
+        }
+
+        if (points.Count > 1)
+        {
+            path.LineTo(points[points.Count - 1]);
+        }
     }
 
     public static Point GetLabelPoint(IConnector connector, Point start, Point end)

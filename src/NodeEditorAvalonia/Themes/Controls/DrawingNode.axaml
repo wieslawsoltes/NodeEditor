@@ -25,6 +25,12 @@
                           DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
                           InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}"
                           AdornerCanvas="{Binding AdornerCanvas, RelativeSource={RelativeSource TemplatedParent}}" />
+          <controls:ZipTieLayer x:Name="PART_ZipTies"
+                                Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                                Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"
+                                Drawing="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                IsHitTestVisible="False"
+                                ClipToBounds="False" />
           <controls:InkLayer x:Name="PART_InkLayer"
                              Width="{Binding DrawingSource.Width, RelativeSource={RelativeSource TemplatedParent}}"
                              Height="{Binding DrawingSource.Height, RelativeSource={RelativeSource TemplatedParent}}"

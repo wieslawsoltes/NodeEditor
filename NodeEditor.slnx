@@ -42,6 +42,7 @@
     <Project Path="samples/NodeEditor.Desktop/NodeEditor.Desktop.csproj" />
     <Project Path="samples/NodeEditor.Logic/NodeEditor.Logic.csproj" />
     <Project Path="samples/NodeEditor.Logic.Desktop/NodeEditor.Logic.Desktop.csproj" />
+    <Project Path="samples/NodeEditor.Web/NodeEditor.Web.csproj" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/NodeEditorAvalonia/NodeEditorAvalonia.csproj" />

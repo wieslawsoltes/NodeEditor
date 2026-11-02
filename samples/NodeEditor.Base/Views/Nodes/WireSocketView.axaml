@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:NodeEditorDemo.ViewModels.Nodes"
+             x:Class="NodeEditorDemo.Views.Nodes.WireSocketView"
+             x:DataType="vm:WireSocketViewModel"
+             x:CompileBindings="True">
+  <Border Background="#252A38" BorderBrush="#414B60" BorderThickness="1" CornerRadius="9">
+    <Grid RowDefinitions="76,*">
+      <Border Background="#2E3547" CornerRadius="8,8,0,0" Padding="16,13">
+        <StackPanel Spacing="5">
+          <TextBlock Text="{Binding Title}" Foreground="#F2F5FF" FontSize="16" FontWeight="SemiBold" />
+          <TextBlock Text="{Binding Subtitle}" Foreground="#98A8C6" FontSize="10" LetterSpacing="1.3" />
+        </StackPanel>
+      </Border>
+      <StackPanel Grid.Row="1" Margin="16,0">
+        <TextBlock Text="Grayscale" Foreground="#ADB8D1" Height="32" VerticalAlignment="Center" Padding="0,8,0,0" />
+        <TextBlock Text="Color" Foreground="#54D6C2" Height="32" Padding="0,8,0,0" />
+        <TextBlock Text="SDF 2D" Foreground="#FFCE66" Height="32" Padding="0,8,0,0" />
+        <TextBlock Text="SDF 3D" Foreground="#FF916E" Height="32" Padding="0,8,0,0" />
+        <TextBlock Text="RGBA" Foreground="#7C9CFF" Height="32" Padding="0,8,0,0" />
+        <TextBlock Text="Texture 3D" Foreground="#D486F6" Height="32" Padding="0,8,0,0" />
+      </StackPanel>
+    </Grid>
+  </Border>
+</UserControl>

@@ -28,12 +28,12 @@ public class NodeZoomBorder : ZoomBorder
         ZoomTo(ratio, x, y);
     }
 
-    public void ZoomInCommand()
+    public new void ZoomInCommand()
     {
         ZoomIn();
     }
 
-    public void ZoomOutCommand()
+    public new void ZoomOutCommand()
     {
         ZoomOut();
     }

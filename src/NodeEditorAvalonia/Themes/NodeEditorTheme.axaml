@@ -14,6 +14,9 @@
           <SolidColorBrush x:Key='ConnectorLabelBackgroundBrush'>#CCFFFFFF</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectorLabelBorderBrush'>#66000000</SolidColorBrush>
           <SolidColorBrush x:Key='NodeResizeHandleFillBrush'>White</SolidColorBrush>
+          <SolidColorBrush x:Key='ZipTieStrokeBrush'>#66758A</SolidColorBrush>
+          <SolidColorBrush x:Key='ZipTieSelectedStrokeBrush'>#179DE3</SolidColorBrush>
+          <SolidColorBrush x:Key='ZipTieFillBrush'>#F2F6FC</SolidColorBrush>
           <SolidColorBrush x:Key='NodeResizeHandleBorderBrush'>#66000000</SolidColorBrush>
           <SolidColorBrush x:Key='GuideLineBrush'>#FF179DE3</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectionRejectedBrush'>#FFE33F2D</SolidColorBrush>
@@ -38,6 +41,9 @@
           <SolidColorBrush x:Key='ConnectorLabelBackgroundBrush'>#CC1C1C1C</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectorLabelBorderBrush'>#66FFFFFF</SolidColorBrush>
           <SolidColorBrush x:Key='NodeResizeHandleFillBrush'>#FF1C1C1C</SolidColorBrush>
+          <SolidColorBrush x:Key='ZipTieStrokeBrush'>#9BAAC2</SolidColorBrush>
+          <SolidColorBrush x:Key='ZipTieSelectedStrokeBrush'>#72BAFF</SolidColorBrush>
+          <SolidColorBrush x:Key='ZipTieFillBrush'>#263348</SolidColorBrush>
           <SolidColorBrush x:Key='NodeResizeHandleBorderBrush'>#66FFFFFF</SolidColorBrush>
           <SolidColorBrush x:Key='GuideLineBrush'>#FF179DE3</SolidColorBrush>
           <SolidColorBrush x:Key='ConnectionRejectedBrush'>#FFE33F2D</SolidColorBrush>
@@ -77,6 +83,12 @@
   <Style Selector="controls|GuidesAdorner">
     <Setter Property="Stroke" Value="{DynamicResource GuideLineBrush}" />
     <Setter Property="StrokeThickness" Value="1" />
+  </Style>
+
+  <Style Selector="controls|ZipTieLayer">
+    <Setter Property="Stroke" Value="{DynamicResource ZipTieStrokeBrush}" />
+    <Setter Property="SelectedStroke" Value="{DynamicResource ZipTieSelectedStrokeBrush}" />
+    <Setter Property="Fill" Value="{DynamicResource ZipTieFillBrush}" />
   </Style>
 
   <Style Selector="controls|ConnectorSelectedAdorner">

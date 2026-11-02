@@ -1,11 +1,12 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
-                    xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Avalonia.Xaml.Interactions.DragAndDrop"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Xaml.Behaviors.Interactivity"
+                    xmlns:idd="clr-namespace:Avalonia.Xaml.Interactions.DragAndDrop;assembly=Xaml.Behaviors.Interactions.DragAndDrop"
                     xmlns:input="clr-namespace:Avalonia.Input;assembly=Avalonia.Base"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
+                    xmlns:converters="clr-namespace:NodeEditor.Converters"
                     x:CompileBindings="True">
 
   <StreamGeometry x:Key="EditorCutIcon">M16.125 23.4219Q16.9219 23.4531 17.6328 23.7734Q18.3437 24.0938 18.8672 24.6406Q19.3906 25.1875 19.6953 25.9063Q20 26.625 20 27.4219Q20 28.25 19.6797 28.9766Q19.3594 29.7031 18.8203 30.2422Q18.2812 30.7813 17.5469 31.1016Q16.8125 31.4219 16 31.4219Q15.1719 31.4219 14.4453 31.1016Q13.7188 30.7813 13.1797 30.2422Q12.6406 29.7031 12.3203 28.9766Q12 28.25 12 27.4219Q12 26.3125 12.5703 25.3594Q13.1406 24.4063 14.125 23.8906L9.96875 15.5938L5.82813 23.8594Q6.32812 24.125 6.72656 24.5Q7.125 24.875 7.40625 25.3438Q7.6875 25.8125 7.84375 26.3359Q8 26.8594 8 27.4219Q8 28.25 7.67969 28.9766Q7.35937 29.7031 6.82031 30.2422Q6.28125 30.7813 5.54688 31.1016Q4.8125 31.4219 4 31.4219Q3.17187 31.4219 2.44531 31.1016Q1.71875 30.7813 1.17969 30.2422Q0.640625 29.7031 0.320313 28.9766Q0 28.25 4.76837e-07 27.4219Q4.76837e-07 26.625 0.296875 25.9141Q0.59375 25.2031 1.10938 24.6641Q1.625 24.125 2.32031 23.7969Q3.01562 23.4688 3.8125 23.4219L8.84375 13.3281L3.54688 2.73438L4.45313 0L9.96875 11.0625L15.4844 0L16.3906 2.73438L11.0938 13.3281L16.125 23.4219ZM4 29.4219Q4.42188 29.4219 4.78125 29.2656Q5.14063 29.1094 5.41406 28.8359Q5.6875 28.5625 5.84375 28.2031Q6 27.8438 6 27.4219Q6 27 5.84375 26.6406Q5.6875 26.2813 5.41406 26.0078Q5.14063 25.7344 4.78125 25.5781Q4.42187 25.4219 4 25.4219Q3.57813 25.4219 3.21875 25.5781Q2.85937 25.7344 2.58594 26.0078Q2.3125 26.2813 2.15625 26.6406Q2 27 2 27.4219Q2 27.8438 2.15625 28.2031Q2.3125 28.5625 2.58594 28.8359Q2.85937 29.1094 3.21875 29.2656Q3.57813 29.4219 4 29.4219ZM16 29.4219Q16.4219 29.4219 16.7813 29.2656Q17.1406 29.1094 17.4141 28.8359Q17.6875 28.5625 17.8438 28.2031Q18 27.8438 18 27.4219Q18 27 17.8438 26.6406Q17.6875 26.2813 17.4141 26.0078Q17.1406 25.7344 16.7813 25.5781Q16.4219 25.4219 16 25.4219Q15.5781 25.4219 15.2188 25.5781Q14.8594 25.7344 14.5859 26.0078Q14.3125 26.2813 14.1563 26.6406Q14 27 14 27.4219Q14 27.8438 14.1563 28.2031Q14.3125 28.5625 14.5859 28.8359Q14.8594 29.1094 15.2188 29.2656Q15.5781 29.4219 16 29.4219Z</StreamGeometry>
@@ -97,6 +98,24 @@
                         <MenuItem Header="D_uplicate" 
                                   Command="{Binding DrawingSource.DuplicateNodesCommand, RelativeSource={RelativeSource TemplatedParent}}" 
                                   InputGesture="{OnPlatform macOS=CMD+D, iOS=CMD+D, Default=Ctrl+D}" />
+                        <MenuItem Header="Wire zip _ties" x:DataType="m:IZipTieCommands"
+                                  DataContext="{Binding #PART_DrawingNode.ZipTieCommands}"
+                                  IsVisible="{Binding ., Converter={x:Static converters:NullToBoolConverter.Instance}}">
+                          <MenuItem Header="Create from selected wires"
+                                    Command="{Binding CreateZipTieCommand}"
+                                    InputGesture="{OnPlatform macOS=CMD+J, iOS=CMD+J, Default=Ctrl+J}" />
+                          <MenuItem Header="Dissolve selected bundle"
+                                    Command="{Binding RemoveZipTieCommand}"
+                                    InputGesture="{OnPlatform macOS=CMD+Shift+J, iOS=CMD+Shift+J, Default=Ctrl+Shift+J}" />
+                          <MenuItem Header="Attach selected wires"
+                                    Command="{Binding AddSelectedToZipTieCommand}" />
+                          <MenuItem Header="Detach selected wires"
+                                    Command="{Binding RemoveSelectedFromZipTieCommand}" />
+                          <MenuItem Header="Reverse lanes"
+                                    Command="{Binding ReverseZipTieCommand}" />
+                          <MenuItem Header="Straighten bundle"
+                                    Command="{Binding StraightenZipTieCommand}" />
+                        </MenuItem>
                         <MenuItem Header="-" />
                         <MenuItem Header="_Draw">
                           <MenuItem Header="Ink Mode"

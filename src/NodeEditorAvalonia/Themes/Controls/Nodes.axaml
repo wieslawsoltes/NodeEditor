@@ -1,7 +1,7 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
-                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+                    xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Xaml.Behaviors.Interactivity"
                     xmlns:behaviors="clr-namespace:NodeEditor.Behaviors"
                     xmlns:controls="clr-namespace:NodeEditor.Controls"
                     x:CompileBindings="True">
@@ -18,6 +18,8 @@
                       Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
                       ClipToBounds="False">
           <i:Interaction.Behaviors>
+            <behaviors:ZipTieInteractionBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                                InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" />
             <behaviors:NodesSelectedBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" />
             <behaviors:DrawingSelectionBehavior DrawingSource="{Binding DrawingSource, RelativeSource={RelativeSource TemplatedParent}}" 
                                                 InputSource="{Binding InputSource, RelativeSource={RelativeSource TemplatedParent}}" 

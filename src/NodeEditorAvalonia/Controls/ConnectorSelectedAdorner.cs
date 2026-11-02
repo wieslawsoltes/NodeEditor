@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Collections.Specialized;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Immutable;
+using Avalonia.VisualTree;
 using NodeEditor;
 using NodeEditor.Model;
 
@@ -10,6 +13,11 @@ namespace NodeEditor.Controls;
 
 public class ConnectorSelectedAdorner : Control
 {
+    private readonly Dictionary<IConnector, ZipTieConnectorSubscription> _zipTieSubscriptions = new();
+    private readonly List<INotifyPropertyChanged> _connectorSubscriptions = new();
+    private INotifyCollectionChanged? _collection;
+    private bool _isAttached;
+
     public static readonly StyledProperty<IReadOnlyList<IConnector>?> ConnectorsProperty =
         AvaloniaProperty.Register<ConnectorSelectedAdorner, IReadOnlyList<IConnector>?>(nameof(Connectors));
 
@@ -45,9 +53,77 @@ public class ConnectorSelectedAdorner : Control
 
         if (change.Property == ConnectorsProperty || change.Property == StrokeProperty || change.Property == StrokeThicknessProperty)
         {
+            if (change.Property == ConnectorsProperty)
+            {
+                RefreshSubscriptions();
+            }
             InvalidateVisual();
         }
     }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        _isAttached = true;
+        RefreshSubscriptions();
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        _isAttached = false;
+        RefreshSubscriptions();
+    }
+
+    private void RefreshSubscriptions()
+    {
+        if (_collection is not null)
+        {
+            _collection.CollectionChanged -= CollectionChanged;
+            _collection = null;
+        }
+        foreach (var notifier in _connectorSubscriptions)
+        {
+            notifier.PropertyChanged -= ConnectorChanged;
+        }
+        _connectorSubscriptions.Clear();
+        foreach (var subscription in _zipTieSubscriptions.Values)
+        {
+            subscription.Dispose();
+        }
+        _zipTieSubscriptions.Clear();
+
+        if (!_isAttached || Connectors is not { } connectors)
+        {
+            return;
+        }
+        _collection = connectors as INotifyCollectionChanged;
+        if (_collection is not null)
+        {
+            _collection.CollectionChanged += CollectionChanged;
+        }
+        foreach (var connector in connectors)
+        {
+            if (_zipTieSubscriptions.ContainsKey(connector))
+            {
+                continue;
+            }
+            _zipTieSubscriptions.Add(connector, new ZipTieConnectorSubscription(connector, InvalidateVisual));
+            if (connector is INotifyPropertyChanged notifier)
+            {
+                _connectorSubscriptions.Add(notifier);
+                notifier.PropertyChanged += ConnectorChanged;
+            }
+        }
+    }
+
+    private void CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        RefreshSubscriptions();
+        InvalidateVisual();
+    }
+
+    private void ConnectorChanged(object? sender, PropertyChangedEventArgs e) => InvalidateVisual();
 
     public override void Render(DrawingContext context)
     {

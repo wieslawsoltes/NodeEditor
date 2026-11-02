@@ -31,7 +31,7 @@ jobs:
       with:
         global-json-file: global.json
     - name: Install workloads
-      run: dotnet workload install wasm-tools wasm-experimental
+      run: dotnet workload install wasm-tools
     - name: Build
       run: dotnet build -c Release
 
@@ -49,7 +49,7 @@ jobs:
       with:
         global-json-file: global.json
     - name: Install workloads
-      run: dotnet workload install wasm-tools wasm-experimental
+      run: dotnet workload install wasm-tools
     - name: Test
       run: dotnet test -c Release
 
@@ -63,7 +63,7 @@ jobs:
       with:
         global-json-file: global.json
     - name: Install workloads
-      run: dotnet workload install wasm-tools wasm-experimental
+      run: dotnet workload install wasm-tools
     - name: Pack
       run: dotnet pack -c Release -o artifacts/nuget
     - name: Upload NuGet artifacts
@@ -71,3 +71,22 @@ jobs:
       with:
         name: nightly-nuget-packages
         path: artifacts/nuget/*.nupkg
+
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        global-json-file: global.json
+    - name: Install WebAssembly tools
+      run: dotnet workload install wasm-tools
+    - name: Publish browser sample
+      run: dotnet publish samples/NodeEditor.Web/NodeEditor.Web.csproj -c Release -o artifacts/browser
+    - name: Upload browser sample
+      uses: actions/upload-artifact@v4
+      with:
+        name: nodeeditor-browser-sample
+        path: artifacts/browser/wwwroot
+        if-no-files-found: error

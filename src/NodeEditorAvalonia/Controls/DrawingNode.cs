@@ -7,6 +7,13 @@ namespace NodeEditor.Controls;
 
 public class DrawingNode : TemplatedControl
 {
+    /// <summary>Identifies the optional zip-tie commands exposed to the drawing's context menu.</summary>
+    public static readonly DirectProperty<DrawingNode, IZipTieCommands?> ZipTieCommandsProperty =
+        AvaloniaProperty.RegisterDirect<DrawingNode, IZipTieCommands?>(nameof(ZipTieCommands), control => control.ZipTieCommands);
+
+    /// <summary>Gets zip-tie editing commands when the drawing supports them.</summary>
+    public IZipTieCommands? ZipTieCommands => DrawingSource as IZipTieCommands;
+
     public static readonly StyledProperty<IDrawingNode?> DrawingSourceProperty =
         AvaloniaProperty.Register<DrawingNode, IDrawingNode?>(nameof(DrawingSource));
 
@@ -32,5 +39,15 @@ public class DrawingNode : TemplatedControl
     {
         get => GetValue(AdornerCanvasProperty);
         set => SetValue(AdornerCanvasProperty, value);
+    }
+
+    /// <inheritdoc />
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+        if (change.Property == DrawingSourceProperty)
+        {
+            RaisePropertyChanged(ZipTieCommandsProperty, change.OldValue as IZipTieCommands, ZipTieCommands);
+        }
     }
 }

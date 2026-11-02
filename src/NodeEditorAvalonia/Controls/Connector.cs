@@ -56,13 +56,19 @@ public class Connector : Shape
     public static readonly StyledProperty<Point> LabelPointProperty =
         AvaloniaProperty.Register<Connector, Point>(nameof(LabelPoint));
 
+    /// <summary>Identifies whether individual waypoint handles can currently edit this wire.</summary>
+    public static readonly DirectProperty<Connector, bool> HasEditableWaypointsProperty =
+        AvaloniaProperty.RegisterDirect<Connector, bool>(nameof(HasEditableWaypoints), control => control.HasEditableWaypoints);
+
     private INotifyCollectionChanged? _waypointsCollection;
     private readonly List<INotifyPropertyChanged> _waypointSubscriptions = new();
     private INotifyPropertyChanged? _connectorSubscription;
     private INotifyPropertyChanged? _settingsSubscription;
     private IConnector? _attachedConnector;
     private IDrawingNodeSettings? _attachedSettings;
+    private ZipTieConnectorSubscription? _zipTieSubscription;
     private readonly DelegateCommand _swapDirectionCommand;
+    private bool _hasEditableWaypoints;
 
     static Connector()
     {
@@ -124,6 +130,9 @@ public class Connector : Shape
 
     public ICommand SwapDirectionCommand => _swapDirectionCommand;
 
+    /// <summary>Gets whether this unlocked manual wire is outside an active zip-tie route.</summary>
+    public bool HasEditableWaypoints => _hasEditableWaypoints;
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -132,6 +141,7 @@ public class Connector : Shape
         {
             DetachConnector();
             AttachConnector(change.NewValue as IConnector);
+            UpdateEditableWaypoints();
             InvalidateGeometry();
             UpdateLabelPoint();
             _swapDirectionCommand.NotifyCanExecuteChanged();
@@ -182,142 +192,7 @@ public class Connector : Shape
     }
 
     private static StreamGeometry BuildLineGeometry(IConnector connector, Point start, Point end)
-    {
-        if (connector.Style == ConnectorStyle.Bezier)
-        {
-            var points = ConnectorPathHelper.GetPolylinePoints(connector, start, end);
-            if (points.Count <= 2 && connector.Waypoints is not { Count: > 0 })
-            {
-                return BuildSingleBezierGeometry(connector, start, end);
-            }
-
-            var radius = ResolveCornerRadius(connector);
-            return BuildRoundedGeometry(points, radius);
-        }
-
-        var polylinePoints = ConnectorPathHelper.GetPolylinePoints(connector, start, end);
-        return BuildPolylineGeometry(polylinePoints);
-    }
-
-    private static StreamGeometry BuildSingleBezierGeometry(IConnector connector, Point start, Point end)
-    {
-        var geometry = new StreamGeometry();
-
-        using (var context = geometry.Open())
-        {
-            var p1X = start.X;
-            var p1Y = start.Y;
-            var p2X = end.X;
-            var p2Y = end.Y;
-
-            connector.GetControlPoints(
-                connector.Orientation,
-                connector.Offset,
-                connector.Start?.Alignment ?? PinAlignment.None,
-                connector.End?.Alignment ?? PinAlignment.None,
-                ref p1X,
-                ref p1Y,
-                ref p2X,
-                ref p2Y);
-
-            context.BeginFigure(start, false);
-            context.CubicBezierTo(new Point(p1X, p1Y), new Point(p2X, p2Y), end);
-            context.EndFigure(false);
-        }
-
-        return geometry;
-    }
-
-    private static StreamGeometry BuildPolylineGeometry(IReadOnlyList<Point> points)
-    {
-        var geometry = new StreamGeometry();
-        if (points.Count == 0)
-        {
-            return geometry;
-        }
-
-        using (var context = geometry.Open())
-        {
-            context.BeginFigure(points[0], false);
-            for (var i = 1; i < points.Count; i++)
-            {
-                context.LineTo(points[i]);
-            }
-            context.EndFigure(false);
-        }
-
-        return geometry;
-    }
-
-    private static StreamGeometry BuildRoundedGeometry(IReadOnlyList<Point> points, double radius)
-    {
-        if (points.Count < 2 || radius <= 0.001)
-        {
-            return BuildPolylineGeometry(points);
-        }
-
-        var geometry = new StreamGeometry();
-
-        using (var context = geometry.Open())
-        {
-            context.BeginFigure(points[0], false);
-
-            for (var i = 1; i < points.Count - 1; i++)
-            {
-                var prev = points[i - 1];
-                var current = points[i];
-                var next = points[i + 1];
-
-                var inDx = prev.X - current.X;
-                var inDy = prev.Y - current.Y;
-                var outDx = next.X - current.X;
-                var outDy = next.Y - current.Y;
-
-                var inLen = Math.Sqrt(inDx * inDx + inDy * inDy);
-                var outLen = Math.Sqrt(outDx * outDx + outDy * outDy);
-
-                if (inLen < 0.001 || outLen < 0.001 || IsColinear(prev, current, next))
-                {
-                    context.LineTo(current);
-                    continue;
-                }
-
-                var cornerRadius = Math.Min(radius, Math.Min(inLen, outLen) * 0.5);
-                var inScale = cornerRadius / inLen;
-                var outScale = cornerRadius / outLen;
-
-                var startCurve = new Point(current.X + inDx * inScale, current.Y + inDy * inScale);
-                var endCurve = new Point(current.X + outDx * outScale, current.Y + outDy * outScale);
-
-                context.LineTo(startCurve);
-                context.CubicBezierTo(current, current, endCurve);
-            }
-
-            context.LineTo(points[points.Count - 1]);
-            context.EndFigure(false);
-        }
-
-        return geometry;
-    }
-
-    private static bool IsColinear(Point a, Point b, Point c)
-    {
-        var dx1 = b.X - a.X;
-        var dy1 = b.Y - a.Y;
-        var dx2 = c.X - b.X;
-        var dy2 = c.Y - b.Y;
-        return Math.Abs(dx1 * dy2 - dy1 * dx2) < 0.001;
-    }
-
-    private static double ResolveCornerRadius(IConnector connector)
-    {
-        if (connector.Parent?.Settings is { } settings)
-        {
-            return Math.Max(0.0, settings.RoutingCornerRadius);
-        }
-
-        return 0.0;
-    }
+        => ConnectorPathHelper.BuildPath(connector, start, end).CreateGeometry();
 
     private void AppendArrowGeometries(GeometryGroup group, IConnector connector, Point start, Point end)
     {
@@ -429,6 +304,8 @@ public class Connector : Shape
 
         AttachWaypoints(connector.Waypoints);
         AttachSettings(connector.Parent?.Settings);
+        _zipTieSubscription = new ZipTieConnectorSubscription(connector, OnZipTieChanged);
+        UpdateEditableWaypoints();
         UpdateLabelPoint();
     }
 
@@ -442,7 +319,26 @@ public class Connector : Shape
 
         DetachWaypoints();
         DetachSettings();
+        _zipTieSubscription?.Dispose();
+        _zipTieSubscription = null;
         _attachedConnector = null;
+    }
+
+    private void OnZipTieChanged()
+    {
+        UpdateEditableWaypoints();
+        InvalidateGeometry();
+        UpdateLabelPoint();
+        InvalidateVisual();
+    }
+
+    private void UpdateEditableWaypoints()
+    {
+        var connector = ConnectorSource;
+        var bundled = connector?.Parent is IZipTieHost host
+            && host.FindZipTie(connector) is { IsVisible: true, Connectors.Count: >= 2 };
+        var editable = connector is { IsLocked: false, RoutingMode: ConnectorRoutingMode.Manual } && !bundled;
+        SetAndRaise(HasEditableWaypointsProperty, ref _hasEditableWaypoints, editable);
     }
 
     private void AttachWaypoints(IList<ConnectorPoint>? waypoints)
@@ -519,6 +415,8 @@ public class Connector : Shape
             return;
         }
 
+        UpdateEditableWaypoints();
+
         if (e.PropertyName == nameof(IConnector.Waypoints))
         {
             DetachWaypoints();
@@ -537,7 +435,9 @@ public class Connector : Shape
             || e.PropertyName == nameof(IConnector.Start)
             || e.PropertyName == nameof(IConnector.End)
             || e.PropertyName == nameof(IConnector.Parent)
-            || e.PropertyName == nameof(IConnector.Waypoints))
+            || e.PropertyName == nameof(IConnector.Waypoints)
+            || e.PropertyName == nameof(IConnector.StartArrow)
+            || e.PropertyName == nameof(IConnector.EndArrow))
         {
             InvalidateGeometry();
             UpdateLabelPoint();

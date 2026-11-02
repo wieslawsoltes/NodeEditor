@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:NodeEditorDemo.ViewModels"
+             xmlns:nvm="using:NodeEditorDemo.ViewModels.Nodes"
+             xmlns:views="using:NodeEditorDemo.Views.Nodes"
+             xmlns:converters="using:NodeEditorDemo.Converters"
+             xmlns:editor="clr-namespace:NodeEditor.Controls;assembly=NodeEditorAvalonia"
+             xmlns:m="clr-namespace:NodeEditor.Model;assembly=NodeEditorAvalonia.Model"
+             x:Class="NodeEditorDemo.Views.ZipTieDemoView"
+             x:DataType="vm:ZipTieDemoViewModel"
+             x:CompileBindings="True"
+             Background="#161923"
+             FontFamily="avares://Avalonia.Fonts.Inter/Assets#Inter">
+  <UserControl.Resources>
+    <converters:WireColorConverter x:Key="WireColor" />
+    <SolidColorBrush x:Key="EditorBackground">#161923</SolidColorBrush>
+    <SolidColorBrush x:Key="DrawingBackground">#1B1F2C</SolidColorBrush>
+    <SolidColorBrush x:Key="ConnectorCrossingBackgroundBrush">#1B1F2C</SolidColorBrush>
+  </UserControl.Resources>
+  <UserControl.DataTemplates>
+    <DataTemplate DataType="nvm:WireSocketViewModel">
+      <views:WireSocketView />
+    </DataTemplate>
+  </UserControl.DataTemplates>
+  <UserControl.Styles>
+    <Style Selector="editor|Connector" x:DataType="editor:Connector">
+      <Setter Property="Stroke" Value="{Binding $self.ConnectorSource, Converter={StaticResource WireColor}}" />
+      <Setter Property="Fill" Value="{Binding $self.ConnectorSource, Converter={StaticResource WireColor}}" />
+      <Setter Property="StrokeThickness" Value="2.5" />
+    </Style>
+    <Style Selector="Button.tool">
+      <Setter Property="Padding" Value="11,7" />
+      <Setter Property="Margin" Value="0,0,6,6" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="CornerRadius" Value="5" />
+    </Style>
+  </UserControl.Styles>
+  <UserControl.KeyBindings>
+    <KeyBinding Gesture="Ctrl+Z" Command="{Binding Drawing.UndoCommand}" />
+    <KeyBinding Gesture="Ctrl+Y" Command="{Binding Drawing.RedoCommand}" />
+    <KeyBinding Gesture="Ctrl+Shift+Z" Command="{Binding Drawing.RedoCommand}" />
+    <KeyBinding Gesture="Ctrl+A" Command="{Binding SelectWiresCommand}" />
+  </UserControl.KeyBindings>
+  <Grid RowDefinitions="Auto,Auto,*,Auto">
+    <Border Padding="20,16" BorderBrush="#333B4F" BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="*,Auto">
+        <StackPanel Spacing="4">
+          <TextBlock Text="Wire zip ties" FontSize="22" FontWeight="SemiBold" Foreground="#F0F3FD" />
+          <TextBlock Text="Bundle independent wires. Shape one shared route." Foreground="#A4B2CC" FontSize="12" />
+        </StackPanel>
+        <Border Grid.Column="1" VerticalAlignment="Center" Background="#253547" CornerRadius="5" Padding="10,6">
+          <TextBlock Text="NodeEditor / Avalonia" Foreground="#91C4E7" FontSize="11" />
+        </Border>
+      </Grid>
+    </Border>
+    <Border Grid.Row="1" Padding="16,12,10,6" Background="#1E2330" BorderBrush="#333B4F" BorderThickness="0,0,0,1">
+      <StackPanel Spacing="3">
+        <WrapPanel>
+          <Button Classes="tool" Content="Select wires" Command="{Binding SelectWiresCommand}" ToolTip.Tip="Select all visible wires (Ctrl+A)" />
+          <Button Classes="tool" Content="Create tie" Command="{Binding Drawing.CreateZipTieCommand}" ToolTip.Tip="Bundle at least two selected, unlocked wires" />
+          <Button Classes="tool" Content="Dissolve" Command="{Binding Drawing.RemoveZipTieCommand}" ToolTip.Tip="Remove the selected bundle while keeping every wire" />
+          <Button Classes="tool" Content="Attach selected" Command="{Binding Drawing.AddSelectedToZipTieCommand}" />
+          <Button Classes="tool" Content="Detach selected" Command="{Binding Drawing.RemoveSelectedFromZipTieCommand}" />
+          <Button Classes="tool" Content="Add bend" Command="{Binding AddBendCommand}" />
+          <Button Classes="tool" Content="Straighten" Command="{Binding Drawing.StraightenZipTieCommand}" />
+          <Button Classes="tool" Content="Reverse lanes" Command="{Binding Drawing.ReverseZipTieCommand}" />
+        </WrapPanel>
+        <WrapPanel>
+          <Button Classes="tool" Content="Undo" Command="{Binding Drawing.UndoCommand}" />
+          <Button Classes="tool" Content="Redo" Command="{Binding Drawing.RedoCommand}" />
+          <Button Classes="tool" Content="Bezier" Command="{Binding SetWireStyleCommand}" CommandParameter="{x:Static m:ConnectorStyle.Bezier}" />
+          <Button Classes="tool" Content="Straight" Command="{Binding SetWireStyleCommand}" CommandParameter="{x:Static m:ConnectorStyle.Straight}" />
+          <Button Classes="tool" Content="Orthogonal" Command="{Binding SetWireStyleCommand}" CommandParameter="{x:Static m:ConnectorStyle.Orthogonal}" />
+          <TextBlock Text="Lane gap" Foreground="#A4B2CC" VerticalAlignment="Center" Margin="6,0,8,6" />
+          <NumericUpDown Value="{Binding Spacing, Mode=TwoWay}" Minimum="2" Maximum="32" Increment="1" Width="92" Margin="0,0,10,6" IsEnabled="{Binding CanEditSelectedTie}" FormatString="0.#" />
+          <Button Classes="tool" Content="Save snapshot" Command="{Binding SaveSnapshotCommand}" ToolTip.Tip="Serialize the drawing and zip ties to an in-memory JSON snapshot" />
+          <Button Classes="tool" Content="Restore snapshot" Command="{Binding LoadSnapshotCommand}" />
+          <Button Classes="tool" Content="Reset demo" Command="{Binding ResetCommand}" />
+        </WrapPanel>
+      </StackPanel>
+    </Border>
+    <editor:Editor Grid.Row="2" DrawingSource="{Binding Drawing}" Name="DemoEditor" />
+    <Border Grid.Row="3" Background="#1E2330" BorderBrush="#333B4F" BorderThickness="0,1,0,0" Padding="16,10">
+      <StackPanel Spacing="4">
+        <TextBlock Text="{Binding SelectionText}" Foreground="#C8D8F4" FontWeight="SemiBold" FontSize="12" />
+        <TextBlock Text="{Binding Status}" Foreground="#9FAFCB" FontSize="11" TextWrapping="Wrap" />
+        <TextBlock Text="Drag collars to route · Shift-drag moves the bundle · Click wires to select · Wheel to zoom · Middle-drag to pan" Foreground="#7D8DAA" FontSize="10" TextWrapping="Wrap" />
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>
