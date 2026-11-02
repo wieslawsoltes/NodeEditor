@@ -1,6 +1,12 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: NodeEditor
+  name: NodeEditor
+  href: api/NodeEditor.html
+  commentId: N:NodeEditor
+  fullName: NodeEditor
+  nameWithType: NodeEditor
 - uid: NodeEditor.Behaviors
   name: NodeEditor.Behaviors
   href: api/NodeEditor.Behaviors.html
@@ -1386,6 +1392,134 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Behaviors.ToolboxDragBehavior.OnDetaching
   nameWithType: ToolboxDragBehavior.OnDetaching
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior
+  name: ZipTieInteractionBehavior
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html
+  commentId: T:NodeEditor.Behaviors.ZipTieInteractionBehavior
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior
+  nameWithType: ZipTieInteractionBehavior
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSource
+  name: DrawingSource
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_DrawingSource
+  commentId: P:NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSource
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSource
+  nameWithType: ZipTieInteractionBehavior.DrawingSource
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSource*
+  name: DrawingSource
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_DrawingSource_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSource
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSource
+  nameWithType: ZipTieInteractionBehavior.DrawingSource
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSourceProperty
+  name: DrawingSourceProperty
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_DrawingSourceProperty
+  commentId: F:NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSourceProperty
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.DrawingSourceProperty
+  nameWithType: ZipTieInteractionBehavior.DrawingSourceProperty
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.HitTolerance
+  name: HitTolerance
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_HitTolerance
+  commentId: P:NodeEditor.Behaviors.ZipTieInteractionBehavior.HitTolerance
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.HitTolerance
+  nameWithType: ZipTieInteractionBehavior.HitTolerance
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.HitTolerance*
+  name: HitTolerance
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_HitTolerance_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.HitTolerance
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.HitTolerance
+  nameWithType: ZipTieInteractionBehavior.HitTolerance
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.HitToleranceProperty
+  name: HitToleranceProperty
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_HitToleranceProperty
+  commentId: F:NodeEditor.Behaviors.ZipTieInteractionBehavior.HitToleranceProperty
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.HitToleranceProperty
+  nameWithType: ZipTieInteractionBehavior.HitToleranceProperty
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSource
+  name: InputSource
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_InputSource
+  commentId: P:NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSource
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSource
+  nameWithType: ZipTieInteractionBehavior.InputSource
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSource*
+  name: InputSource
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_InputSource_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSource
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSource
+  nameWithType: ZipTieInteractionBehavior.InputSource
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSourceProperty
+  name: InputSourceProperty
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_InputSourceProperty
+  commentId: F:NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSourceProperty
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.InputSourceProperty
+  nameWithType: ZipTieInteractionBehavior.InputSourceProperty
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttached
+  name: OnAttached()
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnAttached
+  commentId: M:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttached
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttached()
+  nameWithType: ZipTieInteractionBehavior.OnAttached()
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttached*
+  name: OnAttached
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnAttached_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttached
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttached
+  nameWithType: ZipTieInteractionBehavior.OnAttached
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttachedToVisualTree
+  name: OnAttachedToVisualTree()
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnAttachedToVisualTree
+  commentId: M:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttachedToVisualTree
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttachedToVisualTree()
+  nameWithType: ZipTieInteractionBehavior.OnAttachedToVisualTree()
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttachedToVisualTree*
+  name: OnAttachedToVisualTree
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnAttachedToVisualTree_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttachedToVisualTree
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnAttachedToVisualTree
+  nameWithType: ZipTieInteractionBehavior.OnAttachedToVisualTree
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetachedFromVisualTree
+  name: OnDetachedFromVisualTree()
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnDetachedFromVisualTree
+  commentId: M:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetachedFromVisualTree
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetachedFromVisualTree()
+  nameWithType: ZipTieInteractionBehavior.OnDetachedFromVisualTree()
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetachedFromVisualTree*
+  name: OnDetachedFromVisualTree
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnDetachedFromVisualTree_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetachedFromVisualTree
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetachedFromVisualTree
+  nameWithType: ZipTieInteractionBehavior.OnDetachedFromVisualTree
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetaching
+  name: OnDetaching()
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnDetaching
+  commentId: M:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetaching
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetaching()
+  nameWithType: ZipTieInteractionBehavior.OnDetaching()
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetaching*
+  name: OnDetaching
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnDetaching_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetaching
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnDetaching
+  nameWithType: ZipTieInteractionBehavior.OnDetaching
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  name: OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnPropertyChanged_Avalonia_AvaloniaPropertyChangedEventArgs_
+  commentId: M:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  nameWithType: ZipTieInteractionBehavior.OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
+- uid: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnPropertyChanged*
+  name: OnPropertyChanged
+  href: api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html#NodeEditor_Behaviors_ZipTieInteractionBehavior_OnPropertyChanged_
+  commentId: Overload:NodeEditor.Behaviors.ZipTieInteractionBehavior.OnPropertyChanged
+  isSpec: "True"
+  fullName: NodeEditor.Behaviors.ZipTieInteractionBehavior.OnPropertyChanged
+  nameWithType: ZipTieInteractionBehavior.OnPropertyChanged
 - uid: NodeEditor.Controls
   name: NodeEditor.Controls
   href: api/NodeEditor.Controls.html
@@ -1487,6 +1621,25 @@ references:
   commentId: F:NodeEditor.Controls.Connector.EndPointProperty
   fullName: NodeEditor.Controls.Connector.EndPointProperty
   nameWithType: Connector.EndPointProperty
+- uid: NodeEditor.Controls.Connector.HasEditableWaypoints
+  name: HasEditableWaypoints
+  href: api/NodeEditor.Controls.Connector.html#NodeEditor_Controls_Connector_HasEditableWaypoints
+  commentId: P:NodeEditor.Controls.Connector.HasEditableWaypoints
+  fullName: NodeEditor.Controls.Connector.HasEditableWaypoints
+  nameWithType: Connector.HasEditableWaypoints
+- uid: NodeEditor.Controls.Connector.HasEditableWaypoints*
+  name: HasEditableWaypoints
+  href: api/NodeEditor.Controls.Connector.html#NodeEditor_Controls_Connector_HasEditableWaypoints_
+  commentId: Overload:NodeEditor.Controls.Connector.HasEditableWaypoints
+  isSpec: "True"
+  fullName: NodeEditor.Controls.Connector.HasEditableWaypoints
+  nameWithType: Connector.HasEditableWaypoints
+- uid: NodeEditor.Controls.Connector.HasEditableWaypointsProperty
+  name: HasEditableWaypointsProperty
+  href: api/NodeEditor.Controls.Connector.html#NodeEditor_Controls_Connector_HasEditableWaypointsProperty
+  commentId: F:NodeEditor.Controls.Connector.HasEditableWaypointsProperty
+  fullName: NodeEditor.Controls.Connector.HasEditableWaypointsProperty
+  nameWithType: Connector.HasEditableWaypointsProperty
 - uid: NodeEditor.Controls.Connector.LabelPoint
   name: LabelPoint
   href: api/NodeEditor.Controls.Connector.html#NodeEditor_Controls_Connector_LabelPoint
@@ -1793,6 +1946,32 @@ references:
   commentId: F:NodeEditor.Controls.ConnectorSelectedAdorner.ConnectorsProperty
   fullName: NodeEditor.Controls.ConnectorSelectedAdorner.ConnectorsProperty
   nameWithType: ConnectorSelectedAdorner.ConnectorsProperty
+- uid: NodeEditor.Controls.ConnectorSelectedAdorner.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  name: OnAttachedToVisualTree(VisualTreeAttachmentEventArgs)
+  href: api/NodeEditor.Controls.ConnectorSelectedAdorner.html#NodeEditor_Controls_ConnectorSelectedAdorner_OnAttachedToVisualTree_Avalonia_VisualTreeAttachmentEventArgs_
+  commentId: M:NodeEditor.Controls.ConnectorSelectedAdorner.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  fullName: NodeEditor.Controls.ConnectorSelectedAdorner.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  nameWithType: ConnectorSelectedAdorner.OnAttachedToVisualTree(VisualTreeAttachmentEventArgs)
+- uid: NodeEditor.Controls.ConnectorSelectedAdorner.OnAttachedToVisualTree*
+  name: OnAttachedToVisualTree
+  href: api/NodeEditor.Controls.ConnectorSelectedAdorner.html#NodeEditor_Controls_ConnectorSelectedAdorner_OnAttachedToVisualTree_
+  commentId: Overload:NodeEditor.Controls.ConnectorSelectedAdorner.OnAttachedToVisualTree
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ConnectorSelectedAdorner.OnAttachedToVisualTree
+  nameWithType: ConnectorSelectedAdorner.OnAttachedToVisualTree
+- uid: NodeEditor.Controls.ConnectorSelectedAdorner.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  name: OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs)
+  href: api/NodeEditor.Controls.ConnectorSelectedAdorner.html#NodeEditor_Controls_ConnectorSelectedAdorner_OnDetachedFromVisualTree_Avalonia_VisualTreeAttachmentEventArgs_
+  commentId: M:NodeEditor.Controls.ConnectorSelectedAdorner.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  fullName: NodeEditor.Controls.ConnectorSelectedAdorner.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  nameWithType: ConnectorSelectedAdorner.OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs)
+- uid: NodeEditor.Controls.ConnectorSelectedAdorner.OnDetachedFromVisualTree*
+  name: OnDetachedFromVisualTree
+  href: api/NodeEditor.Controls.ConnectorSelectedAdorner.html#NodeEditor_Controls_ConnectorSelectedAdorner_OnDetachedFromVisualTree_
+  commentId: Overload:NodeEditor.Controls.ConnectorSelectedAdorner.OnDetachedFromVisualTree
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ConnectorSelectedAdorner.OnDetachedFromVisualTree
+  nameWithType: ConnectorSelectedAdorner.OnDetachedFromVisualTree
 - uid: NodeEditor.Controls.ConnectorSelectedAdorner.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
   name: OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
   href: api/NodeEditor.Controls.ConnectorSelectedAdorner.html#NodeEditor_Controls_ConnectorSelectedAdorner_OnPropertyChanged_Avalonia_AvaloniaPropertyChangedEventArgs_
@@ -1945,6 +2124,38 @@ references:
   commentId: F:NodeEditor.Controls.DrawingNode.InputSourceProperty
   fullName: NodeEditor.Controls.DrawingNode.InputSourceProperty
   nameWithType: DrawingNode.InputSourceProperty
+- uid: NodeEditor.Controls.DrawingNode.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  name: OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
+  href: api/NodeEditor.Controls.DrawingNode.html#NodeEditor_Controls_DrawingNode_OnPropertyChanged_Avalonia_AvaloniaPropertyChangedEventArgs_
+  commentId: M:NodeEditor.Controls.DrawingNode.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  fullName: NodeEditor.Controls.DrawingNode.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  nameWithType: DrawingNode.OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
+- uid: NodeEditor.Controls.DrawingNode.OnPropertyChanged*
+  name: OnPropertyChanged
+  href: api/NodeEditor.Controls.DrawingNode.html#NodeEditor_Controls_DrawingNode_OnPropertyChanged_
+  commentId: Overload:NodeEditor.Controls.DrawingNode.OnPropertyChanged
+  isSpec: "True"
+  fullName: NodeEditor.Controls.DrawingNode.OnPropertyChanged
+  nameWithType: DrawingNode.OnPropertyChanged
+- uid: NodeEditor.Controls.DrawingNode.ZipTieCommands
+  name: ZipTieCommands
+  href: api/NodeEditor.Controls.DrawingNode.html#NodeEditor_Controls_DrawingNode_ZipTieCommands
+  commentId: P:NodeEditor.Controls.DrawingNode.ZipTieCommands
+  fullName: NodeEditor.Controls.DrawingNode.ZipTieCommands
+  nameWithType: DrawingNode.ZipTieCommands
+- uid: NodeEditor.Controls.DrawingNode.ZipTieCommands*
+  name: ZipTieCommands
+  href: api/NodeEditor.Controls.DrawingNode.html#NodeEditor_Controls_DrawingNode_ZipTieCommands_
+  commentId: Overload:NodeEditor.Controls.DrawingNode.ZipTieCommands
+  isSpec: "True"
+  fullName: NodeEditor.Controls.DrawingNode.ZipTieCommands
+  nameWithType: DrawingNode.ZipTieCommands
+- uid: NodeEditor.Controls.DrawingNode.ZipTieCommandsProperty
+  name: ZipTieCommandsProperty
+  href: api/NodeEditor.Controls.DrawingNode.html#NodeEditor_Controls_DrawingNode_ZipTieCommandsProperty
+  commentId: F:NodeEditor.Controls.DrawingNode.ZipTieCommandsProperty
+  fullName: NodeEditor.Controls.DrawingNode.ZipTieCommandsProperty
+  nameWithType: DrawingNode.ZipTieCommandsProperty
 - uid: NodeEditor.Controls.DrawingNodeProperties
   name: DrawingNodeProperties
   href: api/NodeEditor.Controls.DrawingNodeProperties.html
@@ -3656,6 +3867,178 @@ references:
   commentId: F:NodeEditor.Controls.Toolbox.TemplatesSourceProperty
   fullName: NodeEditor.Controls.Toolbox.TemplatesSourceProperty
   nameWithType: Toolbox.TemplatesSourceProperty
+- uid: NodeEditor.Controls.ZipTieLayer
+  name: ZipTieLayer
+  href: api/NodeEditor.Controls.ZipTieLayer.html
+  commentId: T:NodeEditor.Controls.ZipTieLayer
+  fullName: NodeEditor.Controls.ZipTieLayer
+  nameWithType: ZipTieLayer
+- uid: NodeEditor.Controls.ZipTieLayer.Drawing
+  name: Drawing
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Drawing
+  commentId: P:NodeEditor.Controls.ZipTieLayer.Drawing
+  fullName: NodeEditor.Controls.ZipTieLayer.Drawing
+  nameWithType: ZipTieLayer.Drawing
+- uid: NodeEditor.Controls.ZipTieLayer.Drawing*
+  name: Drawing
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Drawing_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.Drawing
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.Drawing
+  nameWithType: ZipTieLayer.Drawing
+- uid: NodeEditor.Controls.ZipTieLayer.DrawingProperty
+  name: DrawingProperty
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_DrawingProperty
+  commentId: F:NodeEditor.Controls.ZipTieLayer.DrawingProperty
+  fullName: NodeEditor.Controls.ZipTieLayer.DrawingProperty
+  nameWithType: ZipTieLayer.DrawingProperty
+- uid: NodeEditor.Controls.ZipTieLayer.Fill
+  name: Fill
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Fill
+  commentId: P:NodeEditor.Controls.ZipTieLayer.Fill
+  fullName: NodeEditor.Controls.ZipTieLayer.Fill
+  nameWithType: ZipTieLayer.Fill
+- uid: NodeEditor.Controls.ZipTieLayer.Fill*
+  name: Fill
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Fill_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.Fill
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.Fill
+  nameWithType: ZipTieLayer.Fill
+- uid: NodeEditor.Controls.ZipTieLayer.FillProperty
+  name: FillProperty
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_FillProperty
+  commentId: F:NodeEditor.Controls.ZipTieLayer.FillProperty
+  fullName: NodeEditor.Controls.ZipTieLayer.FillProperty
+  nameWithType: ZipTieLayer.FillProperty
+- uid: NodeEditor.Controls.ZipTieLayer.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  name: OnAttachedToVisualTree(VisualTreeAttachmentEventArgs)
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_OnAttachedToVisualTree_Avalonia_VisualTreeAttachmentEventArgs_
+  commentId: M:NodeEditor.Controls.ZipTieLayer.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  fullName: NodeEditor.Controls.ZipTieLayer.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  nameWithType: ZipTieLayer.OnAttachedToVisualTree(VisualTreeAttachmentEventArgs)
+- uid: NodeEditor.Controls.ZipTieLayer.OnAttachedToVisualTree*
+  name: OnAttachedToVisualTree
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_OnAttachedToVisualTree_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.OnAttachedToVisualTree
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.OnAttachedToVisualTree
+  nameWithType: ZipTieLayer.OnAttachedToVisualTree
+- uid: NodeEditor.Controls.ZipTieLayer.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  name: OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs)
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_OnDetachedFromVisualTree_Avalonia_VisualTreeAttachmentEventArgs_
+  commentId: M:NodeEditor.Controls.ZipTieLayer.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  fullName: NodeEditor.Controls.ZipTieLayer.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)
+  nameWithType: ZipTieLayer.OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs)
+- uid: NodeEditor.Controls.ZipTieLayer.OnDetachedFromVisualTree*
+  name: OnDetachedFromVisualTree
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_OnDetachedFromVisualTree_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.OnDetachedFromVisualTree
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.OnDetachedFromVisualTree
+  nameWithType: ZipTieLayer.OnDetachedFromVisualTree
+- uid: NodeEditor.Controls.ZipTieLayer.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  name: OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_OnPropertyChanged_Avalonia_AvaloniaPropertyChangedEventArgs_
+  commentId: M:NodeEditor.Controls.ZipTieLayer.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  fullName: NodeEditor.Controls.ZipTieLayer.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)
+  nameWithType: ZipTieLayer.OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
+- uid: NodeEditor.Controls.ZipTieLayer.OnPropertyChanged*
+  name: OnPropertyChanged
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_OnPropertyChanged_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.OnPropertyChanged
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.OnPropertyChanged
+  nameWithType: ZipTieLayer.OnPropertyChanged
+- uid: NodeEditor.Controls.ZipTieLayer.Render(Avalonia.Media.DrawingContext)
+  name: Render(DrawingContext)
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Render_Avalonia_Media_DrawingContext_
+  commentId: M:NodeEditor.Controls.ZipTieLayer.Render(Avalonia.Media.DrawingContext)
+  fullName: NodeEditor.Controls.ZipTieLayer.Render(Avalonia.Media.DrawingContext)
+  nameWithType: ZipTieLayer.Render(DrawingContext)
+- uid: NodeEditor.Controls.ZipTieLayer.Render*
+  name: Render
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Render_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.Render
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.Render
+  nameWithType: ZipTieLayer.Render
+- uid: NodeEditor.Controls.ZipTieLayer.SelectedStroke
+  name: SelectedStroke
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_SelectedStroke
+  commentId: P:NodeEditor.Controls.ZipTieLayer.SelectedStroke
+  fullName: NodeEditor.Controls.ZipTieLayer.SelectedStroke
+  nameWithType: ZipTieLayer.SelectedStroke
+- uid: NodeEditor.Controls.ZipTieLayer.SelectedStroke*
+  name: SelectedStroke
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_SelectedStroke_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.SelectedStroke
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.SelectedStroke
+  nameWithType: ZipTieLayer.SelectedStroke
+- uid: NodeEditor.Controls.ZipTieLayer.SelectedStrokeProperty
+  name: SelectedStrokeProperty
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_SelectedStrokeProperty
+  commentId: F:NodeEditor.Controls.ZipTieLayer.SelectedStrokeProperty
+  fullName: NodeEditor.Controls.ZipTieLayer.SelectedStrokeProperty
+  nameWithType: ZipTieLayer.SelectedStrokeProperty
+- uid: NodeEditor.Controls.ZipTieLayer.ShowSelection
+  name: ShowSelection
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_ShowSelection
+  commentId: P:NodeEditor.Controls.ZipTieLayer.ShowSelection
+  fullName: NodeEditor.Controls.ZipTieLayer.ShowSelection
+  nameWithType: ZipTieLayer.ShowSelection
+- uid: NodeEditor.Controls.ZipTieLayer.ShowSelection*
+  name: ShowSelection
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_ShowSelection_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.ShowSelection
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.ShowSelection
+  nameWithType: ZipTieLayer.ShowSelection
+- uid: NodeEditor.Controls.ZipTieLayer.ShowSelectionProperty
+  name: ShowSelectionProperty
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_ShowSelectionProperty
+  commentId: F:NodeEditor.Controls.ZipTieLayer.ShowSelectionProperty
+  fullName: NodeEditor.Controls.ZipTieLayer.ShowSelectionProperty
+  nameWithType: ZipTieLayer.ShowSelectionProperty
+- uid: NodeEditor.Controls.ZipTieLayer.Stroke
+  name: Stroke
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Stroke
+  commentId: P:NodeEditor.Controls.ZipTieLayer.Stroke
+  fullName: NodeEditor.Controls.ZipTieLayer.Stroke
+  nameWithType: ZipTieLayer.Stroke
+- uid: NodeEditor.Controls.ZipTieLayer.Stroke*
+  name: Stroke
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_Stroke_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.Stroke
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.Stroke
+  nameWithType: ZipTieLayer.Stroke
+- uid: NodeEditor.Controls.ZipTieLayer.StrokeProperty
+  name: StrokeProperty
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_StrokeProperty
+  commentId: F:NodeEditor.Controls.ZipTieLayer.StrokeProperty
+  fullName: NodeEditor.Controls.ZipTieLayer.StrokeProperty
+  nameWithType: ZipTieLayer.StrokeProperty
+- uid: NodeEditor.Controls.ZipTieLayer.StrokeThickness
+  name: StrokeThickness
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_StrokeThickness
+  commentId: P:NodeEditor.Controls.ZipTieLayer.StrokeThickness
+  fullName: NodeEditor.Controls.ZipTieLayer.StrokeThickness
+  nameWithType: ZipTieLayer.StrokeThickness
+- uid: NodeEditor.Controls.ZipTieLayer.StrokeThickness*
+  name: StrokeThickness
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_StrokeThickness_
+  commentId: Overload:NodeEditor.Controls.ZipTieLayer.StrokeThickness
+  isSpec: "True"
+  fullName: NodeEditor.Controls.ZipTieLayer.StrokeThickness
+  nameWithType: ZipTieLayer.StrokeThickness
+- uid: NodeEditor.Controls.ZipTieLayer.StrokeThicknessProperty
+  name: StrokeThicknessProperty
+  href: api/NodeEditor.Controls.ZipTieLayer.html#NodeEditor_Controls_ZipTieLayer_StrokeThicknessProperty
+  commentId: F:NodeEditor.Controls.ZipTieLayer.StrokeThicknessProperty
+  fullName: NodeEditor.Controls.ZipTieLayer.StrokeThicknessProperty
+  nameWithType: ZipTieLayer.StrokeThicknessProperty
 - uid: NodeEditor.Converters
   name: NodeEditor.Converters
   href: api/NodeEditor.Converters.html
@@ -5346,6 +5729,28 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Model.IConnector.Waypoints
   nameWithType: IConnector.Waypoints
+- uid: NodeEditor.Model.IDrawingGraphTransferObserver
+  name: IDrawingGraphTransferObserver
+  href: api/NodeEditor.Model.IDrawingGraphTransferObserver.html
+  commentId: T:NodeEditor.Model.IDrawingGraphTransferObserver
+  fullName: NodeEditor.Model.IDrawingGraphTransferObserver
+  nameWithType: IDrawingGraphTransferObserver
+- uid: NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer(System.Collections.Generic.IEnumerable{NodeEditor.Model.INode},System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: PrepareGraphTransfer(IEnumerable<INode>?, IEnumerable<IConnector>?)
+  href: api/NodeEditor.Model.IDrawingGraphTransferObserver.html#NodeEditor_Model_IDrawingGraphTransferObserver_PrepareGraphTransfer_System_Collections_Generic_IEnumerable_NodeEditor_Model_INode__System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer(System.Collections.Generic.IEnumerable{NodeEditor.Model.INode},System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: PrepareGraphTransfer(IEnumerable(Of INode), IEnumerable(Of IConnector))
+  fullName: NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer(System.Collections.Generic.IEnumerable<NodeEditor.Model.INode>?, System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>?)
+  fullName.vb: NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer(System.Collections.Generic.IEnumerable(Of NodeEditor.Model.INode), System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: IDrawingGraphTransferObserver.PrepareGraphTransfer(IEnumerable<INode>?, IEnumerable<IConnector>?)
+  nameWithType.vb: IDrawingGraphTransferObserver.PrepareGraphTransfer(IEnumerable(Of INode), IEnumerable(Of IConnector))
+- uid: NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer*
+  name: PrepareGraphTransfer
+  href: api/NodeEditor.Model.IDrawingGraphTransferObserver.html#NodeEditor_Model_IDrawingGraphTransferObserver_PrepareGraphTransfer_
+  commentId: Overload:NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer
+  isSpec: "True"
+  fullName: NodeEditor.Model.IDrawingGraphTransferObserver.PrepareGraphTransfer
+  nameWithType: IDrawingGraphTransferObserver.PrepareGraphTransfer
 - uid: NodeEditor.Model.IDrawingNode
   name: IDrawingNode
   href: api/NodeEditor.Model.IDrawingNode.html
@@ -7500,6 +7905,345 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Model.IUndoRedoHost.Undo
   nameWithType: IUndoRedoHost.Undo
+- uid: NodeEditor.Model.IZipTie
+  name: IZipTie
+  href: api/NodeEditor.Model.IZipTie.html
+  commentId: T:NodeEditor.Model.IZipTie
+  fullName: NodeEditor.Model.IZipTie
+  nameWithType: IZipTie
+- uid: NodeEditor.Model.IZipTie.Connectors
+  name: Connectors
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Connectors
+  commentId: P:NodeEditor.Model.IZipTie.Connectors
+  fullName: NodeEditor.Model.IZipTie.Connectors
+  nameWithType: IZipTie.Connectors
+- uid: NodeEditor.Model.IZipTie.Connectors*
+  name: Connectors
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Connectors_
+  commentId: Overload:NodeEditor.Model.IZipTie.Connectors
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.Connectors
+  nameWithType: IZipTie.Connectors
+- uid: NodeEditor.Model.IZipTie.End
+  name: End
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_End
+  commentId: P:NodeEditor.Model.IZipTie.End
+  fullName: NodeEditor.Model.IZipTie.End
+  nameWithType: IZipTie.End
+- uid: NodeEditor.Model.IZipTie.End*
+  name: End
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_End_
+  commentId: Overload:NodeEditor.Model.IZipTie.End
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.End
+  nameWithType: IZipTie.End
+- uid: NodeEditor.Model.IZipTie.IsLocked
+  name: IsLocked
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_IsLocked
+  commentId: P:NodeEditor.Model.IZipTie.IsLocked
+  fullName: NodeEditor.Model.IZipTie.IsLocked
+  nameWithType: IZipTie.IsLocked
+- uid: NodeEditor.Model.IZipTie.IsLocked*
+  name: IsLocked
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_IsLocked_
+  commentId: Overload:NodeEditor.Model.IZipTie.IsLocked
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.IsLocked
+  nameWithType: IZipTie.IsLocked
+- uid: NodeEditor.Model.IZipTie.IsVisible
+  name: IsVisible
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_IsVisible
+  commentId: P:NodeEditor.Model.IZipTie.IsVisible
+  fullName: NodeEditor.Model.IZipTie.IsVisible
+  nameWithType: IZipTie.IsVisible
+- uid: NodeEditor.Model.IZipTie.IsVisible*
+  name: IsVisible
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_IsVisible_
+  commentId: Overload:NodeEditor.Model.IZipTie.IsVisible
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.IsVisible
+  nameWithType: IZipTie.IsVisible
+- uid: NodeEditor.Model.IZipTie.Name
+  name: Name
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Name
+  commentId: P:NodeEditor.Model.IZipTie.Name
+  fullName: NodeEditor.Model.IZipTie.Name
+  nameWithType: IZipTie.Name
+- uid: NodeEditor.Model.IZipTie.Name*
+  name: Name
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Name_
+  commentId: Overload:NodeEditor.Model.IZipTie.Name
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.Name
+  nameWithType: IZipTie.Name
+- uid: NodeEditor.Model.IZipTie.Spacing
+  name: Spacing
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Spacing
+  commentId: P:NodeEditor.Model.IZipTie.Spacing
+  fullName: NodeEditor.Model.IZipTie.Spacing
+  nameWithType: IZipTie.Spacing
+- uid: NodeEditor.Model.IZipTie.Spacing*
+  name: Spacing
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Spacing_
+  commentId: Overload:NodeEditor.Model.IZipTie.Spacing
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.Spacing
+  nameWithType: IZipTie.Spacing
+- uid: NodeEditor.Model.IZipTie.Start
+  name: Start
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Start
+  commentId: P:NodeEditor.Model.IZipTie.Start
+  fullName: NodeEditor.Model.IZipTie.Start
+  nameWithType: IZipTie.Start
+- uid: NodeEditor.Model.IZipTie.Start*
+  name: Start
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Start_
+  commentId: Overload:NodeEditor.Model.IZipTie.Start
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.Start
+  nameWithType: IZipTie.Start
+- uid: NodeEditor.Model.IZipTie.Waypoints
+  name: Waypoints
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Waypoints
+  commentId: P:NodeEditor.Model.IZipTie.Waypoints
+  fullName: NodeEditor.Model.IZipTie.Waypoints
+  nameWithType: IZipTie.Waypoints
+- uid: NodeEditor.Model.IZipTie.Waypoints*
+  name: Waypoints
+  href: api/NodeEditor.Model.IZipTie.html#NodeEditor_Model_IZipTie_Waypoints_
+  commentId: Overload:NodeEditor.Model.IZipTie.Waypoints
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTie.Waypoints
+  nameWithType: IZipTie.Waypoints
+- uid: NodeEditor.Model.IZipTieCommands
+  name: IZipTieCommands
+  href: api/NodeEditor.Model.IZipTieCommands.html
+  commentId: T:NodeEditor.Model.IZipTieCommands
+  fullName: NodeEditor.Model.IZipTieCommands
+  nameWithType: IZipTieCommands
+- uid: NodeEditor.Model.IZipTieCommands.AddSelectedToZipTieCommand
+  name: AddSelectedToZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_AddSelectedToZipTieCommand
+  commentId: P:NodeEditor.Model.IZipTieCommands.AddSelectedToZipTieCommand
+  fullName: NodeEditor.Model.IZipTieCommands.AddSelectedToZipTieCommand
+  nameWithType: IZipTieCommands.AddSelectedToZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.AddSelectedToZipTieCommand*
+  name: AddSelectedToZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_AddSelectedToZipTieCommand_
+  commentId: Overload:NodeEditor.Model.IZipTieCommands.AddSelectedToZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieCommands.AddSelectedToZipTieCommand
+  nameWithType: IZipTieCommands.AddSelectedToZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.CreateZipTieCommand
+  name: CreateZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_CreateZipTieCommand
+  commentId: P:NodeEditor.Model.IZipTieCommands.CreateZipTieCommand
+  fullName: NodeEditor.Model.IZipTieCommands.CreateZipTieCommand
+  nameWithType: IZipTieCommands.CreateZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.CreateZipTieCommand*
+  name: CreateZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_CreateZipTieCommand_
+  commentId: Overload:NodeEditor.Model.IZipTieCommands.CreateZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieCommands.CreateZipTieCommand
+  nameWithType: IZipTieCommands.CreateZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.RemoveSelectedFromZipTieCommand
+  name: RemoveSelectedFromZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_RemoveSelectedFromZipTieCommand
+  commentId: P:NodeEditor.Model.IZipTieCommands.RemoveSelectedFromZipTieCommand
+  fullName: NodeEditor.Model.IZipTieCommands.RemoveSelectedFromZipTieCommand
+  nameWithType: IZipTieCommands.RemoveSelectedFromZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.RemoveSelectedFromZipTieCommand*
+  name: RemoveSelectedFromZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_RemoveSelectedFromZipTieCommand_
+  commentId: Overload:NodeEditor.Model.IZipTieCommands.RemoveSelectedFromZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieCommands.RemoveSelectedFromZipTieCommand
+  nameWithType: IZipTieCommands.RemoveSelectedFromZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.RemoveZipTieCommand
+  name: RemoveZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_RemoveZipTieCommand
+  commentId: P:NodeEditor.Model.IZipTieCommands.RemoveZipTieCommand
+  fullName: NodeEditor.Model.IZipTieCommands.RemoveZipTieCommand
+  nameWithType: IZipTieCommands.RemoveZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.RemoveZipTieCommand*
+  name: RemoveZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_RemoveZipTieCommand_
+  commentId: Overload:NodeEditor.Model.IZipTieCommands.RemoveZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieCommands.RemoveZipTieCommand
+  nameWithType: IZipTieCommands.RemoveZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.ReverseZipTieCommand
+  name: ReverseZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_ReverseZipTieCommand
+  commentId: P:NodeEditor.Model.IZipTieCommands.ReverseZipTieCommand
+  fullName: NodeEditor.Model.IZipTieCommands.ReverseZipTieCommand
+  nameWithType: IZipTieCommands.ReverseZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.ReverseZipTieCommand*
+  name: ReverseZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_ReverseZipTieCommand_
+  commentId: Overload:NodeEditor.Model.IZipTieCommands.ReverseZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieCommands.ReverseZipTieCommand
+  nameWithType: IZipTieCommands.ReverseZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.StraightenZipTieCommand
+  name: StraightenZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_StraightenZipTieCommand
+  commentId: P:NodeEditor.Model.IZipTieCommands.StraightenZipTieCommand
+  fullName: NodeEditor.Model.IZipTieCommands.StraightenZipTieCommand
+  nameWithType: IZipTieCommands.StraightenZipTieCommand
+- uid: NodeEditor.Model.IZipTieCommands.StraightenZipTieCommand*
+  name: StraightenZipTieCommand
+  href: api/NodeEditor.Model.IZipTieCommands.html#NodeEditor_Model_IZipTieCommands_StraightenZipTieCommand_
+  commentId: Overload:NodeEditor.Model.IZipTieCommands.StraightenZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieCommands.StraightenZipTieCommand
+  nameWithType: IZipTieCommands.StraightenZipTieCommand
+- uid: NodeEditor.Model.IZipTieHost
+  name: IZipTieHost
+  href: api/NodeEditor.Model.IZipTieHost.html
+  commentId: T:NodeEditor.Model.IZipTieHost
+  fullName: NodeEditor.Model.IZipTieHost
+  nameWithType: IZipTieHost
+- uid: NodeEditor.Model.IZipTieHost.AddToZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  name: AddToZipTie(IZipTie, IConnector)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_AddToZipTie_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Model.IZipTieHost.AddToZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Model.IZipTieHost.AddToZipTie(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector)
+  nameWithType: IZipTieHost.AddToZipTie(IZipTie, IConnector)
+- uid: NodeEditor.Model.IZipTieHost.AddToZipTie*
+  name: AddToZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_AddToZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.AddToZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.AddToZipTie
+  nameWithType: IZipTieHost.AddToZipTie
+- uid: NodeEditor.Model.IZipTieHost.CreateZipTie(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: CreateZipTie(IEnumerable<IConnector>)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_CreateZipTie_System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Model.IZipTieHost.CreateZipTie(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: CreateZipTie(IEnumerable(Of IConnector))
+  fullName: NodeEditor.Model.IZipTieHost.CreateZipTie(System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>)
+  fullName.vb: NodeEditor.Model.IZipTieHost.CreateZipTie(System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: IZipTieHost.CreateZipTie(IEnumerable<IConnector>)
+  nameWithType.vb: IZipTieHost.CreateZipTie(IEnumerable(Of IConnector))
+- uid: NodeEditor.Model.IZipTieHost.CreateZipTie*
+  name: CreateZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_CreateZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.CreateZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.CreateZipTie
+  nameWithType: IZipTieHost.CreateZipTie
+- uid: NodeEditor.Model.IZipTieHost.FindZipTie(NodeEditor.Model.IConnector)
+  name: FindZipTie(IConnector)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_FindZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Model.IZipTieHost.FindZipTie(NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Model.IZipTieHost.FindZipTie(NodeEditor.Model.IConnector)
+  nameWithType: IZipTieHost.FindZipTie(IConnector)
+- uid: NodeEditor.Model.IZipTieHost.FindZipTie*
+  name: FindZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_FindZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.FindZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.FindZipTie
+  nameWithType: IZipTieHost.FindZipTie
+- uid: NodeEditor.Model.IZipTieHost.RemoveFromZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  name: RemoveFromZipTie(IZipTie, IConnector)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_RemoveFromZipTie_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Model.IZipTieHost.RemoveFromZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Model.IZipTieHost.RemoveFromZipTie(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector)
+  nameWithType: IZipTieHost.RemoveFromZipTie(IZipTie, IConnector)
+- uid: NodeEditor.Model.IZipTieHost.RemoveFromZipTie*
+  name: RemoveFromZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_RemoveFromZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.RemoveFromZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.RemoveFromZipTie
+  nameWithType: IZipTieHost.RemoveFromZipTie
+- uid: NodeEditor.Model.IZipTieHost.RemoveZipTie(NodeEditor.Model.IZipTie)
+  name: RemoveZipTie(IZipTie)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_RemoveZipTie_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Model.IZipTieHost.RemoveZipTie(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Model.IZipTieHost.RemoveZipTie(NodeEditor.Model.IZipTie)
+  nameWithType: IZipTieHost.RemoveZipTie(IZipTie)
+- uid: NodeEditor.Model.IZipTieHost.RemoveZipTie*
+  name: RemoveZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_RemoveZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.RemoveZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.RemoveZipTie
+  nameWithType: IZipTieHost.RemoveZipTie
+- uid: NodeEditor.Model.IZipTieHost.ReverseZipTie(NodeEditor.Model.IZipTie)
+  name: ReverseZipTie(IZipTie)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_ReverseZipTie_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Model.IZipTieHost.ReverseZipTie(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Model.IZipTieHost.ReverseZipTie(NodeEditor.Model.IZipTie)
+  nameWithType: IZipTieHost.ReverseZipTie(IZipTie)
+- uid: NodeEditor.Model.IZipTieHost.ReverseZipTie*
+  name: ReverseZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_ReverseZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.ReverseZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.ReverseZipTie
+  nameWithType: IZipTieHost.ReverseZipTie
+- uid: NodeEditor.Model.IZipTieHost.SelectedZipTie
+  name: SelectedZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_SelectedZipTie
+  commentId: P:NodeEditor.Model.IZipTieHost.SelectedZipTie
+  fullName: NodeEditor.Model.IZipTieHost.SelectedZipTie
+  nameWithType: IZipTieHost.SelectedZipTie
+- uid: NodeEditor.Model.IZipTieHost.SelectedZipTie*
+  name: SelectedZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_SelectedZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.SelectedZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.SelectedZipTie
+  nameWithType: IZipTieHost.SelectedZipTie
+- uid: NodeEditor.Model.IZipTieHost.StraightenZipTie(NodeEditor.Model.IZipTie)
+  name: StraightenZipTie(IZipTie)
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_StraightenZipTie_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Model.IZipTieHost.StraightenZipTie(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Model.IZipTieHost.StraightenZipTie(NodeEditor.Model.IZipTie)
+  nameWithType: IZipTieHost.StraightenZipTie(IZipTie)
+- uid: NodeEditor.Model.IZipTieHost.StraightenZipTie*
+  name: StraightenZipTie
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_StraightenZipTie_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.StraightenZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.StraightenZipTie
+  nameWithType: IZipTieHost.StraightenZipTie
+- uid: NodeEditor.Model.IZipTieHost.ZipTies
+  name: ZipTies
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_ZipTies
+  commentId: P:NodeEditor.Model.IZipTieHost.ZipTies
+  fullName: NodeEditor.Model.IZipTieHost.ZipTies
+  nameWithType: IZipTieHost.ZipTies
+- uid: NodeEditor.Model.IZipTieHost.ZipTies*
+  name: ZipTies
+  href: api/NodeEditor.Model.IZipTieHost.html#NodeEditor_Model_IZipTieHost_ZipTies_
+  commentId: Overload:NodeEditor.Model.IZipTieHost.ZipTies
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieHost.ZipTies
+  nameWithType: IZipTieHost.ZipTies
+- uid: NodeEditor.Model.IZipTieLaneProvider
+  name: IZipTieLaneProvider
+  href: api/NodeEditor.Model.IZipTieLaneProvider.html
+  commentId: T:NodeEditor.Model.IZipTieLaneProvider
+  fullName: NodeEditor.Model.IZipTieLaneProvider
+  nameWithType: IZipTieLaneProvider
+- uid: NodeEditor.Model.IZipTieLaneProvider.GetZipTieLane(NodeEditor.Model.IConnector)
+  name: GetZipTieLane(IConnector)
+  href: api/NodeEditor.Model.IZipTieLaneProvider.html#NodeEditor_Model_IZipTieLaneProvider_GetZipTieLane_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Model.IZipTieLaneProvider.GetZipTieLane(NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Model.IZipTieLaneProvider.GetZipTieLane(NodeEditor.Model.IConnector)
+  nameWithType: IZipTieLaneProvider.GetZipTieLane(IConnector)
+- uid: NodeEditor.Model.IZipTieLaneProvider.GetZipTieLane*
+  name: GetZipTieLane
+  href: api/NodeEditor.Model.IZipTieLaneProvider.html#NodeEditor_Model_IZipTieLaneProvider_GetZipTieLane_
+  commentId: Overload:NodeEditor.Model.IZipTieLaneProvider.GetZipTieLane
+  isSpec: "True"
+  fullName: NodeEditor.Model.IZipTieLaneProvider.GetZipTieLane
+  nameWithType: IZipTieLaneProvider.GetZipTieLane
 - uid: NodeEditor.Model.InkPen
   name: InkPen
   href: api/NodeEditor.Model.InkPen.html
@@ -8645,6 +9389,144 @@ references:
   commentId: T:NodeEditor.Model.SelectionChangedEventHandler
   fullName: NodeEditor.Model.SelectionChangedEventHandler
   nameWithType: SelectionChangedEventHandler
+- uid: NodeEditor.Model.ZipTieEditor
+  name: ZipTieEditor
+  href: api/NodeEditor.Model.ZipTieEditor.html
+  commentId: T:NodeEditor.Model.ZipTieEditor
+  fullName: NodeEditor.Model.ZipTieEditor
+  nameWithType: ZipTieEditor
+- uid: NodeEditor.Model.ZipTieEditor.#ctor(NodeEditor.Model.IDrawingNode,NodeEditor.Model.IZipTieHost,System.Func{NodeEditor.Model.IZipTie})
+  name: ZipTieEditor(IDrawingNode, IZipTieHost, Func<IZipTie>)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor__ctor_NodeEditor_Model_IDrawingNode_NodeEditor_Model_IZipTieHost_System_Func_NodeEditor_Model_IZipTie__
+  commentId: M:NodeEditor.Model.ZipTieEditor.#ctor(NodeEditor.Model.IDrawingNode,NodeEditor.Model.IZipTieHost,System.Func{NodeEditor.Model.IZipTie})
+  name.vb: New(IDrawingNode, IZipTieHost, Func(Of IZipTie))
+  fullName: NodeEditor.Model.ZipTieEditor.ZipTieEditor(NodeEditor.Model.IDrawingNode, NodeEditor.Model.IZipTieHost, System.Func<NodeEditor.Model.IZipTie>)
+  fullName.vb: NodeEditor.Model.ZipTieEditor.New(NodeEditor.Model.IDrawingNode, NodeEditor.Model.IZipTieHost, System.Func(Of NodeEditor.Model.IZipTie))
+  nameWithType: ZipTieEditor.ZipTieEditor(IDrawingNode, IZipTieHost, Func<IZipTie>)
+  nameWithType.vb: ZipTieEditor.New(IDrawingNode, IZipTieHost, Func(Of IZipTie))
+- uid: NodeEditor.Model.ZipTieEditor.#ctor*
+  name: ZipTieEditor
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor__ctor_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: NodeEditor.Model.ZipTieEditor.ZipTieEditor
+  fullName.vb: NodeEditor.Model.ZipTieEditor.New
+  nameWithType: ZipTieEditor.ZipTieEditor
+  nameWithType.vb: ZipTieEditor.New
+- uid: NodeEditor.Model.ZipTieEditor.Add(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  name: Add(IZipTie, IConnector)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Add_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Model.ZipTieEditor.Add(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Model.ZipTieEditor.Add(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector)
+  nameWithType: ZipTieEditor.Add(IZipTie, IConnector)
+- uid: NodeEditor.Model.ZipTieEditor.Add*
+  name: Add
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Add_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.Add
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.Add
+  nameWithType: ZipTieEditor.Add
+- uid: NodeEditor.Model.ZipTieEditor.AddRange(NodeEditor.Model.IZipTie,System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: AddRange(IZipTie, IEnumerable<IConnector>)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_AddRange_NodeEditor_Model_IZipTie_System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Model.ZipTieEditor.AddRange(NodeEditor.Model.IZipTie,System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: AddRange(IZipTie, IEnumerable(Of IConnector))
+  fullName: NodeEditor.Model.ZipTieEditor.AddRange(NodeEditor.Model.IZipTie, System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>)
+  fullName.vb: NodeEditor.Model.ZipTieEditor.AddRange(NodeEditor.Model.IZipTie, System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: ZipTieEditor.AddRange(IZipTie, IEnumerable<IConnector>)
+  nameWithType.vb: ZipTieEditor.AddRange(IZipTie, IEnumerable(Of IConnector))
+- uid: NodeEditor.Model.ZipTieEditor.AddRange*
+  name: AddRange
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_AddRange_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.AddRange
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.AddRange
+  nameWithType: ZipTieEditor.AddRange
+- uid: NodeEditor.Model.ZipTieEditor.Create(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: Create(IEnumerable<IConnector>)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Create_System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Model.ZipTieEditor.Create(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: Create(IEnumerable(Of IConnector))
+  fullName: NodeEditor.Model.ZipTieEditor.Create(System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>)
+  fullName.vb: NodeEditor.Model.ZipTieEditor.Create(System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: ZipTieEditor.Create(IEnumerable<IConnector>)
+  nameWithType.vb: ZipTieEditor.Create(IEnumerable(Of IConnector))
+- uid: NodeEditor.Model.ZipTieEditor.Create*
+  name: Create
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Create_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.Create
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.Create
+  nameWithType: ZipTieEditor.Create
+- uid: NodeEditor.Model.ZipTieEditor.Detach(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  name: Detach(IZipTie, IConnector)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Detach_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Model.ZipTieEditor.Detach(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Model.ZipTieEditor.Detach(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector)
+  nameWithType: ZipTieEditor.Detach(IZipTie, IConnector)
+- uid: NodeEditor.Model.ZipTieEditor.Detach*
+  name: Detach
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Detach_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.Detach
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.Detach
+  nameWithType: ZipTieEditor.Detach
+- uid: NodeEditor.Model.ZipTieEditor.DetachRange(NodeEditor.Model.IZipTie,System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: DetachRange(IZipTie, IEnumerable<IConnector>)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_DetachRange_NodeEditor_Model_IZipTie_System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Model.ZipTieEditor.DetachRange(NodeEditor.Model.IZipTie,System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: DetachRange(IZipTie, IEnumerable(Of IConnector))
+  fullName: NodeEditor.Model.ZipTieEditor.DetachRange(NodeEditor.Model.IZipTie, System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>)
+  fullName.vb: NodeEditor.Model.ZipTieEditor.DetachRange(NodeEditor.Model.IZipTie, System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: ZipTieEditor.DetachRange(IZipTie, IEnumerable<IConnector>)
+  nameWithType.vb: ZipTieEditor.DetachRange(IZipTie, IEnumerable(Of IConnector))
+- uid: NodeEditor.Model.ZipTieEditor.DetachRange*
+  name: DetachRange
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_DetachRange_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.DetachRange
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.DetachRange
+  nameWithType: ZipTieEditor.DetachRange
+- uid: NodeEditor.Model.ZipTieEditor.Remove(NodeEditor.Model.IZipTie)
+  name: Remove(IZipTie)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Remove_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Model.ZipTieEditor.Remove(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Model.ZipTieEditor.Remove(NodeEditor.Model.IZipTie)
+  nameWithType: ZipTieEditor.Remove(IZipTie)
+- uid: NodeEditor.Model.ZipTieEditor.Remove*
+  name: Remove
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Remove_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.Remove
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.Remove
+  nameWithType: ZipTieEditor.Remove
+- uid: NodeEditor.Model.ZipTieEditor.Reverse(NodeEditor.Model.IZipTie)
+  name: Reverse(IZipTie)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Reverse_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Model.ZipTieEditor.Reverse(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Model.ZipTieEditor.Reverse(NodeEditor.Model.IZipTie)
+  nameWithType: ZipTieEditor.Reverse(IZipTie)
+- uid: NodeEditor.Model.ZipTieEditor.Reverse*
+  name: Reverse
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Reverse_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.Reverse
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.Reverse
+  nameWithType: ZipTieEditor.Reverse
+- uid: NodeEditor.Model.ZipTieEditor.Straighten(NodeEditor.Model.IZipTie)
+  name: Straighten(IZipTie)
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Straighten_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Model.ZipTieEditor.Straighten(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Model.ZipTieEditor.Straighten(NodeEditor.Model.IZipTie)
+  nameWithType: ZipTieEditor.Straighten(IZipTie)
+- uid: NodeEditor.Model.ZipTieEditor.Straighten*
+  name: Straighten
+  href: api/NodeEditor.Model.ZipTieEditor.html#NodeEditor_Model_ZipTieEditor_Straighten_
+  commentId: Overload:NodeEditor.Model.ZipTieEditor.Straighten
+  isSpec: "True"
+  fullName: NodeEditor.Model.ZipTieEditor.Straighten
+  nameWithType: ZipTieEditor.Straighten
 - uid: NodeEditor.Mvvm
   name: NodeEditor.Mvvm
   href: api/NodeEditor.Mvvm.html
@@ -9514,6 +10396,32 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.AddPenCommand
   nameWithType: DrawingNodeViewModel.AddPenCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand
+  name: AddSelectedToZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_AddSelectedToZipTieCommand
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand
+  nameWithType: DrawingNodeViewModel.AddSelectedToZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand*
+  name: AddSelectedToZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_AddSelectedToZipTieCommand_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand
+  nameWithType: DrawingNodeViewModel.AddSelectedToZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  name: AddToZipTie(IZipTie, IConnector)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_AddToZipTie_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector)
+  nameWithType: DrawingNodeViewModel.AddToZipTie(IZipTie, IConnector)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie*
+  name: AddToZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_AddToZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie
+  nameWithType: DrawingNodeViewModel.AddToZipTie
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.AlignNodesCommand
   name: AlignNodesCommand
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_AlignNodesCommand
@@ -9776,6 +10684,35 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodesCommand
   nameWithType: DrawingNodeViewModel.CopyNodesCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: CreateZipTie(IEnumerable<IConnector>)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTie_System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: CreateZipTie(IEnumerable(Of IConnector))
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie(System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>)
+  fullName.vb: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie(System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: DrawingNodeViewModel.CreateZipTie(IEnumerable<IConnector>)
+  nameWithType.vb: DrawingNodeViewModel.CreateZipTie(IEnumerable(Of IConnector))
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie*
+  name: CreateZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie
+  nameWithType: DrawingNodeViewModel.CreateZipTie
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand
+  name: CreateZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTieCommand
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand
+  nameWithType: DrawingNodeViewModel.CreateZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand*
+  name: CreateZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTieCommand_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand
+  nameWithType: DrawingNodeViewModel.CreateZipTieCommand
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.CutNodes
   name: CutNodes()
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_CutNodes
@@ -9964,6 +10901,19 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.EndUndoBatch
   nameWithType: DrawingNodeViewModel.EndUndoBatch
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie(NodeEditor.Model.IConnector)
+  name: FindZipTie(IConnector)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_FindZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie(NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie(NodeEditor.Model.IConnector)
+  nameWithType: DrawingNodeViewModel.FindZipTie(IConnector)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie*
+  name: FindZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_FindZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie
+  nameWithType: DrawingNodeViewModel.FindZipTie
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedConnectors
   name: GetSelectedConnectors()
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedConnectors
@@ -10003,6 +10953,19 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.GetSerializer
   nameWithType: DrawingNodeViewModel.GetSerializer
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane(NodeEditor.Model.IConnector)
+  name: GetZipTieLane(IConnector)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_GetZipTieLane_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane(NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane(NodeEditor.Model.IConnector)
+  nameWithType: DrawingNodeViewModel.GetZipTieLane(IConnector)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane*
+  name: GetZipTieLane
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_GetZipTieLane_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane
+  nameWithType: DrawingNodeViewModel.GetZipTieLane
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.HideSelection
   name: HideSelection()
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_HideSelection
@@ -10211,6 +11174,22 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodesCommand
   nameWithType: DrawingNodeViewModel.PasteNodesCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer(System.Collections.Generic.IEnumerable{NodeEditor.Model.INode},System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name: PrepareGraphTransfer(IEnumerable<INode>?, IEnumerable<IConnector>?)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_PrepareGraphTransfer_System_Collections_Generic_IEnumerable_NodeEditor_Model_INode__System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer(System.Collections.Generic.IEnumerable{NodeEditor.Model.INode},System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})
+  name.vb: PrepareGraphTransfer(IEnumerable(Of INode), IEnumerable(Of IConnector))
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer(System.Collections.Generic.IEnumerable<NodeEditor.Model.INode>?, System.Collections.Generic.IEnumerable<NodeEditor.Model.IConnector>?)
+  fullName.vb: NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer(System.Collections.Generic.IEnumerable(Of NodeEditor.Model.INode), System.Collections.Generic.IEnumerable(Of NodeEditor.Model.IConnector))
+  nameWithType: DrawingNodeViewModel.PrepareGraphTransfer(IEnumerable<INode>?, IEnumerable<IConnector>?)
+  nameWithType.vb: DrawingNodeViewModel.PrepareGraphTransfer(IEnumerable(Of INode), IEnumerable(Of IConnector))
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer*
+  name: PrepareGraphTransfer
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_PrepareGraphTransfer_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer
+  nameWithType: DrawingNodeViewModel.PrepareGraphTransfer
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.Redo
   name: Redo()
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_Redo
@@ -10237,6 +11216,84 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RedoCommand
   nameWithType: DrawingNodeViewModel.RedoCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  name: RemoveFromZipTie(IZipTie, IConnector)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveFromZipTie_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector)
+  nameWithType: DrawingNodeViewModel.RemoveFromZipTie(IZipTie, IConnector)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie*
+  name: RemoveFromZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveFromZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie
+  nameWithType: DrawingNodeViewModel.RemoveFromZipTie
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+  name: RemoveSelectedFromZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveSelectedFromZipTieCommand
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+  nameWithType: DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand*
+  name: RemoveSelectedFromZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveSelectedFromZipTieCommand_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+  nameWithType: DrawingNodeViewModel.RemoveSelectedFromZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie(NodeEditor.Model.IZipTie)
+  name: RemoveZipTie(IZipTie)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTie_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie(NodeEditor.Model.IZipTie)
+  nameWithType: DrawingNodeViewModel.RemoveZipTie(IZipTie)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie*
+  name: RemoveZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie
+  nameWithType: DrawingNodeViewModel.RemoveZipTie
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand
+  name: RemoveZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTieCommand
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand
+  nameWithType: DrawingNodeViewModel.RemoveZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand*
+  name: RemoveZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTieCommand_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand
+  nameWithType: DrawingNodeViewModel.RemoveZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie(NodeEditor.Model.IZipTie)
+  name: ReverseZipTie(IZipTie)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTie_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie(NodeEditor.Model.IZipTie)
+  nameWithType: DrawingNodeViewModel.ReverseZipTie(IZipTie)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie*
+  name: ReverseZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie
+  nameWithType: DrawingNodeViewModel.ReverseZipTie
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand
+  name: ReverseZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTieCommand
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand
+  nameWithType: DrawingNodeViewModel.ReverseZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand*
+  name: ReverseZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTieCommand_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand
+  nameWithType: DrawingNodeViewModel.ReverseZipTieCommand
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodes
   name: SelectAllNodes()
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodes
@@ -10263,6 +11320,19 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodesCommand
   nameWithType: DrawingNodeViewModel.SelectAllNodesCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie
+  name: SelectedZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_SelectedZipTie
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie
+  nameWithType: DrawingNodeViewModel.SelectedZipTie
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie*
+  name: SelectedZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_SelectedZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie
+  nameWithType: DrawingNodeViewModel.SelectedZipTie
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.SelectionChanged
   name: SelectionChanged
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_SelectionChanged
@@ -10395,6 +11465,32 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelectionCommand
   nameWithType: DrawingNodeViewModel.ShowSelectionCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie(NodeEditor.Model.IZipTie)
+  name: StraightenZipTie(IZipTie)
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTie_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie(NodeEditor.Model.IZipTie)
+  nameWithType: DrawingNodeViewModel.StraightenZipTie(IZipTie)
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie*
+  name: StraightenZipTie
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTie_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie
+  nameWithType: DrawingNodeViewModel.StraightenZipTie
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand
+  name: StraightenZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTieCommand
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand
+  nameWithType: DrawingNodeViewModel.StraightenZipTieCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand*
+  name: StraightenZipTieCommand
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTieCommand_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand
+  nameWithType: DrawingNodeViewModel.StraightenZipTieCommand
 - uid: NodeEditor.Mvvm.DrawingNodeViewModel.ToggleInkMode
   name: ToggleInkMode()
   href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ToggleInkMode
@@ -10460,6 +11556,19 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelectionCommand
   nameWithType: DrawingNodeViewModel.UnlockSelectionCommand
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies
+  name: ZipTies
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ZipTies
+  commentId: P:NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies
+  nameWithType: DrawingNodeViewModel.ZipTies
+- uid: NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies*
+  name: ZipTies
+  href: api/NodeEditor.Mvvm.DrawingNodeViewModel.html#NodeEditor_Mvvm_DrawingNodeViewModel_ZipTies_
+  commentId: Overload:NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies
+  nameWithType: DrawingNodeViewModel.ZipTies
 - uid: NodeEditor.Mvvm.EditorViewModel
   name: EditorViewModel
   href: api/NodeEditor.Mvvm.EditorViewModel.html
@@ -11534,6 +12643,135 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Mvvm.PinViewModel.Y
   nameWithType: PinViewModel.Y
+- uid: NodeEditor.Mvvm.ZipTieViewModel
+  name: ZipTieViewModel
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html
+  commentId: T:NodeEditor.Mvvm.ZipTieViewModel
+  fullName: NodeEditor.Mvvm.ZipTieViewModel
+  nameWithType: ZipTieViewModel
+- uid: NodeEditor.Mvvm.ZipTieViewModel.#ctor
+  name: ZipTieViewModel()
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel__ctor
+  commentId: M:NodeEditor.Mvvm.ZipTieViewModel.#ctor
+  name.vb: New()
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.ZipTieViewModel()
+  fullName.vb: NodeEditor.Mvvm.ZipTieViewModel.New()
+  nameWithType: ZipTieViewModel.ZipTieViewModel()
+  nameWithType.vb: ZipTieViewModel.New()
+- uid: NodeEditor.Mvvm.ZipTieViewModel.#ctor*
+  name: ZipTieViewModel
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel__ctor_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.ZipTieViewModel
+  fullName.vb: NodeEditor.Mvvm.ZipTieViewModel.New
+  nameWithType: ZipTieViewModel.ZipTieViewModel
+  nameWithType.vb: ZipTieViewModel.New
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Connectors
+  name: Connectors
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Connectors
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.Connectors
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Connectors
+  nameWithType: ZipTieViewModel.Connectors
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Connectors*
+  name: Connectors
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Connectors_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.Connectors
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Connectors
+  nameWithType: ZipTieViewModel.Connectors
+- uid: NodeEditor.Mvvm.ZipTieViewModel.End
+  name: End
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_End
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.End
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.End
+  nameWithType: ZipTieViewModel.End
+- uid: NodeEditor.Mvvm.ZipTieViewModel.End*
+  name: End
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_End_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.End
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.End
+  nameWithType: ZipTieViewModel.End
+- uid: NodeEditor.Mvvm.ZipTieViewModel.IsLocked
+  name: IsLocked
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_IsLocked
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.IsLocked
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.IsLocked
+  nameWithType: ZipTieViewModel.IsLocked
+- uid: NodeEditor.Mvvm.ZipTieViewModel.IsLocked*
+  name: IsLocked
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_IsLocked_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.IsLocked
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.IsLocked
+  nameWithType: ZipTieViewModel.IsLocked
+- uid: NodeEditor.Mvvm.ZipTieViewModel.IsVisible
+  name: IsVisible
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_IsVisible
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.IsVisible
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.IsVisible
+  nameWithType: ZipTieViewModel.IsVisible
+- uid: NodeEditor.Mvvm.ZipTieViewModel.IsVisible*
+  name: IsVisible
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_IsVisible_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.IsVisible
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.IsVisible
+  nameWithType: ZipTieViewModel.IsVisible
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Name
+  name: Name
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Name
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.Name
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Name
+  nameWithType: ZipTieViewModel.Name
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Name*
+  name: Name
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Name_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.Name
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Name
+  nameWithType: ZipTieViewModel.Name
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Spacing
+  name: Spacing
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Spacing
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.Spacing
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Spacing
+  nameWithType: ZipTieViewModel.Spacing
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Spacing*
+  name: Spacing
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Spacing_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.Spacing
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Spacing
+  nameWithType: ZipTieViewModel.Spacing
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Start
+  name: Start
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Start
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.Start
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Start
+  nameWithType: ZipTieViewModel.Start
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Start*
+  name: Start
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Start_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.Start
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Start
+  nameWithType: ZipTieViewModel.Start
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Waypoints
+  name: Waypoints
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Waypoints
+  commentId: P:NodeEditor.Mvvm.ZipTieViewModel.Waypoints
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Waypoints
+  nameWithType: ZipTieViewModel.Waypoints
+- uid: NodeEditor.Mvvm.ZipTieViewModel.Waypoints*
+  name: Waypoints
+  href: api/NodeEditor.Mvvm.ZipTieViewModel.html#NodeEditor_Mvvm_ZipTieViewModel_Waypoints_
+  commentId: Overload:NodeEditor.Mvvm.ZipTieViewModel.Waypoints
+  isSpec: "True"
+  fullName: NodeEditor.Mvvm.ZipTieViewModel.Waypoints
+  nameWithType: ZipTieViewModel.Waypoints
 - uid: NodeEditor.Services
   name: NodeEditor.Services
   href: api/NodeEditor.Services.html
@@ -11736,6 +12974,99 @@ references:
   isSpec: "True"
   fullName: NodeEditor.Services.StorageService.Xps
   nameWithType: StorageService.Xps
+- uid: NodeEditor.ZipTieGeometry
+  name: ZipTieGeometry
+  href: api/NodeEditor.ZipTieGeometry.html
+  commentId: T:NodeEditor.ZipTieGeometry
+  fullName: NodeEditor.ZipTieGeometry
+  nameWithType: ZipTieGeometry
+- uid: NodeEditor.ZipTieGeometry.GetAnchor(NodeEditor.Model.IZipTie,System.Int32)
+  name: GetAnchor(IZipTie, int)
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetAnchor_NodeEditor_Model_IZipTie_System_Int32_
+  commentId: M:NodeEditor.ZipTieGeometry.GetAnchor(NodeEditor.Model.IZipTie,System.Int32)
+  name.vb: GetAnchor(IZipTie, Integer)
+  fullName: NodeEditor.ZipTieGeometry.GetAnchor(NodeEditor.Model.IZipTie, int)
+  fullName.vb: NodeEditor.ZipTieGeometry.GetAnchor(NodeEditor.Model.IZipTie, Integer)
+  nameWithType: ZipTieGeometry.GetAnchor(IZipTie, int)
+  nameWithType.vb: ZipTieGeometry.GetAnchor(IZipTie, Integer)
+- uid: NodeEditor.ZipTieGeometry.GetAnchor*
+  name: GetAnchor
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetAnchor_
+  commentId: Overload:NodeEditor.ZipTieGeometry.GetAnchor
+  isSpec: "True"
+  fullName: NodeEditor.ZipTieGeometry.GetAnchor
+  nameWithType: ZipTieGeometry.GetAnchor
+- uid: NodeEditor.ZipTieGeometry.GetAnchorCount(NodeEditor.Model.IZipTie)
+  name: GetAnchorCount(IZipTie)
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetAnchorCount_NodeEditor_Model_IZipTie_
+  commentId: M:NodeEditor.ZipTieGeometry.GetAnchorCount(NodeEditor.Model.IZipTie)
+  fullName: NodeEditor.ZipTieGeometry.GetAnchorCount(NodeEditor.Model.IZipTie)
+  nameWithType: ZipTieGeometry.GetAnchorCount(IZipTie)
+- uid: NodeEditor.ZipTieGeometry.GetAnchorCount*
+  name: GetAnchorCount
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetAnchorCount_
+  commentId: Overload:NodeEditor.ZipTieGeometry.GetAnchorCount
+  isSpec: "True"
+  fullName: NodeEditor.ZipTieGeometry.GetAnchorCount
+  nameWithType: ZipTieGeometry.GetAnchorCount
+- uid: NodeEditor.ZipTieGeometry.GetBandSegment(NodeEditor.Model.IZipTie,System.Int32,Avalonia.Point@,Avalonia.Point@)
+  name: GetBandSegment(IZipTie, int, out Point, out Point)
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetBandSegment_NodeEditor_Model_IZipTie_System_Int32_Avalonia_Point__Avalonia_Point__
+  commentId: M:NodeEditor.ZipTieGeometry.GetBandSegment(NodeEditor.Model.IZipTie,System.Int32,Avalonia.Point@,Avalonia.Point@)
+  name.vb: GetBandSegment(IZipTie, Integer, Point, Point)
+  fullName: NodeEditor.ZipTieGeometry.GetBandSegment(NodeEditor.Model.IZipTie, int, out Avalonia.Point, out Avalonia.Point)
+  fullName.vb: NodeEditor.ZipTieGeometry.GetBandSegment(NodeEditor.Model.IZipTie, Integer, Avalonia.Point, Avalonia.Point)
+  nameWithType: ZipTieGeometry.GetBandSegment(IZipTie, int, out Point, out Point)
+  nameWithType.vb: ZipTieGeometry.GetBandSegment(IZipTie, Integer, Point, Point)
+- uid: NodeEditor.ZipTieGeometry.GetBandSegment*
+  name: GetBandSegment
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetBandSegment_
+  commentId: Overload:NodeEditor.ZipTieGeometry.GetBandSegment
+  isSpec: "True"
+  fullName: NodeEditor.ZipTieGeometry.GetBandSegment
+  nameWithType: ZipTieGeometry.GetBandSegment
+- uid: NodeEditor.ZipTieGeometry.GetInsertionIndex(NodeEditor.Model.IZipTie,Avalonia.Point)
+  name: GetInsertionIndex(IZipTie, Point)
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetInsertionIndex_NodeEditor_Model_IZipTie_Avalonia_Point_
+  commentId: M:NodeEditor.ZipTieGeometry.GetInsertionIndex(NodeEditor.Model.IZipTie,Avalonia.Point)
+  fullName: NodeEditor.ZipTieGeometry.GetInsertionIndex(NodeEditor.Model.IZipTie, Avalonia.Point)
+  nameWithType: ZipTieGeometry.GetInsertionIndex(IZipTie, Point)
+- uid: NodeEditor.ZipTieGeometry.GetInsertionIndex*
+  name: GetInsertionIndex
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetInsertionIndex_
+  commentId: Overload:NodeEditor.ZipTieGeometry.GetInsertionIndex
+  isSpec: "True"
+  fullName: NodeEditor.ZipTieGeometry.GetInsertionIndex
+  nameWithType: ZipTieGeometry.GetInsertionIndex
+- uid: NodeEditor.ZipTieGeometry.GetPathPoints(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector,Avalonia.Point,Avalonia.Point)
+  name: GetPathPoints(IZipTie, IConnector, Point, Point)
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetPathPoints_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_Avalonia_Point_Avalonia_Point_
+  commentId: M:NodeEditor.ZipTieGeometry.GetPathPoints(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector,Avalonia.Point,Avalonia.Point)
+  fullName: NodeEditor.ZipTieGeometry.GetPathPoints(NodeEditor.Model.IZipTie, NodeEditor.Model.IConnector, Avalonia.Point, Avalonia.Point)
+  nameWithType: ZipTieGeometry.GetPathPoints(IZipTie, IConnector, Point, Point)
+- uid: NodeEditor.ZipTieGeometry.GetPathPoints*
+  name: GetPathPoints
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_GetPathPoints_
+  commentId: Overload:NodeEditor.ZipTieGeometry.GetPathPoints
+  isSpec: "True"
+  fullName: NodeEditor.ZipTieGeometry.GetPathPoints
+  nameWithType: ZipTieGeometry.GetPathPoints
+- uid: NodeEditor.ZipTieGeometry.TryHitTest(NodeEditor.Model.IZipTie,Avalonia.Point,System.Double,System.Boolean,System.Int32@)
+  name: TryHitTest(IZipTie, Point, double, bool, out int)
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_TryHitTest_NodeEditor_Model_IZipTie_Avalonia_Point_System_Double_System_Boolean_System_Int32__
+  commentId: M:NodeEditor.ZipTieGeometry.TryHitTest(NodeEditor.Model.IZipTie,Avalonia.Point,System.Double,System.Boolean,System.Int32@)
+  name.vb: TryHitTest(IZipTie, Point, Double, Boolean, Integer)
+  fullName: NodeEditor.ZipTieGeometry.TryHitTest(NodeEditor.Model.IZipTie, Avalonia.Point, double, bool, out int)
+  fullName.vb: NodeEditor.ZipTieGeometry.TryHitTest(NodeEditor.Model.IZipTie, Avalonia.Point, Double, Boolean, Integer)
+  nameWithType: ZipTieGeometry.TryHitTest(IZipTie, Point, double, bool, out int)
+  nameWithType.vb: ZipTieGeometry.TryHitTest(IZipTie, Point, Double, Boolean, Integer)
+- uid: NodeEditor.ZipTieGeometry.TryHitTest*
+  name: TryHitTest
+  href: api/NodeEditor.ZipTieGeometry.html#NodeEditor_ZipTieGeometry_TryHitTest_
+  commentId: Overload:NodeEditor.ZipTieGeometry.TryHitTest
+  isSpec: "True"
+  fullName: NodeEditor.ZipTieGeometry.TryHitTest
+  nameWithType: ZipTieGeometry.TryHitTest
 - uid: NodeEditorLogic.Converters
   name: NodeEditorLogic.Converters
   href: api/NodeEditorLogic.Converters.html

@@ -97,7 +97,7 @@ Class NodeZoomBorder  <a class="header-action link-secondary" title="View source
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class NodeZoomBorder : ZoomBorder, INotifyPropertyChanged, IDataContextProvider, ILogical, IThemeVariantHost, IResourceHost, IResourceNode, IStyleHost, ISetLogicalParent, ISetInheritanceParent, ISupportInitialize, INamed, IInputElement, IDataTemplateHost, ISetterValue, ILogicalScrollable, IScrollable, IScrollable</code></pre>
+    <pre><code class="lang-csharp hljs">public class NodeZoomBorder : ZoomBorder, INotifyPropertyChanged, IDataContextProvider, ILogical, IThemeVariantHost, IResourceHost, IResourceNode, IStyleHost, ISetLogicalParent, ISetInheritanceParent, ISupportInitialize, INamed, IInputElement, IDataTemplateHost, ISetterValue, ILogicalScrollable, IScrollable</code></pre>
   </div>
 
 
@@ -140,7 +140,6 @@ Class NodeZoomBorder  <a class="header-action link-secondary" title="View source
       <div><span class="xref">IDataTemplateHost</span></div>
       <div><span class="xref">ISetterValue</span></div>
       <div><span class="xref">ILogicalScrollable</span></div>
-      <div><span class="xref">IScrollable</span></div>
       <div><span class="xref">IScrollable</span></div>
     </dd>
   </dl>
@@ -219,13 +218,361 @@ Class NodeZoomBorder  <a class="header-action link-secondary" title="View source
       <span class="xref">ZoomBorder.EnableGestureTranslationProperty</span>
     </div>
     <div>
+      <span class="xref">ZoomBorder.EnableGesturesProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AnimationDurationProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableAnimationsProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableDoubleClickZoomProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.DoubleClickZoomModeProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.DoubleClickZoomFactorProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.BoundsModeProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.BoundsPaddingProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MinimumVisibleContentPercentageProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ResizeBehaviorProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelBehaviorProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelWithCtrlProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelWithShiftProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelZoomSensitivityProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelPanSensitivityProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableKeyboardNavigationProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.KeyboardPanStepProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.KeyboardZoomStepProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableViewHistoryProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ViewHistorySizeProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CenterPaddingProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableDiscreteZoomLevelsProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.DiscreteZoomLevelsProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AutoCalculateMinZoomProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AutoCalculateMaxZoomProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MaxZoomPixelSizeProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ShowZoomIndicatorProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomIndicatorPositionProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomIndicatorFormatProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomIndicatorAutoHideDurationProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.IsZoomIndicatorVisibleProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomInCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomOutCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ResetCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.FitCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.FillCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UniformCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UniformToFillCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.NavigateBackCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.NavigateForwardCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ToggleStretchCommandProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ShowGridProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableSnapToGridProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridSizeProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridBrushProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridThicknessProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridOpacityProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MajorGridIntervalProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MajorGridBrushProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MajorGridThicknessProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RotationProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MinRotationProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MaxRotationProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableRotationSnappingProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RotationSnapAngleProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableSimultaneousPanZoomProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MinimumTouchPointsProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MaximumTouchPointsProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GestureRecognitionDelayProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomLevelDescriptionProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.PanPositionDescriptionProperty</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UseHighContrastModeProperty</span>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.CalculateMatrix(double, double, double, double, StretchMode)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CanPanOnPointerWheel(PointerWheelEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CanZoomOnPointerWheel(PointerWheelEventArgs)</span>
     </div>
     <div>
       <span class="xref">ZoomBorder.ArrangeOverride(Size)</span>
     </div>
     <div>
+      <span class="xref">ZoomBorder.OnResized(Size, Size)</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.NavigateBack(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.NavigateForward(bool)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ClearViewHistory()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.CenterOn(Point, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.CenterOn(Point, double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.CenterOn(Rect, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.CenterOn(Control, bool)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ViewportToContent(Point)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ContentToViewport(Point)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ViewportToContent(Rect)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ContentToViewport(Rect)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ScreenToContent(Vector)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ContentToScreen(Vector)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ScreenToContent(Size)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ContentToScreen(Size)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetContentToScreenMatrix()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetScreenToContentMatrix()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetVisibleContentBounds()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetViewportBounds()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.ZoomToRectangle(Rect, Thickness?, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.ZoomToRectangleExact(Rect, Rect, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">ZoomBorder.SaveView(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">ZoomBorder.RestoreView(string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">ZoomBorder.GetSavedView(string)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetSavedViewNames()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetSavedViews()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">ZoomBorder.DeleteSavedView(string)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ClearSavedViews()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetNextDiscreteZoomLevel()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetPreviousDiscreteZoomLevel()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.ZoomToLevel(double, double, double, bool)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.IsRectangleVisible(Rect)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.IsPointVisible(Point)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetVisiblePortion(Rect)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CalculateAutoZoomLimits()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.GetEffectiveZoomLimits(out double, out double, out double, out double)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetZoomIndicatorText()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetZoomIndicatorPosition()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.SnapToGrid(double)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.SnapToGrid(Point)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.SnapToGrid(Rect)</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.Rotate(double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">ZoomBorder.RotateAt(double, Point, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.ResetRotation(bool)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.SnapRotation()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ExportState()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.ImportState(ZoomBorderState, bool)</a>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UpdateAccessibilityDescriptions()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetAccessibilityDescription()</span>
+    </div>
+    <div>
       <span class="xref">ZoomBorder.OnZoomChanged(ZoomChangedEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GetContentBounds()</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ValidateTransform(Matrix)</span>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.SetMatrix(Matrix, bool)</a>
@@ -297,7 +644,55 @@ Class NodeZoomBorder  <a class="header-action link-secondary" title="View source
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">ZoomBorder.AutoFit(bool)</a>
     </div>
     <div>
+      <span class="xref">ZoomBorder.RaisePanStarted(PanEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaisePanContinued(PanEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaisePanEnded(PanEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseZoomStarted(ZoomEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseZoomEnded(ZoomEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseZoomDeltaChanged(ZoomEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseMatrixChanged(MatrixChangedEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseMatrixReset(MatrixChangedEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseStretchModeChanged(StretchModeChangedEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseAutoFitApplied(StretchModeChangedEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseGestureStarted(GestureEventArgs)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RaiseGestureEnded(GestureEventArgs)</span>
+    </div>
+    <div>
       <span class="xref">ZoomBorder.CalculateScrollable(Rect, Size, Matrix, out Size, out Size, out Vector)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.TransformContentToViewport(Rect, Matrix)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.TransformContentToViewport(Rect, Point, Matrix)</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CanHorizontallyScroll</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CanVerticallyScroll</span>
     </div>
     <div>
       <span class="xref">ZoomBorder.StretchModes</span>
@@ -378,7 +773,232 @@ Class NodeZoomBorder  <a class="header-action link-secondary" title="View source
       <span class="xref">ZoomBorder.EnableGestureTranslation</span>
     </div>
     <div>
+      <span class="xref">ZoomBorder.EnableGestures</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AnimationDuration</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableAnimations</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableDoubleClickZoom</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.DoubleClickZoomMode</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.DoubleClickZoomFactor</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.BoundsMode</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.BoundsPadding</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MinimumVisibleContentPercentage</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ResizeBehavior</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelBehavior</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelWithCtrl</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelWithShift</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelZoomSensitivity</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.WheelPanSensitivity</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableKeyboardNavigation</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.KeyboardPanStep</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.KeyboardZoomStep</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableViewHistory</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ViewHistorySize</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CenterPadding</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableDiscreteZoomLevels</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.DiscreteZoomLevels</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AutoCalculateMinZoom</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AutoCalculateMaxZoom</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MaxZoomPixelSize</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ShowZoomIndicator</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomIndicatorPosition</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomIndicatorFormat</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomIndicatorAutoHideDuration</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.IsZoomIndicatorVisible</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ShowGrid</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableSnapToGrid</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridSize</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridBrush</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridThickness</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GridOpacity</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MajorGridInterval</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MajorGridBrush</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MajorGridThickness</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.Rotation</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MinRotation</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MaxRotation</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableRotationSnapping</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.RotationSnapAngle</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.EnableSimultaneousPanZoom</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MinimumTouchPoints</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MaximumTouchPoints</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GestureRecognitionDelay</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomLevelDescription</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.PanPositionDescription</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UseHighContrastMode</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CanNavigateBack</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.CanNavigateForward</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ResetCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.FitCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.FillCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UniformCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.UniformToFillCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.NavigateBackCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.NavigateForwardCommand</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ToggleStretchCommand</span>
+    </div>
+    <div>
       <span class="xref">ZoomBorder.ZoomChanged</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ViewHistoryChanged</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.PanStarted</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.PanContinued</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.PanEnded</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomStarted</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomEnded</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.ZoomDeltaChanged</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MatrixChanged</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.MatrixReset</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.StretchModeChanged</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.AutoFitApplied</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GestureStarted</span>
+    </div>
+    <div>
+      <span class="xref">ZoomBorder.GestureEnded</span>
     </div>
     <div>
       <span class="xref">Border.BackgroundProperty</span>

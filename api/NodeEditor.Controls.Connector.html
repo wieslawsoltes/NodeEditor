@@ -1165,7 +1165,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector__ctor" data-uid="NodeEditor.Controls.Connector.#ctor">
   Connector()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L84"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1270,6 +1270,37 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
     <dt><span class="xref">StyledProperty</span>&lt;<span class="xref">Point</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="NodeEditor_Controls_Connector_HasEditableWaypointsProperty" data-uid="NodeEditor.Controls.Connector.HasEditableWaypointsProperty">
+  HasEditableWaypointsProperty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Identifies whether individual waypoint handles can currently edit this wire.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly DirectProperty&lt;Connector, bool&gt; HasEditableWaypointsProperty</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">DirectProperty</span>&lt;<a class="xref" href="NodeEditor.Controls.Connector.html">Connector</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -1409,7 +1440,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_ConnectorSource" data-uid="NodeEditor.Controls.Connector.ConnectorSource">
   ConnectorSource
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1440,7 +1471,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_ConnectorStyle" data-uid="NodeEditor.Controls.Connector.ConnectorStyle">
   ConnectorStyle
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1471,7 +1502,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_EndPoint" data-uid="NodeEditor.Controls.Connector.EndPoint">
   EndPoint
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1498,11 +1529,43 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
 
 
+  <a id="NodeEditor_Controls_Connector_HasEditableWaypoints_" data-uid="NodeEditor.Controls.Connector.HasEditableWaypoints*"></a>
+
+  <h3 id="NodeEditor_Controls_Connector_HasEditableWaypoints" data-uid="NodeEditor.Controls.Connector.HasEditableWaypoints">
+  HasEditableWaypoints
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether this unlocked manual wire is outside an active zip-tie route.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasEditableWaypoints { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Controls_Connector_LabelPoint_" data-uid="NodeEditor.Controls.Connector.LabelPoint*"></a>
 
   <h3 id="NodeEditor_Controls_Connector_LabelPoint" data-uid="NodeEditor.Controls.Connector.LabelPoint">
   LabelPoint
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L125"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1533,7 +1596,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_Offset" data-uid="NodeEditor.Controls.Connector.Offset">
   Offset
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1564,7 +1627,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_Orientation" data-uid="NodeEditor.Controls.Connector.Orientation">
   Orientation
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L119"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1595,7 +1658,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_StartPoint" data-uid="NodeEditor.Controls.Connector.StartPoint">
   StartPoint
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1626,7 +1689,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_SwapDirectionCommand" data-uid="NodeEditor.Controls.Connector.SwapDirectionCommand">
   SwapDirectionCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L131"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1661,7 +1724,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_CreateDefiningGeometry" data-uid="NodeEditor.Controls.Connector.CreateDefiningGeometry">
   CreateDefiningGeometry()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L167"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates the shape's defining geometry.</p>
@@ -1694,7 +1757,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_OnAttachedToVisualTree_Avalonia_VisualTreeAttachmentEventArgs_" data-uid="NodeEditor.Controls.Connector.OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs)">
   OnAttachedToVisualTree(VisualTreeAttachmentEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L151"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Called when the control is added to a rooted visual tree.</p>
@@ -1727,7 +1790,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_OnDetachedFromVisualTree_Avalonia_VisualTreeAttachmentEventArgs_" data-uid="NodeEditor.Controls.Connector.OnDetachedFromVisualTree(Avalonia.VisualTreeAttachmentEventArgs)">
   OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Called when the control is removed from a rooted visual tree.</p>
@@ -1760,7 +1823,7 @@ public class Connector : Shape, INotifyPropertyChanged, IDataContextProvider, IL
 
   <h3 id="NodeEditor_Controls_Connector_OnPropertyChanged_Avalonia_AvaloniaPropertyChangedEventArgs_" data-uid="NodeEditor.Controls.Connector.OnPropertyChanged(Avalonia.AvaloniaPropertyChangedEventArgs)">
   OnPropertyChanged(AvaloniaPropertyChangedEventArgs)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/Controls/Connector.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Called when a avalonia property changes on the object.</p>

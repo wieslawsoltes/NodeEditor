@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ZipTieGeometry | NodeEditor for Avalonia </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ZipTieGeometry | NodeEditor for Avalonia ">
+      
+      <meta name="description" content="Shared geometry for bundled wire routes, zip-tie collars, and interaction hit testing.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/wieslawsoltes/NodeEditor/new/main/apiSpec/new?filename=NodeEditor_ZipTieGeometry.md&amp;value=---%0Auid%3A%20NodeEditor.ZipTieGeometry%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="NodeEditor.ZipTieGeometry">
+
+
+
+  <h1 id="NodeEditor_ZipTieGeometry" data-uid="NodeEditor.ZipTieGeometry" class="text-break">
+Class ZipTieGeometry  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="NodeEditor.html">NodeEditor</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>NodeEditorAvalonia.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Shared geometry for bundled wire routes, zip-tie collars, and interaction hit testing.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ZipTieGeometry</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ZipTieGeometry</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="NodeEditor_ZipTieGeometry_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Anchors are indexed from the start collar (zero), through the intermediate collars, to the end
+collar. Stored connector order determines lane order independently of connector direction.</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="NodeEditor_ZipTieGeometry_GetAnchor_" data-uid="NodeEditor.ZipTieGeometry.GetAnchor*"></a>
+
+  <h3 id="NodeEditor_ZipTieGeometry_GetAnchor_NodeEditor_Model_IZipTie_System_Int32_" data-uid="NodeEditor.ZipTieGeometry.GetAnchor(NodeEditor.Model.IZipTie,System.Int32)">
+  GetAnchor(IZipTie, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a collar's drawing-space center.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Point GetAnchor(IZipTie tie, int anchorIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+    <dt><code>anchorIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Point</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>The anchor index is outside the bundle.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="NodeEditor_ZipTieGeometry_GetAnchorCount_" data-uid="NodeEditor.ZipTieGeometry.GetAnchorCount*"></a>
+
+  <h3 id="NodeEditor_ZipTieGeometry_GetAnchorCount_NodeEditor_Model_IZipTie_" data-uid="NodeEditor.ZipTieGeometry.GetAnchorCount(NodeEditor.Model.IZipTie)">
+  GetAnchorCount(IZipTie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of collars, including the two end collars.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetAnchorCount(IZipTie tie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_ZipTieGeometry_GetBandSegment_" data-uid="NodeEditor.ZipTieGeometry.GetBandSegment*"></a>
+
+  <h3 id="NodeEditor_ZipTieGeometry_GetBandSegment_NodeEditor_Model_IZipTie_System_Int32_Avalonia_Point__Avalonia_Point__" data-uid="NodeEditor.ZipTieGeometry.GetBandSegment(NodeEditor.Model.IZipTie,System.Int32,Avalonia.Point@,Avalonia.Point@)">
+  GetBandSegment(IZipTie, int, out Point, out Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the endpoints of a collar crossing every lane, including a small end margin.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void GetBandSegment(IZipTie tie, int anchorIndex, out Point start, out Point end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+    <dt><code>anchorIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>start</code> <span class="xref">Point</span></dt>
+    <dd></dd>
+    <dt><code>end</code> <span class="xref">Point</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_ZipTieGeometry_GetInsertionIndex_" data-uid="NodeEditor.ZipTieGeometry.GetInsertionIndex*"></a>
+
+  <h3 id="NodeEditor_ZipTieGeometry_GetInsertionIndex_NodeEditor_Model_IZipTie_Avalonia_Point_" data-uid="NodeEditor.ZipTieGeometry.GetInsertionIndex(NodeEditor.Model.IZipTie,Avalonia.Point)">
+  GetInsertionIndex(IZipTie, Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the intermediate-anchor insertion index of the nearest rendered spine interval.
+Curved and orthogonal routes are measured using the same segments as wire rendering,
+considering each distinct style among visible member wires.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int GetInsertionIndex(IZipTie tie, Point point)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd><p>The bundle whose spine is inspected.</p>
+</dd>
+    <dt><code>point</code> <span class="xref">Point</span></dt>
+    <dd><p>The proposed anchor position in drawing coordinates.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>An insertion index from zero through <code>tie.Waypoints.Count</code>, inclusive.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="NodeEditor_ZipTieGeometry_GetInsertionIndex_NodeEditor_Model_IZipTie_Avalonia_Point__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Equal-distance intervals resolve to the earliest interval. When no member wire is visible,
+the default Bézier spine supplies a deterministic insertion position.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>The point contains a non-finite coordinate.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="NodeEditor_ZipTieGeometry_GetPathPoints_" data-uid="NodeEditor.ZipTieGeometry.GetPathPoints*"></a>
+
+  <h3 id="NodeEditor_ZipTieGeometry_GetPathPoints_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_Avalonia_Point_Avalonia_Point_" data-uid="NodeEditor.ZipTieGeometry.GetPathPoints(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector,Avalonia.Point,Avalonia.Point)">
+  GetPathPoints(IZipTie, IConnector, Point, Point)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the flattened, drawing-space route of a member wire, including both fan-outs.
+The same cubic segments are used by the renderer and by selection, arrows, labels, and crossings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;Point&gt; GetPathPoints(IZipTie tie, IConnector connector, Point start, Point end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+    <dt><code>connector</code> <a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a></dt>
+    <dd></dd>
+    <dt><code>start</code> <span class="xref">Point</span></dt>
+    <dd></dd>
+    <dt><code>end</code> <span class="xref">Point</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<span class="xref">Point</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>The connector is not a member of the zip tie.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="NodeEditor_ZipTieGeometry_TryHitTest_" data-uid="NodeEditor.ZipTieGeometry.TryHitTest*"></a>
+
+  <h3 id="NodeEditor_ZipTieGeometry_TryHitTest_NodeEditor_Model_IZipTie_Avalonia_Point_System_Double_System_Boolean_System_Int32__" data-uid="NodeEditor.ZipTieGeometry.TryHitTest(NodeEditor.Model.IZipTie,Avalonia.Point,System.Double,System.Boolean,System.Int32@)">
+  TryHitTest(IZipTie, Point, double, bool, out int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Tests collars first, then optionally the bundled span.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryHitTest(IZipTie tie, Point point, double tolerance, bool includeSpan, out int anchorIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd><p>The zip tie to test.</p>
+</dd>
+    <dt><code>point</code> <span class="xref">Point</span></dt>
+    <dd><p>The pointer in drawing coordinates.</p>
+</dd>
+    <dt><code>tolerance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd><p>Hit tolerance in drawing units.</p>
+</dd>
+    <dt><code>includeSpan</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the space occupied by the bundled wires can be hit.</p>
+</dd>
+    <dt><code>anchorIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The collar index, or minus one for the span.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether a visible bundle was hit.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia/ZipTieGeometry.cs/#L14" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

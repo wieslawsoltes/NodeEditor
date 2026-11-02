@@ -98,7 +98,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DrawingNodeViewModel : NodeViewModel, INotifyPropertyChanged, INotifyPropertyChanging, IDrawingNode, INode, IUndoRedoHost</code></pre>
+    <pre><code class="lang-csharp hljs">public class DrawingNodeViewModel : NodeViewModel, INotifyPropertyChanged, INotifyPropertyChanging, IDrawingNode, INode, IUndoRedoHost, IZipTieHost, IZipTieCommands, IZipTieLaneProvider, IDrawingGraphTransferObserver</code></pre>
   </div>
 
 
@@ -122,6 +122,10 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
       <div><a class="xref" href="NodeEditor.Model.IDrawingNode.html">IDrawingNode</a></div>
       <div><a class="xref" href="NodeEditor.Model.INode.html">INode</a></div>
       <div><a class="xref" href="NodeEditor.Model.IUndoRedoHost.html">IUndoRedoHost</a></div>
+      <div><a class="xref" href="NodeEditor.Model.IZipTieHost.html">IZipTieHost</a></div>
+      <div><a class="xref" href="NodeEditor.Model.IZipTieCommands.html">IZipTieCommands</a></div>
+      <div><a class="xref" href="NodeEditor.Model.IZipTieLaneProvider.html">IZipTieLaneProvider</a></div>
+      <div><a class="xref" href="NodeEditor.Model.IDrawingGraphTransferObserver.html">IDrawingGraphTransferObserver</a></div>
     </dd>
   </dl>
 
@@ -307,7 +311,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel__ctor" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.#ctor">
   DrawingNodeViewModel()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L106"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -333,7 +337,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel__ctor_NodeEditor_Model_IDrawingNodeFactory_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.#ctor(NodeEditor.Model.IDrawingNodeFactory)">
   DrawingNodeViewModel(IDrawingNodeFactory?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L111"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -368,7 +372,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AddPenCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddPenCommand">
   AddPenCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L178"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -395,11 +399,44 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AddSelectedToZipTieCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AddSelectedToZipTieCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddSelectedToZipTieCommand">
+  AddSelectedToZipTieCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the selected wires to the active bundle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public ICommand AddSelectedToZipTieCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignNodesCommand*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignNodesCommand">
   AlignNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L192"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -430,7 +467,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanRedo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanRedo">
   CanRedo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L210"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -461,7 +498,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanUndo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanUndo">
   CanUndo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L208"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -492,7 +529,7 @@ Class DrawingNodeViewModel  <a class="header-action link-secondary" title="View 
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ClearInkCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ClearInkCommand">
   ClearInkCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L180"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -555,7 +592,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConvertInkCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConvertInkCommand">
   ConvertInkCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L176"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -586,7 +623,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CopyNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodesCommand">
   CopyNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L168"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -613,11 +650,44 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTieCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTieCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTieCommand">
+  CreateZipTieCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Bundles the selected wires.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public ICommand CreateZipTieCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodesCommand*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodesCommand">
   CutNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L166"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -648,7 +718,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeleteNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeleteNodesCommand">
   DeleteNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L190"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -679,7 +749,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeselectAllNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeselectAllNodesCommand">
   DeselectAllNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L188"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -710,7 +780,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DistributeNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DistributeNodesCommand">
   DistributeNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -741,7 +811,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawInkCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawInkCommand">
   DrawInkCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L174"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -772,7 +842,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DuplicateNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DuplicateNodesCommand">
   DuplicateNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L172"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -803,7 +873,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelectionCommand">
   HideSelectionCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L202"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -834,7 +904,7 @@ public IList&lt;IConnector&gt;? Connectors { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_InkStrokes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.InkStrokes">
   InkStrokes
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -866,7 +936,7 @@ public IList&lt;InkStroke&gt;? InkStrokes { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_LockSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.LockSelectionCommand">
   LockSelectionCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L198"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -929,7 +999,7 @@ public IList&lt;INode&gt;? Nodes { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_OrderNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.OrderNodesCommand">
   OrderNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L193"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L196"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -960,7 +1030,7 @@ public IList&lt;INode&gt;? Nodes { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_PasteNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodesCommand">
   PasteNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L170"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -991,7 +1061,7 @@ public IList&lt;INode&gt;? Nodes { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_RedoCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RedoCommand">
   RedoCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L184"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1018,11 +1088,110 @@ public IList&lt;INode&gt;? Nodes { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveSelectedFromZipTieCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveSelectedFromZipTieCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveSelectedFromZipTieCommand">
+  RemoveSelectedFromZipTieCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the selected wires from their bundles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public ICommand RemoveSelectedFromZipTieCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTieCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTieCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTieCommand">
+  RemoveZipTieCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Dissolves the selected bundle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public ICommand RemoveZipTieCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTieCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTieCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTieCommand">
+  ReverseZipTieCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reverses the active bundle's lane order.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public ICommand ReverseZipTieCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodesCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodesCommand*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodesCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodesCommand">
   SelectAllNodesCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L186"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1049,11 +1218,44 @@ public IList&lt;INode&gt;? Nodes { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectedZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectedZipTie" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectedZipTie">
+  SelectedZipTie
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the actively edited bundle; selection is not document data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public IZipTie? SelectedZipTie { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Settings_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Settings*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Settings" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Settings">
   Settings
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/obj/Release/net10.0/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.ObservablePropertyGenerator/NodeEditor.Mvvm.DrawingNodeViewModel.g.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1085,7 +1287,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowAllCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowAllCommand">
   ShowAllCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L206"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1116,7 +1318,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelectionCommand">
   ShowSelectionCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L204"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1143,11 +1345,44 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTieCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTieCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTieCommand">
+  StraightenZipTieCommand
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the active bundle's intermediate anchors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public ICommand StraightenZipTieCommand { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.windows.input.icommand">ICommand</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_UndoCommand_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UndoCommand*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_UndoCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UndoCommand">
   UndoCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L182"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1178,7 +1413,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_UnlockSelectionCommand" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelectionCommand">
   UnlockSelectionCommand
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L200"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1205,6 +1440,38 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ZipTies_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ZipTies" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ZipTies">
+  ZipTies
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the drawing's bundles. Use an observable collection for live updates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;IZipTie&gt; ZipTies { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -1213,7 +1480,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AddPen" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddPen">
   AddPen()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L303"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L322"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1235,11 +1502,50 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AddToZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AddToZipTie_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AddToZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)">
+  AddToZipTie(IZipTie, IConnector)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Appends an eligible, unbundled wire to the stable lane order.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddToZipTie(IZipTie tie, IConnector connector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+    <dt><code>connector</code> <a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignSelectedNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignSelectedNodes*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_AlignSelectedNodes_NodeEditor_Model_NodeAlignment_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.AlignSelectedNodes(NodeEditor.Model.NodeAlignment)">
   AlignSelectedNodes(NodeAlignment)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L337"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L365"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1270,7 +1576,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_BeginUndoBatch" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.BeginUndoBatch">
   BeginUndoBatch()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L406"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L479"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1296,7 +1602,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanConnectPin_NodeEditor_Model_IPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanConnectPin(NodeEditor.Model.IPin)">
   CanConnectPin(IPin)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L279"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1332,7 +1638,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanSelectConnectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanSelectConnectors">
   CanSelectConnectors()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L277"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1363,7 +1669,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CanSelectNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CanSelectNodes">
   CanSelectNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L268"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L275"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1394,7 +1700,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CancelConnector" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CancelConnector">
   CancelConnector()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L266"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L273"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1420,7 +1726,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ClearInk" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ClearInk">
   ClearInk()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L301"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L320"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1446,7 +1752,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Clone__1___0_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Clone``1(``0)">
   Clone&lt;T&gt;(T)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L267"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1487,7 +1793,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectorLeftPressed_NodeEditor_Model_IPin_System_Boolean_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectorLeftPressed(NodeEditor.Model.IPin,System.Boolean)">
   ConnectorLeftPressed(IPin, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L278"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L285"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1520,7 +1826,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectorMove_System_Double_System_Double_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectorMove(System.Double,System.Double)">
   ConnectorMove(double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L287"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1553,7 +1859,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConvertInkToNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConvertInkToNodes">
   ConvertInkToNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L333"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L352"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1579,7 +1885,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CopyNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CopyNodes">
   CopyNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L284"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L295"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1601,11 +1907,48 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CreateZipTie_System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CreateZipTie(System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})">
+  CreateZipTie(IEnumerable&lt;IConnector&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Bundles at least two eligible wires and selects the result, or returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IZipTie? CreateZipTie(IEnumerable&lt;IConnector&gt; connectors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connectors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodes*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_CutNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.CutNodes">
   CutNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L282"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L289"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1631,7 +1974,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeleteNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeleteNodes">
   DeleteNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L354"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1657,7 +2000,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DeselectAllNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DeselectAllNodes">
   DeselectAllNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L357"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L426"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1683,7 +2026,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DistributeSelectedNodes_NodeEditor_Model_NodeDistribution_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DistributeSelectedNodes(NodeEditor.Model.NodeDistribution)">
   DistributeSelectedNodes(NodeDistribution)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L368"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1714,7 +2057,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawingLeftPressed_System_Double_System_Double_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawingLeftPressed(System.Double,System.Double)">
   DrawingLeftPressed(double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L281"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1747,7 +2090,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DrawingRightPressed_System_Double_System_Double_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DrawingRightPressed(System.Double,System.Double)">
   DrawingRightPressed(double, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L276"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L283"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1780,7 +2123,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_DuplicateNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.DuplicateNodes">
   DuplicateNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L288"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L303"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1806,7 +2149,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_EndUndoBatch" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.EndUndoBatch">
   EndUndoBatch()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L421"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L494"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1828,11 +2171,48 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_FindZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_FindZipTie_NodeEditor_Model_IConnector_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.FindZipTie(NodeEditor.Model.IConnector)">
+  FindZipTie(IConnector)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finds the bundle owning a wire, or returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IZipTie? FindZipTie(IConnector connector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connector</code> <a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedConnectors_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedConnectors*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedConnectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedConnectors">
   GetSelectedConnectors()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L251"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1863,7 +2243,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSelectedNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSelectedNodes">
   GetSelectedNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L247"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1894,7 +2274,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetSerializer" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetSerializer">
   GetSerializer()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L255"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1921,11 +2301,48 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_GetZipTieLane_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_GetZipTieLane_NodeEditor_Model_IConnector_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.GetZipTieLane(NodeEditor.Model.IConnector)">
+  GetZipTieLane(IConnector)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L148"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the wire's stable, zero-based lane index, or minus one when it is unbundled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetZipTieLane(IConnector connector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connector</code> <a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelection_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelection*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_HideSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.HideSelection">
   HideSelection()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L349"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L393"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1951,7 +2368,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_IsConnectorMoving" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.IsConnectorMoving">
   IsConnectorMoving()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L271"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -1982,7 +2399,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_IsPinConnected_NodeEditor_Model_IPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.IsPinConnected(NodeEditor.Model.IPin)">
   IsPinConnected(IPin)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L269"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2018,7 +2435,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_LockSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.LockSelection">
   LockSelection()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L373"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2044,7 +2461,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyConnectionRejected_NodeEditor_Model_IPin_NodeEditor_Model_IPin_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyConnectionRejected(NodeEditor.Model.IPin,NodeEditor.Model.IPin)">
   NotifyConnectionRejected(IPin, IPin)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L218"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2077,7 +2494,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyDeselectedConnectors" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyDeselectedConnectors">
   NotifyDeselectedConnectors()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L228"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2103,7 +2520,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifyDeselectedNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifyDeselectedNodes">
   NotifyDeselectedNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L223"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2129,7 +2546,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_NotifySelectionChanged" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.NotifySelectionChanged">
   NotifySelectionChanged()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L212"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2155,7 +2572,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_OrderSelectedNodes_NodeEditor_Model_NodeOrder_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.OrderSelectedNodes(NodeEditor.Model.NodeOrder)">
   OrderSelectedNodes(NodeOrder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L343"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L371"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2186,7 +2603,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_PasteNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PasteNodes">
   PasteNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L297"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2208,11 +2625,47 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_PrepareGraphTransfer_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_PrepareGraphTransfer_System_Collections_Generic_IEnumerable_NodeEditor_Model_INode__System_Collections_Generic_IEnumerable_NodeEditor_Model_IConnector__" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.PrepareGraphTransfer(System.Collections.Generic.IEnumerable{NodeEditor.Model.INode},System.Collections.Generic.IEnumerable{NodeEditor.Model.IConnector})">
+  PrepareGraphTransfer(IEnumerable&lt;INode&gt;?, IEnumerable&lt;IConnector&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L498"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Releases subscriptions owned by temporary source parents before their
+deserialized nodes and wires are adopted by the destination drawing.
+Implementations must preserve graph data and connection identity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PrepareGraphTransfer(IEnumerable&lt;INode&gt;? nodes, IEnumerable&lt;IConnector&gt;? connectors)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nodes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="NodeEditor.Model.INode.html">INode</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>connectors</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_Redo_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Redo*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Redo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Redo">
   Redo()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L385"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L458"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2234,11 +2687,114 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveFromZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveFromZipTie_NodeEditor_Model_IZipTie_NodeEditor_Model_IConnector_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveFromZipTie(NodeEditor.Model.IZipTie,NodeEditor.Model.IConnector)">
+  RemoveFromZipTie(IZipTie, IConnector)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Detaches a wire, dissolving the bundle when fewer than two members remain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveFromZipTie(IZipTie tie, IConnector connector)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+    <dt><code>connector</code> <a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_RemoveZipTie_NodeEditor_Model_IZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.RemoveZipTie(NodeEditor.Model.IZipTie)">
+  RemoveZipTie(IZipTie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Dissolves an editable bundle without deleting its wires.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveZipTie(IZipTie tie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ReverseZipTie_NodeEditor_Model_IZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ReverseZipTie(NodeEditor.Model.IZipTie)">
+  ReverseZipTie(IZipTie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reverses the lane order without swapping connection endpoints.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReverseZipTie(IZipTie tie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodes_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodes*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectAllNodes" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectAllNodes">
   SelectAllNodes()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L355"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L424"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2264,7 +2820,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetFactory_NodeEditor_Model_IDrawingNodeFactory_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetFactory(NodeEditor.Model.IDrawingNodeFactory)">
   SetFactory(IDrawingNodeFactory)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L359"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L432"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2295,7 +2851,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSelectedConnectors_System_Collections_Generic_ISet_NodeEditor_Model_IConnector__" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSelectedConnectors(System.Collections.Generic.ISet{NodeEditor.Model.IConnector})">
   SetSelectedConnectors(ISet&lt;IConnector&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L253"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2326,7 +2882,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSelectedNodes_System_Collections_Generic_ISet_NodeEditor_Model_INode__" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSelectedNodes(System.Collections.Generic.ISet{NodeEditor.Model.INode})">
   SetSelectedNodes(ISet&lt;INode&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L242"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L249"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2357,7 +2913,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SetSerializer_NodeEditor_Model_INodeSerializer_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SetSerializer(NodeEditor.Model.INodeSerializer)">
   SetSerializer(INodeSerializer?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L257"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2388,7 +2944,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowAll" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowAll">
   ShowAll()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L414"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2414,7 +2970,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ShowSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ShowSelection">
   ShowSelection()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L351"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L404"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2436,11 +2992,43 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
 
 
+  <a id="NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie*"></a>
+
+  <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_StraightenZipTie_NodeEditor_Model_IZipTie_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.StraightenZipTie(NodeEditor.Model.IZipTie)">
+  StraightenZipTie(IZipTie)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.ZipTies.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes intermediate tie anchors while retaining both end anchors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StraightenZipTie(IZipTie tie)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tie</code> <a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="NodeEditor_Mvvm_DrawingNodeViewModel_ToggleInkMode_" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ToggleInkMode*"></a>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ToggleInkMode" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ToggleInkMode">
   ToggleInkMode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L309"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2466,7 +3054,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_Undo" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.Undo">
   Undo()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L364"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L437"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2492,7 +3080,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_UnlockSelection" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.UnlockSelection">
   UnlockSelection()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L347"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L383"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2521,7 +3109,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_ConnectionRejected" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.ConnectionRejected">
   ConnectionRejected
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L161"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L164"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -2551,7 +3139,7 @@ public IDrawingNodeSettings Settings { get; set; }</code></pre>
 
   <h3 id="NodeEditor_Mvvm_DrawingNodeViewModel_SelectionChanged" data-uid="NodeEditor.Mvvm.DrawingNodeViewModel.SelectionChanged">
   SelectionChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/wieslawsoltes/NodeEditor/blob/main/src/NodeEditorAvalonia.Mvvm/DrawingNodeViewModel.cs/#L163"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>

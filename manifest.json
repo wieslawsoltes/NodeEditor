@@ -242,6 +242,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Behaviors.ZipTieInteractionBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Behaviors.ZipTieInteractionBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Behaviors.ZipTieInteractionBehavior",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Behaviors.ZipTieInteractionBehavior.yml\" sourcestartlinenumber=\"1\">Edits wire zip ties through pointer and keyboard input in drawing coordinates.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/NodeEditor.Behaviors.yml",
       "output": {
         ".html": {
@@ -561,6 +575,20 @@
       "IsMRef": true,
       "Title": "NodeEditor.Controls.Toolbox",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Controls.ZipTieLayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Controls.ZipTieLayer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Controls.ZipTieLayer",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Controls.ZipTieLayer.yml\" sourcestartlinenumber=\"1\">Renders zip-tie collars above connectors without intercepting pointer input.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -984,6 +1012,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IDrawingGraphTransferObserver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IDrawingGraphTransferObserver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IDrawingGraphTransferObserver",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Model.IDrawingGraphTransferObserver.yml\" sourcestartlinenumber=\"1\">Optional lifecycle hook for a drawing that adopts a deserialized graph, such\nas a clipboard paste. Called before nodes and wires receive their new parent.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/NodeEditor.Model.IDrawingNode.yml",
       "output": {
         ".html": {
@@ -1135,6 +1177,62 @@
       "IsMRef": true,
       "Title": "NodeEditor.Model.IUndoRedoHost",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IZipTie.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IZipTie.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IZipTie",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Model.IZipTie.yml\" sourcestartlinenumber=\"1\">A spatial wire bundle. Connections keep their endpoints and electrical meaning;\nthe ordered members share parallel lanes between the tie anchors.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IZipTieCommands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IZipTieCommands.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IZipTieCommands",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Model.IZipTieCommands.yml\" sourcestartlinenumber=\"1\">Optional command surface for binding zip-tie editing tools.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IZipTieHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IZipTieHost.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IZipTieHost",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Model.IZipTieHost.yml\" sourcestartlinenumber=\"1\">Optional drawing capability for editing wire bundles. Existing custom\n<xref href=\"NodeEditor.Model.IDrawingNode\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"NodeEditor.Model.IConnector\" data-throw-if-not-resolved=\"false\"></xref> implementations remain compatible.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.IZipTieLaneProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.IZipTieLaneProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.IZipTieLaneProvider",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Model.IZipTieLaneProvider.yml\" sourcestartlinenumber=\"1\">Optional constant-time lane lookup for renderers of large bundles.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1488,6 +1586,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Model.ZipTieEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Model.ZipTieEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Model.ZipTieEditor",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Model.ZipTieEditor.yml\" sourcestartlinenumber=\"1\">Framework-independent editing rules for spatial wire bundles. The caller owns\nhistory transactions and supplies its own bundle implementation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/NodeEditor.Model.yml",
       "output": {
         ".html": {
@@ -1670,6 +1782,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.Mvvm.ZipTieViewModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.Mvvm.ZipTieViewModel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.Mvvm.ZipTieViewModel",
+      "Summary": "<p sourcefile=\"api/NodeEditor.Mvvm.ZipTieViewModel.yml\" sourcestartlinenumber=\"1\">Observable wire-bundle data. Geometry and membership changes are relayed through\nthe corresponding owner property so renderers can invalidate only affected wires.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/NodeEditor.Mvvm.yml",
       "output": {
         ".html": {
@@ -1722,6 +1848,34 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "NodeEditor.Services",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.ZipTieGeometry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.ZipTieGeometry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor.ZipTieGeometry",
+      "Summary": "<p sourcefile=\"api/NodeEditor.ZipTieGeometry.yml\" sourcestartlinenumber=\"1\">Shared geometry for bundled wire routes, zip-tie collars, and interaction hit testing.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/NodeEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/NodeEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "NodeEditor",
       "Summary": null
     },
     {
@@ -2326,11 +2480,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "api/toc.html"
-        },
         ".json": {
           "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
         }
       },
       "version": ""
@@ -2599,11 +2753,21 @@
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "articles/toc.html"
-        },
         ".json": {
           "relative_path": "articles/toc.json"
+        },
+        ".html": {
+          "relative_path": "articles/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/wire-zip-ties.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/wire-zip-ties.html"
         }
       },
       "version": ""
@@ -2632,11 +2796,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".html": {
-          "relative_path": "toc.html"
-        },
         ".json": {
           "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
         }
       },
       "version": ""

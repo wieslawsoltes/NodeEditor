@@ -202,6 +202,12 @@ Classes
       <dt><a class="xref" href="NodeEditor.Model.PinSelectedEventArgs.html">PinSelectedEventArgs</a></dt>
       <dd></dd>
     </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="NodeEditor.Model.ZipTieEditor.html">ZipTieEditor</a></dt>
+      <dd><p>Framework-independent editing rules for spatial wire bundles. The caller owns
+history transactions and supplies its own bundle implementation.</p>
+</dd>
+    </dl>
     <h3 id="structs">
 Structs
 </h3>
@@ -219,6 +225,12 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a></dt>
       <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="NodeEditor.Model.IDrawingGraphTransferObserver.html">IDrawingGraphTransferObserver</a></dt>
+      <dd><p>Optional lifecycle hook for a drawing that adopts a deserialized graph, such
+as a clipboard paste. Called before nodes and wires receive their new parent.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="NodeEditor.Model.IDrawingNode.html">IDrawingNode</a></dt>
@@ -263,6 +275,28 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="NodeEditor.Model.IUndoRedoHost.html">IUndoRedoHost</a></dt>
       <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="NodeEditor.Model.IZipTie.html">IZipTie</a></dt>
+      <dd><p>A spatial wire bundle. Connections keep their endpoints and electrical meaning;
+the ordered members share parallel lanes between the tie anchors.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="NodeEditor.Model.IZipTieCommands.html">IZipTieCommands</a></dt>
+      <dd><p>Optional command surface for binding zip-tie editing tools.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="NodeEditor.Model.IZipTieHost.html">IZipTieHost</a></dt>
+      <dd><p>Optional drawing capability for editing wire bundles. Existing custom
+<a class="xref" href="NodeEditor.Model.IDrawingNode.html">IDrawingNode</a> and <a class="xref" href="NodeEditor.Model.IConnector.html">IConnector</a> implementations remain compatible.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="NodeEditor.Model.IZipTieLaneProvider.html">IZipTieLaneProvider</a></dt>
+      <dd><p>Optional constant-time lane lookup for renderers of large bundles.</p>
+</dd>
     </dl>
     <h3 id="enums">
 Enums
