@@ -31,13 +31,13 @@ jobs:
           global-json-file: global.json
 
       - name: Install workloads
-        run: dotnet workload install wasm-tools wasm-experimental
+        run: dotnet workload install wasm-tools
 
       - name: Determine version suffix
         id: version
         run: |
           DATE=$(date -u +%Y%m%d)
-          echo "version-suffix=nightly.${DATE}.${{ github.run_number }}" >> $GITHUB_OUTPUT
+          echo "version-suffix=nightly.${DATE}.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
 
       - name: Restore
         run: dotnet restore

@@ -4,15 +4,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageVersion Include="Avalonia" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Browser" Version="12.0.0" />
+    <PackageVersion Include="Avalonia" Version="12.1.5" />
+    <PackageVersion Include="Avalonia.Browser" Version="12.1.5" />
     <PackageVersion Include="PanAndZoom" Version="12.0.0.1" />
-    <PackageVersion Include="Avalonia.Desktop" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.HarfBuzz" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Headless.XUnit" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Skia" Version="12.0.0" />
-    <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.0.0" />
+    <PackageVersion Include="Avalonia.Desktop" Version="12.1.5" />
+    <PackageVersion Include="Avalonia.Fonts.Inter" Version="12.1.5" />
+    <PackageVersion Include="Avalonia.HarfBuzz" Version="12.1.5" />
+    <PackageVersion Include="Avalonia.Headless.XUnit" Version="12.1.5" />
+    <PackageVersion Include="Avalonia.Skia" Version="12.1.5" />
+    <PackageVersion Include="Avalonia.Themes.Fluent" Version="12.1.5" />
     <PackageVersion Include="Xaml.Behaviors.Interactivity" Version="12.0.0.1" />
     <PackageVersion Include="Xaml.Behaviors.Interactions.DragAndDrop" Version="12.0.0.1" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
@@ -25,7 +25,7 @@
     <PackageVersion Include="ReactiveMarbles.PropertyChanged" Version="2.0.27" />
     <PackageVersion Include="reactiveui" Version="22.3.1" />
     <PackageVersion Include="System.Reactive" Version="6.1.0" />
-    <PackageVersion Include="Tmds.DBus.Protocol" Version="0.92.0" />
+    <PackageVersion Include="Tmds.DBus.Protocol" Version="0.94.1" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>

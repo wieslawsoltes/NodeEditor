@@ -28,7 +28,7 @@ jobs:
       with:
         global-json-file: global.json
     - name: Install workloads
-      run: dotnet workload install wasm-tools wasm-experimental
+      run: dotnet workload install wasm-tools
     - name: Build
       run: dotnet build -c Release
 
@@ -42,7 +42,7 @@ jobs:
       with:
         global-json-file: global.json
     - name: Install workloads
-      run: dotnet workload install wasm-tools wasm-experimental
+      run: dotnet workload install wasm-tools
     - name: Test
       run: dotnet test -c Release
 
@@ -56,7 +56,7 @@ jobs:
       with:
         global-json-file: global.json
     - name: Install workloads
-      run: dotnet workload install wasm-tools wasm-experimental
+      run: dotnet workload install wasm-tools
     - name: Pack
       run: dotnet pack -c Release -o artifacts/nuget
     - name: Upload NuGet packages
@@ -77,12 +77,12 @@ jobs:
     - name: Create release bundle
       run: |
         mkdir -p bundle
-        zip -j bundle/dock-packages.zip release/*.nupkg
+        zip -j bundle/nodeeditor-packages.zip release/*.nupkg
     - name: Upload release bundle
       uses: actions/upload-artifact@v4
       with:
         name: release-bundle
-        path: bundle/dock-packages.zip
+        path: bundle/nodeeditor-packages.zip
 
   nuget_push:
     runs-on: ubuntu-latest
@@ -99,7 +99,7 @@ jobs:
     - name: Extract release bundle
       run: |
         mkdir -p nuget
-        zip_path=$(find bundle -name 'dock-packages.zip' -print -quit)
+        zip_path=$(find bundle -name 'nodeeditor-packages.zip' -print -quit)
         if [ -z "$zip_path" ]; then
           echo "release bundle archive not found" >&2
           exit 1
@@ -125,6 +125,7 @@ jobs:
       with:
         draft: false
         prerelease: false
+        generate_release_notes: true
         files: |
           release/*.nupkg
       env:
