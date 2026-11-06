@@ -1,8 +1,6 @@
-using System;
 using Avalonia;
 using Avalonia.Headless;
-using Avalonia.Markup.Xaml.Styling;
-using Avalonia.Themes.Fluent;
+using Avalonia.Markup.Xaml;
 
 [assembly: AvaloniaTestApplication(typeof(NodeEditor.UnitTests.HeadlessTestAppBuilder))]
 
@@ -14,14 +12,10 @@ public static class HeadlessTestAppBuilder
         .UseHeadless(new AvaloniaHeadlessPlatformOptions());
 }
 
-public sealed class HeadlessTestApp : Application
+public sealed partial class HeadlessTestApp : Application
 {
     public override void Initialize()
     {
-        Styles.Add(new FluentTheme());
-        Styles.Add(new StyleInclude(new Uri("avares://NodeEditorAvalonia/"))
-        {
-            Source = new Uri("avares://NodeEditorAvalonia/Themes/NodeEditorTheme.axaml")
-        });
+        AvaloniaXamlLoader.Load(this);
     }
 }
