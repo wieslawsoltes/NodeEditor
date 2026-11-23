@@ -62,7 +62,7 @@ public static class ExportRenderer
         target.Measure(normalized);
         target.Arrange(new Rect(normalized));
         bitmap.Render(target);
-        bitmap.Save(stream);
+        bitmap.Save(stream, PngBitmapEncoderOptions.Default);
     }
 
     public static void RenderSvg(Control target, Size size, Stream stream, double dpi = 96)
