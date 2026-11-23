@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
@@ -21,6 +22,7 @@ using NodeEditor.Services;
 using NodeEditorDemo.Services;
 using NodeEditorDemo.ViewModels;
 using ReactiveUI;
+using SkiaSharp;
 using Xunit;
 
 namespace NodeEditor.UnitTests;
@@ -53,6 +55,24 @@ public sealed class ZipTieRenderingTests
         var rendered = Capture(CreateLayer(drawing));
         Assert.NotEmpty(Flatten(rendered));
         Assert.Equal(ZipTieGeometry.GetAnchorCount(drawing.ZipTies[0]) * 4, Flatten(rendered).Count());
+    }
+
+    [Fact]
+    public async Task ExportWritesPngWithRequestedDimensions()
+    {
+        await using var session = HeadlessUnitTestSession.StartNew(typeof(SkiaHeadlessAppBuilder));
+        await session.Dispatch(() =>
+        {
+            var layer = CreateLayer(ZipTieDemo.CreateDrawing());
+            using var output = new MemoryStream();
+            ExportRenderer.RenderPng(layer, new Size(1120, 680), output);
+
+            output.Position = 0;
+            using var codec = SKCodec.Create(output);
+            Assert.NotNull(codec);
+            Assert.Equal(SKEncodedImageFormat.Png, codec.EncodedFormat);
+            Assert.Equal(new SKSizeI(1120, 680), codec.Info.Size);
+        }, TestContext.Current.CancellationToken);
     }
 
     [AvaloniaFact]
@@ -284,6 +304,13 @@ public sealed class ZipTieRenderingTests
     }
 
     private static Color? BrushColor(IBrush? brush) => (brush as ISolidColorBrush)?.Color;
+
+    private static class SkiaHeadlessAppBuilder
+    {
+        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<HeadlessTestApp>()
+            .UseSkia()
+            .UseHeadless(new AvaloniaHeadlessPlatformOptions { UseHeadlessDrawing = false });
+    }
 
     private sealed class ExportProbeException : Exception
     {
